@@ -41,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
         //move character acording to input
         Vector3 move = new Vector3(moveHorizontal, 0f, moveVertical);
-        transform.rotation = Quaternion.LookRotation(move);
-        controller.Move(move * speed * Time.deltaTime);
 
+        controller.Move(move * speed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), .2f);
 
         //gravity
         velocity.y += gravity * Time.deltaTime;
@@ -60,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Walking", false);
         }
 
-
         
+
 
 
     }
