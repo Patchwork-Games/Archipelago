@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     Vector3 velocity;
+    private Vector3 originalPos;
     private bool isGrounded;
     private bool chargingThrow;
     private bool throwing;
@@ -89,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
                     Vector3 move = new Vector3(moveHorizontal, 0f, moveVertical);
 
                     controller.Move(move * speed * Time.deltaTime);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), .2f);
+                    if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
 
 
                     //gravity
@@ -122,6 +123,8 @@ public class PlayerMovement : MonoBehaviour
                         chargingThrow = true;
                         throwing = false;
                         throwPower = 0;
+                        originalPos = transform.position;
+                        StartCoroutine("ShakeCharacter");
                     }
 
 
@@ -142,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
 
                         LookAtMouse();
                         chargeThrow();
+
+                        
                     }
 
                     if (throwing)
@@ -172,21 +177,31 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    //attach throwing spot that was stepped on
     private void OnTriggerEnter(Collider other)
     {
+        //move camera and set current throwing spot
         if (other.gameObject.CompareTag("ThrowSpot"))
         {
+            //set current view spot to one that is stood on
             currentThrowSpot = other.gameObject;
+
+            //move camera to new view
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().FollowNewObject(currentThrowSpot.transform.GetChild(1).gameObject);
         }
     }
 
-    //remove throwing spot that was left
+    
     private void OnTriggerExit(Collider other)
     {
+
+        //move camera and remove current throwing spot
         if (other.gameObject.CompareTag("ThrowSpot"))
         {
+            //remove throwing spot that was left
             currentThrowSpot = null;
+
+            //focus camera back on player
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().FollowNewObject(gameObject);
         }
     }
 
@@ -200,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
             angleClamp = currentThrowSpot.GetComponent<ThrowSpotAngleShow>().totalFOV/2;
 
             //move player to middle of throwing platform and enter throwing state
-            transform.position = currentThrowSpot.transform.GetChild(2).transform.position;
+            transform.position = currentThrowSpot.transform.GetChild(0).transform.position;
             anim.SetBool("Walking", false);
             state = PlayerState.THROWING;
             justChangedThrowSpot = true;
@@ -240,12 +255,26 @@ public class PlayerMovement : MonoBehaviour
     //charge power of throw
     void chargeThrow()
     {
-        throwPower += Time.deltaTime;
-        if (throwPower > maxThrowPower) throwPower = maxThrowPower;
-
-
-       // transform.position
+        throwPower += Time.deltaTime * 300;
+        Debug.Log("ThrowPower: " + throwPower);
+        if (throwPower > maxThrowPower)
+        {
+            throwPower = maxThrowPower;
+            //could show sparkle here to show that max power reached
+        }
     }
-    
+
+
+    //shake character while charging
+    IEnumerator ShakeCharacter()
+    {
+        while (chargingThrow)
+        {
+            transform.position += Random.insideUnitSphere * (Time.deltaTime * throwPower/ 300);
+
+            yield return new WaitForSeconds(0.02f);
+            transform.position = originalPos;
+        }
+    }
 
 }
