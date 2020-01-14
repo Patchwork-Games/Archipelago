@@ -83,7 +83,7 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     //draw radius around npc that player has to be in to talk
-    void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, talkRadius);
