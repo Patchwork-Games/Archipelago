@@ -24,16 +24,14 @@ public class StoneMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Mag: " + rb.velocity.magnitude);
-        if (rb.velocity.magnitude < 1) StartCoroutine("DestroyStone");
-        
+        if (rb.velocity.magnitude < 1) StartCoroutine("DestroyStone");    
     }
 
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("PLayer"))
         {
             MakeBouncey();
         }
