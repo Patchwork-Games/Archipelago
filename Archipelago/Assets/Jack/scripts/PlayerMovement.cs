@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator anim;
 
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float speed = 12f;
-    [SerializeField] private float gravity = -50.81f;
+    [SerializeField] private float speed = 6f;
+    [SerializeField] private float gravity = -55.81f;
 
     [SerializeField] public Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim.SetBool("Walking", false);
     }
 
 
@@ -33,18 +35,34 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
 
 
-        Vector3 move = new Vector3(x, 0f, z);
-
-
-
+        //move character acording to input
+        Vector3 move = new Vector3(moveHorizontal, 0f, moveVertical);
+        transform.rotation = Quaternion.LookRotation(move);
         controller.Move(move * speed * Time.deltaTime);
 
+
+        //gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+
+        //make character walk if getting input
+        if (moveHorizontal > 0.01 || moveHorizontal < -0.01 || moveVertical > 0.01 || moveVertical < -0.01)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+
+
+        
+
 
     }
 }
