@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
     public GameObject stone;
+
+    public GameObject mainCamera;
+    public GameObject throwCamera;
+    public GameObject cameraForward;
 
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
@@ -84,13 +89,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
+                    Debug.Log("Cam forward: " + cameraForward.transform.forward);
 
                     //move character acording to input
-                    Vector3 move = new Vector3(moveHorizontal, 0f, moveVertical);
+                    Vector3 move = cameraForward.transform.right * moveHorizontal + cameraForward.transform.forward * moveVertical;
 
                     controller.Move(move * speed * Time.deltaTime);
-                    if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
+                    //if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
 
 
                     //gravity
@@ -162,15 +167,6 @@ public class PlayerMovement : MonoBehaviour
             default:
                 break;
         }
-
-
-
-
-        
-
-        
-
-
     }
 
 
@@ -184,9 +180,10 @@ public class PlayerMovement : MonoBehaviour
         {
             //set current view spot to one that is stood on
             currentThrowSpot = other.gameObject;
+            throwCamera = currentThrowSpot.transform.GetChild(1).gameObject;
 
-            //move camera to new view
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().FollowNewObject(currentThrowSpot.transform.GetChild(1).gameObject);
+            throwCamera.GetComponent<CinemachineVirtualCamera>().Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 0;
         }
     }
 
@@ -198,10 +195,9 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("ThrowSpot"))
         {
             //remove throwing spot that was left
+            throwCamera.GetComponent<CinemachineVirtualCamera>().Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 500;
             currentThrowSpot = null;
-
-            //focus camera back on player
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().FollowNewObject(gameObject);
         }
     }
 
