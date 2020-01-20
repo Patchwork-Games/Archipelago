@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class PlayerMovement : MonoBehaviour
     }
     public PlayerState state;
 
+    public InputMaster controls;
+
     public Animator anim;
     public GameObject stone;
 
     public GameObject mainCamera;
     public GameObject throwCamera;
-    public GameObject cameraForward;
+
+
 
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
@@ -29,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
+    Vector3 camForward;
+    Vector3 camRight;
     Vector3 velocity;
     private Vector3 originalPos;
     private bool isGrounded;
@@ -36,11 +42,42 @@ public class PlayerMovement : MonoBehaviour
     private bool throwing;
     private bool justChangedThrowSpot;
 
-    public bool throwReady;
-    public bool doingThrow;
+    [HideInInspector]public bool throwReady;
+    [HideInInspector]public bool doingThrow;
 
     private float angleClamp;
     private float throwPower;
+
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+        controls.Player.Movement.performed += context => Move(context.ReadValue<Vector2>());
+        controls.Player.Interact.performed += context => Interact();
+    }
+
+
+    void Interact()
+    {
+        Debug.Log("a");
+    }
+
+
+    void Move(Vector2 direction)
+    {
+        Debug.Log("Player wants to move: " + direction);
+    }
+
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
 
     private void Start()
@@ -89,13 +126,18 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-                    Debug.Log("Cam forward: " + cameraForward.transform.forward);
+                    //get camera forward
+                    camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+                    camForward.y = 0;
+                    camRight = Vector3.Cross(new Vector3(0,1,0), camForward);
+                    
+
 
                     //move character acording to input
-                    Vector3 move = cameraForward.transform.right * moveHorizontal + cameraForward.transform.forward * moveVertical;
+                    Vector3 move = camRight * moveHorizontal + camForward * moveVertical;
 
                     controller.Move(move * speed * Time.deltaTime);
-                    //if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
+                    if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
 
 
                     //gravity
