@@ -263,8 +263,7 @@ public class PlayerMovement : MonoBehaviour
         //    Debug.Log("not Moving mouse");
         //}
 
-        previousMouseX = Input.mousePosition.x;
-
+        previousMouseX = Input.mousePosition.x;        
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
         
