@@ -3,29 +3,31 @@
 // Shader created with Shader Forge v1.40 
 // Shader Forge (c) Freya Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:2,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:2,rntp:3,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:32719,y:32712,varname:node_2865,prsc:2|diff-2741-OUT,spec-9177-OUT,gloss-3715-OUT,clip-2185-A,voffset-7441-OUT;n:type:ShaderForge.SFN_Tex2d,id:6408,x:31945,y:32340,ptovrint:False,ptlb:MainTex,ptin:_MainTex,varname:node_6408,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:5fa3ee8319821724ea9bb5b7683dbe4f,ntxv:0,isnm:False;n:type:ShaderForge.SFN_VertexColor,id:3009,x:31745,y:33040,varname:node_3009,prsc:2;n:type:ShaderForge.SFN_Multiply,id:7441,x:31968,y:33123,varname:node_7441,prsc:2|A-3009-R,B-7267-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7986,x:31114,y:33160,ptovrint:False,ptlb:Intensity,ptin:_Intensity,varname:node_7986,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:1;n:type:ShaderForge.SFN_Time,id:5748,x:31139,y:33629,varname:node_5748,prsc:2;n:type:ShaderForge.SFN_Cos,id:9350,x:31345,y:33629,varname:node_9350,prsc:2|IN-5748-T;n:type:ShaderForge.SFN_TexCoord,id:9367,x:31139,y:33463,varname:node_9367,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_OneMinus,id:4818,x:31345,y:33473,varname:node_4818,prsc:2|IN-9367-V;n:type:ShaderForge.SFN_Multiply,id:7660,x:31542,y:33497,varname:node_7660,prsc:2|A-4818-OUT,B-9350-OUT;n:type:ShaderForge.SFN_FragmentPosition,id:2521,x:30846,y:33270,varname:node_2521,prsc:2;n:type:ShaderForge.SFN_Sin,id:7064,x:31054,y:33282,varname:node_7064,prsc:2|IN-2521-X;n:type:ShaderForge.SFN_Multiply,id:583,x:31232,y:33301,varname:node_583,prsc:2|A-7064-OUT,B-7660-OUT;n:type:ShaderForge.SFN_Multiply,id:2160,x:31441,y:33301,varname:node_2160,prsc:2|A-7986-OUT,B-583-OUT;n:type:ShaderForge.SFN_Append,id:7267,x:31756,y:33227,varname:node_7267,prsc:2|A-2160-OUT,B-54-OUT,C-2160-OUT;n:type:ShaderForge.SFN_Vector1,id:54,x:31512,y:33040,varname:node_54,prsc:2,v1:0;n:type:ShaderForge.SFN_Slider,id:9177,x:32134,y:32907,ptovrint:False,ptlb:Metal,ptin:_Metal,varname:node_9177,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:3715,x:32107,y:32995,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:_Metal_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8034188,max:1;n:type:ShaderForge.SFN_Color,id:2185,x:31945,y:32540,ptovrint:False,ptlb:MainColour,ptin:_MainColour,varname:node_2185,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.1660288,c2:0.8584906,c3:0.2264076,c4:1;n:type:ShaderForge.SFN_Multiply,id:2741,x:32170,y:32452,varname:node_2741,prsc:2|A-6408-RGB,B-2185-RGB;proporder:6408-7986-9177-3715-2185;pass:END;sub:END;*/
+/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:2,bsrc:3,bdst:7,dpts:2,wrdp:False,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:True,qofs:0,qpre:3,rntp:2,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:32719,y:32712,varname:node_2865,prsc:2|diff-2741-OUT,spec-9177-OUT,gloss-3715-OUT,alpha-9177-OUT,clip-2185-A,voffset-7441-OUT;n:type:ShaderForge.SFN_Tex2d,id:6408,x:31945,y:32340,ptovrint:False,ptlb:MainTex,ptin:_MainTex,varname:node_6408,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:5fa3ee8319821724ea9bb5b7683dbe4f,ntxv:0,isnm:False;n:type:ShaderForge.SFN_VertexColor,id:3009,x:31745,y:33040,varname:node_3009,prsc:2;n:type:ShaderForge.SFN_Multiply,id:7441,x:31968,y:33123,varname:node_7441,prsc:2|A-3009-R,B-7267-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7986,x:31114,y:33160,ptovrint:False,ptlb:Intensity,ptin:_Intensity,varname:node_7986,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:1;n:type:ShaderForge.SFN_Time,id:5748,x:31139,y:33629,varname:node_5748,prsc:2;n:type:ShaderForge.SFN_Cos,id:9350,x:31345,y:33629,varname:node_9350,prsc:2|IN-5748-T;n:type:ShaderForge.SFN_TexCoord,id:9367,x:31139,y:33463,varname:node_9367,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_OneMinus,id:4818,x:31345,y:33473,varname:node_4818,prsc:2|IN-9367-V;n:type:ShaderForge.SFN_Multiply,id:7660,x:31542,y:33497,varname:node_7660,prsc:2|A-4818-OUT,B-9350-OUT;n:type:ShaderForge.SFN_FragmentPosition,id:2521,x:30846,y:33270,varname:node_2521,prsc:2;n:type:ShaderForge.SFN_Sin,id:7064,x:31054,y:33282,varname:node_7064,prsc:2|IN-2521-X;n:type:ShaderForge.SFN_Multiply,id:583,x:31232,y:33301,varname:node_583,prsc:2|A-7064-OUT,B-7660-OUT;n:type:ShaderForge.SFN_Multiply,id:2160,x:31441,y:33301,varname:node_2160,prsc:2|A-7986-OUT,B-583-OUT;n:type:ShaderForge.SFN_Append,id:7267,x:31756,y:33227,varname:node_7267,prsc:2|A-2160-OUT,B-54-OUT,C-2160-OUT;n:type:ShaderForge.SFN_Vector1,id:54,x:31512,y:33040,varname:node_54,prsc:2,v1:0;n:type:ShaderForge.SFN_Slider,id:9177,x:32134,y:32907,ptovrint:False,ptlb:Metal,ptin:_Metal,varname:node_9177,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.5384616,max:1;n:type:ShaderForge.SFN_Slider,id:3715,x:32107,y:32995,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:_Metal_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8034188,max:1;n:type:ShaderForge.SFN_Color,id:2185,x:31945,y:32540,ptovrint:False,ptlb:MainColour,ptin:_MainColour,varname:node_2185,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.1660288,c2:0.8584906,c3:0.2264076,c4:1;n:type:ShaderForge.SFN_Multiply,id:2741,x:32170,y:32452,varname:node_2741,prsc:2|A-6408-RGB,B-2185-RGB;proporder:6408-7986-9177-3715-2185;pass:END;sub:END;*/
 
 Shader "Shader Forge/Ocean" {
     Properties {
         _MainTex ("MainTex", 2D) = "white" {}
         _Intensity ("Intensity", Float ) = 1
-        _Metal ("Metal", Range(0, 1)) = 0
+        _Metal ("Metal", Range(0, 1)) = 0.5384616
         _Gloss ("Gloss", Range(0, 1)) = 0.8034188
         _MainColour ("MainColour", Color) = (0.1660288,0.8584906,0.2264076,1)
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader {
         Tags {
-            "Queue"="AlphaTest"
-            "RenderType"="TransparentCutout"
+            "IgnoreProjector"="True"
+            "Queue"="Transparent"
+            "RenderType"="Transparent"
         }
         Pass {
             Name "FORWARD"
             Tags {
                 "LightMode"="ForwardBase"
             }
+            Blend SrcAlpha OneMinusSrcAlpha
             Cull Off
-            
+            ZWrite Off
             
             CGPROGRAM
             #pragma vertex vert
@@ -34,11 +36,10 @@ Shader "Shader Forge/Ocean" {
             #define _GLOSSYENV 1
             #pragma multi_compile_instancing
             #include "UnityCG.cginc"
-            #include "AutoLight.cginc"
             #include "Lighting.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
-            #pragma multi_compile_fwdbase_fullshadows
+            #pragma multi_compile_fwdbase
             #pragma multi_compile LIGHTMAP_OFF LIGHTMAP_ON
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
@@ -72,10 +73,9 @@ Shader "Shader Forge/Ocean" {
                 float3 tangentDir : TEXCOORD5;
                 float3 bitangentDir : TEXCOORD6;
                 float4 vertexColor : COLOR;
-                LIGHTING_COORDS(7,8)
-                UNITY_FOG_COORDS(9)
+                UNITY_FOG_COORDS(7)
                 #if defined(LIGHTMAP_ON) || defined(UNITY_SHOULD_SAMPLE_SH)
-                    float4 ambientOrLightmapUV : TEXCOORD10;
+                    float4 ambientOrLightmapUV : TEXCOORD8;
                 #endif
             };
             VertexOutput vert (VertexInput v) {
@@ -105,7 +105,6 @@ Shader "Shader Forge/Ocean" {
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
-                TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }
             float4 frag(VertexOutput i, float facing : VFACE) : COLOR {
@@ -124,7 +123,7 @@ Shader "Shader Forge/Ocean" {
                 float3 lightColor = _LightColor0.rgb;
                 float3 halfDirection = normalize(viewDirection+lightDirection);
 ////// Lighting:
-                float attenuation = LIGHT_ATTENUATION(i);
+                float attenuation = 1;
                 float3 attenColor = attenuation * _LightColor0.xyz;
                 float Pi = 3.141592654;
                 float InvPi = 0.31830988618;
@@ -221,7 +220,7 @@ Shader "Shader Forge/Ocean" {
                 float3 diffuse = (directDiffuse + indirectDiffuse) * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                fixed4 finalRGBA = fixed4(finalColor,1);
+                fixed4 finalRGBA = fixed4(finalColor,_Metal_var);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
@@ -234,7 +233,7 @@ Shader "Shader Forge/Ocean" {
             }
             Blend One One
             Cull Off
-            
+            ZWrite Off
             
             CGPROGRAM
             #pragma vertex vert
@@ -247,7 +246,7 @@ Shader "Shader Forge/Ocean" {
             #include "Lighting.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
-            #pragma multi_compile_fwdadd_fullshadows
+            #pragma multi_compile_fwdadd
             #pragma multi_compile LIGHTMAP_OFF LIGHTMAP_ON
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
@@ -366,7 +365,7 @@ Shader "Shader Forge/Ocean" {
                 float3 diffuse = directDiffuse * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                fixed4 finalRGBA = fixed4(finalColor * 1,0);
+                fixed4 finalRGBA = fixed4(finalColor * _Metal_var,0);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
