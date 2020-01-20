@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
+
     Vector3 camForward;
     Vector3 camRight;
     Vector3 velocity;
@@ -41,18 +42,25 @@ public class PlayerMovement : MonoBehaviour
     private bool chargingThrow;
     private bool throwing;
     private bool justChangedThrowSpot;
+    
 
     [HideInInspector]public bool throwReady;
     [HideInInspector]public bool doingThrow;
 
     private float angleClamp;
     private float throwPower;
+    private float previousMouseX;
 
+    Vector2 moveDirection;
+    Vector2 camMoveDirection;
 
     private void Awake()
     {
         controls = new InputMaster();
-        controls.Player.Movement.performed += context => Move(context.ReadValue<Vector2>());
+        controls.Player.Movement.performed += context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.canceled += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.Interact.performed += context => Interact();
     }
 
@@ -60,18 +68,17 @@ public class PlayerMovement : MonoBehaviour
     void Interact()
     {
         Debug.Log("a");
+        Cursor.lockState = CursorLockMode.None;
     }
 
 
-    void Move(Vector2 direction)
-    {
-        Debug.Log("Player wants to move: " + direction);
-    }
+    
 
 
     private void OnEnable()
     {
         controls.Enable();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDisable()
@@ -102,9 +109,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
-
 
         //state machine
         switch (state)
@@ -124,35 +128,10 @@ public class PlayerMovement : MonoBehaviour
                         velocity.y = -2f;
                     }
 
+                    Move();
+                    Gravity();
+                    MoveCamera();
 
-
-                    //get camera forward
-                    camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
-                    camForward.y = 0;
-                    camRight = Vector3.Cross(new Vector3(0,1,0), camForward);
-                    
-
-
-                    //move character acording to input
-                    Vector3 move = camRight * moveHorizontal + camForward * moveVertical;
-
-                    controller.Move(move * speed * Time.deltaTime);
-                    if(move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-
-
-                    //gravity
-                    velocity.y += gravity * Time.deltaTime;
-                    controller.Move(velocity * Time.deltaTime);
-
-                    //make character walk if getting input
-                    if (moveHorizontal > 0.01 || moveHorizontal < -0.01 || moveVertical > 0.01 || moveVertical < -0.01)
-                    {
-                        anim.SetBool("Walking", true);
-                    }
-                    else
-                    {
-                        anim.SetBool("Walking", false);
-                    }
 
 
                     break;
@@ -210,6 +189,92 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    void Move()
+    {
+        //get camera forward
+        camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+        camForward.y = 0;
+        camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
+
+
+        //move character acording to input
+        Vector3 move = camRight * moveDirection.x + camForward * moveDirection.y;
+
+        controller.Move(move * speed * Time.deltaTime);
+        if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
+
+
+
+        //make character walk if getting input
+        if (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+    }
+
+    void Gravity()
+    {
+        //gravity
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+
+    void MoveCamera()
+    {
+        //move camera
+        if (camMoveDirection.x != 0)
+        {
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
+            Debug.Log("moving controller");
+            
+        }
+        else
+        {
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            Debug.Log("Not moving controller");
+        }
+        ////move camera
+        //if (Input.mousePosition.x != previousMouseX)
+        //{
+        //    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+        //    Debug.Log("Moving mouse");
+        //}
+        //else
+        //{
+        //    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
+        //    Debug.Log("not Moving mouse");
+        //}
+
+        previousMouseX = Input.mousePosition.x;
+
+
+        mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
+        
+    }
+
+
+
+
+
+
 
 
 
