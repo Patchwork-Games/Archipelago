@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 6f;
+    [SerializeField] private float runSpeed = 12f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private float maxThrowPower = 1000;
 
@@ -42,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private bool chargingThrow;
     private bool throwing;
     private bool justChangedThrowSpot;
-    
+    private bool interact = false;
+    private bool run = false;
 
     [HideInInspector]public bool throwReady;
     [HideInInspector]public bool doingThrow;
@@ -50,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
     private float angleClamp;
     private float throwPower;
     private float previousMouseX;
+    private int jumps = 0;
+    private int jumpsMax = 1;
+    
+   
 
     Vector2 moveDirection;
     Vector2 camMoveDirection;
@@ -61,18 +67,44 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.canceled += context => camMoveDirection = context.ReadValue<Vector2>();
-        controls.Player.Interact.performed += context => Interact();
+        controls.Player.Interact.performed += context => InteractButton();
+        controls.Player.Run.performed += context => RunButton();
+        controls.Player.Run.canceled += context => StopRunButton();
     }
 
 
-    void Interact()
+    void InteractButton()
     {
-        Debug.Log("a");
-        Cursor.lockState = CursorLockMode.None;
+        if (interact)
+        {
+            //make player jump if enough jumps
+            if (jumps > 0 && interact)
+            {
+                velocity.y = 20f;
+                jumps -= 1;
+            }
+        }
+        
+        Debug.Log("A");
     }
 
 
-    
+    void RunButton()
+    {
+        run = true;
+        Debug.Log("X");
+    }
+
+    void StopRunButton()
+    {
+        run = false;
+        Debug.Log("Stop X");
+    }
+
+
+
+
+
 
 
     private void OnEnable()
@@ -109,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        interact = false;
         //state machine
         switch (state)
         {
@@ -126,13 +158,29 @@ public class PlayerMovement : MonoBehaviour
                     if (isGrounded && velocity.y < 0)
                     {
                         velocity.y = -2f;
+                        jumps = jumpsMax;
                     }
 
+
+                    if (run)
+                    {
+                        Run();
+                        anim.SetBool("Running", true);
+                    }
+                    else
+                    {
+                        anim.SetBool("Running", false);
+                    }
+
+
+
                     Move();
+
                     Gravity();
                     MoveCamera();
 
-
+                    //let the player interact, is reset at start of update
+                    interact = true;
 
                     break;
                 }
@@ -242,26 +290,13 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (camMoveDirection.x != 0)
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
-            Debug.Log("moving controller");
-            
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";           
         }
         else
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-            Debug.Log("Not moving controller");
         }
-        ////move camera
-        //if (Input.mousePosition.x != previousMouseX)
-        //{
-        //    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-        //    Debug.Log("Moving mouse");
-        //}
-        //else
-        //{
-        //    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
-        //    Debug.Log("not Moving mouse");
-        //}
+
 
         previousMouseX = Input.mousePosition.x;        
 
@@ -270,6 +305,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    void Run()
+    {
+        //get camera forward
+        camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+        camForward.y = 0;
+        camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
+
+
+        //move character acording to input
+        Vector3 move = camRight * moveDirection.x + camForward * moveDirection.y;
+
+        controller.Move(move * runSpeed * Time.deltaTime);
+        if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
+    }
 
 
 
