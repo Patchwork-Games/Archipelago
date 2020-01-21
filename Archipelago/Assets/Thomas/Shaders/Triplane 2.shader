@@ -6,6 +6,10 @@
 
 		  _Top("Top", 2D) = "white" {}
 
+		  _Sand("Sand", 2D) = "white" {}
+
+		  _SandNormal("SandNormal", 2D) = "bump" {}
+
 		  _Bottom("Side", 2D) = "white" {}
 
 		  _SideScale("Side Scale", Float) = 2
@@ -49,7 +53,7 @@
 
 
 
-			sampler2D _Side, _Top, _Bottom;
+			sampler2D _Side, _Top, _Bottom, _Sand, _SandNormal;
 
 			float _SideScale, _TopScale, _BottomScale, _SideAngle, _TopAngle;
 			
@@ -58,9 +62,8 @@
 			struct Input {
 
 				float3 worldPos;
-
 				float3 worldNormal;
-
+				float2 uv_BumpMap;
 			};
 
 
@@ -82,20 +85,32 @@
 					x = tex2D(_Top, frac(IN.worldPos.zy * _SideScale)) * abs(IN.worldNormal.x);
 				}
 
-			
-
-				// TOP / BOTTOM
-
+				//Sand
 				float3 y = 0;
-				if (IN.worldNormal.y > _TopAngle) 
+				if (IN.worldPos.y < 20)
 				{
-					y += tex2D(_Top, frac(IN.worldPos.zx * _TopScale)) * abs(IN.worldNormal.y);
+					
+					if (IN.worldNormal.y > _TopAngle)
+					{
+						y = tex2D(_Sand, frac(IN.worldPos.zx * _TopScale)) * abs(IN.worldNormal.y);
+					}
+					else
+					{
+						y = tex2D(_Bottom, frac(IN.worldPos.zx * _BottomScale)) * abs(IN.worldNormal.y);
+					}
 				}
 				else
 				{
-					y += tex2D(_Bottom, frac(IN.worldPos.zx * _BottomScale)) * abs(IN.worldNormal.y);
+					
+					if (IN.worldNormal.y > _TopAngle)
+					{
+						y = tex2D(_Top, frac(IN.worldPos.zx * _TopScale)) * abs(IN.worldNormal.y);
+					}
+					else
+					{
+						y = tex2D(_Bottom, frac(IN.worldPos.zx * _BottomScale)) * abs(IN.worldNormal.y);
+					}
 				}
-
 
 
 				// SIDE Z	
@@ -109,6 +124,8 @@
 				o.Albedo = x;// lerp(o.Albedo, x, projNormal.x);
 
 				o.Albedo = y;// lerp(o.Albedo, y, projNormal.y);
+
+				//o.Normal = UnpackNormal(tex2D (_SandNormal, IN.uv_BumpMap));
 
 			}
 
