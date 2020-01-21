@@ -329,6 +329,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""61a72cc0-4158-43a1-ac6c-9232956a2538"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -441,6 +449,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Steering"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""639767cc-74c4-482a-9d2c-f4260c7b4211"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d7bf562-ce75-40ac-be02-ea9dee161f00"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -484,6 +514,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Boat
         m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
         m_Boat_Steering = m_Boat.FindAction("Steering", throwIfNotFound: true);
+        m_Boat_Dash = m_Boat.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -591,11 +622,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Boat;
     private IBoatActions m_BoatActionsCallbackInterface;
     private readonly InputAction m_Boat_Steering;
+    private readonly InputAction m_Boat_Dash;
     public struct BoatActions
     {
         private @InputMaster m_Wrapper;
         public BoatActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Steering => m_Wrapper.m_Boat_Steering;
+        public InputAction @Dash => m_Wrapper.m_Boat_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Boat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -608,6 +641,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Steering.started -= m_Wrapper.m_BoatActionsCallbackInterface.OnSteering;
                 @Steering.performed -= m_Wrapper.m_BoatActionsCallbackInterface.OnSteering;
                 @Steering.canceled -= m_Wrapper.m_BoatActionsCallbackInterface.OnSteering;
+                @Dash.started -= m_Wrapper.m_BoatActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_BoatActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_BoatActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_BoatActionsCallbackInterface = instance;
             if (instance != null)
@@ -615,6 +651,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Steering.started += instance.OnSteering;
                 @Steering.performed += instance.OnSteering;
                 @Steering.canceled += instance.OnSteering;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -647,5 +686,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IBoatActions
     {
         void OnSteering(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

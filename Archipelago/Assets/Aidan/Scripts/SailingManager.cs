@@ -9,6 +9,7 @@ public class SailingManager : MonoBehaviour
     [SerializeField] private float windForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float steeringSpeed = 10f;
+    [SerializeField] private GameObject bow = null;
     private Rigidbody rb = null;
 
     // Steering variables
@@ -60,19 +61,8 @@ public class SailingManager : MonoBehaviour
         // Steer the boat
         if (isSteering)
         {
-            // Get the camera's forward vector
-            camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
-            camForward.y = 0;
-            camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
-
-            // Calculate the move vector
-            Vector3 move = (camRight * moveDirection.x) + (camForward * moveDirection.y);
-
-            // Calculate the lerp speed based on the time
-            lerpSpeed += Time.deltaTime / rotationTime;
-
-            // Rotate the forward vector towards the desired position
-            transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(move), lerpSpeed);
+            // Add a torque force in the direction the player wants to move
+            rb.AddTorque(new Vector3(0, moveDirection.x * steeringSpeed * Time.deltaTime,0));
         }
     }
 
