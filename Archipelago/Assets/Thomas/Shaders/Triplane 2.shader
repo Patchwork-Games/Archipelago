@@ -14,6 +14,8 @@
 
 		  _SideScale("Side Scale", Float) = 2
 
+		  _SandScale("Sand Scale", Float) = 2
+
 		  _TopScale("Top Scale", Float) = 2
 
 		  _BottomScale("Bottom Scale", Float) = 2
@@ -55,7 +57,7 @@
 
 			sampler2D _Side, _Top, _Bottom, _Sand, _SandNormal;
 
-			float _SideScale, _TopScale, _BottomScale, _SideAngle, _TopAngle;
+			float _SideScale, _TopScale, _SandScale, _BottomScale, _SideAngle, _TopAngle;
 			
 
 
@@ -66,7 +68,14 @@
 				float2 uv_BumpMap;
 			};
 
-
+			half4 SplitMap(half4 map)
+			{
+				map.r = step(0.1, map.r - map.g - map.b - map.a);
+				map.r = step(0.1, map.g - map.r - map.b - map.a);
+				map.r = step(0.1, map.b - map.g - map.r - map.a);
+				map.r = step(0.1, map.a - map.g - map.b - map.r);
+				return map;
+			}
 
 			void surf(Input IN, inout SurfaceOutput o) {
 
