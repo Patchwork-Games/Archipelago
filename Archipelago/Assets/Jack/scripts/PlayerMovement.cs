@@ -180,10 +180,10 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     //stop trying to run when out of energy
-                    if (energy == 0) run = false; 
+                    if (energy == 0) run = false;
 
 
-
+                    //http://www.alanzucconi.com/2015/06/17/surface-shaders-in-unity3d/
 
 
                     Move();
