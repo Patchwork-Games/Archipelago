@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float speed = 6f;
+    [SerializeField] private float speed = 8f;
     [SerializeField] private float runSpeed = 12f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private float maxThrowPower = 1000;
