@@ -23,24 +23,26 @@
             float3 worldPos;
         };
 
-		half4 SplitMap(half4 map)
-		{
-			map.r = step(0.1, map.r - map.g - map.b - map.a);
-			map.g = step(0.1, map.g - map.r - map.b - map.a);
-			map.b = step(0.1, map.b - map.g - map.r - map.a);
-			map.a = step(0.1, map.a - map.g - map.b - map.r);
-			return map;
-		}
+	//	half4 SplitMap(half4 map)
+	//	{
+	//		map.r = step(0.1, map.r - map.g - map.b - map.a);
+	//		map.g = step(0.1, map.g - map.r - map.b - map.a);
+	//		map.b = step(0.1, map.b - map.g - map.r - map.a);
+	//		map.a = step(0.1, map.a - map.g - map.b - map.r);
+	//		return map;
+	//	}
 
         void surf (Input IN, inout SurfaceOutputStandard o) {
            
             fixed4 col1 = tex2D(_Texture2, IN.worldPos.yz * _Scale);
             fixed4 col2 = tex2D(_Texture1, IN.worldPos.xz * _Scale);
-            fixed4 col3 = tex2D(_Texture3, IN.worldPos.xy * _Scale);
+			fixed4 col3 = tex2D(_Texture1, IN.worldPos.xy * _Scale);
+
+			
  			
             float3 vec = abs(IN.worldNormal);
             vec /= vec.x + vec.y + vec.z + 0.001f;
-            fixed4 col = vec.x * col1 + vec.y * col2 + vec.z * col3;
+			fixed4 col = vec.x * col1 + vec.y * col2 + vec.z * col3;
  
             o.Albedo = col;
             o.Emission = col;
