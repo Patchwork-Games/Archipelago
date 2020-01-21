@@ -87,7 +87,7 @@
 
 				//Sand
 				float3 y = 0;
-				if (IN.worldPos.y < 20)
+				if (IN.worldPos.y < 50)
 				{
 					
 					if (IN.worldNormal.y > _TopAngle)
