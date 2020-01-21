@@ -996,12 +996,14 @@ MonoBehaviour:
   stone: {fileID: 8912117078443927077, guid: 25999e2a3d2353f4192c84c5405190f2, type: 3}
   mainCamera: {fileID: 212244377}
   throwCamera: {fileID: 0}
+  energyBar: {fileID: 1183336006}
   currentThrowSpot: {fileID: 0}
   controller: {fileID: 427502503}
   speed: 4
   runSpeed: 8
   gravity: -55.81
   maxThrowPower: 1000
+  energy: 0
   groundCheck: {fileID: 341581350}
   groundDistance: 0.4
   groundMask:
@@ -6225,7 +6227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828009012}
-  m_LocalRotation: {x: 0.348871, y: 0.000000036287027, z: -0.00000007205713, w: 0.9371708}
+  m_LocalRotation: {x: 0.348871, y: 0.000000036287023, z: -0.00000007205713, w: 0.9371708}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6907,7 +6909,7 @@ GameObject:
   - component: {fileID: 1183336008}
   - component: {fileID: 1183336007}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: EnergyBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6928,6 +6930,9 @@ MonoBehaviour:
   energies: []
   icon: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065, type: 3}
   offset: 50
+  chargeSpeed: 1
+  dischargeSpeed: 2
+  currentCharge: 0
 --- !u!114 &1183336008
 MonoBehaviour:
   m_ObjectHideFlags: 0
