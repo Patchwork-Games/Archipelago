@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float speed = 8f;
-    [SerializeField] private float runSpeed = 12f;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float runSpeed = 8f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private float maxThrowPower = 1000;
 
@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float angleClamp;
     private float throwPower;
-    private float previousMouseX;
     private int jumps = 0;
     private int jumpsMax = 1;
     
@@ -175,7 +174,6 @@ public class PlayerMovement : MonoBehaviour
 
 
                     Move();
-
                     Gravity();
                     MoveCamera();
 
@@ -296,9 +294,6 @@ public class PlayerMovement : MonoBehaviour
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
         }
-
-
-        previousMouseX = Input.mousePosition.x;        
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
         
