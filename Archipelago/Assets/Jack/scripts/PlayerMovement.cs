@@ -20,15 +20,17 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject throwCamera;
+    public GameObject energyBar;
 
 
 
     [SerializeField] private GameObject currentThrowSpot;
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float speed = 8f;
-    [SerializeField] private float runSpeed = 12f;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float runSpeed = 8f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private float maxThrowPower = 1000;
+    [SerializeField] private float energy = 0;
 
     [SerializeField] public Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
@@ -51,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float angleClamp;
     private float throwPower;
-    private float previousMouseX;
     private int jumps = 0;
     private int jumpsMax = 1;
     
@@ -161,21 +162,31 @@ public class PlayerMovement : MonoBehaviour
                         jumps = jumpsMax;
                     }
 
+                    //get energy from other script
+                    energy = energyBar.GetComponent<DashMeter>().currentCharge;
 
-                    if (run)
+                    //check conditions to run and run if possible
+                    if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
                     {
                         Run();
                         anim.SetBool("Running", true);
+                        energyBar.GetComponent<DashMeter>().Discharge();
                     }
                     else
                     {
                         anim.SetBool("Running", false);
+                        energyBar.GetComponent<DashMeter>().Recharge();
+                        
                     }
+
+                    //stop trying to run when out of energy
+                    if (energy == 0) run = false; 
+
+
 
 
 
                     Move();
-
                     Gravity();
                     MoveCamera();
 
@@ -219,8 +230,6 @@ public class PlayerMovement : MonoBehaviour
 
                         LookAtMouse();
                         chargeThrow();
-
-                        
                     }
 
                     if (throwing)
@@ -297,9 +306,6 @@ public class PlayerMovement : MonoBehaviour
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
         }
 
-
-        previousMouseX = Input.mousePosition.x;        
-
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
         
     }
@@ -318,6 +324,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * runSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
+        
     }
 
 
