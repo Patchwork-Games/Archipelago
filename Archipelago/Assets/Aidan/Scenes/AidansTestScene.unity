@@ -584,7 +584,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245176150}
-  m_LocalRotation: {x: 0.50285643, y: 0.000000012880105, z: -0.0000000074931386, w: 0.8643699}
+  m_LocalRotation: {x: 0.50285643, y: -0.000000012880118, z: 0.000000007493146, w: 0.86437}
   m_LocalPosition: {x: 0, y: 51.25, z: -12.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1176,7 +1176,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717495000}
-  m_LocalRotation: {x: 0.50285643, y: -0.00000011642254, z: 0.00000021476774, w: 0.86437}
+  m_LocalRotation: {x: 0.5028564, y: -0.00000012930266, z: 0.00000022226088, w: 0.86437}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1929,10 +1929,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windForce: 1000
-  maxSpeed: 10
-  steeringSpeed: 100
-  bow: {fileID: 1669904898}
-  rotationTime: 2
+  maxSpeed: 30
+  steeringSpeed: 50
+  dashingTime: 2
+  dashForce: 2000
 --- !u!4 &1658123053
 Transform:
   m_ObjectHideFlags: 0
@@ -2476,6 +2476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1953152402}
   - component: {fileID: 1953152401}
+  - component: {fileID: 1953152403}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -2603,6 +2604,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1953152403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953152400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b659a4bcd1ab844f81f330c91923b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2011228988
 GameObject:
   m_ObjectHideFlags: 0
