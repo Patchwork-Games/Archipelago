@@ -170,7 +170,6 @@ public class SkimmingController : MonoBehaviour
     {
         if (heldThrow && throwReady)
         {
-            Debug.Log("THROWING");
             chargingThrow = true;
             throwing = false;
             throwPower = 0;

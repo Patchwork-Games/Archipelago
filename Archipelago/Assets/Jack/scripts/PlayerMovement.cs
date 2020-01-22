@@ -272,7 +272,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
-        Debug.Log("Right stick: " + mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue);
     }
 
 
@@ -290,7 +289,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
-        Debug.Log("Left stick: " + mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue);
     }
 
 
