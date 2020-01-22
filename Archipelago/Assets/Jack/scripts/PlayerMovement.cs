@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private int jumps = 0;
     private int jumpsMax = 1;
     private bool isGrounded;
+    private float distanceGround;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] public Transform groundCheck;
@@ -60,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.AButton.performed += context => InteractButton();
         controls.Player.XButton.performed += context => RunButton();
         controls.Player.XButton.canceled += context => StopRunButton();
+        controls.Player.BButton.performed += context => GetComponent<SkimmingController>().heldThrow = true;
+        controls.Player.BButton.canceled += context => GetComponent<SkimmingController>().heldThrow = false;
     }
 
 
@@ -112,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         anim.SetBool("Walking", false);
-        isGrounded = false;
-        
+        isGrounded = true;
+        distanceGround = GetComponent<CharacterController>().bounds.extents.y;
     }
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         interact = false;
         //state machine
@@ -132,13 +135,22 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-                    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+                    //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+                    //check if on ground
+                    if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + 0.3f))
+                    {
+                        isGrounded = false;
+                        jumps = 0;
+                    }
+                    else isGrounded = true;
 
                     if (isGrounded && velocity.y < 0)
                     {
                         velocity.y = -2f;
                         jumps = jumpsMax;
                     }
+                    if (velocity.y < -30f) velocity.y = -30f;
 
                     //get energy from other script
                     energy = energyBar.GetComponent<DashMeter>().currentCharge;

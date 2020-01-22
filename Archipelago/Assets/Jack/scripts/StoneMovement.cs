@@ -28,7 +28,7 @@ public class StoneMovement : MonoBehaviour
     }
 
 
-
+    //stop the stone bouncing on land
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("Player"))
@@ -54,6 +54,8 @@ public class StoneMovement : MonoBehaviour
         GetComponent<Collider>().material = StiffMaterial;
     }
 
+
+    //destroy stone after time
     IEnumerator DestroyStone()
     {
         yield return new WaitForSeconds(1.5f);

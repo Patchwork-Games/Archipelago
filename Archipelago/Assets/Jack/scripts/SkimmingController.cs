@@ -7,7 +7,6 @@ using Cinemachine;
 
 public class SkimmingController : MonoBehaviour
 {
-    private InputMaster controls;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject throwCamera;
@@ -16,21 +15,14 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private float maxThrowPower = 1000;
     [HideInInspector] public bool throwReady;
     [HideInInspector] public bool doingThrow;
+    [HideInInspector] public bool heldThrow;
     private bool justChangedThrowSpot;
     private bool chargingThrow;
     private bool throwing;
-    private bool heldThrow;
     private float throwPower;
     private float angleClamp;
     private Vector3 originalPos;
 
-
-    private void Awake()
-    {
-        controls = new InputMaster();
-        controls.Player.BButton.performed += context => Debug.Log("B BUTTON");// heldThrow = true;
-        controls.Player.BButton.canceled += context => heldThrow = false;
-    }
 
     private void Start()
     {
@@ -42,6 +34,11 @@ public class SkimmingController : MonoBehaviour
         doingThrow = false;
         justChangedThrowSpot = false;
         heldThrow = false;
+    }
+
+    private void Update()
+    {
+        testThrow();
     }
 
 
@@ -115,6 +112,7 @@ public class SkimmingController : MonoBehaviour
     //launch a stone
     public void throwStone()
     {
+        
         GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
@@ -130,6 +128,13 @@ public class SkimmingController : MonoBehaviour
         {
             throwPower = maxThrowPower;
             //could show sparkle here to show that max power reached
+        }
+
+        //stop charging when release button
+        if (!heldThrow)
+        { 
+            chargingThrow = false;
+            throwing = true;
         }
     }
 
@@ -173,17 +178,8 @@ public class SkimmingController : MonoBehaviour
             throwPower = 0;
             originalPos = transform.position;
             GetComponent<SkimmingController>().LaunchShake();
+            throwReady = false;
         }
-
-
-        if (heldThrow && throwReady)
-        {
-
-            chargingThrow = false;
-            throwing = true;
-        }
-
-
 
         if (chargingThrow)
         {
