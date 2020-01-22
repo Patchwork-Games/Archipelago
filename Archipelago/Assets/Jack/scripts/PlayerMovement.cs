@@ -61,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.AButton.performed += context => InteractButton();
         controls.Player.XButton.performed += context => RunButton();
         controls.Player.XButton.canceled += context => StopRunButton();
-        controls.Player.BButton.performed += context => GetComponent<SkimmingController>().heldThrow = true;
-        controls.Player.BButton.canceled += context => GetComponent<SkimmingController>().heldThrow = false;
+        controls.Player.BButton.performed += context => ThrowButton();
+        controls.Player.BButton.canceled += context => StopThrowButton();
     }
 
 
@@ -91,8 +91,16 @@ public class PlayerMovement : MonoBehaviour
         run = false;
     }
 
+    void ThrowButton()
+    {
+        if(isGrounded) GetComponent<SkimmingController>().heldThrow = true;
+        else GetComponent<SkimmingController>().heldThrow = false;
+    }
 
-
+    void StopThrowButton()
+    {
+        GetComponent<SkimmingController>().heldThrow = false;
+    }
 
 
 
@@ -199,7 +207,15 @@ public class PlayerMovement : MonoBehaviour
             //throwing stone
             case PlayerState.THROWING:
                 {
-                    GetComponent<SkimmingController>().testThrow();
+                    if (isGrounded)
+                    {
+                        GetComponent<SkimmingController>().testThrow();
+                        MoveCameraWLeft();
+                    }
+                    else
+                    {
+                        Gravity();
+                    }
                     break;
                 }
             default:
@@ -256,8 +272,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
-        
+        Debug.Log("Right stick: " + mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue);
     }
+
+
+    //this is for throwing because you hold B it makes sense to move the left stick instead of the right
+    void MoveCameraWLeft()
+    {
+        //move camera
+        if (moveDirection.x != 0)
+        {
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
+        }
+        else
+        {
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+        }
+
+        mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
+        Debug.Log("Left stick: " + mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue);
+    }
+
+
 
 
     void Run()

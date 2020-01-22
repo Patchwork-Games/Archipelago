@@ -111,8 +111,7 @@ public class SkimmingController : MonoBehaviour
 
     //launch a stone
     public void throwStone()
-    {
-        
+    {       
         GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
@@ -123,7 +122,6 @@ public class SkimmingController : MonoBehaviour
     public void chargeThrow()
     {
         throwPower += Time.deltaTime * 300;
-        Debug.Log("ThrowPower: " + throwPower);
         if (throwPower > maxThrowPower)
         {
             throwPower = maxThrowPower;
@@ -180,15 +178,26 @@ public class SkimmingController : MonoBehaviour
             GetComponent<SkimmingController>().LaunchShake();
             throwReady = false;
         }
+        else if (heldThrow)
+        {
+            throwing = false;
+        }
+
+
+        
 
         if (chargingThrow)
         {
             anim.SetBool("ChargingThrow", true);
             anim.SetBool("Throwing", false);
 
+            Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+            camForward.y = 0;
+            
 
-            GetComponent<SkimmingController>().LookAtMouse();
-            GetComponent<SkimmingController>().chargeThrow();
+            //LookAtMouse();
+            chargeThrow();
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(camForward), 9f * Time.deltaTime);
         }
 
         if (throwing)
