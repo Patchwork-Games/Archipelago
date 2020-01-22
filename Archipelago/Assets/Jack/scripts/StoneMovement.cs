@@ -31,7 +31,7 @@ public class StoneMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("PLayer"))
+        if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("Player"))
         {
             MakeBouncey();
         }

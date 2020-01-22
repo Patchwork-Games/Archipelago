@@ -54,9 +54,6 @@ public class DashMeter : MonoBehaviour
     {
         currentCharge -= Time.deltaTime * dischargeSpeed;
         if (currentCharge < 0) currentCharge = 0;
-
-
-
         updateChargeGraphic();
     }
 
@@ -65,8 +62,6 @@ public class DashMeter : MonoBehaviour
     {
         currentCharge += Time.deltaTime * chargeSpeed;
         if (currentCharge > totalCharge) currentCharge = totalCharge;
-        Debug.Log("charging: " + currentCharge);
-
         updateChargeGraphic();
     }
 
@@ -90,8 +85,6 @@ public class DashMeter : MonoBehaviour
                 newColour.a = newAlpha;
 
                 energies[i].GetComponent<Image>().color = newColour;
-
-
             }
         }
     }

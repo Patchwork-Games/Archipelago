@@ -27,7 +27,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""CameraMovement"",
                     ""type"": ""Button"",
                     ""id"": ""16612daf-96f8-4b7b-a236-86c0d421e366"",
                     ""expectedControlType"": """",
@@ -35,7 +35,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""CameraMovement"",
+                    ""name"": ""AButton"",
                     ""type"": ""Button"",
                     ""id"": ""e94c5d24-765d-4111-a59d-087fc084e7ca"",
                     ""expectedControlType"": """",
@@ -43,9 +43,25 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""BButton"",
                     ""type"": ""Button"",
                     ""id"": ""67ceee39-4abb-4250-91dd-c728e5f11c4d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""XButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""18dce409-697e-4c1e-82e0-18b685723123"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""YButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1aed8da-3f6c-4a9c-86ed-f9f623deac24"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -163,34 +179,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b1b26ae4-8740-438c-aeaf-a4d2f4175c7e"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a65fc20b-ddbf-4c32-946c-8fb05d86c0ae"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""RightJoystick"",
                     ""id"": ""2bd79071-7b9d-403c-9317-4e2e88a42502"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""GamePad"",
                     ""action"": ""CameraMovement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
@@ -240,59 +234,48 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""MousePos"",
-                    ""id"": ""1f4188aa-d093-4cdb-bad8-869a8f924e80"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
+                    ""name"": """",
+                    ""id"": ""a65fc20b-ddbf-4c32-946c-8fb05d86c0ae"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": true,
+                    ""groups"": ""GamePad"",
+                    ""action"": ""AButton"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""57da2d34-d30a-414a-876d-77f0d1e91eb0"",
-                    ""path"": ""<Mouse>/delta/y"",
+                    ""name"": """",
+                    ""id"": ""a0769344-b4b1-4f1e-b69d-04592ac07fcb"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""AButton"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""d0b852a1-d8b9-4d1c-8da2-59e1e7fc308c"",
-                    ""path"": ""<Mouse>/delta/y"",
+                    ""name"": """",
+                    ""id"": ""8c9583c0-4997-4f91-ab8d-bd83619d96e8"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""CameraMovement"",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""BButton"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""df6de866-7199-4d51-8a12-d9bd6c2d5b0d"",
-                    ""path"": ""<Mouse>/delta/x"",
+                    ""name"": """",
+                    ""id"": ""b347fef0-7561-447e-a37f-7b3bdd14dc58"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""BButton"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""ef92476a-acc9-4c46-9849-6c3bba8b94c5"",
-                    ""path"": ""<Mouse>/delta/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -301,18 +284,40 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Run"",
+                    ""action"": ""XButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""efa7d0b5-3201-4867-a2fa-75ad332a9fb0"",
+                    ""id"": ""82b04aba-fe95-4d35-86a7-0ba67831661c"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Run"",
+                    ""action"": ""XButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""801dd0c0-130a-4ef9-b415-618cc15049a4"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""YButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04c59bf7-1176-4d42-87e9-7a4d683bbadd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""YButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -626,9 +631,11 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_CameraMovement = m_Player.FindAction("CameraMovement", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_AButton = m_Player.FindAction("AButton", throwIfNotFound: true);
+        m_Player_BButton = m_Player.FindAction("BButton", throwIfNotFound: true);
+        m_Player_XButton = m_Player.FindAction("XButton", throwIfNotFound: true);
+        m_Player_YButton = m_Player.FindAction("YButton", throwIfNotFound: true);
         // Boat
         m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
         m_Boat_Steering = m_Boat.FindAction("Steering", throwIfNotFound: true);
@@ -684,17 +691,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_CameraMovement;
-    private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_AButton;
+    private readonly InputAction m_Player_BButton;
+    private readonly InputAction m_Player_XButton;
+    private readonly InputAction m_Player_YButton;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @AButton => m_Wrapper.m_Player_AButton;
+        public InputAction @BButton => m_Wrapper.m_Player_BButton;
+        public InputAction @XButton => m_Wrapper.m_Player_XButton;
+        public InputAction @YButton => m_Wrapper.m_Player_YButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -707,15 +718,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @CameraMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
                 @CameraMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
                 @CameraMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
-                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @AButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAButton;
+                @AButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAButton;
+                @AButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAButton;
+                @BButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBButton;
+                @BButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBButton;
+                @BButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBButton;
+                @XButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @XButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @XButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @YButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnYButton;
+                @YButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnYButton;
+                @YButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnYButton;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -723,15 +740,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
                 @CameraMovement.started += instance.OnCameraMovement;
                 @CameraMovement.performed += instance.OnCameraMovement;
                 @CameraMovement.canceled += instance.OnCameraMovement;
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
+                @AButton.started += instance.OnAButton;
+                @AButton.performed += instance.OnAButton;
+                @AButton.canceled += instance.OnAButton;
+                @BButton.started += instance.OnBButton;
+                @BButton.performed += instance.OnBButton;
+                @BButton.canceled += instance.OnBButton;
+                @XButton.started += instance.OnXButton;
+                @XButton.performed += instance.OnXButton;
+                @XButton.canceled += instance.OnXButton;
+                @YButton.started += instance.OnYButton;
+                @YButton.performed += instance.OnYButton;
+                @YButton.canceled += instance.OnYButton;
             }
         }
     }
@@ -806,9 +829,11 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnAButton(InputAction.CallbackContext context);
+        void OnBButton(InputAction.CallbackContext context);
+        void OnXButton(InputAction.CallbackContext context);
+        void OnYButton(InputAction.CallbackContext context);
     }
     public interface IBoatActions
     {

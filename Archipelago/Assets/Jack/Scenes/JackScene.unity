@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 427502504}
   - component: {fileID: 427502503}
   - component: {fileID: 427502505}
+  - component: {fileID: 427502506}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -993,22 +994,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   anim: {fileID: 885422213}
-  stone: {fileID: 8912117078443927077, guid: 25999e2a3d2353f4192c84c5405190f2, type: 3}
   mainCamera: {fileID: 212244377}
-  throwCamera: {fileID: 0}
-  energyBar: {fileID: 1183336006}
-  currentThrowSpot: {fileID: 0}
-  controller: {fileID: 427502503}
-  speed: 4
+  walkSpeed: 4
   runSpeed: 8
-  gravity: -55.81
-  maxThrowPower: 1000
   energy: 0
-  groundCheck: {fileID: 341581350}
+  energyBar: {fileID: 1183336006}
+  controller: {fileID: 427502503}
   groundDistance: 0.4
+  gravity: -55.81
+  groundCheck: {fileID: 341581350}
   groundMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4294967295
+--- !u!114 &427502506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427502502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d503f9fe976938e4cba87492ff64c6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 885422213}
+  mainCamera: {fileID: 0}
+  throwCamera: {fileID: 0}
+  stone: {fileID: 8912117078443927077, guid: 25999e2a3d2353f4192c84c5405190f2, type: 3}
+  currentThrowSpot: {fileID: 0}
+  maxThrowPower: 1000
   throwReady: 0
   doingThrow: 0
 --- !u!1 &500805058
@@ -6227,7 +6242,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828009012}
-  m_LocalRotation: {x: 0.348871, y: 0.000000036287023, z: -0.00000007205713, w: 0.9371708}
+  m_LocalRotation: {x: 0.348871, y: 0.000000036287027, z: -0.00000007205713, w: 0.9371708}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7539,11 +7554,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch09_nonPBR
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: aa58e0d586c10dd4f9aa4aa2483e1ceb,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2383c313009ab2e4ab90e1a78527dfdc, type: 2}
     - target: {fileID: -4216859302048453862, guid: aa58e0d586c10dd4f9aa4aa2483e1ceb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7599,6 +7609,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: aa58e0d586c10dd4f9aa4aa2483e1ceb,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2383c313009ab2e4ab90e1a78527dfdc, type: 2}
     - target: {fileID: 5643591022631403232, guid: aa58e0d586c10dd4f9aa4aa2483e1ceb,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
