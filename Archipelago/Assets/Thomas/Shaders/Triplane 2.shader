@@ -68,6 +68,8 @@
 				float2 uv_BumpMap;
 			};
 
+			
+
 			half4 SplitMap(half4 map)
 			{
 				map.r = step(0.1, map.r - map.g - map.b - map.a);
