@@ -33,7 +33,7 @@ Shader "Standard Triplanar"
         #pragma shader_feature _NORMALMAP
         #pragma shader_feature _OCCLUSIONMAP
 
-        #pragma target 10.0
+        #pragma target 3.0
 
         half4 _Color;
         sampler2D _MainTex, _Grass, _Rock;
@@ -62,18 +62,6 @@ Shader "Standard Triplanar"
             data.localNormal = v.normal.xyz;
         }
 
-
-		half4 SplitMap(half4 map)
-		{
-			map.r = step(0.1, map.r - map.g - map.b - map.a);
-			map.g = step(0.1, map.g - map.r - map.b - map.a);
-			map.b = step(0.1, map.b - map.g - map.r - map.a);
-			map.a = step(0.1, map.a - map.g - map.b - map.r);
-			return map;
-		}
-
-
-
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
             // Blending factor of triplanar mapping
@@ -87,13 +75,11 @@ Shader "Standard Triplanar"
 
             // Base color
             half4 cx = tex2D(_MainTex, tx) * bf.x;
-            half4 cy = tex2D(_MainTex, ty) * bf.y;
-            half4 cz = tex2D(_MainTex, tz) * bf.z;
+            half4 cy = tex2D(_Rock, ty) * bf.y;
+            half4 cz = tex2D(_Grass, tz) * bf.z;
             half4 color = (cx + cy + cz) * _Color;
 
-			o.Albedo = SplitMap(color).rgb;
-
-            o.Albedo = color.rgb;
+            o.Albedo += color.rgb;
             o.Alpha = color.a;
 
         #ifdef _NORMALMAP
