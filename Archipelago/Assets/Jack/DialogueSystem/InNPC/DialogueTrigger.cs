@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    [SerializeField] private int myTag = 0;
+    public Dialogue[] dialogue;
     public GameObject player;
     public Canvas talkButtonGuide;
 
     //settings
     public int talkRadius = 5;
     public bool displayOnStart = false;
-
-
     private bool startedTalking = false;
-
+    
 
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
     }
 
 

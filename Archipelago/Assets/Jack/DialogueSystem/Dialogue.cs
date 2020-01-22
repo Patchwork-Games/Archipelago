@@ -24,6 +24,7 @@ public class Dialogue
         public Transform cameraTransform;
     }
 
+    public string name;
     public CharactersTalking[] charactersTalking;
     public ChatBoxes[] chatBoxes;
 

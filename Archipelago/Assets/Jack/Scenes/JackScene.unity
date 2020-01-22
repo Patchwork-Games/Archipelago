@@ -188,7 +188,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45911735}
-  m_LocalRotation: {x: 0.36581522, y: 0.0000000840836, z: -0.00000021392098, w: 0.93068755}
+  m_LocalRotation: {x: 0.36901024, y: -0.0015894703, z: 0.0006308316, w: 0.9294238}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -286,7 +286,7 @@ Transform:
   m_LocalScale: {x: 2.5807104, y: 2.539021, z: 7.361638}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -53.300003, z: 0}
 --- !u!43 &62441818
 Mesh:
@@ -1185,7 +1185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &527026091
 Mesh:
@@ -1428,7 +1428,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549173284}
-  m_LocalRotation: {x: 0.36581525, y: 0, z: 0, w: 0.9306875}
+  m_LocalRotation: {x: 0.36901027, y: -0.0015895827, z: 0.00063111394, w: 0.92942375}
   m_LocalPosition: {x: 3.04, y: 12.64, z: -12.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1774,10 +1774,10 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
-  m_ScreenX: 0.5
-  m_ScreenY: 0.55
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_ScreenX: 0.5022077
+  m_ScreenY: 0.5405882
+  m_DeadZoneWidth: 0.050772615
+  m_DeadZoneHeight: 0.08470589
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -2065,7 +2065,7 @@ Transform:
   m_LocalScale: {x: 14.972249, y: 0.31443235, z: 26.962736}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 21.197, z: 0}
 --- !u!1 &785130241
 GameObject:
@@ -6243,7 +6243,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828009012}
-  m_LocalRotation: {x: 0.348871, y: 0.000000036287023, z: -0.00000007205713, w: 0.9371708}
+  m_LocalRotation: {x: 0.348871, y: 0.000000036287027, z: -0.00000007205713, w: 0.9371708}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6293,7 +6293,7 @@ Transform:
   - {fileID: 624616886}
   - {fileID: 374787027}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1023929024
 GameObject:
@@ -7021,7 +7021,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7060,18 +7060,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928da032db593c64a89c29da4c0bf1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTag: 2
   dialogue:
+  - name: the first hello
     charactersTalking:
     - name: Dan
       dialogueBoxImg: {fileID: 21300000, guid: 149bf9854c5339044acc0895bb4c1e88, type: 3}
       cameraTransform: {fileID: 0}
     chatBoxes:
     - name: Dan
-      sentences: Hey Aidan
+      sentences: pssst
     - name: Dan
-      sentences: Check out the boxes
-    - name: Man
-      sentences: Default boxes too
+      sentences: I'm hiding
+  - name: finding dan again
+    charactersTalking:
+    - name: Dan
+      dialogueBoxImg: {fileID: 21300000, guid: 149bf9854c5339044acc0895bb4c1e88, type: 3}
+      cameraTransform: {fileID: 0}
+    chatBoxes:
+    - name: Dan
+      sentences: impressive, you found me again
   player: {fileID: 427502502}
   talkButtonGuide: {fileID: 2090383264}
   talkRadius: 5
@@ -7106,7 +7114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dccf3fc5cabf1824cbbc15f9967ae4c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7144,6 +7152,154 @@ Transform:
   m_GameObject: {fileID: 1379978118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.2, y: 1.69, z: 7.05}
+  m_LocalScale: {x: 1, y: 2.6184, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1861578641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861578646}
+  - component: {fileID: 1861578645}
+  - component: {fileID: 1861578644}
+  - component: {fileID: 1861578643}
+  - component: {fileID: 1861578642}
+  m_Layer: 0
+  m_Name: NPC Carl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1861578642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861578641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928da032db593c64a89c29da4c0bf1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTag: 1
+  dialogue:
+  - name: Haunting voice
+    charactersTalking:
+    - name: Carl
+      dialogueBoxImg: {fileID: 21300000, guid: 20bd0e0e418a30a4a822ff7c71c5e93d, type: 3}
+      cameraTransform: {fileID: 0}
+    - name: Weird Voice
+      dialogueBoxImg: {fileID: 0}
+      cameraTransform: {fileID: 0}
+    chatBoxes:
+    - name: Carl
+      sentences: Hey, I think I'm being haunted!
+    - name: Weird Voice
+      sentences: What? No way, you're definitley not
+    - name: Carl
+      sentences: Spooky
+  - name: Ghost buster
+    charactersTalking:
+    - name: Carl
+      dialogueBoxImg: {fileID: 21300000, guid: 20bd0e0e418a30a4a822ff7c71c5e93d, type: 3}
+      cameraTransform: {fileID: 0}
+    chatBoxes:
+    - name: Carl
+      sentences: Hey so I got rid of that ghost
+    - name: Carl
+      sentences: ' No idea how but man I''m glad it''s gone'
+  - name: Pizza dog
+    charactersTalking:
+    - name: Carl
+      dialogueBoxImg: {fileID: 21300000, guid: 20bd0e0e418a30a4a822ff7c71c5e93d, type: 3}
+      cameraTransform: {fileID: 0}
+    chatBoxes:
+    - name: Carl
+      sentences: Pizza dog
+    - name: Carl
+      sentences: Pizza dog
+    - name: Carl
+      sentences: Put him in the oven and watch him burn
+  player: {fileID: 427502502}
+  talkButtonGuide: {fileID: 2090383264}
+  talkRadius: 5
+  displayOnStart: 0
+--- !u!65 &1861578643
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861578641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1861578644
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861578641}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1861578645
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861578641}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1861578646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861578641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.2, y: 1.69, z: -6.44}
   m_LocalScale: {x: 1, y: 2.6184, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7243,7 +7399,7 @@ Transform:
   - {fileID: 2052774521}
   - {fileID: 583053514}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1928330094
 MonoBehaviour:
@@ -7271,81 +7427,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 15.819545, z: 1}
   m_Center: {x: 0, y: 7.409773, z: 0}
---- !u!1 &1978279365
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1978279368}
-  - component: {fileID: 1978279367}
-  - component: {fileID: 1978279366}
-  m_Layer: 0
-  m_Name: Terrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!154 &1978279366
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978279365}
-  m_Material: {fileID: 0}
-  m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: eb54412f19db61747b075bc7f5391ac9, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &1978279367
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978279365}
-  m_Enabled: 1
-  serializedVersion: 5
-  m_TerrainData: {fileID: 15600000, guid: eb54412f19db61747b075bc7f5391ac9, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 1
-  m_ScaleInLightmap: 0.0256
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_AllowAutoConnect: 1
---- !u!4 &1978279368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978279365}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1047.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2034318218
 GameObject:
   m_ObjectHideFlags: 0
@@ -7463,7 +7544,7 @@ PrefabInstance:
     - target: {fileID: 531689341615294063, guid: 91bb39a917cde0041802a81b6812fc25,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 531689341615294063, guid: 91bb39a917cde0041802a81b6812fc25,
         type: 3}
@@ -7619,6 +7700,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 531689342783559821, guid: 91bb39a917cde0041802a81b6812fc25,
+        type: 3}
+      propertyPath: m_TagString
+      value: DialogueManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 531689342783559820, guid: 91bb39a917cde0041802a81b6812fc25,
+        type: 3}
+      propertyPath: conversations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 531689342783559820, guid: 91bb39a917cde0041802a81b6812fc25,
+        type: 3}
+      propertyPath: NPCs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bb39a917cde0041802a81b6812fc25, type: 3}

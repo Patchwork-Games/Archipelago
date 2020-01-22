@@ -124,6 +124,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         interact = false;
+
+        if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
+        else state = PlayerState.MOVING;
+
+
+
         //state machine
         switch (state)
         {

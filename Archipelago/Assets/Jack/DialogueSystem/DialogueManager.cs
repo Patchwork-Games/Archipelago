@@ -63,6 +63,9 @@ public class DialogueManager : MonoBehaviour
     private string shakeText = "";
     //private int numCharacters = 0;
 
+
+    public int[] NPCs;
+
     // Start is called before the first frame update
     void Start()
     {
