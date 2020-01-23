@@ -107,6 +107,7 @@ Shader "Standard Triplanar"
             o.Smoothness = _Glossiness;
         }
         ENDCG
+			
     }
     FallBack "Diffuse"
     CustomEditor "StandardTriplanarInspector"

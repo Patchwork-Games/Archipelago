@@ -63,6 +63,11 @@ public class DialogueManager : MonoBehaviour
     private string shakeText = "";
     //private int numCharacters = 0;
 
+    private float lerpTime = 0;
+    private float timeToReachTarget = 0;
+    
+
+
 
     public int[] NPCs;
 
@@ -84,7 +89,11 @@ public class DialogueManager : MonoBehaviour
     {
         dialogue = dialogueIn;
         //slide in textbox and change name displayed
-        animator.SetBool("IsOpen", true);
+        //animator.SetBool("IsOpen", true);
+        //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        lerpTime = 0;
+        StartCoroutine("lerpOpen");
+        
 
         //load in text for queues
         names.Clear();
@@ -93,11 +102,6 @@ public class DialogueManager : MonoBehaviour
         {
             names.Enqueue(chatbox.name);            //queue names
             sentences.Enqueue(chatbox.sentences);   //queue sentences
-            //if (chatbox.dialogueBoxImg)             //queue textbox sprites
-            //{
-            //    sprites.Enqueue(chatbox.dialogueBoxImg);
-            //}
-            //else sprites.Enqueue(defaultSprite);
         }
 
         DisplayNextSentence(dialogue);
@@ -129,17 +133,13 @@ public class DialogueManager : MonoBehaviour
         {
             if (name == dialogue.charactersTalking[i].name)
             {
-
-                Debug.Log("Got in");
-
                 //change the background of the box
                 Sprite tempSprite;
                 tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
-                Debug.Log("temp sprite: " + tempSprite);
                 if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
 
-                //lerp camera to point at target
-                StartCoroutine(LerpCamToTarget(dialogue.charactersTalking[i].cameraTransform));
+                //lerp camera to point at target                                                                        FINDME DO CINEMACHINE CHANGING PRIORITY HERE
+                
             }
         }
         //get sentences
@@ -270,9 +270,38 @@ public class DialogueManager : MonoBehaviour
     //called once all dialogue in queue has been used
     void EndDialogue()
     {
-        animator.SetBool("IsOpen", false);
+        //animator.SetBool("IsOpen", false);
+        //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+        lerpTime = 0;
+        StartCoroutine("lerpClosed");
     }
 
+
+
+
+    IEnumerator lerpOpen()
+    {  
+        while (dialogueBoxImg.transform.position.y < Screen.height / 2 - .1f)
+        {
+            Debug.Log("opening: " + lerpTime);
+            lerpTime += Time.deltaTime / timeToReachTarget;
+            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height, Screen.height / 2, lerpTime), 0);
+            yield return new WaitForSeconds(.1f);
+        }
+        
+    }
+
+    IEnumerator lerpClosed()
+    {
+        while (dialogueBoxImg.transform.position.y < Screen.height + .1f)
+        {
+            Debug.Log("closing: " + lerpTime);
+            lerpTime += Time.deltaTime / timeToReachTarget;
+            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height / 2, Screen.height, lerpTime), 0);
+            yield return new WaitForSeconds(.1f);
+        }
+    }
 
 
     private void Update()
@@ -298,18 +327,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-
-
-
-    IEnumerator LerpCamToTarget(Transform cameraPos)
-    {
-        //do camera lerp here
-
-        yield return new WaitForSeconds(0.0f);
-    }
-
-
-
 
     IEnumerator AnimateVertexPositions()
     {

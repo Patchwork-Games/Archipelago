@@ -14,7 +14,7 @@ public class DialogueTrigger : MonoBehaviour
     public int talkRadius = 5;
     public bool displayOnStart = false;
     private bool startedTalking = false;
-    
+    private bool hiddenTalkButton = false;
 
 
     public void TriggerDialogue()
@@ -46,20 +46,28 @@ public class DialogueTrigger : MonoBehaviour
                     {
                         talkButtonGuide.transform.position = transform.position + new Vector3(0, 2, 0);
                         talkButtonGuide.enabled = true;
+                        hiddenTalkButton = false;
                     }
-                    else if (talkButtonGuide) talkButtonGuide.enabled = false;
+                    else if (talkButtonGuide && !hiddenTalkButton)
+                    {
+                        talkButtonGuide.enabled = false;
+                        hiddenTalkButton = true;
+                    }
 
                     //FINDME replace with new input system to handle controllers
                     if (Input.GetKeyDown(KeyCode.E) && !startedTalking)
                     {
-
                         startedTalking = true;
                         TriggerDialogue();
                     }
                 }
+                else if (!hiddenTalkButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
+                {
+                    hiddenTalkButton = true;
+                    talkButtonGuide.enabled = false;
+                }
                 else
                 {
-                    talkButtonGuide.enabled = false;
                     startedTalking = false;
                 }
             }
