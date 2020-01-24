@@ -5,7 +5,6 @@
 
 		  _Side("SideFail", 2D) = "white" {}
 		  _Top("Top", 2D) = "white" {}
-		  _Color("", Color) = (1, 1, 1, 1)
 		  _Sand("Sand", 2D) = "white" {}
 		  _SandNormal("SandNormal", 2D) = "bump" {}
 
@@ -21,6 +20,7 @@
 
 		  _MapScale("", Float) = 1
 
+		  _Color("", Color) = (1, 1, 1, 1)
 	}
 
 
@@ -121,10 +121,6 @@
 
 				//Sand
 				float3 y = 0;
-
-				
-				
-
 				if (IN.worldPos.y < 50)
 				{
 					
@@ -197,11 +193,6 @@
 				fixed4 mixedDiffuse;
 				half4 defaultSmoothness = half4(_Smoothness0, _Smoothness1, _Smoothness2, _Smoothness3);
 
-
-
-
-
-				SplatmapMix(IN, defaultSmoothness, splat_control, weight, mixedDiffuse, o.Normal);
 
 				o.Albedo = color.rgb;
 				o.Alpha = color.a;
