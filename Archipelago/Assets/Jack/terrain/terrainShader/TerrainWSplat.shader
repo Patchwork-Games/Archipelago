@@ -99,6 +99,17 @@
 					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
 				}
 			}
+			else if (IN.worldPos.y > 200)
+			{
+				if (IN.worldNormal.y > .8f)
+				{
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+				}
+				else if (IN.worldNormal.y < 1)
+				{
+					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+				}
+			}
 			else
 			{
 
@@ -143,11 +154,11 @@
 			
 			
 			
-			if (col.x > 0.3  || col.y > 0.3 || col.z > 0.3)
+			if (col.x > 0.6  || col.y > 0.6 || col.z > 0.6)
 			{
-				finalColour += lerp(color, half4(col, 1), 1);
+				finalColour += lerp(color, half4(col, 1.0f), 1);
 			}
-			else finalColour += lerp(color, half4(col, 1), 0);
+			else finalColour += lerp(color, half4(col, 1.0f), 0);
 			
 			
 			// = color * half4(col, 1);
