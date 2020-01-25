@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
                 jumps -= 1;
             }
         }
-       
     }
 
 
@@ -108,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDisable()
@@ -137,15 +135,20 @@ public class PlayerMovement : MonoBehaviour
         else state = PlayerState.MOVING;
 
 
+        //check if in water
+        if (transform.position.y < 32)
+        {
+            anim.SetBool("InWater", true);
+        }
+        else
+        {
+            anim.SetBool("InWater", false);
+        }
+
 
         //state machine
         switch (state)
         {
-
-
-            //http://www.alanzucconi.com/2015/06/17/surface-shaders-in-unity3d/
-
-
             //normal movement
             case PlayerState.MOVING:
                 {

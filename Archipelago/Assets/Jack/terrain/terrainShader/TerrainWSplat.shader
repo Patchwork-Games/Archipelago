@@ -71,16 +71,6 @@
         UNITY_INSTANCING_BUFFER_END(Props)
 
 
-		half4 SplitMap(half4 map) 
-		{
-			map.r = step(0.1, map.r - map.g - map.b - map.a);
-			map.g = step(0.1, map.g - map.r - map.b - map.a);
-			map.b = step(0.1, map.b - map.g - map.r - map.a);
-			map.a = step(0.1, map.a - map.g - map.b - map.r);
-			return map;
-		}
-
-
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
 
@@ -92,22 +82,22 @@
 
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 			}
 			else if (IN.worldPos.y > 200)
 			{
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 			}
 			else
@@ -115,11 +105,11 @@
 
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Top, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
 				}
 			}
 
@@ -160,11 +150,7 @@
 			}
 			else finalColour += lerp(color, half4(col, 1.0f), 0);
 			
-			
-			// = color * half4(col, 1);
-			//finalColour = SplitMap(finalColour);
 
-			//finalColour += lerp(color , half4(col, 1), .5);
 
 			o.Albedo = saturate(finalColour);
 			o.Alpha = color.a;
