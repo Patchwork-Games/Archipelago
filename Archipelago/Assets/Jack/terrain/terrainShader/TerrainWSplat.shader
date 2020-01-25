@@ -11,6 +11,11 @@
 		_Side("Side", 2D) = "white" {}
 		_Sand("Sand", 2D) = "white" {}
 
+		[Normal]_TopNormal("TopNormal", 2D) = "bump" {}
+		[Normal]_SideNormal("SideNormal", 2D) = "bump" {}
+		[Normal]_SandNormal("SandNormal", 2D) = "bump" {}
+		_NormalStrength("Normal strength", Range(0.0,1.0)) = 1
+
 		[HideInInspector]_Control("Control (RGBA)", 2D) = "red" {}
 		[HideInInspector]_Splat3("Layer 3 (A)", 2D) = "white" {}
 		[HideInInspector]_Splat2("Layer 2 (B)", 2D) = "white" {}
@@ -41,7 +46,10 @@
         sampler2D _MainTex;
 		sampler2D _Control;
 		sampler2D _Splat0, _Splat1, _Splat2, _Splat3;
-		sampler2D _Side, _Top, _Sand, _SandNormal;
+		sampler2D _Side, _Top, _Sand;
+		sampler2D _TopNormal, _SideNormal, _SandNormal;
+
+		
 
         struct Input
         {
@@ -54,9 +62,15 @@
 
 			float3 worldPos;
 			float3 worldNormal;
-			float2 uv_BumpMap;
+			INTERNAL_DATA
+			//float2 uv_BumpMap;
 			float3 localCoord;
 			float3 localNormal;
+			float _NormalStrength;
+
+			float2 uv_TopNormal;
+			float2 uv_SideNormal;
+			float2 uv_SandNormal;
         };
 
         half _Glossiness;
@@ -77,16 +91,23 @@
 			//use the normals of the terrain to choose which texture is rendered
 			//everything below y 50 will be sand
 			float3 y = 0;
+			fixed3 yn = 0;
 			if (IN.worldPos.y < 50)
 			{
 
 				if (IN.worldNormal.y > .8f)
 				{
 					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
+					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
 					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					//yn.xy *= _NormalStrength;
 				}
 			}
 			else if (IN.worldPos.y > 200)
@@ -94,10 +115,16 @@
 				if (IN.worldNormal.y > .8f)
 				{
 					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
+					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
 					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					//yn.xy *= _NormalStrength;
 				}
 			}
 			else
@@ -106,13 +133,78 @@
 				if (IN.worldNormal.y > .8f)
 				{
 					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_TopNormal, IN.uv_TopNormal));
+					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
 					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					//yn.xy *= _NormalStrength;
 				}
 			}
 
+
+			//WorldNormalVector
+
+
+
+
+			/*if (IN.worldPos.y < 50)
+			{
+
+				if (IN.worldNormal.y > .8f)
+				{
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
+					yn.xy *= _NormalStrength;
+				}
+				else if (IN.worldNormal.y < 1)
+				{
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					yn.xy *= _NormalStrength;
+				}
+			}
+			else if (IN.worldPos.y > 200)
+			{
+				if (IN.worldNormal.y > .8f)
+				{
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
+					yn.xy *= _NormalStrength;
+				}
+				else if (IN.worldNormal.y < 1)
+				{
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					yn.xy *= _NormalStrength;
+				}
+			}
+			else
+			{
+
+				if (IN.worldNormal.y > .8f)
+				{
+					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_TopNormal, IN.uv_TopNormal));
+					yn.xy *= _NormalStrength;
+				}
+				else if (IN.worldNormal.y < 1)
+				{
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+
+					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+					yn.xy *= _NormalStrength;
+				}
+			}*/
 
 			// Blending factor of triplanar mapping
 			float3 bf = normalize(abs(IN.localNormal));
@@ -158,7 +250,9 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 
+			//o.Normal = normalize(yn);
 
+			
 
         }
         ENDCG
