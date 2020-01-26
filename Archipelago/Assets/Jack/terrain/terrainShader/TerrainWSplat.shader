@@ -41,7 +41,7 @@
         #pragma surface surf Standard fullforwardshadows
 
         // Use shader model 3.0 target, to get nicer looking lighting
-        #pragma target 4.0
+        #pragma target 5.0
 
         sampler2D _MainTex;
 		sampler2D _Control;
@@ -89,10 +89,10 @@
         {
 
 			//use the normals of the terrain to choose which texture is rendered
-			//everything below y 50 will be sand
+			//everything below y 35 will be sand
 			float3 y = 0;
 			fixed3 yn = 0;
-			if (IN.worldPos.y < 50)
+			if (IN.worldPos.y < 35)
 			{
 
 				if (IN.worldNormal.y > .8f)
@@ -238,9 +238,9 @@
 			
 			if (col.x > 0.6  || col.y > 0.6 || col.z > 0.6)
 			{
-				finalColour += lerp(color, half4(col, 1.0f), 1);
+				finalColour += half4(col, 1.0f);
 			}
-			else finalColour += lerp(color, half4(col, 1.0f), 0);
+			else finalColour += color;
 			
 
 
