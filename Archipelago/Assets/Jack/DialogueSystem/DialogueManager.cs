@@ -63,13 +63,10 @@ public class DialogueManager : MonoBehaviour
     private string shakeText = "";
     //private int numCharacters = 0;
 
-    private float lerpTime = 0;
-    private float timeToReachTarget = 0;
-
 
     public GameObject player;
 
-
+    private bool doEndOnce = false;
 
     public int[] NPCs;
 
@@ -85,6 +82,7 @@ public class DialogueManager : MonoBehaviour
         canQuitSentence = true;
         specialTextChecker = false;
         animator.SetBool("IsOpen", false);
+        doEndOnce = false;
     }
 
     //initial beginning of dialogue, called by the trigger script
@@ -98,6 +96,7 @@ public class DialogueManager : MonoBehaviour
         //load in text for queues
         names.Clear();
         sentences.Clear();
+        doEndOnce = false;
         foreach (Dialogue.ChatBoxes chatbox in dialogue.chatBoxes)
         {
             names.Enqueue(chatbox.name);            //queue names
@@ -114,9 +113,10 @@ public class DialogueManager : MonoBehaviour
     //starts writing the next sentence in the queue
     public void DisplayNextSentence(Dialogue dialogue)
     {
-        if (sentences.Count == 0)
+        if (sentences.Count == 0 && !doEndOnce)
         {
             EndDialogue();
+            doEndOnce = true;
             return;
         }
 
@@ -279,7 +279,9 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
 
         player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
-        player.GetComponent<PlayerMovement>().mainCamera.GetComponent<CinemachineFreeLook>().enabled = true;
+        player.GetComponent<PlayerMovement>().interact = false;
+        //player.GetComponent<PlayerMovement>().mainCamera.GetComponent<CinemachineFreeLook>().enabled = true;
+        player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
     }
 
 
@@ -294,8 +296,7 @@ public class DialogueManager : MonoBehaviour
             {
                 DisplayNextSentence(dialogue);
             }
-            else CompleteCurrentTextBox();
-            //player.GetComponent<PlayerMovement>().interact = false;
+            else CompleteCurrentTextBox(); 
         }
 
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time

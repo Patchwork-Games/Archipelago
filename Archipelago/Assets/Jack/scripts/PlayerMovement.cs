@@ -179,8 +179,8 @@ public class PlayerMovement : MonoBehaviour
                             velocity.y = 20f;
                             jumps -= 1;
                             anim.SetBool("Jumping", true);
-                            jumpParticle.transform.position = transform.position - new Vector3(0, .9f, 0);
-                            jumpParticle.Play();
+                            //jumpParticle.transform.position = transform.position - new Vector3(0, .9f, 0);
+                            //jumpParticle.Play();
                         }
                     }
 
@@ -216,8 +216,8 @@ public class PlayerMovement : MonoBehaviour
             //throwing stone
             case PlayerState.TALKING:
                 {
-                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
-                    mainCamera.GetComponent<CinemachineFreeLook>().enabled = false;
+                    //mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    mainCamera.SetActive(false);
                     anim.SetBool("Walking", false);
                     anim.SetBool("Running", false);
                     anim.SetBool("Jumping", false);
