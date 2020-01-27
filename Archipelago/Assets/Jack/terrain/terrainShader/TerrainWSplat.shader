@@ -147,65 +147,6 @@
 			}
 
 
-			//WorldNormalVector
-
-
-
-
-			/*if (IN.worldPos.y < 50)
-			{
-
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
-					yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					yn.xy *= _NormalStrength;
-				}
-			}
-			else if (IN.worldPos.y > 200)
-			{
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
-					yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					yn.xy *= _NormalStrength;
-				}
-			}
-			else
-			{
-
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_TopNormal, IN.uv_TopNormal));
-					yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					yn.xy *= _NormalStrength;
-				}
-			}*/
-
 			// Blending factor of triplanar mapping
 			float3 bf = normalize(abs(IN.localNormal));
 			bf /= dot(bf, (float3)1);

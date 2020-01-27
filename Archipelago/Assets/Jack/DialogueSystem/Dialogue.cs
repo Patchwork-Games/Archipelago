@@ -21,6 +21,7 @@ public class Dialogue
     {
         public string name;
         public Sprite dialogueBoxImg;
+        public Transform NPCLocation;
         public Transform cameraTransform;
     }
 
