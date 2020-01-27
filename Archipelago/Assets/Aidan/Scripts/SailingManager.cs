@@ -5,8 +5,6 @@ using UnityEngine;
 public class SailingManager : MonoBehaviour
 {
     private InputMaster controls = null;
-
-    [SerializeField] private float windForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float steeringSpeed = 10f;
     private Rigidbody rb = null;
@@ -44,7 +42,7 @@ public class SailingManager : MonoBehaviour
     void Update()
     {
         // The boat should have the wind force applied to the forward vector to make the boat move
-        rb.AddForce(transform.forward * windForce * Time.deltaTime);
+        rb.AddForce(transform.forward * WindManager.Instance.windForce * Time.deltaTime);
 
         // Cap the velocity of the boat
         {
@@ -105,6 +103,12 @@ public class SailingManager : MonoBehaviour
         isDashing = true;
         elapsedDashTime = dashingTime;
     }
+
+	public void AddGustForce(float forceToAdd)
+	{
+		rb.AddForce(transform.forward * forceToAdd * Time.deltaTime);
+		Debug.Log("Gust force added!");
+	}
 
     private void OnEnable()
     {
