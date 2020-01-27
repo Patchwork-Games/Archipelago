@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 using TMPro;
 
 
@@ -278,53 +279,30 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
 
         player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
+        player.GetComponent<PlayerMovement>().mainCamera.GetComponent<CinemachineFreeLook>().enabled = true;
     }
 
-
-
-
-    IEnumerator lerpOpen()
-    {  
-        while (dialogueBoxImg.transform.position.y < Screen.height / 2 - .1f)
-        {
-            Debug.Log("opening: " + lerpTime);
-            lerpTime += Time.deltaTime / timeToReachTarget;
-            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height, Screen.height / 2, lerpTime), 0);
-            yield return new WaitForSeconds(.1f);
-        }
-        
-    }
-
-    IEnumerator lerpClosed()
-    {
-        while (dialogueBoxImg.transform.position.y < Screen.height + .1f)
-        {
-            Debug.Log("closing: " + lerpTime);
-            lerpTime += Time.deltaTime / timeToReachTarget;
-            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height / 2, Screen.height, lerpTime), 0);
-            yield return new WaitForSeconds(.1f);
-        }
-    }
 
 
     private void Update()
     {
         //progress dialogue with interact button
                                                                                                                  //FINDME change to use new input to support controllers
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || player.GetComponent<PlayerMovement>().interact)
         {
             if (arrow.enabled == true)
             {
                 DisplayNextSentence(dialogue);
             }
             else CompleteCurrentTextBox();
+            //player.GetComponent<PlayerMovement>().interact = false;
         }
 
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
                                                                                                                 //FINDME change to use new input to support controllers
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) || player.GetComponent<SkimmingController>().heldThrow)
             {
                 EndDialogue();
             }

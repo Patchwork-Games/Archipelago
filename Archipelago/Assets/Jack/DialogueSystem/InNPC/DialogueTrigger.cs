@@ -57,7 +57,7 @@ public class DialogueTrigger : MonoBehaviour
                     }
 
                     //FINDME replace with new input system to handle controllers
-                    if (Input.GetKeyDown(KeyCode.E) && !startedTalking)
+                    if ((Input.GetKeyDown(KeyCode.E) || player.GetComponent<PlayerMovement>().interact) && !startedTalking)
                     {
                         startedTalking = true;
                         TriggerDialogue();

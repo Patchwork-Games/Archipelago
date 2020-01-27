@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
     //camera variables
     public GameObject mainCamera;
+    public ParticleSystem jumpParticle;
     Vector3 camForward;
     Vector3 camRight;
     Vector2 camMoveDirection;
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     //button variables
     public InputMaster controls;
     [SerializeField] private CharacterController controller;
-    private bool interact = false;
+    public bool interact = false;
     private bool run = false;
     public bool inTalkDistance;
 
@@ -68,16 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     void InteractButton()
     {
-        if (interact)
-        {
-            //make player jump if enough jumps
-            if (jumps > 0 && interact && !inTalkDistance)
-            {
-                velocity.y = 20f;
-                jumps -= 1;
-                anim.SetBool("Jumping", true);
-            }
-        }
+        interact = true;
     }
 
 
@@ -131,11 +123,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        interact = false;
-
         if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
-        //else state = PlayerState.MOVING;
-
 
         //state machine
         switch (state)
@@ -156,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
                     if (isGrounded && velocity.y < 0)
                     {
                         StartCoroutine("JumpCooldown");
+                        
                         anim.SetBool("Jumping", false);
                         anim.SetBool("Falling", false);
                         velocity.y = -2f;
@@ -182,15 +171,25 @@ public class PlayerMovement : MonoBehaviour
                     if (energy == 0) run = false;
 
 
-                    
+                    if (interact)
+                    {
+                        //make player jump if enough jumps
+                        if (jumps > 0 && interact && !inTalkDistance)
+                        {
+                            velocity.y = 20f;
+                            jumps -= 1;
+                            anim.SetBool("Jumping", true);
+                            jumpParticle.transform.position = transform.position - new Vector3(0, .9f, 0);
+                            jumpParticle.Play();
+                        }
+                    }
 
 
                     Move();
                     Gravity();
                     MoveCamera();
 
-                    //let the player interact, is reset at start of update
-                    interact = true;
+                    
 
                     break;
                 }
@@ -217,17 +216,14 @@ public class PlayerMovement : MonoBehaviour
             //throwing stone
             case PlayerState.TALKING:
                 {
-                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
-
-
-
+                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    mainCamera.GetComponent<CinemachineFreeLook>().enabled = false;
                     anim.SetBool("Walking", false);
                     anim.SetBool("Running", false);
                     anim.SetBool("Jumping", false);
                     anim.SetBool("Falling", false);
                     anim.SetBool("Throwing", false);
                     anim.SetBool("ChargingThrow", false);
-                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
                     Gravity();
                 
 
@@ -239,8 +235,9 @@ public class PlayerMovement : MonoBehaviour
             default:
                 break;
         }
+        //stop holding A
+        interact = false;
     }
-
 
 
     void Move()
@@ -335,6 +332,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         jumps = jumpsMax;
+        
     }
 
 
