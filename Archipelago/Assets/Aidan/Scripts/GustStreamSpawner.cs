@@ -9,8 +9,9 @@ public class GustStreamSpawner : MonoBehaviour
 	private ObjectPooling gustStreamPool = null;
 	private int numOfNodes = 0;
 	private bool timeSet = false;
-	private float randomSpawnTime;
-	private float elapsedSpawnTime;
+	private float randomSpawnTime = 0f;
+	private float elapsedSpawnTime = 0f;
+	[SerializeField] private GameObject boatObject = null;
 
 	private void Awake()
 	{
@@ -24,6 +25,7 @@ public class GustStreamSpawner : MonoBehaviour
 		// Get the number of nodes
 		foreach(Transform t in transform)
 			numOfNodes++;
+
 	}
 
 	// Update is called once per frame
@@ -49,6 +51,9 @@ public class GustStreamSpawner : MonoBehaviour
 			}
 		}
 
+		// Set the position and rotation of the spawner to use the same X, Z axis as the main camera
+		transform.position = new Vector3(boatObject.transform.position.x, transform.position.y, boatObject.transform.position.z);
+		transform.rotation = Quaternion.LookRotation(boatObject.transform.forward);
     }
 
 	private void SpawnGustStream()
@@ -70,5 +75,6 @@ public class GustStreamSpawner : MonoBehaviour
 		// Retrieve a new instance from the pool and set it's position
 		GameObject newGustStream = gustStreamPool.RetrieveInstance();
 		newGustStream.transform.position = randomNode.position;
+		newGustStream.GetComponent<GustStreamManager>().gustStreamSpawnerObject = this.gameObject;
 	}
 }
