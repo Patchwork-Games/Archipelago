@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 camMoveDirection;
 
     //movement variables
-    [SerializeField] private float walkSpeed = 4f;
-    [SerializeField] private float runSpeed = 8f;
+    [SerializeField] private float walkSpeed = 8f;
+    [SerializeField] private float runSpeed = 16f;
     [SerializeField] private float energy = 0;
     public GameObject energyBar;
     Vector2 moveDirection;
@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
                 jumps -= 1;
             }
         }
-       
     }
 
 
@@ -108,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDisable()
@@ -137,22 +135,25 @@ public class PlayerMovement : MonoBehaviour
         else state = PlayerState.MOVING;
 
 
+        //check if in water
+        if (transform.position.y < 30)
+        {
+            anim.SetBool("InWater", true);
+        }
+        else
+        {
+            anim.SetBool("InWater", false);
+        }
+
 
         //state machine
         switch (state)
         {
-
-
-            //http://www.alanzucconi.com/2015/06/17/surface-shaders-in-unity3d/
-
-
             //normal movement
             case PlayerState.MOVING:
                 {
-                    //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
                     //check if on ground
-                    if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + 0.3f))
+                    if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
                     {
                         isGrounded = false;
                         jumps = 0;
@@ -164,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
                         velocity.y = -2f;
                         jumps = jumpsMax;
                     }
-                    if (velocity.y < -30f) velocity.y = -30f;
 
                     //get energy from other script
                     energy = energyBar.GetComponent<DashMeter>().currentCharge;

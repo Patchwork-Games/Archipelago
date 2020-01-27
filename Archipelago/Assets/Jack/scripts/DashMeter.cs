@@ -9,7 +9,7 @@ public class DashMeter : MonoBehaviour
     [SerializeField] private GameObject icon;
     [SerializeField] private float offset = 56f;
     [SerializeField] private float chargeSpeed = 1;
-    [SerializeField] private float dischargeSpeed = 2;
+    [SerializeField] private float dischargeSpeed = 1;
     private float totalCharge = 0f;
     public float currentCharge = 0;
 
