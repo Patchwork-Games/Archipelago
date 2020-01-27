@@ -25,6 +25,7 @@ public class ThrowObjectEnd : StateMachineBehaviour
     {
         player.GetComponent<SkimmingController>().throwReady = true;
         player.GetComponent<SkimmingController>().throwStone();
+        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
     }
 
 

@@ -64,7 +64,9 @@ public class DialogueManager : MonoBehaviour
 
     private float lerpTime = 0;
     private float timeToReachTarget = 0;
-    
+
+
+    public GameObject player;
 
 
 
@@ -81,18 +83,16 @@ public class DialogueManager : MonoBehaviour
         sentence = "";
         canQuitSentence = true;
         specialTextChecker = false;
+        animator.SetBool("IsOpen", false);
     }
 
     //initial beginning of dialogue, called by the trigger script
     public void StartDialogue(Dialogue dialogueIn)
     {
         dialogue = dialogueIn;
-        //slide in textbox and change name displayed
-        //animator.SetBool("IsOpen", true);
-        dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        lerpTime = 0;
-        //StartCoroutine("lerpOpen");
-        
+        //open textbox and change name displayed and stop player moving around or moving camera
+        animator.SetBool("IsOpen", true);
+        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.TALKING;
 
         //load in text for queues
         names.Clear();
@@ -140,12 +140,8 @@ public class DialogueManager : MonoBehaviour
 
 
                 //move box above talking npc
-                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position;
-
-
-
-                //lerp camera to point at target                                                                        FINDME DO CINEMACHINE CHANGING PRIORITY HERE
-                
+                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0,7,0);
+                             
             }
         }
         //get sentences
@@ -156,8 +152,10 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-
-
+    private void LateUpdate()
+    {
+        dialogueBoxImg.transform.rotation = Camera.main.transform.rotation;
+    }
 
     //if player presses interact button before whole sentence is displayed
     //whole sentence will be written out in one frame
@@ -276,11 +274,10 @@ public class DialogueManager : MonoBehaviour
     //called once all dialogue in queue has been used
     void EndDialogue()
     {
-        //animator.SetBool("IsOpen", false);
-        //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        //closing animation
+        animator.SetBool("IsOpen", false);
 
-        lerpTime = 0;
-        //StartCoroutine("lerpClosed");
+        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
     }
 
 

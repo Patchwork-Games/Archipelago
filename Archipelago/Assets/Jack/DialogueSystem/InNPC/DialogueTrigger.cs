@@ -44,7 +44,7 @@ public class DialogueTrigger : MonoBehaviour
                     //show button needed to talk
                     if (talkButtonGuide && !startedTalking)
                     {
-                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 2, 0);
+                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 3, 0);
                         talkButtonGuide.enabled = true;
                         player.GetComponent<PlayerMovement>().inTalkDistance = true;
                         hiddenTalkButton = false;
@@ -86,7 +86,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    //move button guide to above npc
+    //move button guide to face camrea
     private void LateUpdate()
     {
         if(talkButtonGuide) talkButtonGuide.transform.rotation = Camera.main.transform.rotation;

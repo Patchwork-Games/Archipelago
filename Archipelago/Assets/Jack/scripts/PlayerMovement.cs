@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public enum PlayerState
     {
         MOVING,
-        THROWING
+        THROWING,
+        TALKING
     }
     public PlayerState state;
 
@@ -133,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         interact = false;
 
         if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
-        else state = PlayerState.MOVING;
+        //else state = PlayerState.MOVING;
 
 
         //state machine
@@ -210,6 +211,29 @@ public class PlayerMovement : MonoBehaviour
                     {
                         Gravity();
                     }
+                    break;
+                }
+
+            //throwing stone
+            case PlayerState.TALKING:
+                {
+                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
+
+
+
+                    anim.SetBool("Walking", false);
+                    anim.SetBool("Running", false);
+                    anim.SetBool("Jumping", false);
+                    anim.SetBool("Falling", false);
+                    anim.SetBool("Throwing", false);
+                    anim.SetBool("ChargingThrow", false);
+                    mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    Gravity();
+                
+
+
+
+
                     break;
                 }
             default:

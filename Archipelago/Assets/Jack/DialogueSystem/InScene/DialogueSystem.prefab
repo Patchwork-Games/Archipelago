@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 531689341289647094}
   - component: {fileID: 531689341289647095}
   - component: {fileID: 531689341289647092}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ButtonGuideCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531689341615294063}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DialogueSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 531689342504526472}
   - component: {fileID: 531689342504526474}
   - component: {fileID: 531689342504526475}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,8 +166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.305, y: -4.19}
-  m_SizeDelta: {x: -11.11, y: -12.92}
+  m_AnchoredPosition: {x: -2.29, y: -1.645}
+  m_SizeDelta: {x: -7, y: -5.854}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531689342504526474
 CanvasRenderer:
@@ -226,12 +226,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 5
+  m_fontSize: 2
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMax: 2
   m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 531689342716396418}
   - component: {fileID: 531689342716396420}
   - component: {fileID: 531689342716396421}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ButtonGuideImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ RectTransform:
   m_GameObject: {fileID: 531689342716396419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.013022896, y: 0.013022896, z: 0.013022896}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 531689341289647097}
   m_RootOrder: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2e0ca24e0d1a8204f9acb24fdffe84ed, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -355,7 +355,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f6028c752307b6b46ab4419354e41226, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44bf4f088110be546897669c77ab5a77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 531689342736262084}
   - component: {fileID: 531689342736262086}
   - component: {fileID: 531689342736262087}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,8 +399,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 11.01, y: -6.79}
-  m_SizeDelta: {x: 15.52, y: 7.72}
+  m_AnchoredPosition: {x: 8.97, y: -2.673}
+  m_SizeDelta: {x: 15.52, y: 2.786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531689342736262086
 CanvasRenderer:
@@ -461,12 +461,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 5
+  m_fontSize: 2
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMax: 2
   m_fontStyle: 4
   m_textAlignment: 257
   m_characterSpacing: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 531689342783559823}
   - component: {fileID: 531689342783559820}
   - component: {fileID: 1238567109345202921}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DialogueManager
   m_TagString: DialogueManager
   m_Icon: {fileID: 0}
@@ -633,6 +633,7 @@ MonoBehaviour:
     name: 
     charactersTalking: []
     chatBoxes: []
+  player: {fileID: 0}
   NPCs: 00000000000000000000000000000000
 --- !u!114 &1238567109345202921
 MonoBehaviour:
@@ -658,7 +659,7 @@ GameObject:
   - component: {fileID: 531689342853952093}
   - component: {fileID: 531689342853952090}
   - component: {fileID: 531689342853952092}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,8 +685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -448.5, y: -358.2}
-  m_SizeDelta: {x: -1792.9, y: -852.4}
+  m_AnchoredPosition: {x: -0.011043549, y: 0.0025024414}
+  m_SizeDelta: {x: -0.02, y: -0.0049896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531689342853952093
 CanvasRenderer:
@@ -707,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2e0ca24e0d1a8204f9acb24fdffe84ed, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -756,7 +757,7 @@ GameObject:
   - component: {fileID: 531689342872040930}
   - component: {fileID: 531689342872040931}
   - component: {fileID: 531689342872040928}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: DialogueBoxCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,8 +781,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 452.9, y: 212.5}
-  m_SizeDelta: {x: 1924, y: 902.7}
+  m_AnchoredPosition: {x: 7.318, y: 2.619}
+  m_SizeDelta: {x: 31.115, y: 10.937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &531689342872040930
 Canvas:
@@ -801,7 +802,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 840549421
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &531689342872040931
@@ -854,7 +855,7 @@ GameObject:
   - component: {fileID: 531689343157106861}
   - component: {fileID: 531689343157106863}
   - component: {fileID: 531689343157106860}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,8 +878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -3.92, y: 3.0862}
-  m_SizeDelta: {x: 3.456, y: 3.6076}
+  m_AnchoredPosition: {x: -3.284, y: 2.422}
+  m_SizeDelta: {x: 2.184, y: 2.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531689343157106863
 CanvasRenderer:
@@ -900,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2e0ca24e0d1a8204f9acb24fdffe84ed, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:

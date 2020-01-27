@@ -8,6 +8,8 @@ public class DashMeter : MonoBehaviour
     [SerializeField] private List<GameObject> energies;
     [SerializeField] private GameObject icon;
     [SerializeField] private float offset = 56f;
+    [SerializeField] private float chargeSpeedMin = 1;
+    [SerializeField] private float chargeSpeedMax = 3;
     [SerializeField] private float chargeSpeed = 1;
     [SerializeField] private float dischargeSpeed = 1;
     private float totalCharge = 0f;
@@ -22,6 +24,7 @@ public class DashMeter : MonoBehaviour
         energies.Add(newIcon);
         totalCharge += 1;
         currentCharge = totalCharge;
+        chargeSpeed = chargeSpeedMin;
         updateChargeGraphic();
     }
 
@@ -54,6 +57,7 @@ public class DashMeter : MonoBehaviour
     {
         currentCharge -= Time.deltaTime * dischargeSpeed;
         if (currentCharge < 0) currentCharge = 0;
+        chargeSpeed = chargeSpeedMin;
         updateChargeGraphic();
     }
 
@@ -61,7 +65,13 @@ public class DashMeter : MonoBehaviour
     public void Recharge()
     {
         currentCharge += Time.deltaTime * chargeSpeed;
-        if (currentCharge > totalCharge) currentCharge = totalCharge;
+        if (chargeSpeed < chargeSpeedMax) chargeSpeed += Time.deltaTime/10;
+        if (currentCharge > totalCharge)
+        {
+            currentCharge = totalCharge;
+            
+        } 
+
         updateChargeGraphic();
     }
 
