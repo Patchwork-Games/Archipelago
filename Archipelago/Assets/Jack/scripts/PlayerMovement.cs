@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController controller;
     private bool interact = false;
     private bool run = false;
-
+    public bool inTalkDistance;
 
 
     //jumping variables
@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     private float distanceGround;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float gravity = -55.81f;
-    [SerializeField] public Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
 
 
@@ -71,10 +70,11 @@ public class PlayerMovement : MonoBehaviour
         if (interact)
         {
             //make player jump if enough jumps
-            if (jumps > 0 && interact)
+            if (jumps > 0 && interact && !inTalkDistance)
             {
                 velocity.y = 20f;
                 jumps -= 1;
+                anim.SetBool("Jumping", true);
             }
         }
     }
@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Walking", false);
         isGrounded = true;
         distanceGround = GetComponent<CharacterController>().bounds.extents.y;
+        inTalkDistance = false;
     }
 
 
@@ -133,17 +134,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
         else state = PlayerState.MOVING;
-
-
-        //check if in water
-        if (transform.position.y < 30)
-        {
-            anim.SetBool("InWater", true);
-        }
-        else
-        {
-            anim.SetBool("InWater", false);
-        }
 
 
         //state machine
@@ -157,13 +147,17 @@ public class PlayerMovement : MonoBehaviour
                     {
                         isGrounded = false;
                         jumps = 0;
+                        anim.SetBool("Falling", true);
+                        StopCoroutine("JumpCooldown");
                     }
                     else isGrounded = true;
 
                     if (isGrounded && velocity.y < 0)
                     {
+                        StartCoroutine("JumpCooldown");
+                        anim.SetBool("Jumping", false);
+                        anim.SetBool("Falling", false);
                         velocity.y = -2f;
-                        jumps = jumpsMax;
                     }
 
                     //get energy from other script
@@ -309,4 +303,18 @@ public class PlayerMovement : MonoBehaviour
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
         
     }
+
+
+
+
+    IEnumerator JumpCooldown()
+    {
+        yield return new WaitForSeconds(.3f);
+        jumps = jumpsMax;
+    }
+
+
+
+
+
 }

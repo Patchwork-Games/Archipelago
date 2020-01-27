@@ -46,12 +46,14 @@ public class DialogueTrigger : MonoBehaviour
                     {
                         talkButtonGuide.transform.position = transform.position + new Vector3(0, 2, 0);
                         talkButtonGuide.enabled = true;
+                        player.GetComponent<PlayerMovement>().inTalkDistance = true;
                         hiddenTalkButton = false;
                     }
-                    else if (talkButtonGuide && !hiddenTalkButton)
+                    else if (talkButtonGuide && !hiddenTalkButton) //hide talk button without disabling it for every npc
                     {
                         talkButtonGuide.enabled = false;
                         hiddenTalkButton = true;
+                        player.GetComponent<PlayerMovement>().inTalkDistance = false;
                     }
 
                     //FINDME replace with new input system to handle controllers
@@ -65,6 +67,7 @@ public class DialogueTrigger : MonoBehaviour
                 {
                     hiddenTalkButton = true;
                     talkButtonGuide.enabled = false;
+                    player.GetComponent<PlayerMovement>().inTalkDistance = false;
                 }
                 else
                 {

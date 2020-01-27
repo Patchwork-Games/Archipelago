@@ -43,8 +43,7 @@ public class DialogueManager : MonoBehaviour
     public float textSpeed = 0.03f;
     public bool canQuitSentence;
     public float CurveScale = 1.0f;
-    [HideInInspector]
-    public Dialogue dialogue;
+    [HideInInspector] public Dialogue dialogue;
 
     private string sentence;
     private new string name;
@@ -90,9 +89,9 @@ public class DialogueManager : MonoBehaviour
         dialogue = dialogueIn;
         //slide in textbox and change name displayed
         //animator.SetBool("IsOpen", true);
-        //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         lerpTime = 0;
-        StartCoroutine("lerpOpen");
+        //StartCoroutine("lerpOpen");
         
 
         //load in text for queues
@@ -137,6 +136,13 @@ public class DialogueManager : MonoBehaviour
                 Sprite tempSprite;
                 tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
                 if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
+
+
+
+                //move box above talking npc
+                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position;
+
+
 
                 //lerp camera to point at target                                                                        FINDME DO CINEMACHINE CHANGING PRIORITY HERE
                 
@@ -274,7 +280,7 @@ public class DialogueManager : MonoBehaviour
         //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
         lerpTime = 0;
-        StartCoroutine("lerpClosed");
+        //StartCoroutine("lerpClosed");
     }
 
 
@@ -307,7 +313,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         //progress dialogue with interact button
-        //FINDME change to use new input to support controllers
+                                                                                                                 //FINDME change to use new input to support controllers
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             if (arrow.enabled == true)
@@ -320,7 +326,7 @@ public class DialogueManager : MonoBehaviour
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
-            //FINDME change to use new input to support controllers
+                                                                                                                //FINDME change to use new input to support controllers
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 EndDialogue();
