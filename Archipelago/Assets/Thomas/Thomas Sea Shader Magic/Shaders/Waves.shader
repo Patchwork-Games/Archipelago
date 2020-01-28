@@ -3,26 +3,20 @@
 // Shader created with Shader Forge v1.40 
 // Shader Forge (c) Freya Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:3,bdst:7,dpts:2,wrdp:False,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:True,qofs:0,qpre:3,rntp:2,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:34681,y:33269,varname:node_2865,prsc:2|diff-9978-OUT,spec-358-OUT,gloss-1813-OUT,alpha-1243-OUT,voffset-7107-OUT,tess-3757-OUT;n:type:ShaderForge.SFN_Color,id:6665,x:31455,y:32369,ptovrint:False,ptlb:ColourB,ptin:_ColourB,varname:_Color,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.6792453,c2:0.1057316,c3:0.1057316,c4:1;n:type:ShaderForge.SFN_Slider,id:358,x:33714,y:33780,ptovrint:False,ptlb:Metallic,ptin:_Metallic,varname:node_358,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:1813,x:33732,y:33876,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:_Metallic_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8,max:1;n:type:ShaderForge.SFN_Color,id:6735,x:31455,y:32214,ptovrint:False,ptlb:ColourA,ptin:_ColourA,varname:node_6735,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.2142716,c2:0.2124421,c3:0.5849056,c4:1;n:type:ShaderForge.SFN_Lerp,id:2195,x:31961,y:32227,varname:node_2195,prsc:2|A-6735-RGB,B-6665-RGB,T-5058-OUT;n:type:ShaderForge.SFN_Divide,id:3624,x:31428,y:33460,varname:node_3624,prsc:2|A-1290-OUT,B-2994-OUT;n:type:ShaderForge.SFN_DepthBlend,id:1290,x:31048,y:33333,varname:node_1290,prsc:2|DIST-2498-OUT;n:type:ShaderForge.SFN_ViewVector,id:5987,x:30878,y:33729,varname:node_5987,prsc:2;n:type:ShaderForge.SFN_Dot,id:2994,x:31184,y:33697,varname:node_2994,prsc:2,dt:4|A-5987-OUT,B-7634-OUT;n:type:ShaderForge.SFN_NormalVector,id:7634,x:30878,y:33862,prsc:2,pt:False;n:type:ShaderForge.SFN_Slider,id:5890,x:31223,y:33111,ptovrint:False,ptlb:FoamMin,ptin:_FoamMin,varname:node_5890,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:61,x:31223,y:33199,ptovrint:False,ptlb:FoamMax,ptin:_FoamMax,varname:node_61,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_RemapRangeAdvanced,id:3283,x:31919,y:33203,varname:node_3283,prsc:2|IN-5058-OUT,IMIN-5890-OUT,IMAX-61-OUT,OMIN-6811-OUT,OMAX-1971-OUT;n:type:ShaderForge.SFN_Vector1,id:1971,x:31607,y:33359,varname:node_1971,prsc:2,v1:1;n:type:ShaderForge.SFN_Vector1,id:6811,x:31607,y:33298,varname:node_6811,prsc:2,v1:0;n:type:ShaderForge.SFN_RemapRangeAdvanced,id:8897,x:32083,y:33441,varname:node_8897,prsc:2|IN-5058-OUT,IMIN-534-OUT,IMAX-3586-OUT,OMIN-2577-OUT,OMAX-1495-OUT;n:type:ShaderForge.SFN_Slider,id:534,x:31670,y:33697,ptovrint:False,ptlb:DepthMin,ptin:_DepthMin,varname:node_534,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:3586,x:31670,y:33785,ptovrint:False,ptlb:DepthMax,ptin:_DepthMax,varname:_node_534_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_Vector1,id:2577,x:31797,y:33918,varname:node_2577,prsc:2,v1:0;n:type:ShaderForge.SFN_Vector1,id:1495,x:31797,y:33979,varname:node_1495,prsc:2,v1:1;n:type:ShaderForge.SFN_Clamp01,id:7219,x:32063,y:33203,varname:node_7219,prsc:2|IN-3283-OUT;n:type:ShaderForge.SFN_Clamp01,id:5058,x:31591,y:33519,varname:node_5058,prsc:2|IN-3624-OUT;n:type:ShaderForge.SFN_ComponentMask,id:4804,x:32526,y:33199,varname:node_4804,prsc:2,cc1:0,cc2:-1,cc3:-1,cc4:-1|IN-1485-OUT;n:type:ShaderForge.SFN_Multiply,id:7356,x:32672,y:33230,varname:node_7356,prsc:2|A-4804-OUT,B-9236-OUT;n:type:ShaderForge.SFN_Vector1,id:9236,x:32357,y:33378,varname:node_9236,prsc:2,v1:0.5;n:type:ShaderForge.SFN_Clamp01,id:1243,x:33225,y:33279,varname:node_1243,prsc:2|IN-8446-OUT;n:type:ShaderForge.SFN_Multiply,id:1180,x:32265,y:32684,varname:node_1180,prsc:2|A-6440-OUT,B-6054-OUT;n:type:ShaderForge.SFN_Clamp01,id:1485,x:32478,y:32684,varname:node_1485,prsc:2|IN-1180-OUT;n:type:ShaderForge.SFN_Add,id:8915,x:32390,y:32345,varname:node_8915,prsc:2|A-2195-OUT,B-1485-OUT;n:type:ShaderForge.SFN_Clamp01,id:9978,x:32574,y:32345,varname:node_9978,prsc:2|IN-8915-OUT;n:type:ShaderForge.SFN_Add,id:8446,x:32896,y:33356,varname:node_8446,prsc:2|A-7356-OUT,B-8897-OUT;n:type:ShaderForge.SFN_OneMinus,id:6054,x:32242,y:33203,varname:node_6054,prsc:2|IN-7219-OUT;n:type:ShaderForge.SFN_ValueProperty,id:6440,x:32040,y:32684,ptovrint:False,ptlb:FoamPower,ptin:_FoamPower,varname:node_6440,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:8;n:type:ShaderForge.SFN_ValueProperty,id:2498,x:30703,y:33532,ptovrint:False,ptlb:DepthValue,ptin:_DepthValue,varname:node_2498,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:10;n:type:ShaderForge.SFN_Slider,id:3757,x:33194,y:34382,ptovrint:False,ptlb:Tesselation,ptin:_Tesselation,varname:node_3757,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:10;n:type:ShaderForge.SFN_Tex2d,id:3793,x:33159,y:34650,ptovrint:False,ptlb:distort,ptin:_distort,varname:node_3793,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:8fcd9b707db9dbf40933b1b4f346a767,ntxv:2,isnm:False|UVIN-576-UVOUT;n:type:ShaderForge.SFN_Panner,id:576,x:32942,y:34650,varname:node_576,prsc:2,spu:0.5,spv:0.5|UVIN-7225-UVOUT,DIST-1755-TSL;n:type:ShaderForge.SFN_Time,id:1755,x:32596,y:34748,varname:node_1755,prsc:2;n:type:ShaderForge.SFN_TexCoord,id:7225,x:32596,y:34545,varname:node_7225,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_FragmentPosition,id:3610,x:32596,y:34945,varname:node_3610,prsc:2;n:type:ShaderForge.SFN_Add,id:6005,x:32793,y:34945,varname:node_6005,prsc:2|A-3610-X,B-1755-TSL;n:type:ShaderForge.SFN_Multiply,id:1336,x:32984,y:34945,varname:node_1336,prsc:2|A-6005-OUT,B-9885-OUT;n:type:ShaderForge.SFN_ValueProperty,id:9885,x:32779,y:35167,ptovrint:False,ptlb:WaveCount,ptin:_WaveCount,varname:node_9885,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:10;n:type:ShaderForge.SFN_Sin,id:4244,x:33188,y:34945,varname:node_4244,prsc:2|IN-1336-OUT;n:type:ShaderForge.SFN_Multiply,id:6346,x:33405,y:34945,varname:node_6346,prsc:2|A-4244-OUT,B-328-OUT;n:type:ShaderForge.SFN_Add,id:9092,x:33605,y:34945,varname:node_9092,prsc:2|A-6346-OUT,B-7220-OUT;n:type:ShaderForge.SFN_RemapRange,id:4445,x:33788,y:34945,varname:node_4445,prsc:2,frmn:-1,frmx:1,tomn:0,tomx:1|IN-9092-OUT;n:type:ShaderForge.SFN_ValueProperty,id:328,x:33266,y:35159,ptovrint:False,ptlb:WaveSpread,ptin:_WaveSpread,varname:_WaveCount_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0.3;n:type:ShaderForge.SFN_ValueProperty,id:7220,x:33509,y:35159,ptovrint:False,ptlb:WaveWidth,ptin:_WaveWidth,varname:_WaveCount_copy_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:10;n:type:ShaderForge.SFN_Multiply,id:928,x:33893,y:34749,varname:node_928,prsc:2|A-3793-R,B-4445-OUT;n:type:ShaderForge.SFN_Multiply,id:9720,x:34228,y:34874,varname:node_9720,prsc:2|A-928-OUT,B-8739-OUT;n:type:ShaderForge.SFN_Slider,id:8739,x:33922,y:35123,ptovrint:False,ptlb:Waveheight,ptin:_Waveheight,varname:node_8739,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.5,max:1;n:type:ShaderForge.SFN_Vector1,id:7248,x:34220,y:34645,varname:node_7248,prsc:2,v1:0;n:type:ShaderForge.SFN_Append,id:118,x:34429,y:34808,varname:node_118,prsc:2|A-7248-OUT,B-9720-OUT;n:type:ShaderForge.SFN_Append,id:7107,x:34656,y:34808,varname:node_7107,prsc:2|A-118-OUT,B-9604-OUT;n:type:ShaderForge.SFN_Vector1,id:9604,x:34463,y:34971,varname:node_9604,prsc:2,v1:0;proporder:6665-358-1813-6735-5890-61-534-3586-6440-2498-3757-3793-9885-328-7220-8739;pass:END;sub:END;*/
+/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:3,bdst:7,dpts:2,wrdp:False,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:True,qofs:0,qpre:3,rntp:2,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:32719,y:32712,varname:node_2865,prsc:2|diff-5240-RGB,spec-632-OUT,gloss-7337-OUT,alpha-6270-OUT,voffset-2642-OUT,tess-1619-OUT;n:type:ShaderForge.SFN_Slider,id:632,x:31999,y:33313,ptovrint:False,ptlb:Metallic_copy,ptin:_Metallic_copy,varname:_Metallic_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:7337,x:32017,y:33409,ptovrint:False,ptlb:Gloss_copy,ptin:_Gloss_copy,varname:_Gloss_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8,max:1;n:type:ShaderForge.SFN_Slider,id:1619,x:31980,y:33555,ptovrint:False,ptlb:Tesselation,ptin:_Tesselation,varname:node_3757,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:10;n:type:ShaderForge.SFN_Tex2d,id:6579,x:31444,y:34183,ptovrint:False,ptlb:distort,ptin:_distort,varname:node_3793,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:8fcd9b707db9dbf40933b1b4f346a767,ntxv:2,isnm:False|UVIN-2317-UVOUT;n:type:ShaderForge.SFN_Panner,id:2317,x:31227,y:34183,varname:node_2317,prsc:2,spu:0.5,spv:0.5|UVIN-1364-UVOUT,DIST-4424-TSL;n:type:ShaderForge.SFN_Time,id:4424,x:30881,y:34281,varname:node_4424,prsc:2;n:type:ShaderForge.SFN_TexCoord,id:1364,x:30881,y:34078,varname:node_1364,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_FragmentPosition,id:7563,x:30881,y:34478,varname:node_7563,prsc:2;n:type:ShaderForge.SFN_Add,id:5003,x:31078,y:34478,varname:node_5003,prsc:2|A-7563-X,B-4424-TSL;n:type:ShaderForge.SFN_Multiply,id:2424,x:31269,y:34478,varname:node_2424,prsc:2|A-5003-OUT,B-2890-OUT;n:type:ShaderForge.SFN_ValueProperty,id:2890,x:31064,y:34700,ptovrint:False,ptlb:WaveCount,ptin:_WaveCount,varname:node_9885,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:10;n:type:ShaderForge.SFN_Sin,id:131,x:31473,y:34478,varname:node_131,prsc:2|IN-2424-OUT;n:type:ShaderForge.SFN_Multiply,id:7584,x:31690,y:34478,varname:node_7584,prsc:2|A-131-OUT,B-7652-OUT;n:type:ShaderForge.SFN_Add,id:5723,x:31890,y:34478,varname:node_5723,prsc:2|A-7584-OUT,B-6748-OUT;n:type:ShaderForge.SFN_RemapRange,id:1860,x:32073,y:34478,varname:node_1860,prsc:2,frmn:-1,frmx:1,tomn:0,tomx:1|IN-5723-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7652,x:31551,y:34692,ptovrint:False,ptlb:WaveSpread,ptin:_WaveSpread,varname:_WaveCount_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0.3;n:type:ShaderForge.SFN_ValueProperty,id:6748,x:31794,y:34692,ptovrint:False,ptlb:WaveWidth,ptin:_WaveWidth,varname:_WaveCount_copy_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:10;n:type:ShaderForge.SFN_Multiply,id:1005,x:32178,y:34282,varname:node_1005,prsc:2|A-6579-R,B-1860-OUT;n:type:ShaderForge.SFN_Multiply,id:7850,x:32513,y:34407,varname:node_7850,prsc:2|A-1005-OUT,B-7866-OUT;n:type:ShaderForge.SFN_Slider,id:7866,x:32207,y:34656,ptovrint:False,ptlb:Waveheight,ptin:_Waveheight,varname:node_8739,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.5,max:1;n:type:ShaderForge.SFN_Vector1,id:3026,x:32505,y:34178,varname:node_3026,prsc:2,v1:0;n:type:ShaderForge.SFN_Append,id:6528,x:32714,y:34341,varname:node_6528,prsc:2|A-3026-OUT,B-7850-OUT;n:type:ShaderForge.SFN_Append,id:2642,x:32941,y:34341,varname:node_2642,prsc:2|A-6528-OUT,B-8415-OUT;n:type:ShaderForge.SFN_Vector1,id:8415,x:32748,y:34504,varname:node_8415,prsc:2,v1:0;n:type:ShaderForge.SFN_Color,id:5240,x:31919,y:32583,ptovrint:False,ptlb:node_5240,ptin:_node_5240,varname:node_5240,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.5,c2:0.5,c3:0.5,c4:1;n:type:ShaderForge.SFN_Slider,id:6270,x:31986,y:33112,ptovrint:False,ptlb:Opacity,ptin:_Opacity,varname:node_6270,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.7257127,max:1;proporder:632-7337-1619-6579-2890-7652-6748-7866-5240-6270;pass:END;sub:END;*/
 
-Shader "Shader Forge/watershader" {
+Shader "Shader Forge/Waves" {
     Properties {
-        _ColourB ("ColourB", Color) = (0.6792453,0.1057316,0.1057316,1)
-        _Metallic ("Metallic", Range(0, 1)) = 0
-        _Gloss ("Gloss", Range(0, 1)) = 0.8
-        _ColourA ("ColourA", Color) = (0.2142716,0.2124421,0.5849056,1)
-        _FoamMin ("FoamMin", Range(0, 1)) = 0
-        _FoamMax ("FoamMax", Range(0, 1)) = 1
-        _DepthMin ("DepthMin", Range(0, 1)) = 0
-        _DepthMax ("DepthMax", Range(0, 1)) = 1
-        _FoamPower ("FoamPower", Float ) = 8
-        _DepthValue ("DepthValue", Float ) = 10
+        _Metallic_copy ("Metallic_copy", Range(0, 1)) = 0
+        _Gloss_copy ("Gloss_copy", Range(0, 1)) = 0.8
         _Tesselation ("Tesselation", Range(0, 10)) = 1
         _distort ("distort", 2D) = "black" {}
         _WaveCount ("WaveCount", Float ) = 10
         _WaveSpread ("WaveSpread", Float ) = 0.3
         _WaveWidth ("WaveWidth", Float ) = 10
         _Waveheight ("Waveheight", Range(0, 1)) = 0.5
+        _node_5240 ("node_5240", Color) = (0.5,0.5,0.5,1)
+        _Opacity ("Opacity", Range(0, 1)) = 0.7257127
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader {
@@ -58,24 +52,17 @@ Shader "Shader Forge/watershader" {
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
             #pragma target 5.0
-            uniform sampler2D _CameraDepthTexture;
             uniform sampler2D _distort; uniform float4 _distort_ST;
             UNITY_INSTANCING_BUFFER_START( Props )
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss)
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourA)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMin)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMax)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthMin)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthMax)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamPower)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthValue)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic_copy)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss_copy)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveCount)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveSpread)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveWidth)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Waveheight)
+                UNITY_DEFINE_INSTANCED_PROP( float4, _node_5240)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Opacity)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -96,10 +83,9 @@ Shader "Shader Forge/watershader" {
                 float3 normalDir : TEXCOORD4;
                 float3 tangentDir : TEXCOORD5;
                 float3 bitangentDir : TEXCOORD6;
-                float4 projPos : TEXCOORD7;
-                UNITY_FOG_COORDS(8)
+                UNITY_FOG_COORDS(7)
                 #if defined(LIGHTMAP_ON) || defined(UNITY_SHOULD_SAMPLE_SH)
-                    float4 ambientOrLightmapUV : TEXCOORD9;
+                    float4 ambientOrLightmapUV : TEXCOORD8;
                 #endif
             };
             VertexOutput vert (VertexInput v) {
@@ -120,20 +106,18 @@ Shader "Shader Forge/watershader" {
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
-                float4 node_1755 = _Time;
-                float2 node_576 = (o.uv0+node_1755.r*float2(0.5,0.5));
-                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_576, _distort),0.0,0));
+                float4 node_4424 = _Time;
+                float2 node_2317 = (o.uv0+node_4424.r*float2(0.5,0.5));
+                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_2317, _distort),0.0,0));
                 float _WaveCount_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveCount );
                 float _WaveSpread_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveSpread );
                 float _WaveWidth_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveWidth );
                 float _Waveheight_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Waveheight );
-                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_1755.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
+                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_4424.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
-                o.projPos = ComputeScreenPos (o.pos);
-                COMPUTE_EYEDEPTH(o.projPos.z);
                 return o;
             }
             #ifdef UNITY_CAN_COMPILE_TESSELLATION
@@ -210,8 +194,6 @@ Shader "Shader Forge/watershader" {
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float3 normalDirection = i.normalDir;
                 float3 viewReflectDirection = reflect( -viewDirection, normalDirection );
-                float sceneZ = max(0,LinearEyeDepth (UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)))) - _ProjectionParams.g);
-                float partZ = max(0,i.projPos.z - _ProjectionParams.g);
                 float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
                 float3 halfDirection = normalize(viewDirection+lightDirection);
@@ -221,9 +203,9 @@ Shader "Shader Forge/watershader" {
                 float Pi = 3.141592654;
                 float InvPi = 0.31830988618;
 ///////// Gloss:
-                float _Gloss_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss );
-                float gloss = _Gloss_var;
-                float perceptualRoughness = 1.0 - _Gloss_var;
+                float _Gloss_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss_copy );
+                float gloss = _Gloss_copy_var;
+                float perceptualRoughness = 1.0 - _Gloss_copy_var;
                 float roughness = perceptualRoughness * perceptualRoughness;
                 float specPow = exp2( gloss * 10.0 + 1.0 );
 /////// GI Data:
@@ -269,19 +251,11 @@ Shader "Shader Forge/watershader" {
 ////// Specular:
                 float NdotL = saturate(dot( normalDirection, lightDirection ));
                 float LdotH = saturate(dot(lightDirection, halfDirection));
-                float _Metallic_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic );
-                float3 specularColor = _Metallic_var;
+                float _Metallic_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic_copy );
+                float3 specularColor = _Metallic_copy_var;
                 float specularMonochrome;
-                float4 _ColourA_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourA );
-                float4 _ColourB_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourB );
-                float _DepthValue_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthValue );
-                float node_5058 = saturate((saturate((sceneZ-partZ)/_DepthValue_var)/0.5*dot(viewDirection,i.normalDir)+0.5));
-                float _FoamPower_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamPower );
-                float _FoamMin_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMin );
-                float _FoamMax_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMax );
-                float node_6811 = 0.0;
-                float node_1485 = saturate((_FoamPower_var*(1.0 - saturate((node_6811 + ( (node_5058 - _FoamMin_var) * (1.0 - node_6811) ) / (_FoamMax_var - _FoamMin_var))))));
-                float3 diffuseColor = saturate((lerp(_ColourA_var.rgb,_ColourB_var.rgb,node_5058)+node_1485)); // Need this for specular when using metallic
+                float4 _node_5240_var = UNITY_ACCESS_INSTANCED_PROP( Props, _node_5240 );
+                float3 diffuseColor = _node_5240_var.rgb; // Need this for specular when using metallic
                 diffuseColor = DiffuseAndSpecularFromMetallic( diffuseColor, specularColor, specularColor, specularMonochrome );
                 specularMonochrome = 1.0-specularMonochrome;
                 float NdotV = abs(dot( normalDirection, viewDirection ));
@@ -321,10 +295,8 @@ Shader "Shader Forge/watershader" {
                 float3 diffuse = (directDiffuse + indirectDiffuse) * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                float _DepthMin_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthMin );
-                float _DepthMax_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthMax );
-                float node_2577 = 0.0;
-                fixed4 finalRGBA = fixed4(finalColor,saturate(((node_1485.r*0.5)+(node_2577 + ( (node_5058 - _DepthMin_var) * (1.0 - node_2577) ) / (_DepthMax_var - _DepthMin_var)))));
+                float _Opacity_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Opacity );
+                fixed4 finalRGBA = fixed4(finalColor,_Opacity_var);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
@@ -358,24 +330,17 @@ Shader "Shader Forge/watershader" {
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
             #pragma target 5.0
-            uniform sampler2D _CameraDepthTexture;
             uniform sampler2D _distort; uniform float4 _distort_ST;
             UNITY_INSTANCING_BUFFER_START( Props )
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss)
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourA)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMin)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMax)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthMin)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthMax)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamPower)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthValue)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic_copy)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss_copy)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveCount)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveSpread)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveWidth)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Waveheight)
+                UNITY_DEFINE_INSTANCED_PROP( float4, _node_5240)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Opacity)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -396,9 +361,8 @@ Shader "Shader Forge/watershader" {
                 float3 normalDir : TEXCOORD4;
                 float3 tangentDir : TEXCOORD5;
                 float3 bitangentDir : TEXCOORD6;
-                float4 projPos : TEXCOORD7;
-                LIGHTING_COORDS(8,9)
-                UNITY_FOG_COORDS(10)
+                LIGHTING_COORDS(7,8)
+                UNITY_FOG_COORDS(9)
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
@@ -410,20 +374,18 @@ Shader "Shader Forge/watershader" {
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
-                float4 node_1755 = _Time;
-                float2 node_576 = (o.uv0+node_1755.r*float2(0.5,0.5));
-                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_576, _distort),0.0,0));
+                float4 node_4424 = _Time;
+                float2 node_2317 = (o.uv0+node_4424.r*float2(0.5,0.5));
+                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_2317, _distort),0.0,0));
                 float _WaveCount_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveCount );
                 float _WaveSpread_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveSpread );
                 float _WaveWidth_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveWidth );
                 float _Waveheight_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Waveheight );
-                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_1755.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
+                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_4424.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
-                o.projPos = ComputeScreenPos (o.pos);
-                COMPUTE_EYEDEPTH(o.projPos.z);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }
@@ -500,8 +462,6 @@ Shader "Shader Forge/watershader" {
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float3 normalDirection = i.normalDir;
-                float sceneZ = max(0,LinearEyeDepth (UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)))) - _ProjectionParams.g);
-                float partZ = max(0,i.projPos.z - _ProjectionParams.g);
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 float3 lightColor = _LightColor0.rgb;
                 float3 halfDirection = normalize(viewDirection+lightDirection);
@@ -511,27 +471,19 @@ Shader "Shader Forge/watershader" {
                 float Pi = 3.141592654;
                 float InvPi = 0.31830988618;
 ///////// Gloss:
-                float _Gloss_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss );
-                float gloss = _Gloss_var;
-                float perceptualRoughness = 1.0 - _Gloss_var;
+                float _Gloss_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss_copy );
+                float gloss = _Gloss_copy_var;
+                float perceptualRoughness = 1.0 - _Gloss_copy_var;
                 float roughness = perceptualRoughness * perceptualRoughness;
                 float specPow = exp2( gloss * 10.0 + 1.0 );
 ////// Specular:
                 float NdotL = saturate(dot( normalDirection, lightDirection ));
                 float LdotH = saturate(dot(lightDirection, halfDirection));
-                float _Metallic_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic );
-                float3 specularColor = _Metallic_var;
+                float _Metallic_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic_copy );
+                float3 specularColor = _Metallic_copy_var;
                 float specularMonochrome;
-                float4 _ColourA_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourA );
-                float4 _ColourB_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourB );
-                float _DepthValue_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthValue );
-                float node_5058 = saturate((saturate((sceneZ-partZ)/_DepthValue_var)/0.5*dot(viewDirection,i.normalDir)+0.5));
-                float _FoamPower_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamPower );
-                float _FoamMin_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMin );
-                float _FoamMax_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMax );
-                float node_6811 = 0.0;
-                float node_1485 = saturate((_FoamPower_var*(1.0 - saturate((node_6811 + ( (node_5058 - _FoamMin_var) * (1.0 - node_6811) ) / (_FoamMax_var - _FoamMin_var))))));
-                float3 diffuseColor = saturate((lerp(_ColourA_var.rgb,_ColourB_var.rgb,node_5058)+node_1485)); // Need this for specular when using metallic
+                float4 _node_5240_var = UNITY_ACCESS_INSTANCED_PROP( Props, _node_5240 );
+                float3 diffuseColor = _node_5240_var.rgb; // Need this for specular when using metallic
                 diffuseColor = DiffuseAndSpecularFromMetallic( diffuseColor, specularColor, specularColor, specularMonochrome );
                 specularMonochrome = 1.0-specularMonochrome;
                 float NdotV = abs(dot( normalDirection, viewDirection ));
@@ -559,10 +511,8 @@ Shader "Shader Forge/watershader" {
                 float3 diffuse = directDiffuse * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                float _DepthMin_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthMin );
-                float _DepthMax_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthMax );
-                float node_2577 = 0.0;
-                fixed4 finalRGBA = fixed4(finalColor * saturate(((node_1485.r*0.5)+(node_2577 + ( (node_5058 - _DepthMin_var) * (1.0 - node_2577) ) / (_DepthMax_var - _DepthMin_var)))),0);
+                float _Opacity_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Opacity );
+                fixed4 finalRGBA = fixed4(finalColor * _Opacity_var,0);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
@@ -628,14 +578,14 @@ Shader "Shader Forge/watershader" {
                 o.uv0 = v.texcoord0;
                 o.uv1 = v.texcoord1;
                 o.uv2 = v.texcoord2;
-                float4 node_1755 = _Time;
-                float2 node_576 = (o.uv0+node_1755.r*float2(0.5,0.5));
-                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_576, _distort),0.0,0));
+                float4 node_4424 = _Time;
+                float2 node_2317 = (o.uv0+node_4424.r*float2(0.5,0.5));
+                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_2317, _distort),0.0,0));
                 float _WaveCount_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveCount );
                 float _WaveSpread_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveSpread );
                 float _WaveWidth_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveWidth );
                 float _Waveheight_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Waveheight );
-                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_1755.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
+                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_4424.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 o.pos = UnityObjectToClipPos( v.vertex );
                 TRANSFER_SHADOW_CASTER(o)
@@ -744,22 +694,16 @@ Shader "Shader Forge/watershader" {
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
             #pragma target 5.0
-            uniform sampler2D _CameraDepthTexture;
             uniform sampler2D _distort; uniform float4 _distort_ST;
             UNITY_INSTANCING_BUFFER_START( Props )
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic)
-                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss)
-                UNITY_DEFINE_INSTANCED_PROP( float4, _ColourA)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMin)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamMax)
-                UNITY_DEFINE_INSTANCED_PROP( float, _FoamPower)
-                UNITY_DEFINE_INSTANCED_PROP( float, _DepthValue)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Metallic_copy)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Gloss_copy)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveCount)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveSpread)
                 UNITY_DEFINE_INSTANCED_PROP( float, _WaveWidth)
                 UNITY_DEFINE_INSTANCED_PROP( float, _Waveheight)
+                UNITY_DEFINE_INSTANCED_PROP( float4, _node_5240)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -777,8 +721,6 @@ Shader "Shader Forge/watershader" {
                 float2 uv1 : TEXCOORD1;
                 float2 uv2 : TEXCOORD2;
                 float4 posWorld : TEXCOORD3;
-                float3 normalDir : TEXCOORD4;
-                float4 projPos : TEXCOORD5;
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
@@ -787,19 +729,16 @@ Shader "Shader Forge/watershader" {
                 o.uv0 = v.texcoord0;
                 o.uv1 = v.texcoord1;
                 o.uv2 = v.texcoord2;
-                o.normalDir = UnityObjectToWorldNormal(v.normal);
-                float4 node_1755 = _Time;
-                float2 node_576 = (o.uv0+node_1755.r*float2(0.5,0.5));
-                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_576, _distort),0.0,0));
+                float4 node_4424 = _Time;
+                float2 node_2317 = (o.uv0+node_4424.r*float2(0.5,0.5));
+                float4 _distort_var = tex2Dlod(_distort,float4(TRANSFORM_TEX(node_2317, _distort),0.0,0));
                 float _WaveCount_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveCount );
                 float _WaveSpread_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveSpread );
                 float _WaveWidth_var = UNITY_ACCESS_INSTANCED_PROP( Props, _WaveWidth );
                 float _Waveheight_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Waveheight );
-                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_1755.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
+                v.vertex.xyz += float3(float2(0.0,((_distort_var.r*(((sin(((mul(unity_ObjectToWorld, v.vertex).r+node_4424.r)*_WaveCount_var))*_WaveSpread_var)+_WaveWidth_var)*0.5+0.5))*_Waveheight_var)),0.0);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 o.pos = UnityMetaVertexPosition(v.vertex, v.texcoord1.xy, v.texcoord2.xy, unity_LightmapST, unity_DynamicLightmapST );
-                o.projPos = ComputeScreenPos (o.pos);
-                COMPUTE_EYEDEPTH(o.projPos.z);
                 return o;
             }
             #ifdef UNITY_CAN_COMPILE_TESSELLATION
@@ -871,32 +810,20 @@ Shader "Shader Forge/watershader" {
             #endif
             float4 frag(VertexOutput i) : SV_Target {
                 UNITY_SETUP_INSTANCE_ID( i );
-                i.normalDir = normalize(i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-                float3 normalDirection = i.normalDir;
-                float sceneZ = max(0,LinearEyeDepth (UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)))) - _ProjectionParams.g);
-                float partZ = max(0,i.projPos.z - _ProjectionParams.g);
                 UnityMetaInput o;
                 UNITY_INITIALIZE_OUTPUT( UnityMetaInput, o );
                 
                 o.Emission = 0;
                 
-                float4 _ColourA_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourA );
-                float4 _ColourB_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourB );
-                float _DepthValue_var = UNITY_ACCESS_INSTANCED_PROP( Props, _DepthValue );
-                float node_5058 = saturate((saturate((sceneZ-partZ)/_DepthValue_var)/0.5*dot(viewDirection,i.normalDir)+0.5));
-                float _FoamPower_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamPower );
-                float _FoamMin_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMin );
-                float _FoamMax_var = UNITY_ACCESS_INSTANCED_PROP( Props, _FoamMax );
-                float node_6811 = 0.0;
-                float node_1485 = saturate((_FoamPower_var*(1.0 - saturate((node_6811 + ( (node_5058 - _FoamMin_var) * (1.0 - node_6811) ) / (_FoamMax_var - _FoamMin_var))))));
-                float3 diffColor = saturate((lerp(_ColourA_var.rgb,_ColourB_var.rgb,node_5058)+node_1485));
+                float4 _node_5240_var = UNITY_ACCESS_INSTANCED_PROP( Props, _node_5240 );
+                float3 diffColor = _node_5240_var.rgb;
                 float specularMonochrome;
                 float3 specColor;
-                float _Metallic_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic );
-                diffColor = DiffuseAndSpecularFromMetallic( diffColor, _Metallic_var, specColor, specularMonochrome );
-                float _Gloss_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss );
-                float roughness = 1.0 - _Gloss_var;
+                float _Metallic_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Metallic_copy );
+                diffColor = DiffuseAndSpecularFromMetallic( diffColor, _Metallic_copy_var, specColor, specularMonochrome );
+                float _Gloss_copy_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Gloss_copy );
+                float roughness = 1.0 - _Gloss_copy_var;
                 o.Albedo = diffColor + specColor * roughness * roughness * 0.5;
                 
                 return UnityMetaFragment( o );
