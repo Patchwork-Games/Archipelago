@@ -87,8 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        if (isGrounded) GetComponent<SkimmingController>().heldThrow = true;
-        else GetComponent<SkimmingController>().heldThrow = false;
+        GetComponent<SkimmingController>().heldThrow = true; 
     }
 
     void StopThrowButton()
@@ -125,8 +124,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
-
         //state machine
         switch (state)
         {
@@ -192,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
                     MoveCamera();
 
 
+                    anim.SetBool("Throwing", false);
+                    anim.SetBool("ChargingThrow", false);
 
                     break;
                 }
@@ -205,12 +204,17 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (isGrounded)
                     {
+                        anim.SetBool("Walking", false);
+                        anim.SetBool("Running", false);
+                        anim.SetBool("Jumping", false);
+                        anim.SetBool("Falling", false);
                         GetComponent<SkimmingController>().testThrow();
                         MoveCameraWLeft();
                     }
                     else
                     {
-                        Gravity();
+                        state = PlayerState.MOVING;
+                        GetComponent<SkimmingController>().heldThrow = false;
                     }
                     break;
                 }
@@ -284,10 +288,12 @@ public class PlayerMovement : MonoBehaviour
         if (camMoveDirection.x != 0)
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
         else
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
@@ -301,10 +307,12 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.x != 0)
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 100;
         }
         else
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
