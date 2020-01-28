@@ -50,22 +50,40 @@ public class GettingInAndOutBoat : MonoBehaviour
 		}
 	}
 
+	private void GetInOrOutOfBoat()
+	{
+		// If the player movement script hasn't been set, return
+		if (playerMovement == null || !boatHasEnteredShallowWater)
+			return;
+
+		// Change what happens depending on the state
+		switch (playerMovement.state)
+		{
+			case PlayerMovement.PlayerState.MOVING:
+				GetInBoat();
+				break;
+			case PlayerMovement.PlayerState.BOAT:
+				GetOutBoat();
+				break;
+			default:
+				break;
+		}
+	}
+
 	private void GetInBoat()
 	{
 		// Return from the function if the player is already in the boat or if the player ins't inside the trigger box
 		if (!playerInsideTriggerBox || playerInBoat)
 			return;
 
-		// If the player in currently in the moving state then change them to the boat state and start getting in bot animation
-		if (playerMovement.state == PlayerMovement.PlayerState.MOVING)
-		{
-			playerMovement.state = PlayerMovement.PlayerState.BOAT;
-			playerMovement.ChangeCamera(boatCamera, true);
-			playerInBoat = true;
+		// Change the state to the boat state and change the camera to follow the boat
+		playerMovement.state = PlayerMovement.PlayerState.BOAT;
+		playerMovement.ChangeCamera(boatCamera, true);
+		playerInBoat = true;
 
-			// TO DO: ADD ANIMATION
-			Debug.Log("Getting in boat animation missing!");
-		}
+		// TO DO: ADD ANIMATION
+		Debug.Log("Getting in boat animation missing!");
+		
 	}
 
 	private void GetOutBoat()
@@ -74,29 +92,27 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInBoat)
 			return;
 
-		// Change the player state from being in the boat to it's moving state after playing an animation
-		if (playerMovement.state == PlayerMovement.PlayerState.BOAT)
-		{
-			// TO DO: ADD ANIMATION 
-			Debug.Log("Getting out boat animation missing!");
-
-			playerMovement.state = PlayerMovement.PlayerState.MOVING;
-			playerMovement.ChangeCamera(boatCamera, false);
-			playerInBoat = false;
-		}
+		// TO DO: ADD ANIMATION 
+		Debug.Log("Getting out boat animation missing!");
+		
+		// Change the state to the moving state and change the camera to follow the player
+		playerMovement.state = PlayerMovement.PlayerState.MOVING;
+		playerMovement.ChangeCamera(boatCamera, false);
+		playerInBoat = false;
+		
 	}
 
 	private void OnEnable()
 	{
 		// Interation button
-		controls.Player.AButton.performed += ctx => GetInBoat();
+		controls.Player.AButton.performed += ctx => GetInOrOutOfBoat();
 		controls.Player.AButton.Enable();
 	}
 
 	private void OnDisable()
 	{
 		// Interation button
-		controls.Player.AButton.performed -= ctx => GetInBoat();
+		controls.Player.AButton.performed -= ctx => GetInOrOutOfBoat();
 		controls.Player.AButton.Disable();
 	}
 }

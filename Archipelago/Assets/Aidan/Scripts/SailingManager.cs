@@ -7,7 +7,8 @@ public class SailingManager : MonoBehaviour
     private InputMaster controls = null;
 	[SerializeField] private PlayerMovement playerMovement = null;
     [SerializeField] private float maxSpeed = 10f;
-    [SerializeField] private float steeringSpeed = 10f;
+    [SerializeField] private float steeringForce = 10f;
+	[SerializeField] private float forceMultiplier = 0f;
     private Rigidbody rb = null;
 
     // Steering variables
@@ -41,7 +42,7 @@ public class SailingManager : MonoBehaviour
 			return;
 
         // The boat should have the wind force applied to the forward vector to make the boat move
-        rb.AddForce(transform.forward * WindManager.Instance.windForce * Time.deltaTime);
+        rb.AddForce(transform.forward * WindManager.Instance.windForce * forceMultiplier * Time.deltaTime);
 
         // Cap the velocity of the boat
         {
@@ -64,7 +65,7 @@ public class SailingManager : MonoBehaviour
             if (isSteering)
             {
                 // Add a torque force in the direction the player wants to move
-                rb.AddTorque(new Vector3(0, moveDirection.x * steeringSpeed * Time.deltaTime, 0));
+                rb.AddTorque(new Vector3(0, moveDirection.x * steeringForce * forceMultiplier * Time.deltaTime, 0));
             }
         }
 
@@ -76,7 +77,7 @@ public class SailingManager : MonoBehaviour
                 if (elapsedDashTime > 0)
                 {
                     // Add the dash force onto the boat
-                    rb.AddForce(transform.forward * dashForce *Time.deltaTime);
+                    rb.AddForce(transform.forward * dashForce * forceMultiplier * Time.deltaTime);
 
                     // Decrement the counter and check if the time is up
                     elapsedDashTime -= Time.deltaTime;
@@ -105,7 +106,7 @@ public class SailingManager : MonoBehaviour
 
 	public void AddGustForce(float forceToAdd)
 	{
-		rb.AddForce(transform.forward * forceToAdd * Time.deltaTime);
+		rb.AddForce(transform.forward * forceToAdd * forceMultiplier * Time.deltaTime);
 		Debug.Log("Gust force added!");
 	}
 
