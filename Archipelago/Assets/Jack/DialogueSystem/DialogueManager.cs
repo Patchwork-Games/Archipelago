@@ -283,7 +283,6 @@ public class DialogueManager : MonoBehaviour
         //player.GetComponent<PlayerMovement>().mainCamera.GetComponent<CinemachineFreeLook>().enabled = true;
         player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
         player.GetComponent<PlayerMovement>().mainCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
-        Debug.Log("POS: " + player.GetComponent<PlayerMovement>().beginTalkCamPos);
     }
 
 

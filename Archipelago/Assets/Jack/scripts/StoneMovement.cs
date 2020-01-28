@@ -38,6 +38,7 @@ public class StoneMovement : MonoBehaviour
         else
         {
             MakeStiff();
+            rb.velocity = new Vector3(0,0,0);
         }
     }
 
