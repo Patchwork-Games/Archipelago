@@ -5,6 +5,7 @@ using UnityEngine;
 public class SailingManager : MonoBehaviour
 {
     private InputMaster controls = null;
+	[SerializeField] private PlayerMovement playerMovement = null;
     [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float steeringSpeed = 10f;
     private Rigidbody rb = null;
@@ -32,15 +33,13 @@ public class SailingManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        // Default values
-        elapsedDashTime = 0;
-    }
-
     // Update is called once per frame
     void Update()
     {
+		// Only do this update if the player is in the boat
+		if (playerMovement.state != PlayerMovement.PlayerState.BOAT)
+			return;
+
         // The boat should have the wind force applied to the forward vector to make the boat move
         rb.AddForce(transform.forward * WindManager.Instance.windForce * Time.deltaTime);
 
