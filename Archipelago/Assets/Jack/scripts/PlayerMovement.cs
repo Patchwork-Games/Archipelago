@@ -6,6 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public static PlayerMovement Instance { get; private set; }
+
+
+
     public enum PlayerState
     {
         MOVING,
@@ -45,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     //jumping variables
     private int jumps = 0;
     private int jumpsMax = 1;
-    private bool isGrounded;
+    public bool isGrounded;
     private float distanceGround;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float gravity = -55.81f;
@@ -56,6 +61,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Instance = this;
+        }
+
+
+
         controls = new InputMaster();
         controls.Player.Movement.performed += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
@@ -87,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        GetComponent<SkimmingController>().heldThrow = true; 
+        GetComponent<SkimmingController>().heldThrow = true;
     }
 
     void StopThrowButton()
@@ -130,6 +149,8 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
+                    
+
                     //check if on ground
                     if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
                     {
@@ -178,20 +199,15 @@ public class PlayerMovement : MonoBehaviour
                             velocity.y = 20f;
                             jumps -= 1;
                             anim.SetBool("Jumping", true);
-                            //jumpParticle.transform.position = transform.position - new Vector3(0, .9f, 0);
-                            //jumpParticle.Play();
                         }
                     }
+
+                    
 
 
                     Move();
                     Gravity();
                     MoveCamera();
-
-
-                    anim.SetBool("Throwing", false);
-                    anim.SetBool("ChargingThrow", false);
-
                     break;
                 }
 
@@ -208,16 +224,18 @@ public class PlayerMovement : MonoBehaviour
                         anim.SetBool("Running", false);
                         anim.SetBool("Jumping", false);
                         anim.SetBool("Falling", false);
-                        GetComponent<SkimmingController>().testThrow();
                         MoveCameraWLeft();
                     }
                     else
                     {
                         state = PlayerState.MOVING;
-                        GetComponent<SkimmingController>().heldThrow = false;
                     }
                     break;
                 }
+
+
+
+
 
             //throwing stone
             case PlayerState.TALKING:

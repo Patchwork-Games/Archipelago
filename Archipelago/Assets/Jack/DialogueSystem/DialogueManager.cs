@@ -115,6 +115,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0 && !doEndOnce)
         {
+            Debug.Log("End");
             EndDialogue();
             doEndOnce = true;
             return;
@@ -277,10 +278,9 @@ public class DialogueManager : MonoBehaviour
     {
         //closing animation
         animator.SetBool("IsOpen", false);
-
+        Debug.Log("DSDSDSDSDSD");
         player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
         player.GetComponent<PlayerMovement>().interact = false;
-        //player.GetComponent<PlayerMovement>().mainCamera.GetComponent<CinemachineFreeLook>().enabled = true;
         player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
         player.GetComponent<PlayerMovement>().mainCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
     }
@@ -304,7 +304,7 @@ public class DialogueManager : MonoBehaviour
         {
             //quit sentence by pressing back
                                                                                                                 //FINDME change to use new input to support controllers
-            if (Input.GetKeyDown(KeyCode.Q) || player.GetComponent<SkimmingController>().heldThrow)
+            if (Input.GetKeyDown(KeyCode.Q) || (player.GetComponent<SkimmingController>().heldThrow && PlayerMovement.Instance.state == PlayerMovement.PlayerState.TALKING))
             {
                 EndDialogue();
             }

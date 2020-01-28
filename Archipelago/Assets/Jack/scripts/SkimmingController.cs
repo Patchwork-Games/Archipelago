@@ -11,9 +11,8 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject stone;
     [SerializeField] private float maxThrowPower = 1000;
-    [HideInInspector] public bool throwReady;
-    [HideInInspector] public bool doingThrow;
-    [HideInInspector] public bool heldThrow;
+    public bool doingThrow;
+    public bool heldThrow;
     private bool chargingThrow;
     private float throwPower;
     private float angleClamp;
@@ -25,7 +24,6 @@ public class SkimmingController : MonoBehaviour
         anim.SetBool("ChargingThrow", false);
         anim.SetBool("Throwing", false);
         chargingThrow = false;
-        throwReady = true;
         doingThrow = false;
         heldThrow = false;
     }
@@ -34,7 +32,6 @@ public class SkimmingController : MonoBehaviour
     {
         testThrow();
     }
-
 
 
     //aim player at mouse
@@ -52,7 +49,6 @@ public class SkimmingController : MonoBehaviour
         GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
-        
     }
 
 
@@ -86,13 +82,14 @@ public class SkimmingController : MonoBehaviour
     public void testThrow()
     {
 
-        if (heldThrow && throwReady)
+        if (heldThrow && !chargingThrow && PlayerMovement.Instance.isGrounded)
         {
+            PlayerMovement.Instance.state = PlayerMovement.PlayerState.THROWING;
             chargingThrow = true;
+            anim.SetBool("ChargingThrow", true);
             throwPower = 0;
             originalPos = transform.position;
             StartCoroutine("ShakeCharacter");
-            throwReady = false;
         }
 
 
@@ -100,7 +97,7 @@ public class SkimmingController : MonoBehaviour
 
         if (chargingThrow)
         {
-            anim.SetBool("ChargingThrow", true);
+            //anim.SetBool("ChargingThrow", true);
 
             Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
             camForward.y = 0;
@@ -115,7 +112,6 @@ public class SkimmingController : MonoBehaviour
         if (!heldThrow && chargingThrow)
         {
             chargingThrow = false;
-            //anim.SetBool("Throwing", true);
             anim.SetBool("ChargingThrow", false);
         }
     }

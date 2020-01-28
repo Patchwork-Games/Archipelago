@@ -24,6 +24,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
+        
     }
 
 
