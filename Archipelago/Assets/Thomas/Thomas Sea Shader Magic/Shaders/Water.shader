@@ -1,7 +1,7 @@
 // Shader created with Shader Forge v1.40 
 // Shader Forge (c) Freya Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:3,bdst:7,dpts:2,wrdp:False,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:True,qofs:0,qpre:3,rntp:2,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:33035,y:32880,varname:node_2865,prsc:2|diff-2205-OUT,spec-2717-OUT,gloss-7332-OUT,normal-9492-OUT,transm-213-OUT,lwrap-213-OUT,alpha-4240-OUT,refract-6339-OUT;n:type:ShaderForge.SFN_Color,id:582,x:32065,y:32032,ptovrint:False,ptlb:Colour,ptin:_Colour,varname:node_582,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0,c2:0.2,c3:1,c4:1;n:type:ShaderForge.SFN_Multiply,id:5143,x:32721,y:32180,varname:node_5143,prsc:2|A-582-RGB,B-9480-A;n:type:ShaderForge.SFN_VertexColor,id:9480,x:32292,y:32577,varname:node_9480,prsc:2;n:type:ShaderForge.SFN_Vector1,id:2717,x:32498,y:32825,varname:node_2717,prsc:2,v1:0;n:type:ShaderForge.SFN_Slider,id:7332,x:32317,y:32952,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:node_7332,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.2278594,max:1;n:type:ShaderForge.SFN_Vector3,id:5444,x:31955,y:33064,varname:node_5444,prsc:2,v1:0,v2:0,v3:1;n:type:ShaderForge.SFN_Lerp,id:6787,x:32158,y:33064,varname:node_6787,prsc:2|A-5444-OUT,B-6314-RGB,T-9460-OUT;n:type:ShaderForge.SFN_Normalize,id:9492,x:32338,y:33064,varname:node_9492,prsc:2|IN-6787-OUT;n:type:ShaderForge.SFN_Slider,id:9460,x:31745,y:33203,ptovrint:False,ptlb:Reflection,ptin:_Reflection,varname:node_9460,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Vector1,id:213,x:32674,y:32965,varname:node_213,prsc:2,v1:0;n:type:ShaderForge.SFN_TexCoord,id:1851,x:31442,y:33344,varname:node_1851,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_Panner,id:5389,x:31630,y:33344,varname:node_5389,prsc:2,spu:0.002,spv:0.002|UVIN-1851-UVOUT;n:type:ShaderForge.SFN_Tex2d,id:6314,x:31817,y:33344,ptovrint:False,ptlb:Refraction,ptin:_Refraction,varname:node_6314,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True|UVIN-5389-UVOUT;n:type:ShaderForge.SFN_ComponentMask,id:5199,x:32105,y:33337,varname:node_5199,prsc:2,cc1:0,cc2:1,cc3:-1,cc4:-1|IN-6314-RGB;n:type:ShaderForge.SFN_Multiply,id:4686,x:32308,y:33474,varname:node_4686,prsc:2|A-5199-OUT,B-3765-OUT;n:type:ShaderForge.SFN_Slider,id:3823,x:31776,y:33786,ptovrint:False,ptlb:Distortion,ptin:_Distortion,varname:node_3823,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4965278,max:1;n:type:ShaderForge.SFN_Multiply,id:3765,x:32297,y:34004,varname:node_3765,prsc:2|A-3823-OUT,B-2245-OUT;n:type:ShaderForge.SFN_Vector1,id:2245,x:31933,y:33916,varname:node_2245,prsc:2,v1:0.2;n:type:ShaderForge.SFN_Slider,id:4240,x:32477,y:33123,ptovrint:False,ptlb:Opacity,ptin:_Opacity,varname:node_4240,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4139404,max:1;n:type:ShaderForge.SFN_Color,id:8864,x:32060,y:32225,ptovrint:False,ptlb:Colour B,ptin:_ColourB,varname:_Colour_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.8867924,c2:0.1497343,c3:0.02091491,c4:1;n:type:ShaderForge.SFN_Lerp,id:2426,x:32734,y:32385,varname:node_2426,prsc:2|A-5143-OUT,B-8864-RGB,T-2934-OUT;n:type:ShaderForge.SFN_Fresnel,id:2934,x:32148,y:32404,varname:node_2934,prsc:2|NRM-6787-OUT,EXP-5662-OUT;n:type:ShaderForge.SFN_FragmentPosition,id:4656,x:31043,y:33593,varname:node_4656,prsc:2;n:type:ShaderForge.SFN_Multiply,id:7995,x:31634,y:33601,varname:node_7995,prsc:2|A-29-OUT,B-7037-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7037,x:31350,y:33790,ptovrint:False,ptlb:Normal Tile,ptin:_NormalTile,varname:node_7037,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:1;n:type:ShaderForge.SFN_Append,id:29,x:31255,y:33593,varname:node_29,prsc:2|A-4656-X,B-4656-Z;n:type:ShaderForge.SFN_Add,id:2387,x:31870,y:33584,varname:node_2387,prsc:2|B-7995-OUT;n:type:ShaderForge.SFN_DepthBlend,id:9098,x:32297,y:33871,varname:node_9098,prsc:2|DIST-5129-OUT;n:type:ShaderForge.SFN_OneMinus,id:593,x:32518,y:33657,varname:node_593,prsc:2|IN-9098-OUT;n:type:ShaderForge.SFN_ValueProperty,id:5129,x:32130,y:33871,ptovrint:False,ptlb:REFRACTION,ptin:_REFRACTION,varname:node_5129,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_Multiply,id:6339,x:32590,y:33383,varname:node_6339,prsc:2|A-4686-OUT,B-593-OUT;n:type:ShaderForge.SFN_Slider,id:5662,x:31720,y:32549,ptovrint:False,ptlb:node_5662,ptin:_node_5662,varname:node_5662,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Multiply,id:2205,x:32962,y:32397,varname:node_2205,prsc:2|A-2426-OUT,B-2934-OUT;n:type:ShaderForge.SFN_Multiply,id:2795,x:32521,y:34326,varname:node_2795,prsc:2|A-2214-OUT,B-1667-OUT;n:type:ShaderForge.SFN_Slider,id:1667,x:31708,y:34572,ptovrint:False,ptlb:WAVES,ptin:_WAVES,varname:_Distortion_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4965278,max:1;n:type:ShaderForge.SFN_ComponentMask,id:2214,x:31857,y:34178,varname:node_2214,prsc:2,cc1:0,cc2:0,cc3:-1,cc4:-1|IN-4592-B;n:type:ShaderForge.SFN_Panner,id:3636,x:31441,y:34137,varname:node_3636,prsc:2,spu:1,spv:1|UVIN-9441-UVOUT;n:type:ShaderForge.SFN_TexCoord,id:9441,x:31253,y:34137,varname:node_9441,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_Tex2d,id:4592,x:31616,y:34171,ptovrint:False,ptlb:WAVING,ptin:_WAVING,varname:node_4592,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:True|UVIN-3636-UVOUT;proporder:582-7332-9460-6314-4240-3823-8864-7037-5129-5662-1667-4592;pass:END;sub:END;*/
+/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:3,bdst:7,dpts:2,wrdp:False,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:True,qofs:0,qpre:3,rntp:2,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:33035,y:32880,varname:node_2865,prsc:2|diff-2205-OUT,spec-2717-OUT,gloss-7332-OUT,normal-9492-OUT,transm-213-OUT,lwrap-213-OUT,alpha-4240-OUT,refract-6339-OUT,tess-5619-OUT;n:type:ShaderForge.SFN_Color,id:582,x:32065,y:32032,ptovrint:False,ptlb:Colour,ptin:_Colour,varname:node_582,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0,c2:0.2,c3:1,c4:1;n:type:ShaderForge.SFN_Multiply,id:5143,x:32721,y:32180,varname:node_5143,prsc:2|A-582-RGB,B-9480-A;n:type:ShaderForge.SFN_VertexColor,id:9480,x:32292,y:32577,varname:node_9480,prsc:2;n:type:ShaderForge.SFN_Vector1,id:2717,x:32498,y:32825,varname:node_2717,prsc:2,v1:0;n:type:ShaderForge.SFN_Slider,id:7332,x:32317,y:32952,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:node_7332,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.2278594,max:1;n:type:ShaderForge.SFN_Vector3,id:5444,x:31955,y:33064,varname:node_5444,prsc:2,v1:0,v2:0,v3:1;n:type:ShaderForge.SFN_Lerp,id:6787,x:32158,y:33064,varname:node_6787,prsc:2|A-5444-OUT,B-6314-RGB,T-9460-OUT;n:type:ShaderForge.SFN_Normalize,id:9492,x:32338,y:33064,varname:node_9492,prsc:2|IN-6787-OUT;n:type:ShaderForge.SFN_Slider,id:9460,x:31745,y:33203,ptovrint:False,ptlb:Reflection,ptin:_Reflection,varname:node_9460,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Vector1,id:213,x:32674,y:32965,varname:node_213,prsc:2,v1:0;n:type:ShaderForge.SFN_TexCoord,id:1851,x:31442,y:33344,varname:node_1851,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_Panner,id:5389,x:31630,y:33344,varname:node_5389,prsc:2,spu:0.002,spv:0.002|UVIN-1851-UVOUT;n:type:ShaderForge.SFN_Tex2d,id:6314,x:31817,y:33344,ptovrint:False,ptlb:Refraction,ptin:_Refraction,varname:node_6314,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True|UVIN-5389-UVOUT;n:type:ShaderForge.SFN_ComponentMask,id:5199,x:32105,y:33337,varname:node_5199,prsc:2,cc1:0,cc2:1,cc3:-1,cc4:-1|IN-6314-RGB;n:type:ShaderForge.SFN_Multiply,id:4686,x:32308,y:33474,varname:node_4686,prsc:2|A-5199-OUT,B-3765-OUT;n:type:ShaderForge.SFN_Slider,id:3823,x:31776,y:33786,ptovrint:False,ptlb:Distortion,ptin:_Distortion,varname:node_3823,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4965278,max:1;n:type:ShaderForge.SFN_Multiply,id:3765,x:32297,y:34004,varname:node_3765,prsc:2|A-3823-OUT,B-2245-OUT;n:type:ShaderForge.SFN_Vector1,id:2245,x:31933,y:33916,varname:node_2245,prsc:2,v1:0.2;n:type:ShaderForge.SFN_Slider,id:4240,x:32477,y:33123,ptovrint:False,ptlb:Opacity,ptin:_Opacity,varname:node_4240,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4139404,max:1;n:type:ShaderForge.SFN_Color,id:8864,x:32060,y:32225,ptovrint:False,ptlb:Colour B,ptin:_ColourB,varname:_Colour_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.8867924,c2:0.1497343,c3:0.02091491,c4:1;n:type:ShaderForge.SFN_Lerp,id:2426,x:32734,y:32385,varname:node_2426,prsc:2|A-5143-OUT,B-8864-RGB,T-2934-OUT;n:type:ShaderForge.SFN_Fresnel,id:2934,x:32148,y:32404,varname:node_2934,prsc:2|NRM-6787-OUT,EXP-5662-OUT;n:type:ShaderForge.SFN_FragmentPosition,id:4656,x:31043,y:33593,varname:node_4656,prsc:2;n:type:ShaderForge.SFN_Multiply,id:7995,x:31634,y:33601,varname:node_7995,prsc:2|A-29-OUT,B-7037-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7037,x:31350,y:33790,ptovrint:False,ptlb:Normal Tile,ptin:_NormalTile,varname:node_7037,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:1;n:type:ShaderForge.SFN_Append,id:29,x:31255,y:33593,varname:node_29,prsc:2|A-4656-X,B-4656-Z;n:type:ShaderForge.SFN_Add,id:2387,x:31870,y:33584,varname:node_2387,prsc:2|B-7995-OUT;n:type:ShaderForge.SFN_DepthBlend,id:9098,x:32297,y:33871,varname:node_9098,prsc:2|DIST-5129-OUT;n:type:ShaderForge.SFN_OneMinus,id:593,x:32518,y:33657,varname:node_593,prsc:2|IN-9098-OUT;n:type:ShaderForge.SFN_ValueProperty,id:5129,x:32130,y:33871,ptovrint:False,ptlb:REFRACTION,ptin:_REFRACTION,varname:node_5129,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_Multiply,id:6339,x:32590,y:33383,varname:node_6339,prsc:2|A-4686-OUT,B-593-OUT;n:type:ShaderForge.SFN_Slider,id:5662,x:31720,y:32549,ptovrint:False,ptlb:node_5662,ptin:_node_5662,varname:node_5662,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Multiply,id:2205,x:32962,y:32397,varname:node_2205,prsc:2|A-2426-OUT,B-2934-OUT;n:type:ShaderForge.SFN_Multiply,id:2795,x:32521,y:34326,varname:node_2795,prsc:2|A-2214-OUT,B-1667-OUT;n:type:ShaderForge.SFN_Slider,id:1667,x:31708,y:34572,ptovrint:False,ptlb:WAVES,ptin:_WAVES,varname:_Distortion_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.4965278,max:1;n:type:ShaderForge.SFN_ComponentMask,id:2214,x:31857,y:34178,varname:node_2214,prsc:2,cc1:0,cc2:0,cc3:-1,cc4:-1|IN-4592-B;n:type:ShaderForge.SFN_Panner,id:3636,x:31441,y:34137,varname:node_3636,prsc:2,spu:1,spv:1|UVIN-9441-UVOUT;n:type:ShaderForge.SFN_TexCoord,id:9441,x:31253,y:34137,varname:node_9441,prsc:2,uv:0,uaff:False;n:type:ShaderForge.SFN_Tex2d,id:4592,x:31616,y:34171,ptovrint:False,ptlb:WAVING,ptin:_WAVING,varname:node_4592,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:True|UVIN-3636-UVOUT;n:type:ShaderForge.SFN_Slider,id:5619,x:32828,y:33543,ptovrint:False,ptlb:Tesselation,ptin:_Tesselation,varname:node_5619,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.6027654,max:1;proporder:582-7332-9460-6314-4240-3823-8864-7037-5129-5662-1667-4592-5619;pass:END;sub:END;*/
 
 Shader "Shader Forge/Water" {
     Properties {
@@ -17,6 +17,7 @@ Shader "Shader Forge/Water" {
         _node_5662 ("node_5662", Range(0, 1)) = 0
         _WAVES ("WAVES", Range(0, 1)) = 0.4965278
         _WAVING ("WAVING", 2D) = "white" {}
+        _Tesselation ("Tesselation", Range(0, 1)) = 0.6027654
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader {
@@ -35,13 +36,16 @@ Shader "Shader Forge/Water" {
             ZWrite Off
             
             CGPROGRAM
-            #pragma vertex vert
+            #pragma hull hull
+            #pragma domain domain
+            #pragma vertex tessvert
             #pragma fragment frag
             #define SHOULD_SAMPLE_SH ( defined (LIGHTMAP_OFF) && defined(DYNAMICLIGHTMAP_OFF) )
             #define _GLOSSYENV 1
             #pragma multi_compile_instancing
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "Tessellation.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fwdbase
@@ -49,7 +53,7 @@ Shader "Shader Forge/Water" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma target 3.0
+            #pragma target 5.0
             uniform sampler2D _GrabTexture;
             uniform sampler2D _CameraDepthTexture;
             uniform sampler2D _Refraction; uniform float4 _Refraction_ST;
@@ -62,6 +66,7 @@ Shader "Shader Forge/Water" {
                 UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
                 UNITY_DEFINE_INSTANCED_PROP( float, _REFRACTION)
                 UNITY_DEFINE_INSTANCED_PROP( float, _node_5662)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -117,13 +122,83 @@ Shader "Shader Forge/Water" {
                 COMPUTE_EYEDEPTH(o.projPos.z);
                 return o;
             }
+            #ifdef UNITY_CAN_COMPILE_TESSELLATION
+                struct TessVertex {
+                    float4 vertex : INTERNALTESSPOS;
+                    float3 normal : NORMAL;
+                    float4 tangent : TANGENT;
+                    float2 texcoord0 : TEXCOORD0;
+                    float2 texcoord1 : TEXCOORD1;
+                    float2 texcoord2 : TEXCOORD2;
+                    float4 vertexColor : COLOR;
+                };
+                struct OutputPatchConstant {
+                    float edge[3]         : SV_TessFactor;
+                    float inside          : SV_InsideTessFactor;
+                    float3 vTangent[4]    : TANGENT;
+                    float2 vUV[4]         : TEXCOORD;
+                    float3 vTanUCorner[4] : TANUCORNER;
+                    float3 vTanVCorner[4] : TANVCORNER;
+                    float4 vCWts          : TANWEIGHTS;
+                };
+                TessVertex tessvert (VertexInput v) {
+                    TessVertex o;
+                    o.vertex = v.vertex;
+                    o.normal = v.normal;
+                    o.tangent = v.tangent;
+                    o.texcoord0 = v.texcoord0;
+                    o.texcoord1 = v.texcoord1;
+                    o.texcoord2 = v.texcoord2;
+                    o.vertexColor = v.vertexColor;
+                    return o;
+                }
+                float Tessellation(TessVertex v){
+                    float _Tesselation_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Tesselation );
+                    return _Tesselation_var;
+                }
+                float4 Tessellation(TessVertex v, TessVertex v1, TessVertex v2){
+                    float tv = Tessellation(v);
+                    float tv1 = Tessellation(v1);
+                    float tv2 = Tessellation(v2);
+                    return float4( tv1+tv2, tv2+tv, tv+tv1, tv+tv1+tv2 ) / float4(2,2,2,3);
+                }
+                OutputPatchConstant hullconst (InputPatch<TessVertex,3> v) {
+                    OutputPatchConstant o = (OutputPatchConstant)0;
+                    float4 ts = Tessellation( v[0], v[1], v[2] );
+                    o.edge[0] = ts.x;
+                    o.edge[1] = ts.y;
+                    o.edge[2] = ts.z;
+                    o.inside = ts.w;
+                    return o;
+                }
+                [domain("tri")]
+                [partitioning("fractional_odd")]
+                [outputtopology("triangle_cw")]
+                [patchconstantfunc("hullconst")]
+                [outputcontrolpoints(3)]
+                TessVertex hull (InputPatch<TessVertex,3> v, uint id : SV_OutputControlPointID) {
+                    return v[id];
+                }
+                [domain("tri")]
+                VertexOutput domain (OutputPatchConstant tessFactors, const OutputPatch<TessVertex,3> vi, float3 bary : SV_DomainLocation) {
+                    VertexInput v = (VertexInput)0;
+                    v.vertex = vi[0].vertex*bary.x + vi[1].vertex*bary.y + vi[2].vertex*bary.z;
+                    v.normal = vi[0].normal*bary.x + vi[1].normal*bary.y + vi[2].normal*bary.z;
+                    v.tangent = vi[0].tangent*bary.x + vi[1].tangent*bary.y + vi[2].tangent*bary.z;
+                    v.texcoord0 = vi[0].texcoord0*bary.x + vi[1].texcoord0*bary.y + vi[2].texcoord0*bary.z;
+                    v.texcoord1 = vi[0].texcoord1*bary.x + vi[1].texcoord1*bary.y + vi[2].texcoord1*bary.z;
+                    v.vertexColor = vi[0].vertexColor*bary.x + vi[1].vertexColor*bary.y + vi[2].vertexColor*bary.z;
+                    VertexOutput o = vert(v);
+                    return o;
+                }
+            #endif
             float4 frag(VertexOutput i) : COLOR {
                 UNITY_SETUP_INSTANCE_ID( i );
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-                float4 node_6560 = _Time;
-                float2 node_5389 = (i.uv0+node_6560.g*float2(0.002,0.002));
+                float4 node_3601 = _Time;
+                float2 node_5389 = (i.uv0+node_3601.g*float2(0.002,0.002));
                 float3 _Refraction_var = UnpackNormal(tex2D(_Refraction,TRANSFORM_TEX(node_5389, _Refraction)));
                 float _Reflection_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Reflection );
                 float3 node_6787 = lerp(float3(0,0,1),_Refraction_var.rgb,_Reflection_var);
@@ -261,7 +336,9 @@ Shader "Shader Forge/Water" {
             ZWrite Off
             
             CGPROGRAM
-            #pragma vertex vert
+            #pragma hull hull
+            #pragma domain domain
+            #pragma vertex tessvert
             #pragma fragment frag
             #define SHOULD_SAMPLE_SH ( defined (LIGHTMAP_OFF) && defined(DYNAMICLIGHTMAP_OFF) )
             #define _GLOSSYENV 1
@@ -269,6 +346,7 @@ Shader "Shader Forge/Water" {
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
+            #include "Tessellation.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fwdadd
@@ -276,7 +354,7 @@ Shader "Shader Forge/Water" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma target 3.0
+            #pragma target 5.0
             uniform sampler2D _GrabTexture;
             uniform sampler2D _CameraDepthTexture;
             uniform sampler2D _Refraction; uniform float4 _Refraction_ST;
@@ -289,6 +367,7 @@ Shader "Shader Forge/Water" {
                 UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
                 UNITY_DEFINE_INSTANCED_PROP( float, _REFRACTION)
                 UNITY_DEFINE_INSTANCED_PROP( float, _node_5662)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -335,13 +414,83 @@ Shader "Shader Forge/Water" {
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }
+            #ifdef UNITY_CAN_COMPILE_TESSELLATION
+                struct TessVertex {
+                    float4 vertex : INTERNALTESSPOS;
+                    float3 normal : NORMAL;
+                    float4 tangent : TANGENT;
+                    float2 texcoord0 : TEXCOORD0;
+                    float2 texcoord1 : TEXCOORD1;
+                    float2 texcoord2 : TEXCOORD2;
+                    float4 vertexColor : COLOR;
+                };
+                struct OutputPatchConstant {
+                    float edge[3]         : SV_TessFactor;
+                    float inside          : SV_InsideTessFactor;
+                    float3 vTangent[4]    : TANGENT;
+                    float2 vUV[4]         : TEXCOORD;
+                    float3 vTanUCorner[4] : TANUCORNER;
+                    float3 vTanVCorner[4] : TANVCORNER;
+                    float4 vCWts          : TANWEIGHTS;
+                };
+                TessVertex tessvert (VertexInput v) {
+                    TessVertex o;
+                    o.vertex = v.vertex;
+                    o.normal = v.normal;
+                    o.tangent = v.tangent;
+                    o.texcoord0 = v.texcoord0;
+                    o.texcoord1 = v.texcoord1;
+                    o.texcoord2 = v.texcoord2;
+                    o.vertexColor = v.vertexColor;
+                    return o;
+                }
+                float Tessellation(TessVertex v){
+                    float _Tesselation_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Tesselation );
+                    return _Tesselation_var;
+                }
+                float4 Tessellation(TessVertex v, TessVertex v1, TessVertex v2){
+                    float tv = Tessellation(v);
+                    float tv1 = Tessellation(v1);
+                    float tv2 = Tessellation(v2);
+                    return float4( tv1+tv2, tv2+tv, tv+tv1, tv+tv1+tv2 ) / float4(2,2,2,3);
+                }
+                OutputPatchConstant hullconst (InputPatch<TessVertex,3> v) {
+                    OutputPatchConstant o = (OutputPatchConstant)0;
+                    float4 ts = Tessellation( v[0], v[1], v[2] );
+                    o.edge[0] = ts.x;
+                    o.edge[1] = ts.y;
+                    o.edge[2] = ts.z;
+                    o.inside = ts.w;
+                    return o;
+                }
+                [domain("tri")]
+                [partitioning("fractional_odd")]
+                [outputtopology("triangle_cw")]
+                [patchconstantfunc("hullconst")]
+                [outputcontrolpoints(3)]
+                TessVertex hull (InputPatch<TessVertex,3> v, uint id : SV_OutputControlPointID) {
+                    return v[id];
+                }
+                [domain("tri")]
+                VertexOutput domain (OutputPatchConstant tessFactors, const OutputPatch<TessVertex,3> vi, float3 bary : SV_DomainLocation) {
+                    VertexInput v = (VertexInput)0;
+                    v.vertex = vi[0].vertex*bary.x + vi[1].vertex*bary.y + vi[2].vertex*bary.z;
+                    v.normal = vi[0].normal*bary.x + vi[1].normal*bary.y + vi[2].normal*bary.z;
+                    v.tangent = vi[0].tangent*bary.x + vi[1].tangent*bary.y + vi[2].tangent*bary.z;
+                    v.texcoord0 = vi[0].texcoord0*bary.x + vi[1].texcoord0*bary.y + vi[2].texcoord0*bary.z;
+                    v.texcoord1 = vi[0].texcoord1*bary.x + vi[1].texcoord1*bary.y + vi[2].texcoord1*bary.z;
+                    v.vertexColor = vi[0].vertexColor*bary.x + vi[1].vertexColor*bary.y + vi[2].vertexColor*bary.z;
+                    VertexOutput o = vert(v);
+                    return o;
+                }
+            #endif
             float4 frag(VertexOutput i) : COLOR {
                 UNITY_SETUP_INSTANCE_ID( i );
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-                float4 node_2960 = _Time;
-                float2 node_5389 = (i.uv0+node_2960.g*float2(0.002,0.002));
+                float4 node_9343 = _Time;
+                float2 node_5389 = (i.uv0+node_9343.g*float2(0.002,0.002));
                 float3 _Refraction_var = UnpackNormal(tex2D(_Refraction,TRANSFORM_TEX(node_5389, _Refraction)));
                 float _Reflection_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Reflection );
                 float3 node_6787 = lerp(float3(0,0,1),_Refraction_var.rgb,_Reflection_var);
@@ -425,7 +574,9 @@ Shader "Shader Forge/Water" {
             Cull Off
             
             CGPROGRAM
-            #pragma vertex vert
+            #pragma hull hull
+            #pragma domain domain
+            #pragma vertex tessvert
             #pragma fragment frag
             #define UNITY_PASS_META 1
             #define SHOULD_SAMPLE_SH ( defined (LIGHTMAP_OFF) && defined(DYNAMICLIGHTMAP_OFF) )
@@ -433,6 +584,7 @@ Shader "Shader Forge/Water" {
             #pragma multi_compile_instancing
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "Tessellation.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #include "UnityMetaPass.cginc"
@@ -442,7 +594,7 @@ Shader "Shader Forge/Water" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma target 3.0
+            #pragma target 5.0
             uniform sampler2D _Refraction; uniform float4 _Refraction_ST;
             UNITY_INSTANCING_BUFFER_START( Props )
                 UNITY_DEFINE_INSTANCED_PROP( float4, _Colour)
@@ -450,10 +602,13 @@ Shader "Shader Forge/Water" {
                 UNITY_DEFINE_INSTANCED_PROP( float, _Reflection)
                 UNITY_DEFINE_INSTANCED_PROP( float4, _ColourB)
                 UNITY_DEFINE_INSTANCED_PROP( float, _node_5662)
+                UNITY_DEFINE_INSTANCED_PROP( float, _Tesselation)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
                 float2 texcoord1 : TEXCOORD1;
                 float2 texcoord2 : TEXCOORD2;
@@ -480,6 +635,76 @@ Shader "Shader Forge/Water" {
                 o.pos = UnityMetaVertexPosition(v.vertex, v.texcoord1.xy, v.texcoord2.xy, unity_LightmapST, unity_DynamicLightmapST );
                 return o;
             }
+            #ifdef UNITY_CAN_COMPILE_TESSELLATION
+                struct TessVertex {
+                    float4 vertex : INTERNALTESSPOS;
+                    float3 normal : NORMAL;
+                    float4 tangent : TANGENT;
+                    float2 texcoord0 : TEXCOORD0;
+                    float2 texcoord1 : TEXCOORD1;
+                    float2 texcoord2 : TEXCOORD2;
+                    float4 vertexColor : COLOR;
+                };
+                struct OutputPatchConstant {
+                    float edge[3]         : SV_TessFactor;
+                    float inside          : SV_InsideTessFactor;
+                    float3 vTangent[4]    : TANGENT;
+                    float2 vUV[4]         : TEXCOORD;
+                    float3 vTanUCorner[4] : TANUCORNER;
+                    float3 vTanVCorner[4] : TANVCORNER;
+                    float4 vCWts          : TANWEIGHTS;
+                };
+                TessVertex tessvert (VertexInput v) {
+                    TessVertex o;
+                    o.vertex = v.vertex;
+                    o.normal = v.normal;
+                    o.tangent = v.tangent;
+                    o.texcoord0 = v.texcoord0;
+                    o.texcoord1 = v.texcoord1;
+                    o.texcoord2 = v.texcoord2;
+                    o.vertexColor = v.vertexColor;
+                    return o;
+                }
+                float Tessellation(TessVertex v){
+                    float _Tesselation_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Tesselation );
+                    return _Tesselation_var;
+                }
+                float4 Tessellation(TessVertex v, TessVertex v1, TessVertex v2){
+                    float tv = Tessellation(v);
+                    float tv1 = Tessellation(v1);
+                    float tv2 = Tessellation(v2);
+                    return float4( tv1+tv2, tv2+tv, tv+tv1, tv+tv1+tv2 ) / float4(2,2,2,3);
+                }
+                OutputPatchConstant hullconst (InputPatch<TessVertex,3> v) {
+                    OutputPatchConstant o = (OutputPatchConstant)0;
+                    float4 ts = Tessellation( v[0], v[1], v[2] );
+                    o.edge[0] = ts.x;
+                    o.edge[1] = ts.y;
+                    o.edge[2] = ts.z;
+                    o.inside = ts.w;
+                    return o;
+                }
+                [domain("tri")]
+                [partitioning("fractional_odd")]
+                [outputtopology("triangle_cw")]
+                [patchconstantfunc("hullconst")]
+                [outputcontrolpoints(3)]
+                TessVertex hull (InputPatch<TessVertex,3> v, uint id : SV_OutputControlPointID) {
+                    return v[id];
+                }
+                [domain("tri")]
+                VertexOutput domain (OutputPatchConstant tessFactors, const OutputPatch<TessVertex,3> vi, float3 bary : SV_DomainLocation) {
+                    VertexInput v = (VertexInput)0;
+                    v.vertex = vi[0].vertex*bary.x + vi[1].vertex*bary.y + vi[2].vertex*bary.z;
+                    v.normal = vi[0].normal*bary.x + vi[1].normal*bary.y + vi[2].normal*bary.z;
+                    v.tangent = vi[0].tangent*bary.x + vi[1].tangent*bary.y + vi[2].tangent*bary.z;
+                    v.texcoord0 = vi[0].texcoord0*bary.x + vi[1].texcoord0*bary.y + vi[2].texcoord0*bary.z;
+                    v.texcoord1 = vi[0].texcoord1*bary.x + vi[1].texcoord1*bary.y + vi[2].texcoord1*bary.z;
+                    v.vertexColor = vi[0].vertexColor*bary.x + vi[1].vertexColor*bary.y + vi[2].vertexColor*bary.z;
+                    VertexOutput o = vert(v);
+                    return o;
+                }
+            #endif
             float4 frag(VertexOutput i) : SV_Target {
                 UNITY_SETUP_INSTANCE_ID( i );
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
@@ -490,8 +715,8 @@ Shader "Shader Forge/Water" {
                 
                 float4 _Colour_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Colour );
                 float4 _ColourB_var = UNITY_ACCESS_INSTANCED_PROP( Props, _ColourB );
-                float4 node_7603 = _Time;
-                float2 node_5389 = (i.uv0+node_7603.g*float2(0.002,0.002));
+                float4 node_1680 = _Time;
+                float2 node_5389 = (i.uv0+node_1680.g*float2(0.002,0.002));
                 float3 _Refraction_var = UnpackNormal(tex2D(_Refraction,TRANSFORM_TEX(node_5389, _Refraction)));
                 float _Reflection_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Reflection );
                 float3 node_6787 = lerp(float3(0,0,1),_Refraction_var.rgb,_Reflection_var);
