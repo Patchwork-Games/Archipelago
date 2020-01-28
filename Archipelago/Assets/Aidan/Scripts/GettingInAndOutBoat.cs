@@ -8,6 +8,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private PlayerMovement playerMovement = null;
 	[SerializeField] private CinemachineFreeLook boatCamera = null;
 	[SerializeField] private CinemachineFreeLook playerCamera = null;
+	[SerializeField] private Transform playerPosWhenComingOutOfBoat = null;
 	private bool playerInsideTriggerBox = false;
 	private bool boatHasEnteredShallowWater = false;
 	private bool playerInBoat = false;
@@ -32,6 +33,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (other.CompareTag("ShallowWater"))
 		{
 			boatHasEnteredShallowWater = true;
+			transform.parent.GetComponent<SailingManager>().State = SailingManager.BoatState.IN_SHALLOW_WATER;
 		}
 	}
 
@@ -47,6 +49,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (other.CompareTag("ShallowWater"))
 		{
 			boatHasEnteredShallowWater = false;
+			transform.parent.GetComponent<SailingManager>().State = SailingManager.BoatState.IN_OCEAN;
 		}
 	}
 
@@ -97,8 +100,10 @@ public class GettingInAndOutBoat : MonoBehaviour
 		
 		// Change the state to the moving state and change the camera to follow the player
 		playerMovement.state = PlayerMovement.PlayerState.MOVING;
+		Debug.Log("Poop");
 		playerMovement.ChangeCamera(boatCamera, false);
 		playerInBoat = false;
+		playerMovement.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
 		
 	}
 
