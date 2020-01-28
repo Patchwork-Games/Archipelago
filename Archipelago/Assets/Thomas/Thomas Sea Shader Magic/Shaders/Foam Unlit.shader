@@ -69,11 +69,11 @@ Shader "Shader Forge/Foam Unlit" {
                 float4 _Color_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Color );
                 float3 emissive = _Color_var.rgb;
                 float3 finalColor = emissive;
-                float4 node_4845 = _Time;
-                float2 node_9543 = (float2(i.uv0.r,(i.uv0.g+1.0))+node_4845.g*float2(0,0.07));
+                float4 node_4222 = _Time;
+                float2 node_9543 = (float2(i.uv0.r,(i.uv0.g+1.0))+node_4222.g*float2(0,0.07));
                 float4 _NoiseG_var = tex2D(_NoiseG,TRANSFORM_TEX(node_9543, _NoiseG));
                 float _VALUE_var = UNITY_ACCESS_INSTANCED_PROP( Props, _VALUE );
-                float2 node_6841 = ((((_NoiseG_var.g*0.1+0.0)+(i.uv0*0.5))+node_4845.g*float2(0,0.03))+(float2(i.posWorld.r,i.posWorld.b)*_VALUE_var));
+                float2 node_6841 = ((((_NoiseG_var.g*0.1+0.0)+(i.uv0*0.5))+node_4222.g*float2(0,0.03))+(float2(i.posWorld.r,i.posWorld.b)*_VALUE_var));
                 float4 _node_3016_var = tex2D(_node_3016,TRANSFORM_TEX(node_6841, _node_3016));
                 return fixed4(finalColor,((_node_3016_var.r*i.vertexColor.a)-0.0));
             }

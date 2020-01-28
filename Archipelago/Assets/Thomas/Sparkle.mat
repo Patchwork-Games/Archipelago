@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WATER
-  m_Shader: {fileID: 4800000, guid: 4c61ac7f015c9c3449d214f122582bab, type: 3}
+  m_Name: Sparkle
+  m_Shader: {fileID: 4800000, guid: 4630b3e84fc35f542b82ce9f1dda26ae, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseG:
+        m_Texture: {fileID: 2800000, guid: a73f386972dc12a41864b119f519f1cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -55,67 +59,31 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Refraction:
-        m_Texture: {fileID: 2800000, guid: 4c3b16faf3432f04db9f732eace50919, type: 3}
-        m_Scale: {x: 10, y: 10}
-        m_Offset: {x: 0, y: 0}
-    - _Refraction_copy:
-        m_Texture: {fileID: 2800000, guid: 4c3b16faf3432f04db9f732eace50919, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WAVING:
-        m_Texture: {fileID: 2800000, guid: 4c3b16faf3432f04db9f732eace50919, type: 3}
-        m_Scale: {x: 0.001, y: 0.001}
-        m_Offset: {x: 0, y: 0}
-    - _distort:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _node_4592:
-        m_Texture: {fileID: 0}
+    - _node_3016:
+        m_Texture: {fileID: 2800000, guid: 0e2a444d66d5bb84f830d6b5a5c87edb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthMax: 0.029
-    - _DepthMin: 0.417
-    - _DepthValue: 21.4
     - _DetailNormalMapScale: 1
-    - _Distortion: 0.139
     - _DstBlend: 0
-    - _FoamMax: 1
-    - _FoamMin: 0
-    - _FoamPower: 1.71
-    - _Gloss: 0.784
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NormalTile: 4.83
     - _OcclusionStrength: 1
-    - _Opacity: 0.024
     - _Parallax: 0.02
-    - _REFRACTION: 67.4
-    - _Reflection: 0.875
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tesselation: 0.6027654
     - _UVSec: 0
-    - _WAVES: 0.771
-    - _WAVESLEVEL: 40.6
-    - _WaveCount: 315.05
-    - _WaveSpread: 8.76
-    - _WaveWidth: 10.92
-    - _Waveheight: 0
+    - _VALUE: 1
     - _ZWrite: 1
-    - _node_5662: 0.082
+    - _node_9293: 0.709
+    - _node_9293_copy: 0.574
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Colour: {r: 0.39248842, g: 0.71873385, b: 0.7924528, a: 1}
-    - _ColourA: {r: 0.19032574, g: 0.8445705, b: 0.8584906, a: 1}
-    - _ColourB: {r: 0.5285549, g: 0.7830189, b: 0.5060075, a: 1}
-    - _Colour_copy: {r: 0.20741367, g: 0.6434228, b: 0.745283, a: 1}
+    - _Color_copy: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
