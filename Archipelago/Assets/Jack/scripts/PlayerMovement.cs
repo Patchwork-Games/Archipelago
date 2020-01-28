@@ -233,7 +233,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             case PlayerState.BOAT:
                 {
-                    Debug.Log("IN BOAT");
                     break;
                 }
 
