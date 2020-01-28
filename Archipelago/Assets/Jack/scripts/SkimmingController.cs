@@ -182,7 +182,6 @@ public class SkimmingController : MonoBehaviour
             throwing = false;
         }
 
-
         
 
         if (chargingThrow)

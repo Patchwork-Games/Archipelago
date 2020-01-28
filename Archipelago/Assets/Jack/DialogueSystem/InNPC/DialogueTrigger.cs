@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue[] dialogue;
     public GameObject player;
     public Canvas talkButtonGuide;
+    public CinemachineVirtualCamera talkCam;
+    private Vector3 talkCamPos;
 
     //settings
     public int talkRadius = 5;
@@ -19,6 +22,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
     }
 
@@ -27,6 +31,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         //init
         talkButtonGuide.enabled = false;
+        talkCamPos = transform.GetChild(0).transform.position;
     }
 
 
@@ -44,7 +49,7 @@ public class DialogueTrigger : MonoBehaviour
                     //show button needed to talk
                     if (talkButtonGuide && !startedTalking)
                     {
-                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 3, 0);
+                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
                         talkButtonGuide.enabled = true;
                         player.GetComponent<PlayerMovement>().inTalkDistance = true;
                         hiddenTalkButton = false;

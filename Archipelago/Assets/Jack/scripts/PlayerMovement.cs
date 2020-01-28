@@ -133,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-                    Debug.Log("move camMoveDirection.x " + camMoveDirection.x);
                     //check if on ground
                     if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
                     {
@@ -229,10 +228,6 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("Throwing", false);
                     anim.SetBool("ChargingThrow", false);
                     Gravity();
-
-                    Debug.Log("talk camMoveDirection.x " + camMoveDirection.x);
-
-
 
                     break;
                 }
