@@ -10,18 +10,20 @@ public class PlayerMovement : MonoBehaviour
     {
         MOVING,
         THROWING,
-        TALKING
+        TALKING,
+        BOAT
     }
     public PlayerState state;
 
     public Animator anim;
-    
+
     //camera variables
     public GameObject mainCamera;
     public ParticleSystem jumpParticle;
     Vector3 camForward;
     Vector3 camRight;
     Vector2 camMoveDirection;
+    public Vector3 beginTalkCamPos;
 
     //movement variables
     [SerializeField] private float walkSpeed = 8f;
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
 
-   
+
 
     private void Awake()
     {
@@ -85,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        if(isGrounded) GetComponent<SkimmingController>().heldThrow = true;
+        if (isGrounded) GetComponent<SkimmingController>().heldThrow = true;
         else GetComponent<SkimmingController>().heldThrow = false;
     }
 
@@ -131,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
+                    Debug.Log("move camMoveDirection.x " + camMoveDirection.x);
                     //check if on ground
                     if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
                     {
@@ -144,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
                     if (isGrounded && velocity.y < 0)
                     {
                         StartCoroutine("JumpCooldown");
-                        
+
                         anim.SetBool("Jumping", false);
                         anim.SetBool("Falling", false);
                         velocity.y = -2f;
@@ -164,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         anim.SetBool("Running", false);
                         energyBar.GetComponent<DashMeter>().Recharge();
-                        
+
                     }
 
                     //stop trying to run when out of energy
@@ -189,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
                     Gravity();
                     MoveCamera();
 
-                    
+
 
                     break;
                 }
@@ -217,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.TALKING:
                 {
                     //mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    beginTalkCamPos = mainCamera.transform.position;
                     mainCamera.SetActive(false);
                     anim.SetBool("Walking", false);
                     anim.SetBool("Running", false);
@@ -225,13 +229,19 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("Throwing", false);
                     anim.SetBool("ChargingThrow", false);
                     Gravity();
-                
 
+                    Debug.Log("talk camMoveDirection.x " + camMoveDirection.x);
 
 
 
                     break;
                 }
+            case PlayerState.BOAT:
+                {
+                    Debug.Log("IN BOAT");
+                    break;
+                }
+
             default:
                 break;
         }
@@ -279,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (camMoveDirection.x != 0)
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";           
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
         }
         else
         {
@@ -322,7 +332,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * runSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-        
+
     }
 
 
@@ -332,10 +342,22 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         jumps = jumpsMax;
-        
+
     }
 
 
+    public void ChangeCamera(CinemachineFreeLook cam, bool above)
+    {
+        if (above)
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
+        }
+        else
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
+        }
+        
+    }
 
 
 
