@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CameraDepthTextureMode : MonoBehaviour 
+public class CameraDepthTextureMode : MonoBehaviour
 {
     [SerializeField]
-    DepthTextureMode depthTextureMode;
+    //DepthTextureMode depthTextureMode =;
 
     private void OnValidate()
     {
@@ -17,6 +17,6 @@ public class CameraDepthTextureMode : MonoBehaviour
 
     private void SetCameraDepthTextureMode()
     {
-        GetComponent<Camera>().depthTextureMode = depthTextureMode;
+    //    GetComponent<Camera>().depthTextureMode = depthTextureMode;
     }
 }

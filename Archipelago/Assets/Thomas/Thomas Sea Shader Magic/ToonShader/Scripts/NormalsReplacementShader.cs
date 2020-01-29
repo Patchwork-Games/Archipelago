@@ -3,7 +3,7 @@
 public class NormalsReplacementShader : MonoBehaviour
 {
     [SerializeField]
-    Shader normalsShader;
+    Shader normalsShader = null;
 
     private RenderTexture renderTexture;
     private new Camera camera;
