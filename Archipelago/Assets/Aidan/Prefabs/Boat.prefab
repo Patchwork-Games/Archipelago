@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6528976435991470191}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &634698004
 MonoBehaviour:
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boatCamera: {fileID: 0}
-  playerCamera: {fileID: 0}
   playerPosWhenComingOutOfBoat: {fileID: 766082274926400535}
+  playerPosWhenInBoat: {fileID: 8036883345007943140}
 --- !u!65 &634698003
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60,20 +60,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9316373, y: 6.479896, z: 9.600304}
   m_Center: {x: 0.000000014138209, y: 2.1091998, z: -0.4612198}
---- !u!64 &3095981928299082377
-MeshCollider:
+--- !u!1 &3564115815504820041
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993185931463240568}
-  m_Material: {fileID: 13400000, guid: 2ba645cb68e98b34ba8a5b82f1b32f1b, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2085758154210041276, guid: e420ce924bfb28748837a403e014f078, type: 3}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8036883345007943140}
+  m_Layer: 15
+  m_Name: PlayerPosWhenInBoat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8036883345007943140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564115815504820041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.31, z: -0.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6528976435991470191}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1976922027
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -88,6 +104,20 @@ CapsuleCollider:
   m_Height: 0.062328257
   m_Direction: 2
   m_Center: {x: -0.00019605532, y: 0.008696686, z: -0.003913853}
+--- !u!64 &3095981928299082377
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993185931463240568}
+  m_Material: {fileID: 13400000, guid: 2ba645cb68e98b34ba8a5b82f1b32f1b, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2085758154210041276, guid: e420ce924bfb28748837a403e014f078, type: 3}
 --- !u!1 &6528976435991470185
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,9 +147,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 27.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 634698002}
   - {fileID: 5192778710290511804}
+  - {fileID: 634698002}
   - {fileID: 766082274926400535}
+  - {fileID: 8036883345007943140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,6 +170,7 @@ MonoBehaviour:
   maxSpeed: 30
   steeringForce: 3000
   forceMultiplier: 100
+  shallowWaterBoatForce: 1000
   dashingTime: 2
   dashForce: 2000
 --- !u!54 &6528976435991470188
@@ -181,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8574392649759419717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.98, y: 3.15, z: 0}
+  m_LocalPosition: {x: 5.25, y: 2.16, z: -0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6528976435991470191}
@@ -257,7 +289,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e420ce924bfb28748837a403e014f078,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e420ce924bfb28748837a403e014f078,
         type: 3}

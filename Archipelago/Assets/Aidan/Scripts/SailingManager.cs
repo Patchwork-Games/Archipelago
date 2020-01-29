@@ -146,6 +146,8 @@ public class SailingManager : MonoBehaviour
 				}
 			}
 		}
+
+		KillLateralVelocity();
 	}
 
 	private void UpdateInShallowWaterState()
@@ -177,6 +179,8 @@ public class SailingManager : MonoBehaviour
 				rb.AddTorque(new Vector3(0, moveDirection.x * steeringForce * forceMultiplier * Time.deltaTime, 0));
 			}
 		}
+
+		KillLateralVelocity();
 	}
 
 	private void UpdatePlayerNotInBoatState()
@@ -185,6 +189,17 @@ public class SailingManager : MonoBehaviour
 		{
 			State = BoatState.IN_SHALLOW_WATER;
 		}
+	}
+
+	private Vector3 GetLateralVelocity()
+	{
+		return Vector3.Dot(transform.right, rb.velocity * .5f) * transform.right;
+	}
+
+	private void KillLateralVelocity()
+	{
+		Vector2 impulse = rb.mass * -GetLateralVelocity();
+		rb.AddForce(impulse, ForceMode.Impulse);
 	}
 
     private void OnEnable()
