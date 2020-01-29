@@ -113,12 +113,12 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        GetComponent<SkimmingController>().heldThrow = true;
+        if(state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = true;
     }
 
     void StopThrowButton()
     {
-        GetComponent<SkimmingController>().heldThrow = false;
+        if (state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = false;
     }
 
 
