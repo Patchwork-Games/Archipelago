@@ -156,7 +156,6 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-                    
 
                     //check if on ground
                     if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
@@ -198,7 +197,6 @@ public class PlayerMovement : MonoBehaviour
                     if (energy == 0) run = false;
 
 
-                    
                     //make player jump if enough jumps
                     if (jumps > 0 && jump && !inTalkDistance)
                     {
@@ -261,13 +259,19 @@ public class PlayerMovement : MonoBehaviour
                 }
             case PlayerState.BOAT:
                 {
+                    anim.SetBool("Walking", false);
+                    anim.SetBool("Running", false);
+                    anim.SetBool("Jumping", false);
+                    anim.SetBool("Falling", false);
+                    anim.SetBool("Throwing", false);
+                    anim.SetBool("ChargingThrow", false);
                     break;
                 }
 
             default:
                 break;
         }
-        //stop holding A
+        //stop holding A or jumping
         interact = false;
         jump = false;
     }
@@ -282,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //move character acording to input
-        Vector3 move = camRight * moveDirection.x + camForward * moveDirection.y;
+        Vector3 move = (camRight * moveDirection.x) + (camForward * moveDirection.y);
 
         controller.Move(move * walkSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);

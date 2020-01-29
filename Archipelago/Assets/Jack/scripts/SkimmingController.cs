@@ -11,12 +11,12 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private GameObject mainCamera = null;
     [SerializeField] private GameObject stone = null;
     [SerializeField] private float maxThrowPower = 1000;
-    public bool doingThrow;
-    public bool heldThrow;
-    private bool chargingThrow;
-    private float throwPower;
-    private float angleClamp;
-    private Vector3 originalPos;
+    public bool doingThrow = false;
+    public bool heldThrow = false;
+    private bool chargingThrow = false;
+    private float throwPower = 0;
+    private float angleClamp = 0;
+    private Vector3 originalPos = Vector3.zero;
 
 
     private void Start()

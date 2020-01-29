@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DashMeter : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> energies;
-    [SerializeField] private GameObject icon;
+    [SerializeField] private List<GameObject> energies = null;
+    [SerializeField] private GameObject icon = null;
     [SerializeField] private float offset = 56f;
     [SerializeField] private float chargeSpeedMin = 1;
     [SerializeField] private float chargeSpeedMax = 3;
