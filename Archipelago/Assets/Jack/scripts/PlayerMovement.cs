@@ -20,31 +20,32 @@ public class PlayerMovement : MonoBehaviour
     }
     public PlayerState state;
 
-    public Animator anim;
+    public Animator anim = null;
 
     //camera variables
-    public GameObject mainCamera;
-    public ParticleSystem jumpParticle;
-    Vector3 camForward;
-    Vector3 camRight;
-    Vector2 camMoveDirection;
-    public Vector3 beginTalkCamPos;
+    public GameObject mainCamera = null;
+    public ParticleSystem jumpParticle = null;
+    Vector3 camForward = Vector3.zero;
+    Vector3 camRight = Vector3.zero;
+    Vector2 camMoveDirection = Vector2.zero;
+    public Vector3 beginTalkCamPos = Vector3.zero;
 
     //movement variables
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
     [SerializeField] private float energy = 0;
-    public GameObject energyBar;
-    Vector2 moveDirection;
-    Vector3 velocity;
+    public GameObject energyBar = null;
+    Vector2 moveDirection = Vector2.zero;
+    Vector3 velocity = Vector3.zero;
 
 
     //button variables
-    public InputMaster controls;
-    [SerializeField] private CharacterController controller;
+    public InputMaster controls = null;
+    [SerializeField] private CharacterController controller = null;
     public bool interact = false;
+    private bool jump = false;
     private bool run = false;
-    public bool inTalkDistance;
+    public bool inTalkDistance = false;
 
 
     //jumping variables
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private float distanceGround;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float gravity = -55.81f;
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask groundMask = ~0;
 
 
 
@@ -80,7 +81,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.canceled += context => camMoveDirection = context.ReadValue<Vector2>();
-        controls.Player.AButton.performed += context => InteractButton();
+        controls.Player.Jump.performed += context => JumpButton();
+        controls.Player.Interact.performed += context => InteractButton();
         controls.Player.XButton.performed += context => RunButton();
         controls.Player.XButton.canceled += context => StopRunButton();
         controls.Player.BButton.performed += context => ThrowButton();
@@ -91,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
     void InteractButton()
     {
         interact = true;
+    }
+
+    void JumpButton()
+    {
+        jump = true;
     }
 
 
@@ -191,16 +198,15 @@ public class PlayerMovement : MonoBehaviour
                     if (energy == 0) run = false;
 
 
-                    if (interact)
+                    
+                    //make player jump if enough jumps
+                    if (jumps > 0 && jump && !inTalkDistance)
                     {
-                        //make player jump if enough jumps
-                        if (jumps > 0 && interact && !inTalkDistance)
-                        {
-                            velocity.y = 20f;
-                            jumps -= 1;
-                            anim.SetBool("Jumping", true);
-                        }
+                        velocity.y = 20f;
+                        jumps -= 1;
+                        anim.SetBool("Jumping", true);
                     }
+                    
 
                     
 
@@ -263,6 +269,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //stop holding A
         interact = false;
+        jump = false;
     }
 
 
