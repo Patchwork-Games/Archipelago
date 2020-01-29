@@ -81,8 +81,8 @@ public class SailingManager : MonoBehaviour
 
     private void Dash()
     {
-		// Only do this update if the player is in the boat
-		if (playerMovement.state != PlayerMovement.PlayerState.BOAT)
+		// Only do this update if the player is in the boat and in the ocean
+		if (playerMovement.state != PlayerMovement.PlayerState.BOAT || State == BoatState.IN_SHALLOW_WATER)
 			return;
 
 		// For a certain amount of time, add a greater force forward
@@ -100,22 +100,6 @@ public class SailingManager : MonoBehaviour
 	{
 		// The boat should have the wind force applied to the forward vector to make the boat move
 		rb.AddForce(transform.forward * WindManager.Instance.windForce * forceMultiplier * Time.deltaTime);
-
-		// Cap the velocity of the boat
-		{
-			if (rb.velocity.x > maxSpeed)
-			{
-				rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
-			}
-			if (rb.velocity.y > maxSpeed)
-			{
-				rb.velocity = new Vector3(rb.velocity.x, maxSpeed, rb.velocity.z);
-			}
-			if (rb.velocity.z > maxSpeed)
-			{
-				rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
-			}
-		}
 
 		// Steering
 		{
@@ -148,28 +132,16 @@ public class SailingManager : MonoBehaviour
 		}
 
 		KillLateralVelocity();
+		CapVelocity();
 	}
+
 
 	private void UpdateInShallowWaterState()
 	{
+		isDashing = false;
+
 		// The boat should have the wind force applied to the forward vector to make the boat move
 		rb.AddForce(transform.forward * shallowWaterBoatForce * forceMultiplier * Time.deltaTime);
-
-		// Cap the velocity of the boat
-		{
-			if (rb.velocity.x > maxSpeed)
-			{
-				rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
-			}
-			if (rb.velocity.y > maxSpeed)
-			{
-				rb.velocity = new Vector3(rb.velocity.x, maxSpeed, rb.velocity.z);
-			}
-			if (rb.velocity.z > maxSpeed)
-			{
-				rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
-			}
-		}
 
 		// Steering
 		{
@@ -181,6 +153,7 @@ public class SailingManager : MonoBehaviour
 		}
 
 		KillLateralVelocity();
+		CapVelocity();
 	}
 
 	private void UpdatePlayerNotInBoatState()
@@ -193,13 +166,19 @@ public class SailingManager : MonoBehaviour
 
 	private Vector3 GetLateralVelocity()
 	{
-		return Vector3.Dot(transform.right, rb.velocity * .5f) * transform.right;
+		return Vector3.Dot(transform.right, rb.velocity) * transform.right;
 	}
 
 	private void KillLateralVelocity()
 	{
-		Vector2 impulse = rb.mass * -GetLateralVelocity();
-		rb.AddForce(impulse, ForceMode.Impulse);
+		Vector3 impulse = rb.mass * -GetLateralVelocity();
+		rb.AddForce(impulse * 100 * Time.deltaTime);
+		rb.angularVelocity = Vector3.zero;
+	}
+
+	private void CapVelocity()
+	{
+		rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
 	}
 
     private void OnEnable()
