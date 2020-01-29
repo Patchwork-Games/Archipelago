@@ -25,8 +25,6 @@
     }
     SubShader
     {
-        //Tags { "RenderType"="Opaque" }
-
 		Tags
 		{
 			"SplatCount" = "4"
@@ -76,6 +74,8 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+		float4 _TopNormalf, _SideNormalf, _SandNormalf;
+
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -91,7 +91,7 @@
 			//use the normals of the terrain to choose which texture is rendered
 			//everything below y 35 will be sand
 			float3 y = 0;
-			fixed3 yn = 0;
+			float3 yn = 0;
 			if (IN.worldPos.y < 35)
 			{
 
@@ -110,23 +110,23 @@
 					//yn.xy *= _NormalStrength;
 				}
 			}
-			else if (IN.worldPos.y > 200)
-			{
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//snow
+			//else if (IN.worldPos.y > 200)																							//enable for snow
+			//{
+			//	if (IN.worldNormal.y > .8f)
+			//	{
+			//		y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//snow
 
-					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
-					//yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
+			//		yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
+			//		//yn.xy *= _NormalStrength;
+			//	}
+			//	else if (IN.worldNormal.y < 1)
+			//	{
+			//		y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
 
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					//yn.xy *= _NormalStrength;
-				}
-			}
+			//		yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
+			//		//yn.xy *= _NormalStrength;
+			//	}
+			//}
 			else
 			{
 
@@ -162,7 +162,7 @@
 			half4 cz = tex2D(_Sand, tz) * bf.z;
 			half4 color = half4(y * _Color, 1.0f);
 
-
+			//half diffuse = saturate(dot(_LightDir.xyz, worldNormal) * 1.2);
 
 
 			fixed4 splat_control = tex2D(_Control, IN.uv_Control);
