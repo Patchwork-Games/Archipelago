@@ -61,7 +61,6 @@
 			float3 worldPos;
 			float3 worldNormal;
 			INTERNAL_DATA
-			//float2 uv_BumpMap;
 			float3 localCoord;
 			float3 localNormal;
 			float _NormalStrength;
@@ -74,7 +73,6 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
-		float4 _TopNormalf, _SideNormalf, _SandNormalf;
 
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -139,7 +137,7 @@
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
+					y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//rock
 
 					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
 					//yn.xy *= _NormalStrength;
@@ -191,7 +189,7 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 
-			//o.Normal = normalize(yn);
+			//o.Normal = yn;
 
 			
 
