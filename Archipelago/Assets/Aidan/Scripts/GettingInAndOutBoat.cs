@@ -7,6 +7,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 {
 	[SerializeField] private CinemachineFreeLook boatCamera = null;
 	[SerializeField] private Transform playerPosWhenComingOutOfBoat = null;
+	[SerializeField] private Transform playerPosWhenInBoat = null;
 	private bool playerInsideTriggerBox = false;
 	private bool boatHasEnteredShallowWater = false;
 	private bool playerInBoat = false;
@@ -81,6 +82,12 @@ public class GettingInAndOutBoat : MonoBehaviour
 		PlayerMovement.Instance.ChangeCamera(boatCamera, true);
 		playerInBoat = true;
 
+		// Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
+		PlayerMovement.Instance.gameObject.transform.parent = transform.parent;
+		PlayerMovement.Instance.gameObject.transform.localPosition = playerPosWhenInBoat.localPosition;
+		PlayerMovement.Instance.gameObject.transform.localRotation = playerPosWhenInBoat.localRotation;
+		PlayerMovement.Instance.gameObject.GetComponent<CharacterController>().enabled = false;
+
 		// TO DO: ADD ANIMATION
 		Debug.Log("Getting in boat animation missing!");
 		
@@ -98,9 +105,12 @@ public class GettingInAndOutBoat : MonoBehaviour
 		// Change the state to the moving state and change the camera to follow the player
 		PlayerMovement.Instance.state = PlayerMovement.PlayerState.MOVING;
 		PlayerMovement.Instance.ChangeCamera(boatCamera, false);
-		PlayerMovement.Instance.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
 		playerInBoat = false;
-		
+
+		// // Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
+		PlayerMovement.Instance.gameObject.transform.parent = null;
+		PlayerMovement.Instance.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
+		PlayerMovement.Instance.gameObject.GetComponent<CharacterController>().enabled = true;
 	}
 
 	private void OnEnable()
