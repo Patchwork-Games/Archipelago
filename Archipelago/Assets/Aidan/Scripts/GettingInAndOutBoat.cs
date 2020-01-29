@@ -5,9 +5,7 @@ using Cinemachine;
 
 public class GettingInAndOutBoat : MonoBehaviour
 {
-	private PlayerMovement playerMovement = null;
 	[SerializeField] private CinemachineFreeLook boatCamera = null;
-	[SerializeField] private CinemachineFreeLook playerCamera = null;
 	[SerializeField] private Transform playerPosWhenComingOutOfBoat = null;
 	private bool playerInsideTriggerBox = false;
 	private bool boatHasEnteredShallowWater = false;
@@ -26,7 +24,6 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			playerInsideTriggerBox = true;
-			playerMovement = other.GetComponent<PlayerMovement>();
 		}
 
 		// Check if the boat has collided with shallow water
@@ -55,12 +52,12 @@ public class GettingInAndOutBoat : MonoBehaviour
 
 	private void GetInOrOutOfBoat()
 	{
-		// If the player movement script hasn't been set, return
-		if (playerMovement == null || !boatHasEnteredShallowWater)
+		// If the boat hasn't entered shallow water
+		if (!boatHasEnteredShallowWater)
 			return;
 
 		// Change what happens depending on the state
-		switch (playerMovement.state)
+		switch (PlayerMovement.Instance.state)
 		{
 			case PlayerMovement.PlayerState.MOVING:
 				GetInBoat();
@@ -80,8 +77,8 @@ public class GettingInAndOutBoat : MonoBehaviour
 			return;
 
 		// Change the state to the boat state and change the camera to follow the boat
-		playerMovement.state = PlayerMovement.PlayerState.BOAT;
-		playerMovement.ChangeCamera(boatCamera, true);
+		PlayerMovement.Instance.state = PlayerMovement.PlayerState.BOAT;
+		PlayerMovement.Instance.ChangeCamera(boatCamera, true);
 		playerInBoat = true;
 
 		// TO DO: ADD ANIMATION
@@ -99,11 +96,10 @@ public class GettingInAndOutBoat : MonoBehaviour
 		Debug.Log("Getting out boat animation missing!");
 		
 		// Change the state to the moving state and change the camera to follow the player
-		playerMovement.state = PlayerMovement.PlayerState.MOVING;
-		Debug.Log("Poop");
-		playerMovement.ChangeCamera(boatCamera, false);
+		PlayerMovement.Instance.state = PlayerMovement.PlayerState.MOVING;
+		PlayerMovement.Instance.ChangeCamera(boatCamera, false);
+		PlayerMovement.Instance.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
 		playerInBoat = false;
-		playerMovement.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
 		
 	}
 
