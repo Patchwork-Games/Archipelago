@@ -115,7 +115,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0 && !doEndOnce)
         {
-            Debug.Log("End");
             EndDialogue();
             doEndOnce = true;
             return;
@@ -278,7 +277,6 @@ public class DialogueManager : MonoBehaviour
     {
         //closing animation
         animator.SetBool("IsOpen", false);
-        Debug.Log("DSDSDSDSDSD");
         player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
         player.GetComponent<PlayerMovement>().interact = false;
         player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);

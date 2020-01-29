@@ -106,14 +106,14 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private void OnEnable()
 	{
 		// Interation button
-		controls.Player.AButton.performed += ctx => GetInOrOutOfBoat();
-		controls.Player.AButton.Enable();
+		controls.Player.Interact.performed += ctx => GetInOrOutOfBoat();
+		controls.Player.Interact.Enable();
 	}
 
 	private void OnDisable()
 	{
 		// Interation button
-		controls.Player.AButton.performed -= ctx => GetInOrOutOfBoat();
-		controls.Player.AButton.Disable();
+		controls.Player.Interact.performed -= ctx => GetInOrOutOfBoat();
+		controls.Player.Interact.Disable();
 	}
 }

@@ -7,9 +7,9 @@ using Cinemachine;
 
 public class SkimmingController : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private GameObject stone;
+    [SerializeField] private Animator anim = null;
+    [SerializeField] private GameObject mainCamera = null;
+    [SerializeField] private GameObject stone = null;
     [SerializeField] private float maxThrowPower = 1000;
     public bool doingThrow;
     public bool heldThrow;
