@@ -97,14 +97,14 @@
 
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//sand
 
 					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
 					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
 
 					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
 					//yn.xy *= _NormalStrength;
@@ -114,14 +114,14 @@
 			{
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//snow
 
 					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
 					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
 
 					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
 					//yn.xy *= _NormalStrength;
@@ -132,14 +132,14 @@
 
 				if (IN.worldNormal.y > .8f)
 				{
-					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Top, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//grass
 
 					yn = UnpackNormal(tex2D(_TopNormal, IN.uv_TopNormal));
 					//yn.xy *= _NormalStrength;
 				}
 				else if (IN.worldNormal.y < 1)
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
+					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//rock
 
 					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
 					//yn.xy *= _NormalStrength;
