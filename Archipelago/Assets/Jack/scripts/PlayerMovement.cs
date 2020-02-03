@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private int jumpsMax = 1;
     public bool isGrounded;
     private float distanceGround;
-    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private float groundDistance = 2f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private LayerMask groundMask = ~0;
 
@@ -156,16 +156,18 @@ public class PlayerMovement : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-
                     //check if on ground
-                    if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
+                    if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
+                    {
+                        isGrounded = true;
+                    }
+                    else 
                     {
                         isGrounded = false;
                         jumps = 0;
                         anim.SetBool("Falling", true);
                         StopCoroutine("JumpCooldown");
                     }
-                    else isGrounded = true;
 
                     if (isGrounded && velocity.y < 0)
                     {
@@ -246,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     //mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
                     beginTalkCamPos = mainCamera.transform.position;
-                    mainCamera.SetActive(false);
+                    
                     anim.SetBool("Walking", false);
                     anim.SetBool("Running", false);
                     anim.SetBool("Jumping", false);
@@ -388,6 +390,19 @@ public class PlayerMovement : MonoBehaviour
             cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
         }
         
+    }
+
+    public void ChangeCamera(CinemachineVirtualCamera cam, bool above)
+    {
+        if (above)
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
+        }
+        else
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority - 1;
+        }
+
     }
 
 

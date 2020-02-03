@@ -281,6 +281,7 @@ public class DialogueManager : MonoBehaviour
         player.GetComponent<PlayerMovement>().interact = false;
         player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
         player.GetComponent<PlayerMovement>().mainCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
+
     }
 
 
