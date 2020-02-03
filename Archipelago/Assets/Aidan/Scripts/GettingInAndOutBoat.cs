@@ -31,7 +31,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (other.CompareTag("ShallowWater"))
 		{
 			boatHasEnteredShallowWater = true;
-			transform.parent.GetComponent<SailingManager>().State = SailingManager.BoatState.IN_SHALLOW_WATER;
+			transform.parent.GetComponent<BoatController>().State = BoatController.BoatState.IN_SHALLOW_WATER;
 		}
 	}
 
@@ -47,7 +47,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (other.CompareTag("ShallowWater"))
 		{
 			boatHasEnteredShallowWater = false;
-			transform.parent.GetComponent<SailingManager>().State = SailingManager.BoatState.IN_OCEAN;
+			transform.parent.GetComponent<BoatController>().State = BoatController.BoatState.IN_OCEAN;
 		}
 	}
 
