@@ -58,7 +58,7 @@ public class GustStreamManager : MonoBehaviour
 		if (boatHasEnteredGust)
 		{
 			// Add a force to the players forward vector
-			boat.GetComponent<SailingManager>().AddGustForce(gustForce);
+			boat.GetComponent<BoatController>().AddGustForce(gustForce);
 
 			// OPTIONAL - Add torque to the player in the direction of the wind
 		}
