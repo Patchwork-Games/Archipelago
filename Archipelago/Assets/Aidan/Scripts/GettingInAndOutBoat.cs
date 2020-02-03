@@ -90,7 +90,6 @@ public class GettingInAndOutBoat : MonoBehaviour
 
 		// TO DO: ADD ANIMATION
 		Debug.Log("Getting in boat animation missing!");
-		
 	}
 
 	private void GetOutBoat()
@@ -111,6 +110,8 @@ public class GettingInAndOutBoat : MonoBehaviour
 		PlayerMovement.Instance.gameObject.transform.parent = null;
 		PlayerMovement.Instance.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
 		PlayerMovement.Instance.gameObject.GetComponent<CharacterController>().enabled = true;
+
+		playerInsideTriggerBox = false;
 	}
 
 	private void OnEnable()
