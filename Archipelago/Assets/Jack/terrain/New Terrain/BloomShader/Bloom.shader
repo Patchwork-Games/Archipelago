@@ -11,7 +11,7 @@
 	CGINCLUDE
 		#include "UnityCG.cginc"
 
-		sampler2D _MainTex;
+		sampler2D _MainTex, _SourceTex;
 		float4 _MainTex_TexelSize;
 
 		half3 Sample(float2 uv)
@@ -73,6 +73,8 @@
 		}
 		Pass  // 1
 		{
+			Blend One One
+
 			CGPROGRAM
 				#pragma vertex VertexProgram
 				#pragma fragment FragmentProgram
@@ -80,6 +82,20 @@
 				half4 FragmentProgram(Interpolators i) : SV_Target 
 				{
 					return half4(SampleBox(i.uv, 0.5), 1);
+				}
+			ENDCG
+		}
+		Pass // 2
+		{ 
+			CGPROGRAM
+				#pragma vertex VertexProgram
+				#pragma fragment FragmentProgram
+
+				half4 FragmentProgram(Interpolators i) : SV_Target 
+				{
+					half4 c = tex2D(_SourceTex, i.uv);
+					c.rgb += SampleBox(i.uv, 0.5);
+					return c;
 				}
 			ENDCG
 		}

@@ -10,11 +10,14 @@ public class BloomEffect : MonoBehaviour
     [Range(1, 16)]
     public int iterations = 1;
 
+    RenderTexture[] textures = new RenderTexture[16];
+
     [NonSerialized]
     Material bloom;
 
     const int BoxDownPass = 0;
     const int BoxUpPass = 1;
+    const int ApplyBloomPass = 2;
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
@@ -24,12 +27,12 @@ public class BloomEffect : MonoBehaviour
             bloom.hideFlags = HideFlags.HideAndDontSave;
         }
 
-        int width = source.width / iterations;
-        int height = source.height / iterations;
+        int width = source.width / 2;
+        int height = source.height / 2;
 
         RenderTextureFormat format = source.format;
 
-        RenderTexture[] textures = new RenderTexture[16];
+        
         RenderTexture currentDestination = textures[0] = RenderTexture.GetTemporary(width, height, 0, format);
 
 
@@ -44,7 +47,7 @@ public class BloomEffect : MonoBehaviour
             height /= 2;
             if (height < 2) break;
 
-            currentDestination = textures[0] = RenderTexture.GetTemporary(width, height, 0, format);
+            currentDestination = textures[i] = RenderTexture.GetTemporary(width, height, 0, format);
             Graphics.Blit(currentSource, currentDestination, bloom, BoxDownPass);
             currentSource = currentDestination;
         }
@@ -60,7 +63,8 @@ public class BloomEffect : MonoBehaviour
 
 
 
-        Graphics.Blit(currentSource, destination, bloom, BoxUpPass);
+        bloom.SetTexture("_SourceTex", source);
+        Graphics.Blit(currentSource, destination, bloom, ApplyBloomPass);
         RenderTexture.ReleaseTemporary(currentSource);
     }
 }
