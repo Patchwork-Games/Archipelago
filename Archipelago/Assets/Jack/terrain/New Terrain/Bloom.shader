@@ -65,7 +65,7 @@
 
 			half4 FragmentProgram(Interpolators i) : SV_Target 
 			{
-				return half4(SampleBox(i.uv), 1);
+				return half4(SampleBox(i.uv, 1), 1);
 			}
 
 
