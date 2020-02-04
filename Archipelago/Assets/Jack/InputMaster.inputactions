@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AButton",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "e94c5d24-765d-4111-a59d-087fc084e7ca",
                     "expectedControlType": "",
@@ -49,6 +49,14 @@
                     "name": "YButton",
                     "type": "Button",
                     "id": "b1aed8da-3f6c-4a9c-86ed-f9f623deac24",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "f9c2df8f-961b-4c5e-8f59-1cbcc10e2ef9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -227,7 +235,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "AButton",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,10 +243,10 @@
                     "name": "",
                     "id": "a0769344-b4b1-4f1e-b69d-04592ac07fcb",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "AButton",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -278,7 +286,7 @@
                 {
                     "name": "",
                     "id": "82b04aba-fe95-4d35-86a7-0ba67831661c",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -305,6 +313,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "YButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "378633af-9cad-4d34-848b-c2c1f1594382",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ec1890d-6afb-4c33-8168-fc91dcc68616",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -453,7 +483,7 @@
                 {
                     "name": "",
                     "id": "639767cc-74c4-482a-9d2c-f4260c7b4211",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -464,7 +494,7 @@
                 {
                     "name": "",
                     "id": "8d7bf562-ce75-40ac-be02-ea9dee161f00",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",

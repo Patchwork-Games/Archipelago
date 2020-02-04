@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue[] dialogue;
     public GameObject player;
     public Canvas talkButtonGuide;
+    public CinemachineVirtualCamera talkCam;
+    private Vector3 talkCamPos;
 
     //settings
     public int talkRadius = 5;
@@ -19,7 +22,9 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
+        PlayerMovement.Instance.ChangeCamera(talkCam, true);
     }
 
 
@@ -27,6 +32,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         //init
         talkButtonGuide.enabled = false;
+        talkCamPos = transform.GetChild(0).transform.position;
     }
 
 
@@ -44,7 +50,7 @@ public class DialogueTrigger : MonoBehaviour
                     //show button needed to talk
                     if (talkButtonGuide && !startedTalking)
                     {
-                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 2, 0);
+                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
                         talkButtonGuide.enabled = true;
                         player.GetComponent<PlayerMovement>().inTalkDistance = true;
                         hiddenTalkButton = false;
@@ -57,7 +63,7 @@ public class DialogueTrigger : MonoBehaviour
                     }
 
                     //FINDME replace with new input system to handle controllers
-                    if (Input.GetKeyDown(KeyCode.E) && !startedTalking)
+                    if ((Input.GetKeyDown(KeyCode.E) || player.GetComponent<PlayerMovement>().interact) && !startedTalking)
                     {
                         startedTalking = true;
                         TriggerDialogue();
@@ -86,7 +92,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    //move button guide to above npc
+    //move button guide to face camrea
     private void LateUpdate()
     {
         if(talkButtonGuide) talkButtonGuide.transform.rotation = Camera.main.transform.rotation;

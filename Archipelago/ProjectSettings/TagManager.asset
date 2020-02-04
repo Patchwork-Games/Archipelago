@@ -8,6 +8,11 @@ TagManager:
   - Water
   - ThrowSpot
   - DialogueManager
+  - Boat
+  - BoatTriggerBox
+  - ShallowWater
+  - Npc
+  - InvisWall
   layers:
   - Default
   - TransparentFX
@@ -21,12 +26,12 @@ TagManager:
   - Player
   - Skimmer
   - Dialogue
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - SEA
+  - NoCamCollide
+  - WallNoCollide
+  - Boat
+  - Ground
+  - BoatWheels
   - 
   - 
   - 
@@ -44,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Dialogue
+    uniqueID: 840549421
     locked: 0

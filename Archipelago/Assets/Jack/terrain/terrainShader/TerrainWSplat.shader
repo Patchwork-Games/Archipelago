@@ -11,9 +11,10 @@
 		_Side("Side", 2D) = "white" {}
 		_Sand("Sand", 2D) = "white" {}
 
-		[Normal]_TopNormal("TopNormal", 2D) = "bump" {}
-		[Normal]_SideNormal("SideNormal", 2D) = "bump" {}
-		[Normal]_SandNormal("SandNormal", 2D) = "bump" {}
+
+		[NoScaleOffset] _TopNormal("TopNormal", 2D) = "bump" {}
+		[NoScaleOffset] _SideNormal("SideNormal", 2D) = "bump" {}
+		[NoScaleOffset] _SandNormal("SandNormal", 2D) = "bump" {}
 		_NormalStrength("Normal strength", Range(0.0,1.0)) = 1
 
 		[HideInInspector]_Control("Control (RGBA)", 2D) = "red" {}
@@ -25,8 +26,6 @@
     }
     SubShader
     {
-        //Tags { "RenderType"="Opaque" }
-
 		Tags
 		{
 			"SplatCount" = "4"
@@ -63,7 +62,6 @@
 			float3 worldPos;
 			float3 worldNormal;
 			INTERNAL_DATA
-			//float2 uv_BumpMap;
 			float3 localCoord;
 			float3 localNormal;
 			float _NormalStrength;
@@ -76,6 +74,7 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -91,59 +90,20 @@
 			//use the normals of the terrain to choose which texture is rendered
 			//everything below y 35 will be sand
 			float3 y = 0;
-			fixed3 yn = 0;
-			if (IN.worldPos.y < 35)
+			if (IN.worldNormal.y > .8f)
 			{
-
-				if (IN.worldNormal.y > .8f)
+				if (IN.worldPos.y < 35)
 				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
-					//yn.xy *= _NormalStrength;
+					y = tex2D(_Sand, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//sand
 				}
-				else if (IN.worldNormal.y < 1)
+				else 
 				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					//yn.xy *= _NormalStrength;
+					y = tex2D(_Top, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//grass
 				}
-			}
-			else if (IN.worldPos.y > 200)
-			{
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Sand, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SandNormal, IN.uv_SandNormal));
-					//yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					//yn.xy *= _NormalStrength;
-				}
-			}
+			}	
 			else
 			{
-
-				if (IN.worldNormal.y > .8f)
-				{
-					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_TopNormal, IN.uv_TopNormal));
-					//yn.xy *= _NormalStrength;
-				}
-				else if (IN.worldNormal.y < 1)
-				{
-					y = tex2D(_Side, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);
-
-					yn = UnpackNormal(tex2D(_SideNormal, IN.uv_SideNormal));
-					//yn.xy *= _NormalStrength;
-				}
+				y = tex2D(_Side, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//rock
 			}
 
 
@@ -160,10 +120,12 @@
 			half4 cx = tex2D(_Side, tx) * bf.x;
 			half4 cy = tex2D(_Top, ty) * bf.y;
 			half4 cz = tex2D(_Sand, tz) * bf.z;
-			half4 color = half4(y * _Color, 1.0f);
-
-
-
+			
+			float3 triColour = float3 (0,0,0);
+			triColour = (cx + cy + cz) / 3;
+			
+			
+			half4 color = half4(y * triColour, 1.0f);
 
 			fixed4 splat_control = tex2D(_Control, IN.uv_Control);
 
@@ -173,11 +135,11 @@
 			col += splat_control.b * tex2D(_Splat2, IN.uv_Splat2).rgb;
 			col += splat_control.a * tex2D(_Splat3, IN.uv_Splat3).rgb;
 
-			half4 finalColour = half4(0,0,0,0);
+			
+			half4 finalColour = half4(0, 0, 0, 0);
 			
 			
-			
-			if (col.x > 0.6  || col.y > 0.6 || col.z > 0.6)
+			if (col.x > 0.6 || col.y > 0.6 || col.z > 0.6)
 			{
 				finalColour += half4(col, 1.0f);
 			}
@@ -191,7 +153,7 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 
-			//o.Normal = normalize(yn);
+			//o.Normal = yn;
 
 			
 

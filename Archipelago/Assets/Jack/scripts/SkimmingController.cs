@@ -7,21 +7,16 @@ using Cinemachine;
 
 public class SkimmingController : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private GameObject mainCamera;
-    [SerializeField] private GameObject throwCamera;
-    [SerializeField] private GameObject stone;
-    [SerializeField] private GameObject currentThrowSpot;
+    [SerializeField] private Animator anim = null;
+    [SerializeField] private GameObject mainCamera = null;
+    [SerializeField] private GameObject stone = null;
     [SerializeField] private float maxThrowPower = 1000;
-    [HideInInspector] public bool throwReady;
-    [HideInInspector] public bool doingThrow;
-    [HideInInspector] public bool heldThrow;
-    private bool justChangedThrowSpot;
-    private bool chargingThrow;
-    private bool throwing;
-    private float throwPower;
-    private float angleClamp;
-    private Vector3 originalPos;
+    public bool doingThrow = false;
+    public bool heldThrow = false;
+    private bool chargingThrow = false;
+    private float throwPower = 0;
+    private float angleClamp = 0;
+    private Vector3 originalPos = Vector3.zero;
 
 
     private void Start()
@@ -29,75 +24,14 @@ public class SkimmingController : MonoBehaviour
         anim.SetBool("ChargingThrow", false);
         anim.SetBool("Throwing", false);
         chargingThrow = false;
-        throwing = false;
-        throwReady = true;
         doingThrow = false;
-        justChangedThrowSpot = false;
         heldThrow = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         testThrow();
     }
-
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //move camera and set current throwing spot
-        if (other.gameObject.CompareTag("ThrowSpot"))
-        {
-            //set current view spot to one that is stood on
-            currentThrowSpot = other.gameObject;
-            throwCamera = currentThrowSpot.transform.GetChild(1).gameObject;
-
-            throwCamera.GetComponent<CinemachineVirtualCamera>().Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 0;
-        }
-    }
-
-
-    private void OnTriggerExit(Collider other)
-    {
-
-        //move camera and remove current throwing spot
-        if (other.gameObject.CompareTag("ThrowSpot"))
-        {
-            //remove throwing spot that was left
-            throwCamera.GetComponent<CinemachineVirtualCamera>().Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 500;
-            currentThrowSpot = null;
-        }
-    }
-
-
-    //switch state to throwing on throwing point
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("ThrowSpot") && Input.GetKeyDown(KeyCode.E) && !justChangedThrowSpot)
-        {
-            //get clamp for throwing angle
-            angleClamp = currentThrowSpot.GetComponent<ThrowSpotAngleShow>().totalFOV / 2;
-
-            //move player to middle of throwing platform and enter throwing state
-            //transform.position = currentThrowSpot.transform.GetChild(0).transform.position;
-            //anim.SetBool("Walking", false);
-            //state = PlayerState.THROWING;
-            //justChangedThrowSpot = true;
-        }
-
-
-        if (other.gameObject.CompareTag("ThrowSpot") && Input.GetKeyDown(KeyCode.E) && !justChangedThrowSpot)
-        {
-            //move player to middle of throwing platform and enter throwing state
-            //state = PlayerState.MOVING;
-            //justChangedThrowSpot = true;
-        }
-        justChangedThrowSpot = false;
-    }
-
-
 
 
     //aim player at mouse
@@ -127,24 +61,7 @@ public class SkimmingController : MonoBehaviour
             throwPower = maxThrowPower;
             //could show sparkle here to show that max power reached
         }
-
-        //stop charging when release button
-        if (!heldThrow)
-        { 
-            chargingThrow = false;
-            throwing = true;
-        }
     }
-
-
-
-
-
-    public void LaunchShake()
-    {
-        StartCoroutine("ShakeCharacter");
-    }
-
 
 
 
@@ -162,33 +79,25 @@ public class SkimmingController : MonoBehaviour
 
 
 
-
-
-
-
     public void testThrow()
     {
-        if (heldThrow && throwReady)
+
+        if (heldThrow && !chargingThrow && PlayerMovement.Instance.isGrounded)
         {
+            PlayerMovement.Instance.state = PlayerMovement.PlayerState.THROWING;
             chargingThrow = true;
-            throwing = false;
+            anim.SetBool("ChargingThrow", true);
             throwPower = 0;
             originalPos = transform.position;
-            GetComponent<SkimmingController>().LaunchShake();
-            throwReady = false;
-        }
-        else if (heldThrow)
-        {
-            throwing = false;
+            StartCoroutine("ShakeCharacter");
         }
 
 
-        
+
 
         if (chargingThrow)
         {
-            anim.SetBool("ChargingThrow", true);
-            anim.SetBool("Throwing", false);
+            //anim.SetBool("ChargingThrow", true);
 
             Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
             camForward.y = 0;
@@ -199,14 +108,11 @@ public class SkimmingController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(camForward), 9f * Time.deltaTime);
         }
 
-        if (throwing)
+        //stop charging when release button
+        if (!heldThrow && chargingThrow)
         {
-            anim.SetBool("Throwing", true);
+            chargingThrow = false;
             anim.SetBool("ChargingThrow", false);
         }
     }
-
-
-
-
 }

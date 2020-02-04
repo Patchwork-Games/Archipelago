@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 using TMPro;
 
 
@@ -62,11 +63,10 @@ public class DialogueManager : MonoBehaviour
     private string shakeText = "";
     //private int numCharacters = 0;
 
-    private float lerpTime = 0;
-    private float timeToReachTarget = 0;
-    
 
+    public GameObject player;
 
+    private bool doEndOnce = false;
 
     public int[] NPCs;
 
@@ -81,22 +81,22 @@ public class DialogueManager : MonoBehaviour
         sentence = "";
         canQuitSentence = true;
         specialTextChecker = false;
+        animator.SetBool("IsOpen", false);
+        doEndOnce = false;
     }
 
     //initial beginning of dialogue, called by the trigger script
     public void StartDialogue(Dialogue dialogueIn)
     {
         dialogue = dialogueIn;
-        //slide in textbox and change name displayed
-        //animator.SetBool("IsOpen", true);
-        dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        lerpTime = 0;
-        //StartCoroutine("lerpOpen");
-        
+        //open textbox and change name displayed and stop player moving around or moving camera
+        animator.SetBool("IsOpen", true);
+        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.TALKING;
 
         //load in text for queues
         names.Clear();
         sentences.Clear();
+        doEndOnce = false;
         foreach (Dialogue.ChatBoxes chatbox in dialogue.chatBoxes)
         {
             names.Enqueue(chatbox.name);            //queue names
@@ -113,9 +113,10 @@ public class DialogueManager : MonoBehaviour
     //starts writing the next sentence in the queue
     public void DisplayNextSentence(Dialogue dialogue)
     {
-        if (sentences.Count == 0)
+        if (sentences.Count == 0 && !doEndOnce)
         {
             EndDialogue();
+            doEndOnce = true;
             return;
         }
 
@@ -140,12 +141,8 @@ public class DialogueManager : MonoBehaviour
 
 
                 //move box above talking npc
-                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position;
-
-
-
-                //lerp camera to point at target                                                                        FINDME DO CINEMACHINE CHANGING PRIORITY HERE
-                
+                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0,7,0);
+                             
             }
         }
         //get sentences
@@ -156,8 +153,10 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-
-
+    private void LateUpdate()
+    {
+        dialogueBoxImg.transform.rotation = Camera.main.transform.rotation;
+    }
 
     //if player presses interact button before whole sentence is displayed
     //whole sentence will be written out in one frame
@@ -276,58 +275,35 @@ public class DialogueManager : MonoBehaviour
     //called once all dialogue in queue has been used
     void EndDialogue()
     {
-        //animator.SetBool("IsOpen", false);
-        //dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        //closing animation
+        animator.SetBool("IsOpen", false);
+        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
+        player.GetComponent<PlayerMovement>().interact = false;
+        player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
+        player.GetComponent<PlayerMovement>().mainCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
 
-        lerpTime = 0;
-        //StartCoroutine("lerpClosed");
     }
 
-
-
-
-    IEnumerator lerpOpen()
-    {  
-        while (dialogueBoxImg.transform.position.y < Screen.height / 2 - .1f)
-        {
-            Debug.Log("opening: " + lerpTime);
-            lerpTime += Time.deltaTime / timeToReachTarget;
-            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height, Screen.height / 2, lerpTime), 0);
-            yield return new WaitForSeconds(.1f);
-        }
-        
-    }
-
-    IEnumerator lerpClosed()
-    {
-        while (dialogueBoxImg.transform.position.y < Screen.height + .1f)
-        {
-            Debug.Log("closing: " + lerpTime);
-            lerpTime += Time.deltaTime / timeToReachTarget;
-            dialogueBoxImg.transform.position = new Vector3(Screen.width / 2, Mathf.Lerp(Screen.height / 2, Screen.height, lerpTime), 0);
-            yield return new WaitForSeconds(.1f);
-        }
-    }
 
 
     private void Update()
     {
         //progress dialogue with interact button
                                                                                                                  //FINDME change to use new input to support controllers
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || player.GetComponent<PlayerMovement>().interact)
         {
             if (arrow.enabled == true)
             {
                 DisplayNextSentence(dialogue);
             }
-            else CompleteCurrentTextBox();
+            else CompleteCurrentTextBox(); 
         }
 
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
                                                                                                                 //FINDME change to use new input to support controllers
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) || (player.GetComponent<SkimmingController>().heldThrow && PlayerMovement.Instance.state == PlayerMovement.PlayerState.TALKING))
             {
                 EndDialogue();
             }

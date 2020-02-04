@@ -6,77 +6,124 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public static PlayerMovement Instance { get; private set; }
+
+
+
     public enum PlayerState
     {
         MOVING,
-        THROWING
+        THROWING,
+        TALKING,
+        BOAT
     }
     public PlayerState state;
 
-    public Animator anim;
-    
+    public Animator anim = null;
+
     //camera variables
-    public GameObject mainCamera;
-    Vector3 camForward;
-    Vector3 camRight;
-    Vector2 camMoveDirection;
+    public GameObject mainCamera = null;
+    public ParticleSystem jumpParticle = null;
+    Vector3 camForward = Vector3.zero;
+    Vector3 camRight = Vector3.zero;
+    Vector2 camMoveDirection = Vector2.zero;
+    public Vector3 beginTalkCamPos = Vector3.zero;
+    public bool BoatButtonGuide = false;
+    [SerializeField] private Canvas BoatButtonImage = null;
 
     //movement variables
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
     [SerializeField] private float energy = 0;
-    public GameObject energyBar;
-    Vector2 moveDirection;
-    Vector3 velocity;
+    public GameObject energyBar = null;
+    Vector2 moveDirection = Vector2.zero;
+    Vector3 velocity = Vector3.zero;
 
 
     //button variables
-    public InputMaster controls;
-    [SerializeField] private CharacterController controller;
-    private bool interact = false;
+    public InputMaster controls = null;
+    [SerializeField] private CharacterController controller = null;
+    public bool interact = false;
+    private bool jump = false;
     private bool run = false;
-    public bool inTalkDistance;
+    public bool inTalkDistance = false;
+    
 
 
     //jumping variables
     private int jumps = 0;
     private int jumpsMax = 1;
-    private bool isGrounded;
+    public bool isGrounded;
     private float distanceGround;
-    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private float groundDistance = 2f;
     [SerializeField] private float gravity = -55.81f;
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask groundMask = ~0;
 
 
-   
+
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Instance = this;
+        }
+
+
+
         controls = new InputMaster();
+        
+    }
+
+
+    private void OnEnable()
+    {
         controls.Player.Movement.performed += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.canceled += context => camMoveDirection = context.ReadValue<Vector2>();
-        controls.Player.AButton.performed += context => InteractButton();
+        controls.Player.Jump.performed += context => JumpButton();
+        controls.Player.Interact.performed += context => InteractButton();
         controls.Player.XButton.performed += context => RunButton();
         controls.Player.XButton.canceled += context => StopRunButton();
         controls.Player.BButton.performed += context => ThrowButton();
         controls.Player.BButton.canceled += context => StopThrowButton();
+        controls.Enable();
     }
+
+    private void OnDisable()
+    {
+        controls.Player.Movement.performed -= context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.Movement.canceled -= context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.performed -= context => camMoveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.canceled -= context => camMoveDirection = context.ReadValue<Vector2>();
+        controls.Player.Jump.performed -= context => JumpButton();
+        controls.Player.Interact.performed -= context => InteractButton();
+        controls.Player.XButton.performed -= context => RunButton();
+        controls.Player.XButton.canceled -= context => StopRunButton();
+        controls.Player.BButton.performed -= context => ThrowButton();
+        controls.Player.BButton.canceled -= context => StopThrowButton();
+        controls.Disable();
+    }
+
 
 
     void InteractButton()
     {
-        if (interact)
-        {
-            //make player jump if enough jumps
-            if (jumps > 0 && interact && !inTalkDistance)
-            {
-                velocity.y = 20f;
-                jumps -= 1;
-                anim.SetBool("Jumping", true);
-            }
-        }
+        interact = true;
+    }
+
+    void JumpButton()
+    {
+        jump = true;
     }
 
 
@@ -92,27 +139,17 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        if(isGrounded) GetComponent<SkimmingController>().heldThrow = true;
-        else GetComponent<SkimmingController>().heldThrow = false;
+        if(state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = true;
     }
 
     void StopThrowButton()
     {
-        GetComponent<SkimmingController>().heldThrow = false;
+        if (state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = false;
     }
 
 
 
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
 
 
     private void Start()
@@ -130,12 +167,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        interact = false;
-
-        if (GetComponent<SkimmingController>().heldThrow) state = PlayerState.THROWING;
-        else state = PlayerState.MOVING;
-
-
         //state machine
         switch (state)
         {
@@ -143,18 +174,22 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.MOVING:
                 {
                     //check if on ground
-                    if (!Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance))
+                    if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
+                    {
+                        isGrounded = true;
+                    }
+                    else 
                     {
                         isGrounded = false;
                         jumps = 0;
                         anim.SetBool("Falling", true);
                         StopCoroutine("JumpCooldown");
                     }
-                    else isGrounded = true;
 
                     if (isGrounded && velocity.y < 0)
                     {
                         StartCoroutine("JumpCooldown");
+
                         anim.SetBool("Jumping", false);
                         anim.SetBool("Falling", false);
                         velocity.y = -2f;
@@ -174,12 +209,21 @@ public class PlayerMovement : MonoBehaviour
                     {
                         anim.SetBool("Running", false);
                         energyBar.GetComponent<DashMeter>().Recharge();
-                        
+
                     }
 
                     //stop trying to run when out of energy
                     if (energy == 0) run = false;
 
+
+                    //make player jump if enough jumps
+                    if (jumps > 0 && jump && !inTalkDistance)
+                    {
+                        velocity.y = 20f;
+                        jumps -= 1;
+                        anim.SetBool("Jumping", true);
+                    }
+                    
 
                     
 
@@ -187,10 +231,6 @@ public class PlayerMovement : MonoBehaviour
                     Move();
                     Gravity();
                     MoveCamera();
-
-                    //let the player interact, is reset at start of update
-                    interact = true;
-
                     break;
                 }
 
@@ -203,19 +243,111 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (isGrounded)
                     {
-                        GetComponent<SkimmingController>().testThrow();
+                        anim.SetBool("Walking", false);
+                        anim.SetBool("Running", false);
+                        anim.SetBool("Jumping", false);
+                        anim.SetBool("Falling", false);
                         MoveCameraWLeft();
                     }
                     else
                     {
-                        Gravity();
+                        state = PlayerState.MOVING;
                     }
                     break;
                 }
+
+
+
+
+
+            //throwing stone
+            case PlayerState.TALKING:
+                {
+                    //mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    beginTalkCamPos = mainCamera.transform.position;
+                    
+                    anim.SetBool("Walking", false);
+                    anim.SetBool("Running", false);
+                    anim.SetBool("Jumping", false);
+                    anim.SetBool("Falling", false);
+                    anim.SetBool("Throwing", false);
+                    anim.SetBool("ChargingThrow", false);
+                    Gravity();
+
+                    break;
+                }
+
+
+
+
+            //In boat
+            case PlayerState.BOAT:
+                {
+                    anim.SetBool("Walking", false);
+                    anim.SetBool("Running", false);
+                    anim.SetBool("Jumping", false);
+                    anim.SetBool("Falling", false);
+                    anim.SetBool("Throwing", false);
+                    anim.SetBool("ChargingThrow", false);
+
+                    BoatButtonGuide = false;
+                    if (BoatButtonImage) BoatButtonImage.enabled = false;
+                    break;
+                }
+
+
+
+
+
+
+
+
+
+
             default:
                 break;
         }
+        //stop holding A or jumping
+        interact = false;
+        jump = false;
     }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BoatTriggerBox"))
+        {
+            BoatButtonGuide = true;
+            if (BoatButtonImage) BoatButtonImage.enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BoatTriggerBox"))
+        {
+            BoatButtonGuide = false;
+            if (BoatButtonImage) BoatButtonImage.enabled = false;
+        }
+    }
+
+
+    private void LateUpdate()
+    {
+        if (BoatButtonGuide)
+        {
+            BoatButtonImage.transform.position = transform.position + new Vector3(0,5,0);
+            BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
+        }
+    }
+
+
+
+
+
 
 
 
@@ -228,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //move character acording to input
-        Vector3 move = camRight * moveDirection.x + camForward * moveDirection.y;
+        Vector3 move = (camRight * moveDirection.x) + (camForward * moveDirection.y);
 
         controller.Move(move * walkSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
@@ -258,11 +390,13 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (camMoveDirection.x != 0)
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";           
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
         else
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
@@ -276,10 +410,12 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.x != 0)
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 100;
         }
         else
         {
             mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
         mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
@@ -301,7 +437,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * runSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-        
+
     }
 
 
@@ -311,9 +447,35 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         jumps = jumpsMax;
+
     }
 
 
+    public void ChangeCamera(CinemachineFreeLook cam, bool above)
+    {
+        if (above)
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
+        }
+        else
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
+        }
+        
+    }
+
+    public void ChangeCamera(CinemachineVirtualCamera cam, bool above)
+    {
+        if (above)
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
+        }
+        else
+        {
+            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority - 1;
+        }
+
+    }
 
 
 

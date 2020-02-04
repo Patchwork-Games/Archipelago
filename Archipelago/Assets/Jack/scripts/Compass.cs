@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Compass : MonoBehaviour
 {
-
-    [SerializeField] private GameObject Player;
-    [SerializeField] private GameObject Camera;
-    [SerializeField] private GameObject NorthPole;
+    [SerializeField] private GameObject Camera = null;
+    [SerializeField] private GameObject NorthPole = null;
 
     // Update is called once per frame
     void Update()

@@ -38,6 +38,7 @@ public class StoneMovement : MonoBehaviour
         else
         {
             MakeStiff();
+            rb.velocity = new Vector3(0,0,0);
         }
     }
 
@@ -58,6 +59,8 @@ public class StoneMovement : MonoBehaviour
     //destroy stone after time
     IEnumerator DestroyStone()
     {
+        GetComponent<SphereCollider>().enabled = false;
+
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
