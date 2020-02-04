@@ -459,7 +459,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator JumpCooldown()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.1f);
         jumps = jumpsMax;
 
     }
