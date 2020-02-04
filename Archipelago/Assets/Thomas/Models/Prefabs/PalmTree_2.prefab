@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 357128443033380278}
   - component: {fileID: 6325392564081563983}
   - component: {fileID: 4383537479503312024}
+  - component: {fileID: 4770619091849833813}
   m_Layer: 0
   m_Name: PalmTree_2
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761398094686629267}
-  m_LocalRotation: {x: 0.06344454, y: -0.79081255, z: 0.048682682, w: 0.60681164}
+  m_LocalRotation: {x: 0.06344417, y: -0.7908101, z: 0.048687913, w: 0.6068144}
   m_LocalPosition: {x: 59.21, y: 26.54, z: 147.15}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
@@ -94,3 +95,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 3054374446758041609, guid: dbdcbe45a69866d41a678568b1bbf975, type: 3}
+--- !u!65 &4770619091849833813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761398094686629267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07133781, y: 0.14701486, z: 0.025518592}
+  m_Center: {x: -0.021484118, y: 0, z: 0.0072971606}
