@@ -46,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.067207, y: 8.300721, z: 18.401308}
-  m_Center: {x: 0, y: 0, z: -0.03813839}
+  m_Size: {x: 16.156445, y: 22.470013, z: 31.315594}
+  m_Center: {x: 0.51037025, y: 0, z: 6.4190044}
 --- !u!114 &5192939486359281704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,10 +60,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325f8eaa13b3b0e4597c524873159771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gustForce: 2000
+  gustForce: 1000
   distanceToDespawnAt: 100
-  gustStreamSpawnerObject: {fileID: 0}
   windParticles: {fileID: 897303257669868805}
+  gustStreamSpawnerObject: {fileID: 0}
+  boat: {fileID: 0}
+  aliveTime: 15
 --- !u!54 &966082425
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,8 +239,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
         type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 2.6762881
+      propertyPath: stopAction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
         type: 3}
@@ -247,23 +249,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
         type: 3}
-      propertyPath: stopAction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
-        type: 3}
-      propertyPath: SizeModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8534607055459990374, guid: 87a4d44c552ebc543ad62744032818ff,
-        type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
+      propertyPath: ShapeModule.m_Scale.x
+      value: 7.0908313
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a4d44c552ebc543ad62744032818ff, type: 3}

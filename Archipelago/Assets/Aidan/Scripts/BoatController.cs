@@ -17,6 +17,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private WheelCollider frontLeftW = null, frontRightW = null;
 	[SerializeField] private WheelCollider rearLeftW = null, rearRightW = null;
 	[SerializeField] private float maxSteerAngle = 30f;
+	[SerializeField] private float turningTime = 1f;
 	[SerializeField] private float motorForce = 50f;
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
@@ -27,6 +28,7 @@ public class BoatController : MonoBehaviour
 	private bool isDashing = false;
 	private float elapsedDashTime = 0f;
 	private Rigidbody rb = null;
+	private float lerpTurningTime = 0f;
 
 	private void Awake()
 	{
@@ -67,8 +69,8 @@ public class BoatController : MonoBehaviour
 	private void Steer()
 	{
 		// Calculate the steering angle
-		steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, .01f);
-		//steeringAngle = maxSteerAngle * movementInput.x;
+		lerpTurningTime = Time.deltaTime / turningTime;
+		steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
 
 
 		frontLeftW.steerAngle = steeringAngle;
