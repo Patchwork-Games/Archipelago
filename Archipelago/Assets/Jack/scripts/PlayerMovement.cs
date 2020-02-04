@@ -291,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("ChargingThrow", false);
 
                     BoatButtonGuide = false;
-                    if (BoatButtonImage) BoatButtonImage.enabled = false;
+                    if (!BoatButtonImage) BoatButtonImage.enabled = false;
                     break;
                 }
 
@@ -330,7 +330,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("BoatTriggerBox"))
         {
             BoatButtonGuide = false;
-            if (BoatButtonImage) BoatButtonImage.enabled = false;
+            if (!BoatButtonImage) BoatButtonImage.enabled = false;
         }
     }
 
