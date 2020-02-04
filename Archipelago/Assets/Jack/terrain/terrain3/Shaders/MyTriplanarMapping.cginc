@@ -143,20 +143,6 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 		tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
 	}
 
-
-
-	//float3 albedoX = tex2D(_MainTex, triUV.x).rgb;
-	//float3 albedoY = tex2D(_MainTex, triUV.y).rgb;
-	//float3 albedoZ = tex2D(_MainTex, triUV.z).rgb;
-
-	//float4 mohsX = tex2D(_MOHSMap, triUV.x);
-	//float4 mohsY = tex2D(_MOHSMap, triUV.y);
-	//float4 mohsZ = tex2D(_MOHSMap, triUV.z);
-
-	//float3 tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
-	//float4 rawNormalY = tex2D(_NormalMap, triUV.y);
-	//float3 tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
-
 	
 	float3 tangentNormalY = UnpackNormal(rawNormalY);
 
@@ -210,9 +196,9 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 
 	surface.albedo		= col;
 	surface.metallic	= 0;
-	surface.occlusion	= 1;
+	surface.occlusion	= 0;
 	surface.smoothness	= 0;
-
+	surface.normal = normalize(worldNormalX * triW.x + worldNormalY * triW.y + worldNormalZ * triW.z);
 
 
 
@@ -221,7 +207,7 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 	//surface.occlusion = mohs.y;
 	//surface.smoothness = mohs.a;
 
-	surface.normal = normalize(	worldNormalX * triW.x + worldNormalY * triW.y + worldNormalZ * triW.z);
+
 }
 
 #define SURFACE_FUNCTION MyTriPlanarSurfaceFunction

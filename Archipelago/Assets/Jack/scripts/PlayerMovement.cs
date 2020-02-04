@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 camRight = Vector3.zero;
     Vector2 camMoveDirection = Vector2.zero;
     public Vector3 beginTalkCamPos = Vector3.zero;
+    public bool BoatButtonGuide = false;
+    [SerializeField] private Canvas BoatButtonImage = null;
 
     //movement variables
     [SerializeField] private float walkSpeed = 8f;
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
     private bool run = false;
     public bool inTalkDistance = false;
+    
 
 
     //jumping variables
@@ -273,6 +276,11 @@ public class PlayerMovement : MonoBehaviour
 
                     break;
                 }
+
+
+
+
+            //In boat
             case PlayerState.BOAT:
                 {
                     anim.SetBool("Walking", false);
@@ -281,8 +289,20 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("Falling", false);
                     anim.SetBool("Throwing", false);
                     anim.SetBool("ChargingThrow", false);
+
+                    BoatButtonGuide = false;
+                    if (BoatButtonImage) BoatButtonImage.enabled = false;
                     break;
                 }
+
+
+
+
+
+
+
+
+
 
             default:
                 break;
@@ -291,6 +311,40 @@ public class PlayerMovement : MonoBehaviour
         interact = false;
         jump = false;
     }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BoatTriggerBox"))
+        {
+            BoatButtonGuide = true;
+            if (BoatButtonImage) BoatButtonImage.enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BoatTriggerBox"))
+        {
+            BoatButtonGuide = false;
+            if (BoatButtonImage) BoatButtonImage.enabled = false;
+        }
+    }
+
+
+    private void LateUpdate()
+    {
+        if (BoatButtonGuide) BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
+    }
+
+
+
+
+
+
 
 
     void Move()
