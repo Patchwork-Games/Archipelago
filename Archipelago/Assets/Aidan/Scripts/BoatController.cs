@@ -14,6 +14,7 @@ public class BoatController : MonoBehaviour
 	}
 	public BoatState State { get; set; } = BoatState.PLAYER_NOT_IN_BOAT;
 
+	[SerializeField] private GameObject anchorObject = null;
 	[SerializeField] private WheelCollider frontLeftW = null, frontRightW = null;
 	[SerializeField] private WheelCollider rearLeftW = null, rearRightW = null;
 	[SerializeField] private float maxSteerAngle = 30f;
@@ -156,8 +157,15 @@ public class BoatController : MonoBehaviour
 
 	private void UpdatePlayerNotInBoatState()
 	{
+		// Set the anchor to be active
+		if (!anchorObject.activeSelf)
+		{
+			anchorObject.SetActive(true);
+		}
+
 		if (PlayerMovement.Instance.state == PlayerMovement.PlayerState.BOAT)
 		{
+			anchorObject.SetActive(false);
 			State = BoatState.IN_SHALLOW_WATER;
 		}
 	}
