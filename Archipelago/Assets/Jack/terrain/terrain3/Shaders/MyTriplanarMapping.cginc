@@ -5,15 +5,29 @@
 
 #include "My Lighting Input.cginc"
 
-sampler2D _MOHSMap;
-sampler2D _TopMainTex, _TopMOHSMap, _TopNormalMap;
-sampler2D _SandMainTex, _SandMOHSMap, _SandNormalMap;
-sampler2D _Control, _Splat0, _Splat1, _Splat2, _Splat3;
+sampler2D _MOHSMap, _TopMOHSMap, _SandMOHSMap;
+sampler2D _TopMainTex, _TopNormalMap;
+sampler2D _SandMainTex, _SandNormalMap;
+sampler2D _Control;
 
 float _MapScale;
 
 float _BlendOffset, _BlendExponent, _BlendHeightStrength;
 
+
+
+//Texture2D splat0;
+//Texture2D splat01;
+//Texture2D splat02;
+//Texture2D splat03;
+//Texture2D splat04;
+//SamplerState sampler_Splats;
+
+UNITY_DECLARE_TEX2D(splat0);
+UNITY_DECLARE_TEX2D_NOSAMPLER(splat01);
+UNITY_DECLARE_TEX2D_NOSAMPLER(splat02);
+UNITY_DECLARE_TEX2D_NOSAMPLER(splat03);
+UNITY_DECLARE_TEX2D_NOSAMPLER(splat04);
 
 
 float2 uv_Control : TEXCOORD0;
@@ -74,54 +88,66 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 	TriplanarUV triUV = GetTriplanarUV(parameters);
 	
 
-	float3 y = 0;
-	if (surface.worldNormal.y > .8f)	//top surface
+
+
+	float3 albedoX = float3(0,0,0);
+	float3 albedoY = float3(0,0,0);
+	float3 albedoZ = float3(0,0,0);
+
+	float4 mohsX = float4(0,0,0,0);
+	float4 mohsY = float4(0,0,0,0);
+	float4 mohsZ = float4(0,0,0,0);
+
+	float3 tangentNormalX = float3(0,0,0);
+	float4 rawNormalY = float4(0,0,0,0);
+	float3 tangentNormalZ = float3(0,0,0);
+
+
+	if (parameters.normal.y > .8f)	//top surface
 	{
-		if (surface.worldPos.y < 35)					//sand
+		if (parameters.position.y < 35)					//sand
 		{
+			albedoX = tex2D(_SandMainTex, triUV.x).rgb;
+			albedoY = tex2D(_SandMainTex, triUV.y).rgb;
+			albedoZ = tex2D(_SandMainTex, triUV.z).rgb;
 
-		
-			float3 albedoX = tex2D(_SandMainTex, triUV.x).rgb;
-			float3 albedoY = tex2D(_SandMainTex, triUV.y).rgb;
-			float3 albedoZ = tex2D(_SandMainTex, triUV.z).rgb;
+			mohsX = tex2D(_SandMOHSMap, triUV.x);
+			mohsY = tex2D(_SandMOHSMap, triUV.y);
+			mohsZ = tex2D(_SandMOHSMap, triUV.z);
 
-			float4 mohsX = tex2D(_SandMOHSMap, triUV.x);
-			float4 mohsY = tex2D(_SandMOHSMap, triUV.y);
-			float4 mohsZ = tex2D(_SandMOHSMap, triUV.z);
-
-			float3 tangentNormalX = UnpackNormal(tex2D(_SandNormalMap, triUV.x));
-			float4 rawNormalY = tex2D(_SandNormalMap, triUV.y);
-			float3 tangentNormalZ = UnpackNormal(tex2D(_SandNormalMap, triUV.z));
+			tangentNormalX = UnpackNormal(tex2D(_SandNormalMap, triUV.x));
+			rawNormalY = tex2D(_SandNormalMap, triUV.y);
+			tangentNormalZ = UnpackNormal(tex2D(_SandNormalMap, triUV.z));
 		}
-		else if (surface.worldNormal.y > .8f)		//grass
+		else if (parameters.normal.y > .8f)		//grass
 		{
-			float3 albedoX = tex2D(_MainTex, triUV.x).rgb;
-			float3 albedoY = tex2D(_MainTex, triUV.y).rgb;
-			float3 albedoZ = tex2D(_MainTex, triUV.z).rgb;
+			albedoX = tex2D(_MainTex, triUV.x).rgb;
+			albedoY = tex2D(_MainTex, triUV.y).rgb;
+			albedoZ = tex2D(_MainTex, triUV.z).rgb;
 
-			float4 mohsX = tex2D(_MOHSMap, triUV.x);
-			float4 mohsY = tex2D(_MOHSMap, triUV.y);
-			float4 mohsZ = tex2D(_MOHSMap, triUV.z);
+			mohsX = tex2D(_MOHSMap, triUV.x);
+			mohsY = tex2D(_MOHSMap, triUV.y);
+			mohsZ = tex2D(_MOHSMap, triUV.z);
 
-			float3 tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
-			float4 rawNormalY = tex2D(_NormalMap, triUV.y);
-			float3 tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
+			tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
+			rawNormalY = tex2D(_NormalMap, triUV.y);
+			tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
 		}
 	}
 	else //side  //rock
 	{
 
-		float3 albedoX = tex2D(_MainTex, triUV.x).rgb;
-		float3 albedoY = tex2D(_MainTex, triUV.y).rgb;
-		float3 albedoZ = tex2D(_MainTex, triUV.z).rgb;
+		albedoX = tex2D(_MainTex, triUV.x).rgb;
+		albedoY = tex2D(_MainTex, triUV.y).rgb;
+		albedoZ = tex2D(_MainTex, triUV.z).rgb;
 
-		float4 mohsX = tex2D(_MOHSMap, triUV.x);
-		float4 mohsY = tex2D(_MOHSMap, triUV.y);
-		float4 mohsZ = tex2D(_MOHSMap, triUV.z);
+		mohsX = tex2D(_MOHSMap, triUV.x);
+		mohsY = tex2D(_MOHSMap, triUV.y);
+		mohsZ = tex2D(_MOHSMap, triUV.z);
 
-		float3 tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
-		float4 rawNormalY = tex2D(_NormalMap, triUV.y);
-		float3 tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
+		tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
+		rawNormalY = tex2D(_NormalMap, triUV.y);
+		tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
 	}
 
 
@@ -167,24 +193,26 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 
 	float3 triW = GetTriplanarWeights(parameters, mohsX.z, mohsY.z, mohsZ.z);
 
+	
+
+
+	fixed4 splat_control = UNITY_SAMPLE_TEX2D(splat0, uv_Control);
+
+	fixed4 col = fixed4(0, 0, 0, 0);
+	col += splat_control.r * UNITY_SAMPLE_TEX2D(splat0, uv_Splat0);
+	col += splat_control.g * UNITY_SAMPLE_TEX2D_SAMPLER(splat01, splat0, uv_Splat1);
+	col += splat_control.b * UNITY_SAMPLE_TEX2D_SAMPLER(splat02, splat0, uv_Splat2);
+	col += splat_control.a * UNITY_SAMPLE_TEX2D_SAMPLER(splat03, splat0, uv_Splat3);
 
 
 
-
-	fixed4 splat_control = tex2D(_Control, uv_Control);
-
-	fixed3 col;
-	col = splat_control.r *  tex2D(_Splat0, uv_Splat0).rgb;
-	col += splat_control.g * tex2D(_Splat1, uv_Splat1).rgb;
-	col += splat_control.b * tex2D(_Splat2, uv_Splat2).rgb;
-	col += splat_control.a * tex2D(_Splat3, uv_Splat3).rgb;
 
 	half4 finalColour = half4(0, 0, 0, 0);
 	half4 color = half4(albedoX * triW.x + albedoY * triW.y + albedoZ * triW.z,1);
 
-	if (col.x > 0.6 || col.y > 0.6 || col.z > 0.6)
+	if (col.x > 0.4 || col.y > 0.4 || col.z > 0.4)
 	{
-		finalColour += half4(col, 1.0f);
+		finalColour += col;
 	}
 	else finalColour += color;
 

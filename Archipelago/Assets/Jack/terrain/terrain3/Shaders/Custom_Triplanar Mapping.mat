@@ -31,6 +31,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7634c03a186c03841a45d4ae95a4c53d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SandMOHSMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SandMainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SandNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TopMOHSMap:
         m_Texture: {fileID: 2800000, guid: 74ca233379e6d2e44a87fa2b5c3f5f0b, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -45,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BlendExponent: 8
-    - _BlendHeightStrength: 0.769
-    - _BlendOffset: 0.25
-    - _MapScale: 0.03
+    - _BlendHeightStrength: 0
+    - _BlendOffset: 0.5
+    - _MapScale: -0.01
     m_Colors: []

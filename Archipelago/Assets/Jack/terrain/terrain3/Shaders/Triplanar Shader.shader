@@ -1,6 +1,8 @@
-﻿Shader "Custom/Triplanar Mapping" {
+﻿Shader "Custom/Triplanar Mapping" 
+{
 
-	Properties {
+	Properties 
+	{
 		[NoScaleOffset] _MainTex ("Albedo", 2D) = "white" {}
 		[NoScaleOffset] _MOHSMap ("MOHS", 2D) = "white" {}
 		[NoScaleOffset] _NormalMap ("Normals", 2D) = "white" {}
@@ -9,6 +11,12 @@
 		[NoScaleOffset] _TopMOHSMap ("Top MOHS", 2D) = "white" {}
 		[NoScaleOffset] _TopNormalMap ("Top Normals", 2D) = "white" {}
 
+		[NoScaleOffset] _SandMainTex("Sand Albedo", 2D) = "white" {}
+		[NoScaleOffset] _SandMOHSMap("Sand MOHS", 2D) = "white" {}
+		[NoScaleOffset] _SandNormalMap("Sand Normals", 2D) = "white" {}
+
+
+
 		_MapScale ("Map Scale", Float) = 1
 
 		_BlendOffset ("Blend Offset", Range(0, 0.5)) = 0.25
@@ -16,10 +24,13 @@
 		_BlendHeightStrength ("Blend Height Strength", Range(0, 0.99)) = 0.5
 	}
 
-	SubShader {
+	SubShader 
+	{
 
-		Pass {
-			Tags {
+		Pass 
+		{
+			Tags 
+			{
 				"LightMode" = "ForwardBase"
 			}
 
@@ -44,8 +55,10 @@
 			ENDCG
 		}
 
-		Pass {
-			Tags {
+		Pass 
+		{
+			Tags 
+			{
 				"LightMode" = "ForwardAdd"
 			}
 
@@ -70,8 +83,10 @@
 			ENDCG
 		}
 
-		Pass {
-			Tags {
+		Pass 
+		{
+			Tags 
+			{
 				"LightMode" = "Deferred"
 			}
 
@@ -96,8 +111,10 @@
 			ENDCG
 		}
 
-		Pass {
-			Tags {
+		Pass
+		{
+			Tags 
+			{
 				"LightMode" = "ShadowCaster"
 			}
 
@@ -116,8 +133,10 @@
 			ENDCG
 		}
 
-		Pass {
-			Tags {
+		Pass 
+		{
+			Tags 
+			{
 				"LightMode" = "Meta"
 			}
 

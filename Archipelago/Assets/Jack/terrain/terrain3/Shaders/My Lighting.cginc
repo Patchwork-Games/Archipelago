@@ -7,9 +7,11 @@
 	#define ALBEDO_FUNCTION GetAlbedo
 #endif
 
-void ComputeVertexLightColor (inout InterpolatorsVertex i) {
+void ComputeVertexLightColor (inout InterpolatorsVertex i) 
+{
 	#if defined(VERTEXLIGHT_ON)
-		i.vertexLightColor = Shade4PointLights(
+		i.vertexLightColor = Shade4PointLights
+		(
 			unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
 			unity_LightColor[0].rgb, unity_LightColor[1].rgb,
 			unity_LightColor[2].rgb, unity_LightColor[3].rgb,
@@ -18,12 +20,13 @@ void ComputeVertexLightColor (inout InterpolatorsVertex i) {
 	#endif
 }
 
-float3 CreateBinormal (float3 normal, float3 tangent, float binormalSign) {
-	return cross(normal, tangent.xyz) *
-		(binormalSign * unity_WorldTransformParams.w);
+float3 CreateBinormal (float3 normal, float3 tangent, float binormalSign) 
+{
+	return cross(normal, tangent.xyz) *	(binormalSign * unity_WorldTransformParams.w);
 }
 
-InterpolatorsVertex MyVertexProgram (VertexData v) {
+InterpolatorsVertex MyVertexProgram (VertexData v) 
+{
 	InterpolatorsVertex i;
 	UNITY_INITIALIZE_OUTPUT(InterpolatorsVertex, i);
 	UNITY_SETUP_INSTANCE_ID(v);
@@ -75,7 +78,8 @@ InterpolatorsVertex MyVertexProgram (VertexData v) {
 			v.tangent.xyz = normalize(v.tangent.xyz);
 			v.normal = normalize(v.normal);
 		#endif
-		float3x3 objectToTangent = float3x3(
+		float3x3 objectToTangent = float3x3
+		(
 			v.tangent.xyz,
 			cross(v.normal, v.tangent.xyz) * v.tangent.w,
 			v.normal
@@ -86,7 +90,8 @@ InterpolatorsVertex MyVertexProgram (VertexData v) {
 	return i;
 }
 
-float FadeShadows (Interpolators i, float attenuation) {
+float FadeShadows (Interpolators i, float attenuation) 
+{
 	#if HANDLE_SHADOWS_BLENDING_IN_GI || ADDITIONAL_MASKED_DIRECTIONAL_SHADOWS
 		// UNITY_LIGHT_ATTENUATION doesn't fade shadows for us.
 		#if ADDITIONAL_MASKED_DIRECTIONAL_SHADOWS
@@ -107,7 +112,8 @@ float FadeShadows (Interpolators i, float attenuation) {
 	return attenuation;
 }
 
-UnityLight CreateLight (Interpolators i) {
+UnityLight CreateLight (Interpolators i) 
+{
 	UnityLight light;
 
 	#if defined(DEFERRED_PASS) || SUBTRACTIVE_LIGHTING
@@ -129,10 +135,8 @@ UnityLight CreateLight (Interpolators i) {
 	return light;
 }
 
-float3 BoxProjection (
-	float3 direction, float3 position,
-	float4 cubemapPosition, float3 boxMin, float3 boxMax
-) {
+float3 BoxProjection (float3 direction, float3 position,float4 cubemapPosition, float3 boxMin, float3 boxMax) 
+{
 	#if UNITY_SPECCUBE_BOX_PROJECTION
 		UNITY_BRANCH
 		if (cubemapPosition.w > 0) {
@@ -145,9 +149,8 @@ float3 BoxProjection (
 	return direction;
 }
 
-void ApplySubtractiveLighting (
-	Interpolators i, inout UnityIndirect indirectLight
-) {
+void ApplySubtractiveLighting (	Interpolators i, inout UnityIndirect indirectLight)
+{
 	#if SUBTRACTIVE_LIGHTING
 		UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos.xyz);
 		attenuation = FadeShadows(i, attenuation);
@@ -163,9 +166,8 @@ void ApplySubtractiveLighting (
 	#endif
 }
 
-UnityIndirect CreateIndirectLight (
-	Interpolators i, float3 viewDir, SurfaceData surface
-) {
+UnityIndirect CreateIndirectLight (	Interpolators i, float3 viewDir, SurfaceData surface) 
+{
 	UnityIndirect indirectLight;
 	indirectLight.diffuse = 0;
 	indirectLight.specular = 0;
@@ -285,11 +287,7 @@ void InitializeFragmentNormal(inout Interpolators i) {
 			float3 binormal = i.binormal;
 		#endif
 		
-		i.normal = normalize(
-			tangentSpaceNormal.x * i.tangent +
-			tangentSpaceNormal.y * binormal +
-			tangentSpaceNormal.z * i.normal
-		);
+		i.normal = normalize(tangentSpaceNormal.x * i.tangent +	tangentSpaceNormal.y * binormal + tangentSpaceNormal.z * i.normal);
 	#else
 		i.normal = normalize(i.normal);
 	#endif
@@ -413,7 +411,8 @@ struct FragmentOutput {
 	#endif
 };
 
-FragmentOutput MyFragmentProgram (Interpolators i) {
+FragmentOutput MyFragmentProgram (Interpolators i)
+{
 	UNITY_SETUP_INSTANCE_ID(i);
 	#if defined(LOD_FADE_CROSSFADE)
 		UnityApplyDitherCrossFade(i.vpos);

@@ -73,7 +73,8 @@ struct VertexData {
 	float2 uv2 : TEXCOORD2;
 };
 
-struct InterpolatorsVertex {
+struct InterpolatorsVertex 
+{
 	UNITY_VERTEX_INPUT_INSTANCE_ID
 	float4 pos : SV_POSITION;
 
@@ -117,7 +118,8 @@ struct InterpolatorsVertex {
 	#endif
 };
 
-struct Interpolators {
+struct Interpolators 
+{
 	UNITY_VERTEX_INPUT_INSTANCE_ID
 	#if defined(LOD_FADE_CROSSFADE)
 		UNITY_VPOS_TYPE vpos : VPOS;
@@ -169,7 +171,8 @@ struct Interpolators {
 	#endif
 };
 
-float4 GetDefaultUV (Interpolators i) {
+float4 GetDefaultUV (Interpolators i) 
+{
 	#if defined(NO_DEFAULT_UV)
 		return float4(0, 0, 0, 0);
 	#else
@@ -181,7 +184,8 @@ float4 GetDefaultUV (Interpolators i) {
 	#define UV_FUNCTION GetDefaultUV
 #endif
 
-float GetDetailMask (Interpolators i) {
+float GetDetailMask (Interpolators i) 
+{
 	#if defined (_DETAIL_MASK)
 		return tex2D(_DetailMask, UV_FUNCTION(i).xy).a;
 	#else
@@ -189,7 +193,8 @@ float GetDetailMask (Interpolators i) {
 	#endif
 }
 
-float3 GetAlbedo (Interpolators i) {
+float3 GetAlbedo (Interpolators i) 
+{
 	float3 albedo =
 		tex2D(_MainTex, UV_FUNCTION(i).xy).rgb * UNITY_ACCESS_INSTANCED_PROP(InstanceProperties, _Color).rgb;
 	#if defined (_DETAIL_ALBEDO_MAP)
@@ -199,7 +204,8 @@ float3 GetAlbedo (Interpolators i) {
 	return albedo;
 }
 
-float GetAlpha (Interpolators i) {
+float GetAlpha (Interpolators i) 
+{
 	float alpha = UNITY_ACCESS_INSTANCED_PROP(InstanceProperties, _Color).a;
 	#if !defined(_SMOOTHNESS_ALBEDO)
 		alpha *= tex2D(_MainTex, UV_FUNCTION(i).xy).a;
@@ -207,23 +213,22 @@ float GetAlpha (Interpolators i) {
 	return alpha;
 }
 
-float3 GetTangentSpaceNormal (Interpolators i) {
+float3 GetTangentSpaceNormal (Interpolators i) 
+{
 	float3 normal = float3(0, 0, 1);
 	#if defined(_NORMAL_MAP)
 		normal = UnpackScaleNormal(tex2D(_NormalMap, UV_FUNCTION(i).xy), _BumpScale);
 	#endif
 	#if defined(_DETAIL_NORMAL_MAP)
-		float3 detailNormal =
-			UnpackScaleNormal(
-				tex2D(_DetailNormalMap, UV_FUNCTION(i).zw), _DetailBumpScale
-			);
+		float3 detailNormal = UnpackScaleNormal(tex2D(_DetailNormalMap, UV_FUNCTION(i).zw), _DetailBumpScale);
 		detailNormal = lerp(float3(0, 0, 1), detailNormal, GetDetailMask(i));
 		normal = BlendNormals(normal, detailNormal);
 	#endif
 	return normal;
 }
 
-float GetMetallic (Interpolators i) {
+float GetMetallic (Interpolators i) 
+{
 	#if defined(_METALLIC_MAP)
 		return tex2D(_MetallicMap, UV_FUNCTION(i).xy).r;
 	#else
@@ -231,7 +236,8 @@ float GetMetallic (Interpolators i) {
 	#endif
 }
 
-float GetSmoothness (Interpolators i) {
+float GetSmoothness (Interpolators i) 
+{
 	float smoothness = 1;
 	#if defined(_SMOOTHNESS_ALBEDO)
 		smoothness = tex2D(_MainTex, UV_FUNCTION(i).xy).a;
@@ -241,7 +247,8 @@ float GetSmoothness (Interpolators i) {
 	return smoothness * _Smoothness;
 }
 
-float GetOcclusion (Interpolators i) {
+float GetOcclusion (Interpolators i) 
+{
 	#if defined(_OCCLUSION_MAP)
 		return lerp(1, tex2D(_OcclusionMap, UV_FUNCTION(i).xy).g, _OcclusionStrength);
 	#else
@@ -249,7 +256,8 @@ float GetOcclusion (Interpolators i) {
 	#endif
 }
 
-float3 GetEmission (Interpolators i) {
+float3 GetEmission (Interpolators i) 
+{
 	#if defined(FORWARD_BASE_PASS) || defined(DEFERRED_PASS)
 		#if defined(_EMISSION_MAP)
 			return tex2D(_EmissionMap, UV_FUNCTION(i).xy) * _Emission;
