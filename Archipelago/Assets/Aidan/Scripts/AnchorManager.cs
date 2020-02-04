@@ -5,8 +5,8 @@ using UnityEngine;
 public class AnchorManager : MonoBehaviour
 {
 	[SerializeField] private GameObject boatObject = null;
+	[SerializeField]private Vector3 offsetFromBoat = Vector3.zero;
 	private Transform originalParent = null;
-	private Vector3 offsetFromBoat = Vector3.zero;
 
 	private void Awake()
 	{
