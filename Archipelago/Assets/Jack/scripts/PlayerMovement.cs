@@ -291,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("ChargingThrow", false);
 
                     BoatButtonGuide = false;
-                    if (!BoatButtonImage) BoatButtonImage.enabled = false;
+                    if (BoatButtonImage) BoatButtonImage.enabled = false;
                     break;
                 }
 
@@ -330,14 +330,18 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("BoatTriggerBox"))
         {
             BoatButtonGuide = false;
-            if (!BoatButtonImage) BoatButtonImage.enabled = false;
+            if (BoatButtonImage) BoatButtonImage.enabled = false;
         }
     }
 
 
     private void LateUpdate()
     {
-        if (BoatButtonGuide) BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
+        if (BoatButtonGuide)
+        {
+            BoatButtonImage.transform.position = transform.position + new Vector3(0,5,0);
+            BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
+        }
     }
 
 
