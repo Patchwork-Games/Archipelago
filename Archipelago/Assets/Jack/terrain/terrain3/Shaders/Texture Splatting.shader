@@ -1,8 +1,10 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Custom/Texture Splatting" {
+Shader "Custom/Texture Splatting" 
+{
 
-	Properties {
+	Properties 
+	{
 		_MainTex ("Splat Map", 2D) = "white" {}
 		[NoScaleOffset] _Texture1 ("Texture 1", 2D) = "white" {}
 		[NoScaleOffset] _Texture2 ("Texture 2", 2D) = "white" {}
@@ -10,9 +12,11 @@ Shader "Custom/Texture Splatting" {
 		[NoScaleOffset] _Texture4 ("Texture 4", 2D) = "white" {}
 	}
 
-	SubShader {
+	SubShader 
+	{
 
-		Pass {
+		Pass 
+		{
 			CGPROGRAM
 
 			#pragma vertex MyVertexProgram
@@ -25,18 +29,21 @@ Shader "Custom/Texture Splatting" {
 
 			sampler2D _Texture1, _Texture2, _Texture3, _Texture4;
 
-			struct VertexData {
+			struct VertexData 
+			{
 				float4 position : POSITION;
 				float2 uv : TEXCOORD0;
 			};
 
-			struct Interpolators {
+			struct Interpolators 
+			{
 				float4 position : SV_POSITION;
 				float2 uv : TEXCOORD0;
 				float2 uvSplat : TEXCOORD1;
 			};
 
-			Interpolators MyVertexProgram (VertexData v) {
+			Interpolators MyVertexProgram (VertexData v) 
+			{
 				Interpolators i;
 				i.position = UnityObjectToClipPos(v.position);
 				i.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -44,7 +51,8 @@ Shader "Custom/Texture Splatting" {
 				return i;
 			}
 
-			float4 MyFragmentProgram (Interpolators i) : SV_TARGET {
+			float4 MyFragmentProgram (Interpolators i) : SV_TARGET 
+			{
 				float4 splat = tex2D(_MainTex, i.uvSplat);
 				return
 					tex2D(_Texture1, i.uv) * splat.r +

@@ -3,19 +3,26 @@
 
 	Properties 
 	{
-		[NoScaleOffset] _MainTex ("Albedo", 2D) = "white" {}
-		[NoScaleOffset] _MOHSMap ("MOHS", 2D) = "white" {}
-		[NoScaleOffset] _NormalMap ("Normals", 2D) = "white" {}
+		[NoScaleOffset] _TopMainTex("Grass Albedo", 2D) = "white" {}
+		[NoScaleOffset] _TopMOHSMap("Grass MOHS", 2D) = "white" {}
+		[NoScaleOffset] _TopNormalMap("Grass Normals", 2D) = "white" {}
 
-		[NoScaleOffset] _TopMainTex ("Top Albedo", 2D) = "white" {}
-		[NoScaleOffset] _TopMOHSMap ("Top MOHS", 2D) = "white" {}
-		[NoScaleOffset] _TopNormalMap ("Top Normals", 2D) = "white" {}
+
+		[NoScaleOffset] _MainTex ("Rock Albedo", 2D) = "white" {}
+		[NoScaleOffset] _MOHSMap ("Rock MOHS", 2D) = "white" {}
+		[NoScaleOffset] _NormalMap ("Rock Normals", 2D) = "white" {}
+
+
 
 		[NoScaleOffset] _SandMainTex("Sand Albedo", 2D) = "white" {}
 		[NoScaleOffset] _SandMOHSMap("Sand MOHS", 2D) = "white" {}
 		[NoScaleOffset] _SandNormalMap("Sand Normals", 2D) = "white" {}
 
-
+		[HideInInspector]_Control("Control (RGBA)", 2D) = "red" {}
+		[HideInInspector]_Splat3("Layer 3 (A)", 2D) = "white" {}
+		[HideInInspector]_Splat2("Layer 2 (B)", 2D) = "white" {}
+		[HideInInspector]_Splat1("Layer 1 (G)", 2D) = "white" {}
+		[HideInInspector]_Splat0("Layer 0 (R)", 2D) = "white" {}
 
 		_MapScale ("Map Scale", Float) = 1
 

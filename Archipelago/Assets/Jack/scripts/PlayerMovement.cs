@@ -77,6 +77,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         controls = new InputMaster();
+        
+    }
+
+
+    private void OnEnable()
+    {
         controls.Player.Movement.performed += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
@@ -87,7 +93,24 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.XButton.canceled += context => StopRunButton();
         controls.Player.BButton.performed += context => ThrowButton();
         controls.Player.BButton.canceled += context => StopThrowButton();
+        controls.Enable();
     }
+
+    private void OnDisable()
+    {
+        controls.Player.Movement.performed -= context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.Movement.canceled -= context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.performed -= context => camMoveDirection = context.ReadValue<Vector2>();
+        controls.Player.CameraMovement.canceled -= context => camMoveDirection = context.ReadValue<Vector2>();
+        controls.Player.Jump.performed -= context => JumpButton();
+        controls.Player.Interact.performed -= context => InteractButton();
+        controls.Player.XButton.performed -= context => RunButton();
+        controls.Player.XButton.canceled -= context => StopRunButton();
+        controls.Player.BButton.performed -= context => ThrowButton();
+        controls.Player.BButton.canceled -= context => StopThrowButton();
+        controls.Disable();
+    }
+
 
 
     void InteractButton()
@@ -124,15 +147,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
 
 
     private void Start()

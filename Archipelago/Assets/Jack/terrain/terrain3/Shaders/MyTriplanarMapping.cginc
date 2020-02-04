@@ -208,7 +208,7 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 
 
 
-	surface.albedo		= finalColour;
+	surface.albedo		= col;
 	surface.metallic	= 0;
 	surface.occlusion	= 1;
 	surface.smoothness	= 0;
