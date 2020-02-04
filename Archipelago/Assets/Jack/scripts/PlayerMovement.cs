@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
     private bool run = false;
     public bool inTalkDistance = false;
-    
+    [SerializeField] private Canvas CollectableUI = null;
 
 
     //jumping variables
@@ -96,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.XButton.canceled += context => StopRunButton();
         controls.Player.BButton.performed += context => ThrowButton();
         controls.Player.BButton.canceled += context => StopThrowButton();
+        controls.Player.YButton.performed += context => YButton();
+        controls.Player.YButton.canceled += context => StopYButton();
         controls.Enable();
     }
 
@@ -111,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.XButton.canceled -= context => StopRunButton();
         controls.Player.BButton.performed -= context => ThrowButton();
         controls.Player.BButton.canceled -= context => StopThrowButton();
+        controls.Player.YButton.performed -= context => YButton();
+        controls.Player.YButton.canceled -= context => StopYButton();
         controls.Disable();
     }
 
@@ -148,7 +152,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    void YButton()
+    {
+        if (CollectableUI) CollectableUI.enabled = true;
+        else Debug.Log("Collectable UI not attached to player");
+    }
 
+    void StopYButton()
+    {
+        if (CollectableUI) CollectableUI.enabled = false;
+        else Debug.Log("Collectable UI not attached to player");
+    }
 
 
 

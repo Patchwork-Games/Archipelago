@@ -172,8 +172,8 @@ void MyTriPlanarSurfaceFunction(inout SurfaceData surface, SurfaceParameters par
 	fixed4 col = fixed4(0, 0, 0, 0);
 	col += splat_control.r * UNITY_SAMPLE_TEX2D(_Splat0, uv_Splat0);
 	col += splat_control.g * UNITY_SAMPLE_TEX2D_SAMPLER(_Splat1, _Splat0, uv_Splat1);
-	col += splat_control.b * UNITY_SAMPLE_TEX2D_SAMPLER(_Splat2, _Splat0, uv_Splat2);
-	col += splat_control.a * UNITY_SAMPLE_TEX2D_SAMPLER(_Splat3, _Splat0, uv_Splat3);
+	col += splat_control.b * UNITY_SAMPLE_TEX2D_SAMPLER(_Splat2, _Splat1, uv_Splat2);
+	col += splat_control.a * UNITY_SAMPLE_TEX2D_SAMPLER(_Splat3, _Splat2, uv_Splat3);
 
 
 
