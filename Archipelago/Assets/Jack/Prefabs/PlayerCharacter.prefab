@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534978936770115344}
-  m_LocalRotation: {x: -0, y: 0.98884463, z: -0, w: -0.14895058}
+  m_LocalRotation: {x: 0, y: 0.988845, z: -0, w: -0.14894837}
   m_LocalPosition: {x: 147.9, y: 47.3, z: 189.9}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -78,6 +78,7 @@ MonoBehaviour:
   controller: {fileID: 1534978936770115345}
   interact: 0
   inTalkDistance: 0
+  CollectableUI: {fileID: 0}
   isGrounded: 0
   groundDistance: 0.4
   gravity: -55.81

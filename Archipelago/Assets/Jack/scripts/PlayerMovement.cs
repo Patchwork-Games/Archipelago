@@ -191,6 +191,11 @@ public class PlayerMovement : MonoBehaviour
                     if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
                     {
                         isGrounded = true;
+                        if (jumps == 0)
+                        {
+                            jumpParticle.transform.position = transform.position;
+                            jumpParticle.Play();
+                        }
                     }
                     else 
                     {
@@ -465,9 +470,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void ChangeCamera(CinemachineFreeLook cam, bool above)
+    public void ChangeCamera(CinemachineFreeLook cam, bool raise)
     {
-        if (above)
+        if (raise)
         {
             cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
         }
@@ -478,9 +483,9 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void ChangeCamera(CinemachineVirtualCamera cam, bool above)
+    public void ChangeCamera(CinemachineVirtualCamera cam, bool raise)
     {
-        if (above)
+        if (raise)
         {
             cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
         }
