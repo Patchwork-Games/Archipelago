@@ -7,8 +7,6 @@ public class UpdateCollectable : MonoBehaviour
 {
     private void OnEnable()
     {
-        Debug.Log("HI");
-
-        GetComponent<TextMeshProUGUI>().text = "HI";
+        GetComponent<TextMeshProUGUI>().text = "1/1";
     }
 }
