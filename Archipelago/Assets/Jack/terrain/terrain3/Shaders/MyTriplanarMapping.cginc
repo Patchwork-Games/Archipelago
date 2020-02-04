@@ -6,22 +6,14 @@
 #include "My Lighting Input.cginc"
 
 sampler2D _MOHSMap, _TopMOHSMap, _SandMOHSMap;
-sampler2D _TopMainTex, _TopNormalMap;
 sampler2D _SandMainTex, _SandNormalMap;
+sampler2D _TopMainTex, _TopNormalMap;
 sampler2D _Control;
 
 float _MapScale;
 
 float _BlendOffset, _BlendExponent, _BlendHeightStrength;
 
-
-
-//Texture2D splat0;
-//Texture2D splat01;
-//Texture2D splat02;
-//Texture2D splat03;
-//Texture2D splat04;
-//SamplerState sampler_Splats;
 
 UNITY_DECLARE_TEX2D(splat0);
 UNITY_DECLARE_TEX2D_NOSAMPLER(splat01);
@@ -103,9 +95,10 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 	float3 tangentNormalZ = float3(0,0,0);
 
 
+
 	if (parameters.normal.y > .8f)	//top surface
 	{
-		if (parameters.position.y < 35)					//sand
+		if (parameters.position.y < 35)		//sand
 		{
 			albedoX = tex2D(_SandMainTex, triUV.x).rgb;
 			albedoY = tex2D(_SandMainTex, triUV.y).rgb;
@@ -119,19 +112,19 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 			rawNormalY = tex2D(_SandNormalMap, triUV.y);
 			tangentNormalZ = UnpackNormal(tex2D(_SandNormalMap, triUV.z));
 		}
-		else if (parameters.normal.y > .8f)		//grass
+		else  //grass
 		{
-			albedoX = tex2D(_MainTex, triUV.x).rgb;
-			albedoY = tex2D(_MainTex, triUV.y).rgb;
-			albedoZ = tex2D(_MainTex, triUV.z).rgb;
+			albedoX = tex2D(_TopMainTex, triUV.x).rgb;
+			albedoY = tex2D(_TopMainTex, triUV.y).rgb;
+			albedoZ = tex2D(_TopMainTex, triUV.z).rgb;
 
 			mohsX = tex2D(_MOHSMap, triUV.x);
 			mohsY = tex2D(_MOHSMap, triUV.y);
 			mohsZ = tex2D(_MOHSMap, triUV.z);
 
-			tangentNormalX = UnpackNormal(tex2D(_NormalMap, triUV.x));
-			rawNormalY = tex2D(_NormalMap, triUV.y);
-			tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
+			tangentNormalX = UnpackNormal(tex2D(_TopNormalMap, triUV.x));
+			rawNormalY					= tex2D(_TopNormalMap, triUV.y);
+			tangentNormalZ = UnpackNormal(tex2D(_TopNormalMap, triUV.z));
 		}
 	}
 	else //side  //rock
@@ -164,14 +157,7 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 	//float4 rawNormalY = tex2D(_NormalMap, triUV.y);
 	//float3 tangentNormalZ = UnpackNormal(tex2D(_NormalMap, triUV.z));
 
-	#if defined(_SEPARATE_TOP_MAPS)
-		if (parameters.normal.y > 0) 
-		{
-			albedoY = tex2D(_TopMainTex, triUV.y).rgb;
-			mohsY = tex2D(_TopMOHSMap, triUV.y);
-			rawNormalY = tex2D(_TopNormalMap, triUV.y);
-		}
-	#endif
+	
 	float3 tangentNormalY = UnpackNormal(rawNormalY);
 
 	if (parameters.normal.x < 0) 
@@ -214,7 +200,7 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 	{
 		finalColour += col;
 	}
-	else finalColour += color;
+	else finalColour += saturate(color);
 
 
 
@@ -222,20 +208,18 @@ void MyTriPlanarSurfaceFunction (inout SurfaceData surface, SurfaceParameters pa
 
 
 
-	surface.albedo = finalColour;
+	surface.albedo		= finalColour;
+	surface.metallic	= 0;
+	surface.occlusion	= 1;
+	surface.smoothness	= 0;
 
 
 
 
-
-
-
-	//surface.albedo = albedoX * triW.x + albedoY * triW.y + albedoZ * triW.z;
-	
-	float4 mohs = mohsX * triW.x + mohsY * triW.y + mohsZ * triW.z;
-	/*surface.metallic = mohs.x;
-	surface.occlusion = mohs.y;
-	surface.smoothness = mohs.a;*/
+	//float4 mohs = mohsX * triW.x + mohsY * triW.y + mohsZ * triW.z;
+	//surface.metallic = mohs.x;
+	//surface.occlusion = mohs.y;
+	//surface.smoothness = mohs.a;
 
 	surface.normal = normalize(	worldNormalX * triW.x + worldNormalY * triW.y + worldNormalZ * triW.z);
 }

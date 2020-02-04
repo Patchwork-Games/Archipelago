@@ -63,7 +63,8 @@ float3 _Emission;
 
 float _Cutoff;
 
-struct VertexData {
+struct VertexData 
+{
 	UNITY_VERTEX_INPUT_INSTANCE_ID
 	float4 vertex : POSITION;
 	float3 normal : NORMAL;
@@ -195,8 +196,7 @@ float GetDetailMask (Interpolators i)
 
 float3 GetAlbedo (Interpolators i) 
 {
-	float3 albedo =
-		tex2D(_MainTex, UV_FUNCTION(i).xy).rgb * UNITY_ACCESS_INSTANCED_PROP(InstanceProperties, _Color).rgb;
+	float3 albedo = tex2D(_MainTex, UV_FUNCTION(i).xy).rgb * UNITY_ACCESS_INSTANCED_PROP(InstanceProperties, _Color).rgb;
 	#if defined (_DETAIL_ALBEDO_MAP)
 		float3 details = tex2D(_DetailTex, UV_FUNCTION(i).zw) * unity_ColorSpaceDouble;
 		albedo = lerp(albedo, albedo * details, GetDetailMask(i));

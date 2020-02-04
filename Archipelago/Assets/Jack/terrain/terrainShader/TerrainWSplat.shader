@@ -98,7 +98,7 @@
 				}
 				else 
 				{
-					y = tex2D(_Top, frac(IN.worldPos.zx * .02)) * abs(IN.worldNormal.y);	//grass
+					y = tex2D(_Top, frac(IN.worldPos.zx * .01)) * abs(IN.worldNormal.y);	//grass
 				}
 			}	
 			else

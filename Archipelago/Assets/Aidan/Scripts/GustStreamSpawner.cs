@@ -31,6 +31,10 @@ public class GustStreamSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+		// Only do this if the boat is in the ocean
+		if (boatObject.GetComponent<BoatController>().State != BoatController.BoatState.IN_OCEAN)
+			return;
+
 		// Set a time for the next gust stream to spawn randomly between 2 values
 		if (!timeSet)
 		{
@@ -76,5 +80,6 @@ public class GustStreamSpawner : MonoBehaviour
 		GameObject newGustStream = gustStreamPool.RetrieveInstance();
 		newGustStream.transform.position = randomNode.position;
 		newGustStream.GetComponent<GustStreamManager>().gustStreamSpawnerObject = this.gameObject;
+		newGustStream.GetComponent<GustStreamManager>().boat = boatObject.gameObject;
 	}
 }

@@ -10,7 +10,7 @@ public class GustStreamManager : MonoBehaviour
 	public GameObject gustStreamSpawnerObject = null;
 	private Rigidbody rb = null;
 	private bool boatHasEnteredGust = false;
-	private GameObject boat = null;
+	[HideInInspector] public GameObject boat = null;
 	[SerializeField] private float aliveTime = 10f;
 	private float elapsedAliveTime = 0f;
 
@@ -20,7 +20,7 @@ public class GustStreamManager : MonoBehaviour
 		if (other.CompareTag("Boat"))
 		{
 			boatHasEnteredGust = true;
-			boat = other.gameObject;
+			//boat = other.gameObject;
 		}
 	}
 
