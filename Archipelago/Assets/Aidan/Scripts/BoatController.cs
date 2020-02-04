@@ -17,6 +17,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private GameObject anchorObject = null;
 	[SerializeField] private WheelCollider frontLeftW = null, frontRightW = null;
 	[SerializeField] private WheelCollider rearLeftW = null, rearRightW = null;
+	[SerializeField] private WheelCollider sideLeftW = null, sideRightW = null;
 	[SerializeField] private float maxSteerAngle = 30f;
 	[SerializeField] private float turningTime = 1f;
 	[SerializeField] private float motorForce = 50f;
@@ -104,12 +105,16 @@ public class BoatController : MonoBehaviour
 
 		frontLeftW.steerAngle = steeringAngle;
 		frontRightW.steerAngle = steeringAngle;
+		sideLeftW.steerAngle = steeringAngle;
+		sideRightW.steerAngle = steeringAngle;
 	}
 
 	private void Accelerate()
 	{
 		frontLeftW.motorTorque = motorForce;
 		frontRightW.motorTorque = motorForce;
+		sideLeftW.motorTorque = motorForce;
+		sideRightW.motorTorque = motorForce;
 	}
 
 	private void Update()
