@@ -62,16 +62,44 @@ public class BoatController : MonoBehaviour
 		rb.AddForce(transform.forward * gustForce);
 	}
 
+	public void AddImpulse(float impulseForce)
+	{
+		rb.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
+	}
+
 	private void CapVelocity()
 	{
 		rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
+	}
+	private Vector3 GetLateralVelocity()
+	{
+		return Vector3.Dot(transform.right, rb.velocity) * transform.right;
+	}
+
+	private void KillLateralVelocity()
+	{
+		Vector3 impulse = rb.mass * -GetLateralVelocity();
+		rb.AddForce(impulse * 100 * Time.deltaTime);
+		rb.angularVelocity = Vector3.zero;
 	}
 
 	private void Steer()
 	{
 		// Calculate the steering angle
 		lerpTurningTime = Time.deltaTime / turningTime;
-		steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
+		//steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
+		//steeringAngle = maxSteerAngle * movementInput.x;
+
+		if (movementInput.x > 0.1 || movementInput.x < -0.1)
+		{
+			steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
+		}
+		else
+		{
+			steeringAngle = 0;
+		}
+
+
 
 
 		frontLeftW.steerAngle = steeringAngle;
@@ -107,6 +135,8 @@ public class BoatController : MonoBehaviour
 			default:
 				break;
 		}
+
+		
 	}
 
 	private void FixedUpdate()
@@ -129,6 +159,7 @@ public class BoatController : MonoBehaviour
 		}
 
 		CapVelocity();
+		//KillLateralVelocity();
 	}
 
 	private void UpdateInOceanState()
