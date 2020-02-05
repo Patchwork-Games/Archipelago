@@ -58,7 +58,6 @@ public class BoatController : MonoBehaviour
 		{
 			isDashing = true;
 			elapsedDashTime = dashTime;
-			motorForce += dashForce;
 		}
 	}
 
@@ -76,17 +75,6 @@ public class BoatController : MonoBehaviour
 	{
 		rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
 	}
-	private Vector3 GetLateralVelocity()
-	{
-		return Vector3.Dot(transform.right, rb.velocity) * transform.right;
-	}
-
-	private void KillLateralVelocity()
-	{
-		Vector3 impulse = rb.mass * -GetLateralVelocity();
-		rb.AddForce(impulse * 100 * Time.deltaTime);
-		rb.angularVelocity = Vector3.zero;
-	}
 
 	private void Steer()
 	{
@@ -97,7 +85,8 @@ public class BoatController : MonoBehaviour
 
 		if (movementInput.x > 0.1 || movementInput.x < -0.1)
 		{
-			steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
+			//steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
+			steeringAngle = maxSteerAngle * movementInput.x;
 		}
 		else
 		{
@@ -117,8 +106,8 @@ public class BoatController : MonoBehaviour
 	{
 		frontLeftW.motorTorque = motorForce;
 		frontRightW.motorTorque = motorForce;
-		sideLeftW.motorTorque = motorForce;
-		sideRightW.motorTorque = motorForce;
+		//sideLeftW.motorTorque = motorForce;
+		//sideRightW.motorTorque = motorForce;
 	}
 
 	private void Update()
@@ -168,7 +157,6 @@ public class BoatController : MonoBehaviour
 		}
 
 		CapVelocity();
-		//KillLateralVelocity();
 	}
 
 	private void UpdateInOceanState()
@@ -181,7 +169,6 @@ public class BoatController : MonoBehaviour
 			{
 				// Reset the motor force when 
 				isDashing = false;
-				motorForce = originalMotorForce;
 			}
 			else
 			{
