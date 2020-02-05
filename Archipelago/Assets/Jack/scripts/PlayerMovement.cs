@@ -23,8 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim = null;
 
     //camera variables
-    public GameObject mainCamera = null;
-    public ParticleSystem jumpParticle = null;
+    public GameObject CMCamera = null;
     Vector3 camForward = Vector3.zero;
     Vector3 camRight = Vector3.zero;
     Vector2 camMoveDirection = Vector2.zero;
@@ -52,11 +51,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     //jumping variables
+    public ParticleSystem jumpParticle = null;
+    private bool jumpParticlePlayed = false;
     private int jumps = 0;
     private int jumpsMax = 1;
     public bool isGrounded;
     private float distanceGround;
-    [SerializeField] private float groundDistance = 2f;
+    [SerializeField] private float groundDistance = 0.5f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private LayerMask groundMask = ~0;
 
@@ -154,13 +155,22 @@ public class PlayerMovement : MonoBehaviour
 
     void YButton()
     {
-        if (CollectableUI) CollectableUI.enabled = true;
+        if (CollectableUI)
+        {
+            CollectableUI.GetComponent<Animator>().Play("FadeInCollectableUI");
+            StopCoroutine("DisableCollectableUI");
+            CollectableUI.enabled = true;
+        }
         else Debug.Log("Collectable UI not attached to player");
     }
 
     void StopYButton()
     {
-        if (CollectableUI) CollectableUI.enabled = false;
+        if (CollectableUI)
+        {
+            CollectableUI.GetComponent<Animator>().Play("FadeOutCollectableUI");
+            StartCoroutine("DisableCollectableUI");
+        }
         else Debug.Log("Collectable UI not attached to player");
     }
 
@@ -191,15 +201,17 @@ public class PlayerMovement : MonoBehaviour
                     if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
                     {
                         isGrounded = true;
-                        if (jumps == 0)
+                        if (!jumpParticlePlayed)
                         {
-                            jumpParticle.transform.position = transform.position;
+                            jumpParticle.transform.position = transform.position - new Vector3(0,6,0);
                             jumpParticle.Play();
+                            jumpParticlePlayed = true;
                         }
                     }
                     else 
                     {
                         isGrounded = false;
+                        jumpParticlePlayed = false;
                         jumps = 0;
                         anim.SetBool("Falling", true);
                         StopCoroutine("JumpCooldown");
@@ -222,12 +234,12 @@ public class PlayerMovement : MonoBehaviour
                     {
                         Run();
                         anim.SetBool("Running", true);
-                        energyBar.GetComponent<DashMeter>().Discharge();
+                        if(energyBar)energyBar.GetComponent<DashMeter>().Discharge();
                     }
                     else
                     {
                         anim.SetBool("Running", false);
-                        energyBar.GetComponent<DashMeter>().Recharge();
+                        if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
 
                     }
 
@@ -282,8 +294,8 @@ public class PlayerMovement : MonoBehaviour
             //throwing stone
             case PlayerState.TALKING:
                 {
-                    //mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
-                    beginTalkCamPos = mainCamera.transform.position;
+                    //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+                    beginTalkCamPos = CMCamera.transform.position;
                     
                     anim.SetBool("Walking", false);
                     anim.SetBool("Running", false);
@@ -356,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (BoatButtonGuide)
+        if (BoatButtonGuide && BoatButtonImage)
         {
             BoatButtonImage.transform.position = transform.position + new Vector3(0,5,0);
             BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
@@ -373,7 +385,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         //get camera forward
-        camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+        camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
         camForward.y = 0;
         camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
 
@@ -409,16 +421,16 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (camMoveDirection.x != 0)
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
         else
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
-        mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
+        CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
     }
 
 
@@ -428,16 +440,16 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (moveDirection.x != 0)
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 100;
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 100;
         }
         else
         {
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-            mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
         }
 
-        mainCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
+        CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
     }
 
 
@@ -446,7 +458,7 @@ public class PlayerMovement : MonoBehaviour
     void Run()
     {
         //get camera forward
-        camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+        camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
         camForward.y = 0;
         camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
 
@@ -460,6 +472,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    IEnumerator DisableCollectableUI()
+    {
+
+        yield return new WaitForSeconds(1f);
+        CollectableUI.enabled = false;
+
+    }
 
 
     IEnumerator JumpCooldown()
@@ -474,11 +493,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (raise)
         {
-            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
+            cam.Priority = CMCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
         }
         else
         {
-            cam.Priority = mainCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
+            cam.Priority = CMCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
         }
         
     }
@@ -487,11 +506,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (raise)
         {
-            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
+            cam.Priority = CMCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
         }
         else
         {
-            cam.Priority = mainCamera.GetComponent<CinemachineVirtualCamera>().Priority - 1;
+            cam.Priority = CMCamera.GetComponent<CinemachineVirtualCamera>().Priority - 1;
         }
 
     }

@@ -279,8 +279,8 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
         player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
         player.GetComponent<PlayerMovement>().interact = false;
-        player.GetComponent<PlayerMovement>().mainCamera.SetActive(true);
-        player.GetComponent<PlayerMovement>().mainCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
+        player.GetComponent<PlayerMovement>().CMCamera.SetActive(true);
+        player.GetComponent<PlayerMovement>().CMCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
 
     }
 
