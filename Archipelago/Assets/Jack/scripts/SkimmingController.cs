@@ -10,7 +10,9 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private Animator anim = null;
     [SerializeField] private GameObject mainCamera = null;
     [SerializeField] private GameObject stone = null;
-    [SerializeField] private float maxThrowPower = 1000;
+    [SerializeField] private GameObject ChargeParticle = null;
+    [SerializeField] private GameObject FullChargeParticle = null;
+    [SerializeField] private float maxThrowPower = 2000;
     public bool doingThrow = false;
     public bool heldThrow = false;
     private bool chargingThrow = false;
@@ -22,7 +24,6 @@ public class SkimmingController : MonoBehaviour
     private void Start()
     {
         anim.SetBool("ChargingThrow", false);
-        anim.SetBool("Throwing", false);
         chargingThrow = false;
         doingThrow = false;
         heldThrow = false;
@@ -49,17 +50,25 @@ public class SkimmingController : MonoBehaviour
         GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
+        CameraShake.instance.ShakeCamera(.5f, 15, 15);
+        ChargeParticle.GetComponent<ParticleSystem>().Stop();
+        FullChargeParticle.GetComponent<ParticleSystem>().Stop();
     }
 
 
     //charge power of throw
     public void chargeThrow()
-    {
-        throwPower += Time.deltaTime * 300;
+    { 
         if (throwPower > maxThrowPower)
         {
             throwPower = maxThrowPower;
-            //could show sparkle here to show that max power reached
+            //show sparkle here to show that max power reached
+            FullChargeParticle.transform.position = PlayerMovement.Instance.transform.position;
+            FullChargeParticle.GetComponent<ParticleSystem>().Play();
+        }
+        else if(throwPower != maxThrowPower)
+        {
+            throwPower += Time.deltaTime * 600;
         }
     }
 
@@ -70,7 +79,7 @@ public class SkimmingController : MonoBehaviour
     {
         while (chargingThrow)
         {
-            transform.position += Random.insideUnitSphere * (Time.deltaTime * throwPower / 300);
+            transform.position += Random.insideUnitSphere * (Time.deltaTime * throwPower / 500);
 
             yield return new WaitForSeconds(0.02f);
             transform.position = originalPos;
@@ -89,6 +98,8 @@ public class SkimmingController : MonoBehaviour
             anim.SetBool("ChargingThrow", true);
             throwPower = 0;
             originalPos = transform.position;
+            ChargeParticle.transform.position = PlayerMovement.Instance.transform.position - new Vector3(0,1,0); //show particle while charging
+            ChargeParticle.GetComponent<ParticleSystem>().Play();
             StartCoroutine("ShakeCharacter");
         }
 
@@ -101,7 +112,10 @@ public class SkimmingController : MonoBehaviour
 
             Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
             camForward.y = 0;
+
+
             
+
 
             //LookAtMouse();
             chargeThrow();

@@ -17,7 +17,7 @@ public class StoneMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         if (throwPower < 200) throwPower = 200;
-        rb.AddForce(Vector3.Normalize(new Vector3(direction.x, 0, direction.z)) * throwPower);
+        rb.AddForce(Vector3.Normalize(new Vector3(direction.x, 0, direction.z)) * throwPower * 1.5f);
         rb.AddForce(new Vector3(0, 100, 0));
 
     }

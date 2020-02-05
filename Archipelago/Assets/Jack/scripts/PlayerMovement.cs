@@ -16,9 +16,18 @@ public class PlayerMovement : MonoBehaviour
         MOVING,
         THROWING,
         TALKING,
-        BOAT
+        BOAT,
+        FISHING
     }
     public PlayerState state;
+
+    public enum ItemEquipped
+    {
+        SKIMMINGROCK,
+        FISHINGPOLE
+    }
+    public ItemEquipped currentItem;
+
 
     public Animator anim = null;
 
@@ -31,13 +40,19 @@ public class PlayerMovement : MonoBehaviour
     public bool BoatButtonGuide = false;
     [SerializeField] private Canvas BoatButtonImage = null;
 
+
     //movement variables
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
     [SerializeField] private float energy = 0;
+    [SerializeField] private GameObject RunParticle = null;
+    [SerializeField] private GameObject InWaterWalkingParticle = null;
     public GameObject energyBar = null;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
+    private bool inWater = false;
+
+
 
 
     //button variables
@@ -144,7 +159,29 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        if(state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = true;
+        if (state == PlayerState.MOVING)
+        {
+            switch (currentItem)
+            {
+                case ItemEquipped.SKIMMINGROCK:
+                    {
+                        GetComponent<SkimmingController>().heldThrow = true;
+                        break;
+                    }
+                case ItemEquipped.FISHINGPOLE:
+                    {
+                        GetComponent<FishingController>().heldCast = true;
+                        break;
+                    }
+                default:
+                    {
+                        GetComponent<SkimmingController>().heldThrow = true;
+                        break;
+                    }
+            }
+            
+
+        }
     }
 
     void StopThrowButton()
@@ -179,12 +216,27 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         state = PlayerState.MOVING;
+        currentItem = ItemEquipped.SKIMMINGROCK;
 
         controller = GetComponent<CharacterController>();
         anim.SetBool("Walking", false);
         isGrounded = true;
         distanceGround = GetComponent<CharacterController>().bounds.extents.y;
         inTalkDistance = false;
+    }
+
+
+
+    private void Update()
+    {
+        if (transform.position.y < 31)
+        {
+            InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
+            if (!InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Play();
+
+        }
+        else if(InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Stop();
+
     }
 
 
@@ -233,11 +285,19 @@ public class PlayerMovement : MonoBehaviour
                     if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
                     {
                         Run();
-                        anim.SetBool("Running", true);
-                        if(energyBar)energyBar.GetComponent<DashMeter>().Discharge();
+                        if (isGrounded)
+                        {
+                            anim.SetBool("Running", true);
+                            RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
+                            if (!RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Play();
+                            if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
+                        }
+
+                        
                     }
                     else
                     {
+                        if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
                         anim.SetBool("Running", false);
                         if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
 
@@ -250,6 +310,7 @@ public class PlayerMovement : MonoBehaviour
                     //make player jump if enough jumps
                     if (jumps > 0 && jump && !inTalkDistance)
                     {
+                        if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
                         velocity.y = 20f;
                         jumps -= 1;
                         anim.SetBool("Jumping", true);
@@ -288,6 +349,23 @@ public class PlayerMovement : MonoBehaviour
                 }
 
 
+            //fishing
+            case PlayerState.FISHING:
+                {
+                    if (isGrounded)
+                    {
+                        anim.SetBool("Walking", false);
+                        anim.SetBool("Running", false);
+                        anim.SetBool("Jumping", false);
+                        anim.SetBool("Falling", false);
+                        MoveCamera();
+                    }
+                    else
+                    {
+                        state = PlayerState.MOVING;
+                    }
+                    break;
+                }
 
 
 
@@ -346,7 +424,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BoatTriggerBox"))
@@ -354,6 +431,8 @@ public class PlayerMovement : MonoBehaviour
             BoatButtonGuide = true;
             if (BoatButtonImage) BoatButtonImage.enabled = true;
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -363,6 +442,8 @@ public class PlayerMovement : MonoBehaviour
             BoatButtonGuide = false;
             if (BoatButtonImage) BoatButtonImage.enabled = false;
         }
+
+       
     }
 
 
