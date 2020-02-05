@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     //get energy from other script
-                    energy = energyBar.GetComponent<DashMeter>().currentCharge;
+                    if(energyBar)energy = energyBar.GetComponent<DashMeter>().currentCharge;
 
                     //check conditions to run and run if possible
                     if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
