@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 7253530660877323306}
   - component: {fileID: 2885113887473082705}
   - component: {fileID: 5112460043254385963}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rock4_TEST
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock4_TEST (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 456d8e2ebc437d04cba5559ab7217079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 456d8e2ebc437d04cba5559ab7217079,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,6 +262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock4_TEST (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 456d8e2ebc437d04cba5559ab7217079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 456d8e2ebc437d04cba5559ab7217079,
         type: 3}

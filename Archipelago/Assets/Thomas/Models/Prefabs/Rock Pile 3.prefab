@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1484109532237867357}
   - component: {fileID: 360004445646176056}
   - component: {fileID: -3845196307984074119}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rock Pile 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3049008171286376568}
   - component: {fileID: 6272184387522431566}
   - component: {fileID: 303939181939095223}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rock4_TEST (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3_TEST (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5b9639acf264e8d4b895753d592f1505,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5b9639acf264e8d4b895753d592f1505,
         type: 3}
@@ -304,6 +309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3_TEST (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5b9639acf264e8d4b895753d592f1505,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5b9639acf264e8d4b895753d592f1505,
         type: 3}
