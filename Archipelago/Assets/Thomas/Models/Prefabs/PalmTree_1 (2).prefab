@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3267035847629407198}
   - component: {fileID: 9109197239521181479}
   - component: {fileID: -7267413394796836866}
+  - component: {fileID: 4928851487543157524}
+  - component: {fileID: 5243558759845277556}
   m_Layer: 13
   m_Name: PalmTree_1 (2)
   m_TagString: Untagged
@@ -93,3 +95,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020363672, y: 0.172209, z: 0.026831644}
   m_Center: {x: 0.0026522265, y: 0, z: -0.027582785}
+--- !u!65 &4928851487543157524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374231715523513339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.11168068, y: 0.172209, z: 0.11787399}
+  m_Center: {x: 0, y: 0.0000000037252903, z: 0}
+--- !u!205 &5243558759845277556
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374231715523513339}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
