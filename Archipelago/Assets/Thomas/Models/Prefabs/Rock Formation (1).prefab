@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8958851483278828402}
-  m_Layer: 0
+  - component: {fileID: 3712685182594879709}
+  m_Layer: 13
   m_Name: Rock Formation (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,6 +40,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: -5.355}
+--- !u!65 &3712685182594879709
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958851483278828429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7528484, y: 4.361807, z: 4.0078344}
+  m_Center: {x: -2.5409307, y: -1.9829485, z: -2.8652265}
 --- !u!1001 &8958851482278075678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50,6 +64,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock2_TEST (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
@@ -146,6 +165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock2_TEST (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,6 +264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock2_TEST (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
@@ -336,6 +365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock2_TEST (3)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,6 +464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock2_TEST (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
@@ -526,6 +565,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock2_TEST (5)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -620,6 +664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock2_TEST (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
@@ -716,6 +765,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock2_TEST (4)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -810,6 +864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock2_TEST
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d3bf39ed0c15cc842b7c44c301eaa013,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d3bf39ed0c15cc842b7c44c301eaa013,
         type: 3}

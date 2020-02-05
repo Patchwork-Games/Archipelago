@@ -16,6 +16,6 @@ public class SparkleFollow : MonoBehaviour
 
         Vector3 newPos = PlayerMovement.Instance.transform.position;
         newPos.y = transform.position.y;
-        gameObject.transform.SetPositionAndRotation(newPos, Quaternion.identity);
+        transform.SetPositionAndRotation(newPos, transform.rotation);
     }
 }
