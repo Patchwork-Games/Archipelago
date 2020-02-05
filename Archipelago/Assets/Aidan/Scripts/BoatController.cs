@@ -31,6 +31,7 @@ public class BoatController : MonoBehaviour
 	private float elapsedDashTime = 0f;
 	private Rigidbody rb = null;
 	private float lerpTurningTime = 0f;
+	private float originalMotorForce = 0f;
 
 	private void Awake()
 	{
@@ -43,6 +44,8 @@ public class BoatController : MonoBehaviour
 		{
 			Debug.Log("Missing Rigidbody component on BoatController script!");
 		}
+
+		originalMotorForce = motorForce;
 	}
 
 	private void Dash()
@@ -55,6 +58,7 @@ public class BoatController : MonoBehaviour
 		{
 			isDashing = true;
 			elapsedDashTime = dashTime;
+			motorForce += dashForce;
 		}
 	}
 
@@ -177,6 +181,7 @@ public class BoatController : MonoBehaviour
 			{
 				// Reset the motor force when 
 				isDashing = false;
+				motorForce = originalMotorForce;
 			}
 			else
 			{
