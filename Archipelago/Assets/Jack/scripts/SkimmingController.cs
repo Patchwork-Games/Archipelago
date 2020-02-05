@@ -50,7 +50,7 @@ public class SkimmingController : MonoBehaviour
         GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
-        CameraShake.instance.ShakeCamera(.5f, 15, 15);
+        CameraShake.instance.ShakeCamera(.5f, 2, 2);
         ChargeParticle.GetComponent<ParticleSystem>().Stop();
         FullChargeParticle.GetComponent<ParticleSystem>().Stop();
     }

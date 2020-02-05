@@ -229,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < 34.5)
+        if (transform.position.y < 34.5f)
         {
             InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
             if (!InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Play();
