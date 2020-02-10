@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     //camera variables
     public GameObject CMCamera = null;
+    //public GameObject poolCam = null;
     Vector3 camForward = Vector3.zero;
     Vector3 camRight = Vector3.zero;
     Vector2 camMoveDirection = Vector2.zero;
