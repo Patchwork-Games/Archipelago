@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Yellow Note
+  m_Name: Red Note
   m_Shader: {fileID: 210, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHATEST_ON _EMISSION
   m_LightmapFlags: 0
@@ -82,7 +82,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.374
     - _GlossyReflections: 1
-    - _InvFade: 0.8
+    - _InvFade: 3
     - _LightingEnabled: 1
     - _Metallic: 0
     - _Mode: 1
@@ -98,8 +98,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1.1486983, g: 0.97751975, b: 0, a: 1}
-    - _EmissionColor: {r: 1.9766746, g: 1.8835328, b: 0.082792655, a: 1}
+    - _Color: {r: 2.5672705, g: 0.40967083, b: 0.40967083, a: 1}
+    - _EmissionColor: {r: 0.7735849, g: 0.23718417, b: 0.23718406, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
