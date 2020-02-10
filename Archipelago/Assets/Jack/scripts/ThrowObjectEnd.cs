@@ -8,7 +8,7 @@ public class ThrowObjectEnd : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerStateMachine.Instance.GetComponent<SkimmingController>().throwStone();
+        PlayerMovement.Instance.GetComponent<SkimmingController>().throwStone();
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
     }
 
