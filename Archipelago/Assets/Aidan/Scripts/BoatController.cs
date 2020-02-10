@@ -63,12 +63,12 @@ public class BoatController : MonoBehaviour
 
 	public void AddGustForce(float gustForce)
 	{
-		rb.AddForce(transform.forward * gustForce);
+		rb.AddForce(transform.forward * gustForce * Time.deltaTime);
 	}
 
 	public void AddImpulse(float impulseForce)
 	{
-		rb.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
+		rb.AddForce(transform.forward * impulseForce * Time.deltaTime, ForceMode.Impulse);
 	}
 
 	private void CapVelocity()
@@ -79,22 +79,14 @@ public class BoatController : MonoBehaviour
 	private void Steer()
 	{
 		// Calculate the steering angle
-		lerpTurningTime = Time.deltaTime / turningTime;
-		//steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
-		//steeringAngle = maxSteerAngle * movementInput.x;
-
 		if (movementInput.x > 0.1 || movementInput.x < -0.1)
 		{
-			//steeringAngle = Mathf.Lerp(steeringAngle, maxSteerAngle * movementInput.x, lerpTurningTime);
 			steeringAngle = maxSteerAngle * movementInput.x;
 		}
 		else
 		{
 			steeringAngle = 0;
 		}
-
-
-
 
 		frontLeftW.steerAngle = steeringAngle;
 		frontRightW.steerAngle = steeringAngle;
@@ -106,8 +98,6 @@ public class BoatController : MonoBehaviour
 	{
 		frontLeftW.motorTorque = motorForce;
 		frontRightW.motorTorque = motorForce;
-		//sideLeftW.motorTorque = motorForce;
-		//sideRightW.motorTorque = motorForce;
 	}
 
 	private void Update()
@@ -172,7 +162,7 @@ public class BoatController : MonoBehaviour
 			}
 			else
 			{
-				rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+				rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
 			}
 		}
 	}
