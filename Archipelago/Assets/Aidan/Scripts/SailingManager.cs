@@ -5,7 +5,6 @@ using UnityEngine;
 public class SailingManager : MonoBehaviour
 {
     private InputMaster controls = null;
-	[SerializeField] private PlayerMovement playerMovement = null;
     [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float steeringForce = 10f;
 	[SerializeField] private float forceMultiplier = 0f;

@@ -16,10 +16,8 @@ public class BoatController : MonoBehaviour
 
 	[SerializeField] private GameObject anchorObject = null;
 	[SerializeField] private WheelCollider frontLeftW = null, frontRightW = null;
-	[SerializeField] private WheelCollider rearLeftW = null, rearRightW = null;
 	[SerializeField] private WheelCollider sideLeftW = null, sideRightW = null;
 	[SerializeField] private float maxSteerAngle = 30f;
-	[SerializeField] private float turningTime = 1f;
 	[SerializeField] private float motorForce = 50f;
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
@@ -30,7 +28,6 @@ public class BoatController : MonoBehaviour
 	private bool isDashing = false;
 	private float elapsedDashTime = 0f;
 	private Rigidbody rb = null;
-	private float lerpTurningTime = 0f;
 	private float originalMotorForce = 0f;
 
 	private void Awake()

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325f8eaa13b3b0e4597c524873159771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gustForce: 1000
+  gustForce: 10000
   distanceToDespawnAt: 200
   windParticles: {fileID: 897303257669868805}
   gustStreamSpawnerObject: {fileID: 0}
@@ -167,11 +167,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5192939486359281702}
     m_Modifications:
-    - target: {fileID: 8534607055459990372, guid: 87a4d44c552ebc543ad62744032818ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Wind Particle System
-      objectReference: {fileID: 0}
     - target: {fileID: 8534607055459990375, guid: 87a4d44c552ebc543ad62744032818ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 7.0908313
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534607055459990372, guid: 87a4d44c552ebc543ad62744032818ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Wind Particle System
       objectReference: {fileID: 0}
     - target: {fileID: 8534607055459990373, guid: 87a4d44c552ebc543ad62744032818ff,
         type: 3}

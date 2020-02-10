@@ -626,6 +626,132 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MusicKeys"",
+            ""id"": ""374e6e78-1702-4996-a042-be63727bbfff"",
+            ""actions"": [
+                {
+                    ""name"": ""PlaySound"",
+                    ""type"": ""Value"",
+                    ""id"": ""51a0e07c-923e-4990-83eb-e231c17857b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""ArrowKeys"",
+                    ""id"": ""f84485e7-0e65-4ca8-9a27-384f8a11fbbc"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""806a672b-a971-456d-a074-d99714191dcf"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""49deef7b-e546-40a8-9435-c924e5f9d023"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""86ea87d4-4a4a-443e-a705-99858f3d698e"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0493db78-44c0-47e1-ae49-42d024ea4d54"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad"",
+                    ""id"": ""24aeee76-69e2-49aa-b4bc-01d63683d7c3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a720d13f-63aa-46e4-b61a-eec8f299c09a"",
+                    ""path"": ""<XInputController>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ac918891-daba-4065-83dd-f5e7afb80064"",
+                    ""path"": ""<XInputController>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""01665b0b-ac0b-4d43-99a9-b335c138ba58"",
+                    ""path"": ""<XInputController>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5dbc6efd-845e-41f3-9c89-60d3f9daca1c"",
+                    ""path"": ""<XInputController>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""PlaySound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -672,6 +798,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Boat_Steering = m_Boat.FindAction("Steering", throwIfNotFound: true);
         m_Boat_Dash = m_Boat.FindAction("Dash", throwIfNotFound: true);
         m_Boat_CameraMovement = m_Boat.FindAction("CameraMovement", throwIfNotFound: true);
+        // MusicKeys
+        m_MusicKeys = asset.FindActionMap("MusicKeys", throwIfNotFound: true);
+        m_MusicKeys_PlaySound = m_MusicKeys.FindAction("PlaySound", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -847,6 +976,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public BoatActions @Boat => new BoatActions(this);
+
+    // MusicKeys
+    private readonly InputActionMap m_MusicKeys;
+    private IMusicKeysActions m_MusicKeysActionsCallbackInterface;
+    private readonly InputAction m_MusicKeys_PlaySound;
+    public struct MusicKeysActions
+    {
+        private @InputMaster m_Wrapper;
+        public MusicKeysActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlaySound => m_Wrapper.m_MusicKeys_PlaySound;
+        public InputActionMap Get() { return m_Wrapper.m_MusicKeys; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MusicKeysActions set) { return set.Get(); }
+        public void SetCallbacks(IMusicKeysActions instance)
+        {
+            if (m_Wrapper.m_MusicKeysActionsCallbackInterface != null)
+            {
+                @PlaySound.started -= m_Wrapper.m_MusicKeysActionsCallbackInterface.OnPlaySound;
+                @PlaySound.performed -= m_Wrapper.m_MusicKeysActionsCallbackInterface.OnPlaySound;
+                @PlaySound.canceled -= m_Wrapper.m_MusicKeysActionsCallbackInterface.OnPlaySound;
+            }
+            m_Wrapper.m_MusicKeysActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PlaySound.started += instance.OnPlaySound;
+                @PlaySound.performed += instance.OnPlaySound;
+                @PlaySound.canceled += instance.OnPlaySound;
+            }
+        }
+    }
+    public MusicKeysActions @MusicKeys => new MusicKeysActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -880,5 +1042,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnSteering(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
+    }
+    public interface IMusicKeysActions
+    {
+        void OnPlaySound(InputAction.CallbackContext context);
     }
 }

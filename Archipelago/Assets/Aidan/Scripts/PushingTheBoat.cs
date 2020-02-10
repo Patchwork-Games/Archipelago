@@ -17,13 +17,9 @@ public class PushingTheBoat : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Collision has happened!");
-
 		// Set the player if they have collided
 		if (other.CompareTag("Player"))
 		{
-			Debug.Log("Player has colided with the boat!");
-
 			playerObject = other.gameObject;
 			dirFromPlayerToBoat = boatObject.transform.position - playerObject.transform.position;
 			boatObject.GetComponent<Rigidbody>().AddForce(dirFromPlayerToBoat * pushForce);
