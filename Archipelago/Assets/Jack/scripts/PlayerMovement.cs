@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 camRight = Vector3.zero;
     Vector2 camMoveDirection = Vector2.zero;
     public Vector3 beginTalkCamPos = Vector3.zero;
-    public bool BoatButtonGuide = false;
+    [HideInInspector] public bool BoatButtonGuide = false;
     [SerializeField] private Canvas BoatButtonImage = null;
 
 
@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
     //button variables
     public InputMaster controls = null;
     [SerializeField] private CharacterController controller = null;
-    public bool interact = false;
-    public bool jump = false;
+    [HideInInspector] public bool interact = false;
+    [HideInInspector]public bool jump = false;
     private bool run = false;
-    public bool inTalkDistance = false;
+    [HideInInspector] public bool inTalkDistance = false;
     [SerializeField] private Canvas CollectableUI = null;
 
 
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpParticlePlayed = false;
     private int jumps = 0;
     private int jumpsMax = 1;
-    public bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     private float distanceGround;
     [SerializeField] private float groundDistance = 0.5f;
     [SerializeField] private float gravity = -55.81f;
