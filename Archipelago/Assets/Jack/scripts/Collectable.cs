@@ -9,7 +9,8 @@ public class Collectable : MonoBehaviour
     {
         FISH,
         SHELL,
-        STICK
+        STICK,
+        ENERGY
     }
     public CollectableTypes collectableType;
 
@@ -35,6 +36,11 @@ public class Collectable : MonoBehaviour
                 case CollectableTypes.STICK:
                     {
                         StaticValueHolder.Collectable2 += 1;
+                        break;
+                    }
+                case CollectableTypes.ENERGY:
+                    {
+                        GameObject.FindGameObjectWithTag("EnergyUI").GetComponent<DashMeter>().UpdateBarTotal();
                         break;
                     }
                 default:
