@@ -4,42 +4,46 @@ using UnityEngine;
 
 public static class StaticValueHolder
 {
-    private static int score, playerPos;
-    private static bool gameOver;
+    private static int collectable0, collectable1, collectable2;
 
-    public static int Score
+
+    public static int Collectable0
     {
         get
         {
-            return score;
+            return collectable0;
         }
         set
         {
-            score = value;
+            collectable0 = value;
         }
     }
 
-    public static int PlayerPos
+    public static int Collectable1
     {
         get
         {
-            return playerPos;
+            return collectable1;
         }
         set
         {
-            playerPos = value;
+            collectable1 = value;
         }
     }
 
-    public static bool GameOver
+    public static int Collectable2
     {
         get
         {
-            return gameOver;
+            return collectable2;
         }
         set
         {
-            gameOver = value;
+            collectable2 = value;
         }
     }
+
+
+
+
 }

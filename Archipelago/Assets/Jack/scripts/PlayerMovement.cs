@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool interact = false;
     [HideInInspector]public bool jump = false;
     private bool run = false;
+    public bool YHeld = false;
     [HideInInspector] public bool inTalkDistance = false;
     [SerializeField] private Canvas CollectableUI = null;
 
@@ -177,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     void YButton()
     {
+        YHeld = true;
         if (CollectableUI)
         {
             CollectableUI.GetComponent<Animator>().Play("FadeInCollectableUI");
@@ -188,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
 
     void StopYButton()
     {
+        YHeld = false;
         if (CollectableUI)
         {
             CollectableUI.GetComponent<Animator>().Play("FadeOutCollectableUI");
