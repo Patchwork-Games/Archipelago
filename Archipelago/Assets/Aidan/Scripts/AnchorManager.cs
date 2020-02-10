@@ -15,12 +15,19 @@ public class AnchorManager : MonoBehaviour
 
 	private void OnEnable()
 	{
+		Debug.Log("Anchor enabled!");
 		transform.parent = originalParent;
 		transform.position = boatObject.transform.position + offsetFromBoat;
 	}
 
 	private void OnDisable()
 	{
-		transform.parent = boatObject.transform.parent;
+		Debug.Log("Anchor Disabled!");
+	}
+
+	public void TakeInAnchor()
+	{
+		transform.parent = boatObject.transform;
+		transform.localPosition = offsetFromBoat;
 	}
 }

@@ -193,6 +193,7 @@ public class BoatController : MonoBehaviour
 
 		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
 		{
+			anchorObject.GetComponent<AnchorManager>().TakeInAnchor();
 			anchorObject.SetActive(false);
 			State = BoatState.IN_SHALLOW_WATER;
 		}
