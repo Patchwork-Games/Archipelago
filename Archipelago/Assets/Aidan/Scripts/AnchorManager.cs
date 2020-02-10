@@ -16,7 +16,7 @@ public class AnchorManager : MonoBehaviour
 	private void OnEnable()
 	{
 		transform.parent = originalParent;
-		transform.position += offsetFromBoat;
+		transform.position = boatObject.transform.position + offsetFromBoat;
 	}
 
 	private void OnDisable()

@@ -63,9 +63,6 @@ public class DialogueManager : MonoBehaviour
     private string shakeText = "";
     //private int numCharacters = 0;
 
-
-    public GameObject player;
-
     private bool doEndOnce = false;
 
     public int[] NPCs;
@@ -278,9 +275,9 @@ public class DialogueManager : MonoBehaviour
         //closing animation
         animator.SetBool("IsOpen", false);
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-        player.GetComponent<PlayerMovement>().interact = false;
-        player.GetComponent<PlayerMovement>().CMCamera.SetActive(true);
-        player.GetComponent<PlayerMovement>().CMCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
+		PlayerMovement.Instance.interact = false;
+		PlayerMovement.Instance.CMCamera.SetActive(true);
+		PlayerMovement.Instance.CMCamera.transform.position = PlayerMovement.Instance.beginTalkCamPos;
 
     }
 
@@ -290,7 +287,7 @@ public class DialogueManager : MonoBehaviour
     {
         //progress dialogue with interact button
                                                                                                                  //FINDME change to use new input to support controllers
-        if (Input.GetMouseButtonDown(0) || player.GetComponent<PlayerMovement>().interact)
+        if (Input.GetMouseButtonDown(0) || PlayerMovement.Instance.interact)
         {
             if (arrow.enabled == true)
             {
@@ -303,7 +300,7 @@ public class DialogueManager : MonoBehaviour
         {
             //quit sentence by pressing back
                                                                                                                 //FINDME change to use new input to support controllers
-            if (Input.GetKeyDown(KeyCode.Q) || (player.GetComponent<SkimmingController>().heldThrow && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
+            if (Input.GetKeyDown(KeyCode.Q) || (PlayerMovement.Instance.GetComponent<SkimmingController>().heldThrow && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
             {
                 EndDialogue();
             }
