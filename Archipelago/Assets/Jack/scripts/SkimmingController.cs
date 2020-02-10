@@ -13,6 +13,7 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private GameObject ChargeParticle = null;
     [SerializeField] private GameObject FullChargeParticle = null;
     [SerializeField] private float maxThrowPower = 2000;
+    [SerializeField] private GameObject launchPoint = null;
     public bool doingThrow = false;
     public bool heldThrow = false;
     private bool chargingThrow = false;
@@ -47,7 +48,7 @@ public class SkimmingController : MonoBehaviour
     //launch a stone
     public void throwStone()
     {       
-        GameObject currentStone = Instantiate(stone, transform.position, transform.rotation);
+        GameObject currentStone = Instantiate(stone, launchPoint.transform.position, transform.rotation);
         currentStone.GetComponent<StoneMovement>().throwPower = throwPower;
         currentStone.GetComponent<StoneMovement>().direction = transform.forward;
         CameraShake.instance.ShakeCamera(.5f, 2, 2);

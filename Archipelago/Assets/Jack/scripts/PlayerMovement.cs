@@ -524,7 +524,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Running", false);
         anim.SetBool("Jumping", false);
         anim.SetBool("Falling", false);
-        anim.SetBool("Throwing", false);
         anim.SetBool("ChargingThrow", false);
         Gravity();
     }
@@ -537,7 +536,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Running", false);
         anim.SetBool("Jumping", false);
         anim.SetBool("Falling", false);
-        anim.SetBool("Throwing", false);
         anim.SetBool("ChargingThrow", false);
 
         BoatButtonGuide = false;
