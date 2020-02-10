@@ -10,17 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement Instance { get; private set; }
 
 
-
-    public enum PlayerState
-    {
-        MOVING,
-        THROWING,
-        TALKING,
-        BOAT,
-        FISHING
-    }
-    public PlayerState state;
-
     public enum ItemEquipped
     {
         SKIMMINGROCK,
@@ -59,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     public InputMaster controls = null;
     [SerializeField] private CharacterController controller = null;
     public bool interact = false;
-    private bool jump = false;
+    public bool jump = false;
     private bool run = false;
     public bool inTalkDistance = false;
     [SerializeField] private Canvas CollectableUI = null;
@@ -159,34 +148,29 @@ public class PlayerMovement : MonoBehaviour
 
     void ThrowButton()
     {
-        if (state == PlayerState.MOVING)
+        switch (currentItem)
         {
-            switch (currentItem)
-            {
-                case ItemEquipped.SKIMMINGROCK:
-                    {
-                        GetComponent<SkimmingController>().heldThrow = true;
-                        break;
-                    }
-                case ItemEquipped.FISHINGPOLE:
-                    {
-                        GetComponent<FishingController>().heldCast = true;
-                        break;
-                    }
-                default:
-                    {
-                        GetComponent<SkimmingController>().heldThrow = true;
-                        break;
-                    }
-            }
-            
-
+            case ItemEquipped.SKIMMINGROCK:
+                {
+                    GetComponent<SkimmingController>().heldThrow = true;
+                    break;
+                }
+            case ItemEquipped.FISHINGPOLE:
+                {
+                    GetComponent<FishingController>().heldCast = true;
+                    break;
+                }
+            default:
+                {
+                    GetComponent<SkimmingController>().heldThrow = true;
+                    break;
+                }
         }
     }
 
     void StopThrowButton()
     {
-        if (state != PlayerState.BOAT) GetComponent<SkimmingController>().heldThrow = false;
+        GetComponent<SkimmingController>().heldThrow = false;
     }
 
 
@@ -215,7 +199,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        state = PlayerState.MOVING;
         currentItem = ItemEquipped.SKIMMINGROCK;
 
         controller = GetComponent<CharacterController>();
@@ -229,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < 34.5f)
+        if (transform.position.y < 34.3f)
         {
             InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
             if (!InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Play();
@@ -238,190 +221,6 @@ public class PlayerMovement : MonoBehaviour
         else if(InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Stop();
 
     }
-
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        //state machine
-        switch (state)
-        {
-            //normal movement
-            case PlayerState.MOVING:
-                {
-                    //check if on ground
-                    if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
-                    {
-                        isGrounded = true;
-                        if (!jumpParticlePlayed)
-                        {
-                            jumpParticle.transform.position = transform.position - new Vector3(0,6,0);
-                            jumpParticle.Play();
-                            jumpParticlePlayed = true;
-                        }
-                    }
-                    else 
-                    {
-                        isGrounded = false;
-                        jumpParticlePlayed = false;
-                        jumps = 0;
-                        anim.SetBool("Falling", true);
-                        StopCoroutine("JumpCooldown");
-                    }
-
-                    if (isGrounded && velocity.y < 0)
-                    {
-                        StartCoroutine("JumpCooldown");
-
-                        anim.SetBool("Jumping", false);
-                        anim.SetBool("Falling", false);
-                        velocity.y = -2f;
-                    }
-
-                    //get energy from other script
-                    if(energyBar)energy = energyBar.GetComponent<DashMeter>().currentCharge;
-
-                    //check conditions to run and run if possible
-                    if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
-                    {
-                        Run();
-                        if (isGrounded)
-                        {
-                            anim.SetBool("Running", true);
-                            RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
-                            if (!RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Play();
-                            if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
-                        }
-
-                        
-                    }
-                    else
-                    {
-                        if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
-                        anim.SetBool("Running", false);
-                        if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
-
-                    }
-
-                    //stop trying to run when out of energy
-                    if (energy == 0) run = false;
-
-
-                    //make player jump if enough jumps
-                    if (jumps > 0 && jump && !inTalkDistance)
-                    {
-                        if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
-                        velocity.y = 20f;
-                        jumps -= 1;
-                        anim.SetBool("Jumping", true);
-                    }
-                    
-
-                    
-
-
-                    Move();
-                    Gravity();
-                    MoveCamera();
-                    break;
-                }
-
-
-
-
-
-            //throwing stone
-            case PlayerState.THROWING:
-                {
-                    if (isGrounded)
-                    {
-                        anim.SetBool("Walking", false);
-                        anim.SetBool("Running", false);
-                        anim.SetBool("Jumping", false);
-                        anim.SetBool("Falling", false);
-                        MoveCameraWLeft();
-                    }
-                    else
-                    {
-                        state = PlayerState.MOVING;
-                    }
-                    break;
-                }
-
-
-            //fishing
-            case PlayerState.FISHING:
-                {
-                    if (isGrounded)
-                    {
-                        anim.SetBool("Walking", false);
-                        anim.SetBool("Running", false);
-                        anim.SetBool("Jumping", false);
-                        anim.SetBool("Falling", false);
-                        MoveCamera();
-                    }
-                    else
-                    {
-                        state = PlayerState.MOVING;
-                    }
-                    break;
-                }
-
-
-
-            //throwing stone
-            case PlayerState.TALKING:
-                {
-                    //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
-                    beginTalkCamPos = CMCamera.transform.position;
-                    
-                    anim.SetBool("Walking", false);
-                    anim.SetBool("Running", false);
-                    anim.SetBool("Jumping", false);
-                    anim.SetBool("Falling", false);
-                    anim.SetBool("Throwing", false);
-                    anim.SetBool("ChargingThrow", false);
-                    Gravity();
-
-                    break;
-                }
-
-
-
-
-            //In boat
-            case PlayerState.BOAT:
-                {
-                    anim.SetBool("Walking", false);
-                    anim.SetBool("Running", false);
-                    anim.SetBool("Jumping", false);
-                    anim.SetBool("Falling", false);
-                    anim.SetBool("Throwing", false);
-                    anim.SetBool("ChargingThrow", false);
-
-                    BoatButtonGuide = false;
-                    if (BoatButtonImage) BoatButtonImage.enabled = false;
-                    break;
-                }
-
-
-
-
-
-
-
-
-
-
-            default:
-                break;
-        }
-        //stop holding A or jumping
-        interact = false;
-        jump = false;
-    }
-
-
 
 
     private void OnTriggerEnter(Collider other)
@@ -457,13 +256,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-    void Move()
+    public void Move()
     {
         //get camera forward
         camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
@@ -490,14 +283,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Gravity()
+    public void Gravity()
     {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
 
-    void MoveCamera()
+    public void MoveCamera()
     {
         //move camera
         if (camMoveDirection.x != 0)
@@ -516,7 +309,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //this is for throwing because you hold B it makes sense to move the left stick instead of the right
-    void MoveCameraWLeft()
+    public void MoveCameraWLeft()
     {
         //move camera
         if (moveDirection.x != 0)
@@ -536,7 +329,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    void Run()
+    public void Run()
     {
         //get camera forward
         camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
@@ -597,5 +390,160 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
+
+
+
+
+    public void CheckGround()
+    {
+        //check if on ground
+        if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
+        {
+            isGrounded = true;
+            if (!jumpParticlePlayed)
+            {
+                jumpParticle.transform.position = transform.position - new Vector3(0, 6, 0);
+                jumpParticle.Play();
+                jumpParticlePlayed = true;
+            }
+        }
+        else
+        {
+            isGrounded = false;
+            jumpParticlePlayed = false;
+            jumps = 0;
+            anim.SetBool("Falling", true);
+            StopCoroutine("JumpCooldown");
+        }
+
+        if (isGrounded && velocity.y < 0)
+        {
+            StartCoroutine("JumpCooldown");
+
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Falling", false);
+            velocity.y = -2f;
+        }
+    }
+
+
+
+    public void CheckRun()
+    {
+        //get energy from other script
+        if (energyBar) energy = energyBar.GetComponent<DashMeter>().currentCharge;
+
+        //check conditions to run and run if possible
+        if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
+        {
+            Run();
+            if (isGrounded)
+            {
+                anim.SetBool("Running", true);
+                RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
+                if (!RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Play();
+                if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
+            }
+
+
+        }
+        else
+        {
+            if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
+            anim.SetBool("Running", false);
+            if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
+
+        }
+
+        //stop trying to run when out of energy
+        if (energy == 0) run = false;
+    }
+
+
+    public void CheckJump()
+    {
+        //make player jump if enough jumps
+        if (jumps > 0 && jump && !inTalkDistance)
+        {
+            if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
+            velocity.y = 20f;
+            jumps -= 1;
+            anim.SetBool("Jumping", true);
+        }
+    }
+
+
+
+
+    public void CheckThrowing()
+    {
+        if (isGrounded)
+        {
+            anim.SetBool("Walking", false);
+            anim.SetBool("Running", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Falling", false);
+            MoveCameraWLeft();
+        }
+        else
+        {
+            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
+        }
+    }
+
+
+
+    public void CheckFishing()
+    {
+        if (isGrounded)
+        {
+            anim.SetBool("Walking", false);
+            anim.SetBool("Running", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Falling", false);
+            MoveCamera();
+        }
+        else
+        {
+            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
+        }
+    }
+
+
+
+
+    public void CheckTalking()
+    {
+        //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
+        beginTalkCamPos = CMCamera.transform.position;
+
+        anim.SetBool("Walking", false);
+        anim.SetBool("Running", false);
+        anim.SetBool("Jumping", false);
+        anim.SetBool("Falling", false);
+        anim.SetBool("Throwing", false);
+        anim.SetBool("ChargingThrow", false);
+        Gravity();
+    }
+
+
+
+    public void CheckBoat()
+    {
+        anim.SetBool("Walking", false);
+        anim.SetBool("Running", false);
+        anim.SetBool("Jumping", false);
+        anim.SetBool("Falling", false);
+        anim.SetBool("Throwing", false);
+        anim.SetBool("ChargingThrow", false);
+
+        BoatButtonGuide = false;
+        if (BoatButtonImage) BoatButtonImage.enabled = false;
+    }
+
+
+    
 
 }

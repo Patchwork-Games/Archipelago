@@ -113,7 +113,7 @@ public class BoatController : MonoBehaviour
 	private void Update()
 	{
 		// Change the state to the player not in boat state if the player isn't in the boat
-		if (PlayerMovement.Instance.state != PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 		{
 			State = BoatState.PLAYER_NOT_IN_BOAT;
 		}
@@ -191,7 +191,7 @@ public class BoatController : MonoBehaviour
 			anchorObject.SetActive(true);
 		}
 
-		if (PlayerMovement.Instance.state == PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
 		{
 			anchorObject.SetActive(false);
 			State = BoatState.IN_SHALLOW_WATER;

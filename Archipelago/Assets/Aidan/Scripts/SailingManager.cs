@@ -47,7 +47,7 @@ public class SailingManager : MonoBehaviour
     void Update()
     {
 		// Change the state to the player not in boat state if the player isn't in the boat
-		if (playerMovement.state != PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 		{
 			State = BoatState.PLAYER_NOT_IN_BOAT;
 		}
@@ -72,7 +72,7 @@ public class SailingManager : MonoBehaviour
     private void SteerBoat(Vector2 movementAxis)
     {
 		// Only do this update if the player is in the boat
-		if (playerMovement.state != PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 			return;
 
 		isSteering = true;
@@ -82,7 +82,7 @@ public class SailingManager : MonoBehaviour
     private void Dash()
     {
 		// Only do this update if the player is in the boat and in the ocean
-		if (playerMovement.state != PlayerMovement.PlayerState.BOAT || State == BoatState.IN_SHALLOW_WATER)
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT || State == BoatState.IN_SHALLOW_WATER)
 			return;
 
 		// For a certain amount of time, add a greater force forward
@@ -158,7 +158,7 @@ public class SailingManager : MonoBehaviour
 
 	private void UpdatePlayerNotInBoatState()
 	{
-		if (playerMovement.state == PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
 		{
 			State = BoatState.IN_SHALLOW_WATER;
 		}

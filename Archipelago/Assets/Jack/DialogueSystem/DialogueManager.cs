@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
         dialogue = dialogueIn;
         //open textbox and change name displayed and stop player moving around or moving camera
         animator.SetBool("IsOpen", true);
-        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.TALKING;
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.TALKING;
 
         //load in text for queues
         names.Clear();
@@ -277,7 +277,7 @@ public class DialogueManager : MonoBehaviour
     {
         //closing animation
         animator.SetBool("IsOpen", false);
-        player.GetComponent<PlayerMovement>().state = PlayerMovement.PlayerState.MOVING;
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
         player.GetComponent<PlayerMovement>().interact = false;
         player.GetComponent<PlayerMovement>().CMCamera.SetActive(true);
         player.GetComponent<PlayerMovement>().CMCamera.transform.position = player.GetComponent<PlayerMovement>().beginTalkCamPos;
@@ -303,7 +303,7 @@ public class DialogueManager : MonoBehaviour
         {
             //quit sentence by pressing back
                                                                                                                 //FINDME change to use new input to support controllers
-            if (Input.GetKeyDown(KeyCode.Q) || (player.GetComponent<SkimmingController>().heldThrow && PlayerMovement.Instance.state == PlayerMovement.PlayerState.TALKING))
+            if (Input.GetKeyDown(KeyCode.Q) || (player.GetComponent<SkimmingController>().heldThrow && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
             {
                 EndDialogue();
             }

@@ -85,7 +85,7 @@ public class FishingController : MonoBehaviour
 
         if (heldCast && !chargingCast && PlayerMovement.Instance.isGrounded)
         {
-            PlayerMovement.Instance.state = PlayerMovement.PlayerState.FISHING;
+            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.FISHING;
             fishingPole.GetComponent<MeshRenderer>().enabled = true;
             chargingCast = true;
             anim.SetBool("ChargingCast", true);

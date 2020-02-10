@@ -8,6 +8,6 @@ public class CastBobberAnimEnd : StateMachineBehaviour
     {
         GameObject.FindGameObjectWithTag("FishingPole").GetComponent<FishingController>().CastBobber();
         GameObject.FindGameObjectWithTag("FishingPole").GetComponent<MeshRenderer>().enabled = false;
-        PlayerMovement.Instance.state = PlayerMovement.PlayerState.MOVING;
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
     }
 }

@@ -58,12 +58,12 @@ public class GettingInAndOutBoat : MonoBehaviour
 			return;
 
 		// Change what happens depending on the state
-		switch (PlayerMovement.Instance.state)
+		switch (PlayerStateMachine.Instance.state)
 		{
-			case PlayerMovement.PlayerState.MOVING:
+			case PlayerStateMachine.PlayerState.MOVING:
 				GetInBoat();
 				break;
-			case PlayerMovement.PlayerState.BOAT:
+			case PlayerStateMachine.PlayerState.BOAT:
 				GetOutBoat();
 				break;
 			default:
@@ -77,8 +77,8 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInsideTriggerBox || playerInBoat)
 			return;
 
-		// Change the state to the boat state and change the camera to follow the boat
-		PlayerMovement.Instance.state = PlayerMovement.PlayerState.BOAT;
+        // Change the state to the boat state and change the camera to follow the boat
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
 		PlayerMovement.Instance.ChangeCamera(boatCamera, true);
 		playerInBoat = true;
 
@@ -100,9 +100,9 @@ public class GettingInAndOutBoat : MonoBehaviour
 
 		// TO DO: ADD ANIMATION 
 		Debug.Log("Getting out boat animation missing!");
-		
-		// Change the state to the moving state and change the camera to follow the player
-		PlayerMovement.Instance.state = PlayerMovement.PlayerState.MOVING;
+
+        // Change the state to the moving state and change the camera to follow the player
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
 		PlayerMovement.Instance.ChangeCamera(boatCamera, false);
 		playerInBoat = false;
 

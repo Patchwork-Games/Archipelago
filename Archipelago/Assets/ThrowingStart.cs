@@ -8,7 +8,7 @@ public class ThrowingStart : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMovement.Instance.state = PlayerMovement.PlayerState.THROWING;
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.THROWING;
     }
 
 

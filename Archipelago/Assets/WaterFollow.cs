@@ -16,7 +16,7 @@ public class WaterFollow : MonoBehaviour
 
 	private void Update()
 	{
-		if (PlayerMovement.Instance.state != PlayerMovement.PlayerState.BOAT)
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 		{
 			transform.position = new Vector3(playerObject.transform.position.x + offsetFromPlayer.x, transform.position.y, playerObject.transform.position.z + offsetFromPlayer.y);
 		}

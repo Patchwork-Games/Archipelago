@@ -93,7 +93,7 @@ public class SkimmingController : MonoBehaviour
 
         if (heldThrow && !chargingThrow && PlayerMovement.Instance.isGrounded)
         {
-            PlayerMovement.Instance.state = PlayerMovement.PlayerState.THROWING;
+            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.THROWING;
             chargingThrow = true;
             anim.SetBool("ChargingThrow", true);
             throwPower = 0;
