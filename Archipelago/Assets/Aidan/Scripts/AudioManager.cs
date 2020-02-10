@@ -185,14 +185,4 @@ public class AudioManager : MonoBehaviour
 		Debug.LogWarning("Audio Manager: Sound not found in list: " + _name);
 	}
 
-	private void OnEnable()
-	{
-		SceneManager.sceneLoaded += OnSceneLoaded;
-	}
-
-	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-	{
-		Debug.Log("OnSceneLoaded: " + scene.name);
-	}
-
 }
