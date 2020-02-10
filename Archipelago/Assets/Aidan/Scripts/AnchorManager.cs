@@ -15,15 +15,9 @@ public class AnchorManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Debug.Log("Anchor enabled!");
 		transform.parent = originalParent;
 		transform.position = boatObject.transform.position + offsetFromBoat;
 		transform.rotation = Quaternion.identity;
-	}
-
-	private void OnDisable()
-	{
-		Debug.Log("Anchor Disabled!");
 	}
 
 	public void TakeInAnchor()

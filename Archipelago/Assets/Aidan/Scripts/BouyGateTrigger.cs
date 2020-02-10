@@ -5,7 +5,7 @@ using UnityEngine;
 public class BouyGateTrigger : MonoBehaviour
 {
 	[SerializeField] private Transform firstBouy = null, secondBouy = null;
-	[SerializeField] private LayerMask layerMask;
+	[SerializeField] private LayerMask layerMask = 0;
 	[SerializeField] private float resetTime = 3f;
 	[SerializeField] private float dashForce = 20f;
 	private bool boatHasCrossedLine = false;
