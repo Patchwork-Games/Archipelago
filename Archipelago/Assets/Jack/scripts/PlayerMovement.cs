@@ -445,7 +445,7 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("Running", true);
                 RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
                 if (!RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Play();
-                if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
+                //if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
             }
 
 
@@ -459,7 +459,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //stop trying to run when out of energy
-        if (energy == 0) run = false;
+        //if (energy == 0) run = false;
     }
 
 

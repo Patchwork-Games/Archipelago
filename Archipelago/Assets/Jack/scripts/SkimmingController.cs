@@ -114,10 +114,6 @@ public class SkimmingController : MonoBehaviour
             Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
             camForward.y = 0;
 
-
-            
-
-
             //LookAtMouse();
             chargeThrow();
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(camForward), 9f * Time.deltaTime);
