@@ -53,14 +53,15 @@ public class BoatController : MonoBehaviour
 			return;
 
 		// Return from the function is there is no energy left
-		if (dashMeterBar.EnergyBarIsEmpty)
-			return;
+		if (!dashMeterBar.EnergyBarIsEmpty)
+		{
+			// Use one of the dash meters energies
+			dashMeterBar.UseEnergies(1);
 
-		// Use one of the dash meters energies
-		dashMeterBar.UseEnergies(1);
+			// Add the dash force to the boat
+			rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
+		}
 
-		// Add the dash force to the boat
-		rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
 	}
 
 	public void AddGustForce(float gustForce)
