@@ -5,97 +5,64 @@ using UnityEngine.UI;
 
 public class DashMeter : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> energies = null;
-    [SerializeField] private GameObject icon = null;
-    [SerializeField] private float offset = 56f;
-    [SerializeField] private float chargeSpeedMin = 1;
-    [SerializeField] private float chargeSpeedMax = 3;
-    [SerializeField] private float chargeSpeed = 1;
-    [SerializeField] private float dischargeSpeed = 1;
-    private float totalCharge = 0f;
-    public float currentCharge = 0;
+	[SerializeField] private GameObject iconPrefab = null;
+	[SerializeField] private Vector3 offsetBetweenEnergyIcons = Vector3.zero;
+	[SerializeField] private Vector3 iconBarStartPos = Vector3.zero;
+	[SerializeField] private int numOfEnergiesToStartWith = 1;
+	private Stack<GameObject> energiesTotal = null;
+	private int maxNumOfEnergies = 0;
+	private int currentNumOfEnergies = 0;
+	private Vector3 lastEnergyPos = Vector3.zero;
+	private bool energyBarHasUpdated = false;
+	public bool EnergyBarIsEmpty { get; private set; } = false;
+
+	private void Start()
+	{
+		// Initialise the starting amount of energies
+		AddEnergies(numOfEnergiesToStartWith);
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			AddEnergies(1);
+		}
+
+		// Check if the bar has been updated at all
+		if (energyBarHasUpdated)
+		{
+			energyBarHasUpdated = false;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject newIcon = Instantiate(icon, new Vector3(40, 40, 0), Quaternion.identity);
-        newIcon.transform.SetParent(transform);//attach new icon as child so it shows on canvas
-        energies.Add(newIcon);
-        totalCharge += 1;
-        currentCharge = totalCharge;
-        chargeSpeed = chargeSpeedMin;
-        updateChargeGraphic();
-    }
+		}
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            UpdateBarTotal();
-        }    
-    }
+	public void AddEnergies(int amount)
+	{
+		// Increase the max number of energies
+		maxNumOfEnergies += amount;
 
+		// Set the current number of energies to the max
+		currentNumOfEnergies = maxNumOfEnergies;
 
+		// Initialise the new energies and put them onto the list
+		for (int i = 0; i < amount; i++)
+		{
+			GameObject newEnergy = GameObject.Instantiate(iconPrefab, this.transform);
+			newEnergy.transform.localPosition = lastEnergyPos + offsetBetweenEnergyIcons;
 
+			energiesTotal.Push(newEnergy);
+		}
+	}
 
+	public void UseEnergies(int amount)
+	{
+		// If the energy bar isn't empty then decrease the energies by the amount
+		if (!EnergyBarIsEmpty)
+		{
+			currentNumOfEnergies -= amount;
 
-    public void UpdateBarTotal()
-    { 
-        GameObject newIcon = Instantiate(icon, new Vector3(energies[energies.Count-1].transform.position.x + offset, energies[energies.Count - 1].transform.position.y, energies[energies.Count - 1].transform.position.z) , Quaternion.identity);
-        newIcon.transform.SetParent(transform);//attach new icon as child so it shows on canvas
-        energies.Add(newIcon);
-        totalCharge += 1;
-        currentCharge = totalCharge;
-        updateChargeGraphic();
-    }
-
-
-
-    public void Discharge()
-    {
-        currentCharge -= Time.deltaTime * dischargeSpeed;
-        if (currentCharge < 0) currentCharge = 0;
-        chargeSpeed = chargeSpeedMin;
-        updateChargeGraphic();
-    }
-
-
-    public void Recharge()
-    {
-        currentCharge += Time.deltaTime * chargeSpeed;
-        if (chargeSpeed < chargeSpeedMax) chargeSpeed += Time.deltaTime/10;
-        if (currentCharge > totalCharge)
-        {
-            currentCharge = totalCharge;
-            
-        } 
-
-        updateChargeGraphic();
-    }
-
-
-
-
-    void updateChargeGraphic()
-    {
-        for (int i = energies.Count; i >= 0; i--)
-        {
-            if (currentCharge - i > 0 && currentCharge - i < 1)
-            {
-                Color newColour;
-
-                //get the fraction left on the current time to change the alpha
-                float newAlpha = currentCharge - (int)currentCharge;
-                if (newAlpha < 0) newAlpha = 0;
-                if (newAlpha > 1) newAlpha = 1;
-
-                newColour = energies[i].GetComponent<Image>().color;
-                newColour.a = newAlpha;
-
-                energies[i].GetComponent<Image>().color = newColour;
-            }
-        }
-    }
+		}
+	}
 }
