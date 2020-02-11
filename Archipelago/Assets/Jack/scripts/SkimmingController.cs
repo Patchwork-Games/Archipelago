@@ -13,6 +13,7 @@ public class SkimmingController : MonoBehaviour
     [SerializeField] private GameObject FullChargeParticle = null;
     [SerializeField] private float maxThrowPower = 2000;
     [SerializeField] private GameObject launchPoint = null;
+    [SerializeField] private GameObject skimArrow = null;
     public bool doingThrow = false;
     public bool heldThrow = false;
     private bool chargingThrow = false;
@@ -27,6 +28,7 @@ public class SkimmingController : MonoBehaviour
         chargingThrow = false;
         doingThrow = false;
         heldThrow = false;
+        skimArrow.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -115,12 +117,14 @@ public class SkimmingController : MonoBehaviour
 
             //LookAtMouse();
             chargeThrow();
+            skimArrow.SetActive(true);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(camForward), 9f * Time.deltaTime);
         }
 
         //stop charging when release button
         if (!heldThrow && chargingThrow)
         {
+            skimArrow.SetActive(false);
             chargingThrow = false;
             anim.SetBool("ChargingThrow", false);
         }

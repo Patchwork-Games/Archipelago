@@ -440,7 +440,7 @@ public class PlayerMovement : MonoBehaviour
         //if (energyBar) energy = energyBar.GetComponent<DashMeter>().currentCharge;
 
         //check conditions to run and run if possible
-        if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
+        if (run && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
         {
             Run();
             if (isGrounded)

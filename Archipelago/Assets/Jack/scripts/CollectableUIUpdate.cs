@@ -10,6 +10,7 @@ public class CollectableUIUpdate : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] collectables = new TextMeshProUGUI[3];
     [SerializeField] private int[] totalCollectables = new int[3];
     public GameObject PickupIcon = null;
+    public Canvas pickupButtonGuide = null;
     public Sprite fishSprite = null;
     public Sprite shellSprite = null;
     public Sprite stickSprite = null;
@@ -32,5 +33,10 @@ public class CollectableUIUpdate : MonoBehaviour
             collectables[1].text = StaticValueHolder.Collectable1 + " / " + totalCollectables[1];
             collectables[2].text = StaticValueHolder.Collectable2 + " / " + totalCollectables[2];
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (pickupButtonGuide) pickupButtonGuide.transform.rotation = Camera.main.transform.rotation;
     }
 }
