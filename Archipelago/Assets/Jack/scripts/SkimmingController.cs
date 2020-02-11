@@ -8,7 +8,6 @@ using Cinemachine;
 public class SkimmingController : MonoBehaviour
 {
     [SerializeField] private Animator anim = null;
-    [SerializeField] private GameObject mainCamera = null;
     [SerializeField] private GameObject stone = null;
     [SerializeField] private GameObject ChargeParticle = null;
     [SerializeField] private GameObject FullChargeParticle = null;
@@ -111,7 +110,7 @@ public class SkimmingController : MonoBehaviour
         {
             //anim.SetBool("ChargingThrow", true);
 
-            Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+            Vector3 camForward = Vector3.Normalize(transform.position - PlayerMovement.Instance.CMCamera.transform.position);
             camForward.y = 0;
 
             //LookAtMouse();

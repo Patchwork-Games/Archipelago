@@ -8,7 +8,6 @@ using Cinemachine;
 public class FishingController : MonoBehaviour
 {
     [SerializeField] private Animator anim = null;
-    [SerializeField] private GameObject mainCamera = null;
     [SerializeField] private GameObject bobber = null;
     [SerializeField] private float maxCastPower = 1000;
     private GameObject fishingPole = null;
@@ -98,7 +97,7 @@ public class FishingController : MonoBehaviour
 
         if (chargingCast)
         {
-            Vector3 camForward = Vector3.Normalize(transform.position - mainCamera.transform.position);
+            Vector3 camForward = Vector3.Normalize(transform.position - PlayerMovement.Instance.CMCamera.transform.position);
             camForward.y = 0;
             //LookAtMouse();
             chargeCast();
