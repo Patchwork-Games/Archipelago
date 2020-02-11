@@ -319,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.x != 0)
         {
             CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 100;
+            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 50;
         }
         else
         {

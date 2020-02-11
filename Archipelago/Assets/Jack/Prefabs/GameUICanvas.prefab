@@ -112,14 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8cd82f0e7659548acbdcf9e97dc1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energies: []
-  icon: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065, type: 3}
-  offset: 50
-  chargeSpeedMin: 1
-  chargeSpeedMax: 3
-  chargeSpeed: 0.7
-  dischargeSpeed: 0.3
-  currentCharge: 0
+  iconPrefab: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065,
+    type: 3}
+  offsetBetweenEnergyIcons: {x: 59, y: 0, z: 0}
+  iconBarStartPos: {x: -350, y: -165, z: 0}
+  numOfEnergiesToStartWith: 3
+  energyRechargeTime: 0.6
+  minEnergyRechargeTime: 0.1
+  timeBetweenUseAndRecharge: 2
+  alphaValueOfUsedEnergies: 0.3
 --- !u!1 &361106827524505858
 GameObject:
   m_ObjectHideFlags: 0

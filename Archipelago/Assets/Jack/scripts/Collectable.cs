@@ -14,7 +14,7 @@ public class Collectable : MonoBehaviour
     }
     public CollectableTypes collectableType;
 
-
+    DashMeter dashMeter = null;
     GameObject PickupIcon = null;
     Sprite fishSprite;
     Sprite shellSprite;
@@ -26,12 +26,13 @@ public class Collectable : MonoBehaviour
     private bool hiddenPickupButton = false;
 
 
-    private void Start()
+    private void Awake()
     {
         fishSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().fishSprite;
         shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
         stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
         pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
+        dashMeter = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().dashMeter;
         hiddenPickupButton = false;
     }
 
@@ -40,22 +41,16 @@ public class Collectable : MonoBehaviour
 
     private void Update()
     {
-        //check if player is close enough to talk
-        if (Vector3.Distance(transform.position, PlayerMovement.Instance.transform.position) < pickUpRadius)
+        //check if player is close enough to pick up
+        if (Vector3.Distance(transform.position, PlayerMovement.Instance.transform.position) < pickUpRadius && collectableType != CollectableTypes.ENERGY)
         {
-            //show button needed to talk
+            //show button needed to pick up
             if (pickupButtonGuide)
             {
                 pickupButtonGuide.transform.position = transform.position + new Vector3(0, 5, 0);
                 pickupButtonGuide.enabled = true;
                 PlayerMovement.Instance.inTalkDistance = true;
                 hiddenPickupButton = false;
-            }
-            else if (pickupButtonGuide && !hiddenPickupButton) //hide talk button without disabling it for every npc
-            {
-                pickupButtonGuide.enabled = false;
-                hiddenPickupButton = true;
-                PlayerMovement.Instance.GetComponent<PlayerMovement>().inTalkDistance = false;
             }
             if (PlayerMovement.Instance.interact)   //pickup object with interact
             {
@@ -85,9 +80,8 @@ public class Collectable : MonoBehaviour
                         }
                     case CollectableTypes.ENERGY:
                         {
-                            Debug.Log("ADD NEW METHOD, SEE COLLECTABLE SCRIPT");
-                            //aidan is changing this rn so remember to update it
-                            //GameObject.FindGameObjectWithTag("EnergyUI").GetComponent<DashMeter>().UpdateBarTotal();
+                            Debug.Log("Shouldnt happen, see Collectable script");
+                           
                             break;
                         }
                     default:
@@ -102,16 +96,34 @@ public class Collectable : MonoBehaviour
         }
         else if (!hiddenPickupButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
         {
+            
             HideButton();
         }
     }
 
 
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //pick up the energy when running into it but not other types
+        if (collectableType == CollectableTypes.ENERGY)
+        {
+            if (other.CompareTag("Player") || other.CompareTag("Boat"))
+            {
+                dashMeter.AddEnergies(1);
+                Destroy(gameObject);
+            }
+        }
+        
+    }
+
+
     void HideButton()
     {
         hiddenPickupButton = true;
         pickupButtonGuide.enabled = false;
+        PlayerMovement.Instance.interact = false;
         PlayerMovement.Instance.inTalkDistance = false;
     }
 

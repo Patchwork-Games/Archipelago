@@ -26,4 +26,11 @@ public class RaiseSkimRocks : MonoBehaviour
             anim.SetBool("RaiseRocks", false);
         }
     }
+
+
+    //get the next set of stones, called from the hit of the last rock if rocks hit in correct order
+    public void NextSet()
+    {
+
+    }
 }
