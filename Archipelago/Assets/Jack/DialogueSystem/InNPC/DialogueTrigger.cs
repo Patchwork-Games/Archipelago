@@ -8,7 +8,6 @@ public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private int myTag = 0;
     public Dialogue[] dialogue;
-    public GameObject player;
     public Canvas talkButtonGuide;
     public CinemachineVirtualCamera talkCam;
     private Vector3 talkCamPos;
@@ -41,48 +40,38 @@ public class DialogueTrigger : MonoBehaviour
         //stop normal interactions if wanting to play automatically
         if (!displayOnStart)
         {
-            //make sure there is a player
-            if (player)
+            //check if player is close enough to talk
+            if (Vector3.Distance(transform.position, PlayerMovement.Instance.transform.position) < talkRadius)
             {
-                //check if player is close enough to talk
-                if (Vector3.Distance(transform.position, player.transform.position) < talkRadius)
+                //show button needed to talk
+                if (talkButtonGuide && !startedTalking)
                 {
-                    //show button needed to talk
-                    if (talkButtonGuide && !startedTalking)
-                    {
-                        talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
-                        talkButtonGuide.enabled = true;
-                        player.GetComponent<PlayerMovement>().inTalkDistance = true;
-                        hiddenTalkButton = false;
-                    }
-                    else if (talkButtonGuide && !hiddenTalkButton) //hide talk button without disabling it for every npc
-                    {
-                        talkButtonGuide.enabled = false;
-                        hiddenTalkButton = true;
-                        player.GetComponent<PlayerMovement>().inTalkDistance = false;
-                    }
-
-                    //FINDME replace with new input system to handle controllers
-                    if ((Input.GetKeyDown(KeyCode.E) || player.GetComponent<PlayerMovement>().interact) && !startedTalking)
-                    {
-                        startedTalking = true;
-                        TriggerDialogue();
-                    }
+                    talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
+                    talkButtonGuide.enabled = true;
+                    PlayerMovement.Instance.inTalkDistance = true;
+                    hiddenTalkButton = false;
                 }
-                else if (!hiddenTalkButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
+                else if (talkButtonGuide && !hiddenTalkButton) //hide talk button without disabling it for every npc
                 {
-                    hiddenTalkButton = true;
                     talkButtonGuide.enabled = false;
-                    player.GetComponent<PlayerMovement>().inTalkDistance = false;
+                    hiddenTalkButton = true;
+                    PlayerMovement.Instance.inTalkDistance = false;
                 }
-                else
+                if (PlayerMovement.Instance.interact && !startedTalking)
                 {
-                    startedTalking = false;
+                    startedTalking = true;
+                    TriggerDialogue();
                 }
             }
-            else //if no player attached
+            else if (!hiddenTalkButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
             {
-                Debug.Log("No player attached to dialogue trigger");
+                hiddenTalkButton = true;
+                talkButtonGuide.enabled = false;
+                PlayerMovement.Instance.inTalkDistance = false;
+            }
+            else
+            {
+                startedTalking = false;
             }
         } 
         else if (displayOnStart && !startedTalking) //show text automatically --- cant be in start because manager wont have run its start yet

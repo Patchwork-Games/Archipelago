@@ -437,7 +437,7 @@ public class PlayerMovement : MonoBehaviour
     public void CheckRun()
     {
         //get energy from other script
-        if (energyBar) energy = energyBar.GetComponent<DashMeter>().currentCharge;
+        //if (energyBar) energy = energyBar.GetComponent<DashMeter>().currentCharge;
 
         //check conditions to run and run if possible
         if (run && energy > 0f && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
@@ -457,7 +457,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
             anim.SetBool("Running", false);
-            if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
+            //if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
 
         }
 

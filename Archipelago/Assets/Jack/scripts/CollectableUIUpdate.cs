@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CollectableUIUpdate : MonoBehaviour
@@ -8,6 +9,10 @@ public class CollectableUIUpdate : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI[] collectables = new TextMeshProUGUI[3];
     [SerializeField] private int[] totalCollectables = new int[3];
+    public GameObject PickupIcon = null;
+    public Sprite fishSprite = null;
+    public Sprite shellSprite = null;
+    public Sprite stickSprite = null;
 
     private void Start()
     {
@@ -27,12 +32,5 @@ public class CollectableUIUpdate : MonoBehaviour
             collectables[1].text = StaticValueHolder.Collectable1 + " / " + totalCollectables[1];
             collectables[2].text = StaticValueHolder.Collectable2 + " / " + totalCollectables[2];
         }
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.V)) StaticValueHolder.Collectable0 += 1;
-        if (Input.GetKeyDown(KeyCode.B)) StaticValueHolder.Collectable1 += 1;
-        if (Input.GetKeyDown(KeyCode.N)) StaticValueHolder.Collectable2 += 1;
     }
 }
