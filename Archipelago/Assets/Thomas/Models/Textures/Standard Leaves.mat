@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Standard Leaves
   m_Shader: {fileID: 4800000, guid: 67fb9de29a2d92b48bd6f806a04f0d9e, type: 3}
-  m_ShaderKeywords: PIXELSNAP_ON _ALPHATEST_ON _NORMALMAP
+  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 705a13e4231c9fa48a1dafbdfb77fb83, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -84,19 +84,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindTexture:
-        m_Texture: {fileID: 2800000, guid: a73f386972dc12a41864b119f519f1cc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 076268c7029441247981ee33d1bd87dc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 1
     - _AlphaStrength: 1
     - _BumpScale: 1
-    - _Cutoff: 0.766
+    - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissiveIntensity: 1
     - _EnableExternalAlpha: 0
-    - _Gloss: 0.9883574
+    - _Gloss: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 1
@@ -105,7 +105,7 @@ Material:
     - _Metallic: 0
     - _Mode: 1
     - _NormalIntensity: 0
-    - _NormalStrength: 0
+    - _NormalStrength: 0.322
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Shininess: 0.078125
@@ -117,9 +117,9 @@ Material:
     - _TrunkWindAmplitude: 1
     - _TrunkWindPower: 0.5
     - _UVSec: 0
-    - _UV_Scale: 0.5
-    - _WindStrength: 0.146
-    - _Wind_Speed: 0.695
+    - _UV_Scale: 0.1
+    - _WindStrength: 0.195
+    - _Wind_Speed: 2.08
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
