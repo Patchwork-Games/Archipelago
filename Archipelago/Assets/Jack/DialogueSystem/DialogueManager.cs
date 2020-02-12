@@ -286,7 +286,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         //progress dialogue with interact button
-                                                                                                                 //FINDME change to use new input to support controllers
+                                                                                                                 
         if (Input.GetMouseButtonDown(0) || PlayerMovement.Instance.interact)
         {
             if (arrow.enabled == true)
@@ -299,7 +299,6 @@ public class DialogueManager : MonoBehaviour
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
-                                                                                                                //FINDME change to use new input to support controllers
             if (Input.GetKeyDown(KeyCode.Q) || (PlayerMovement.Instance.GetComponent<SkimmingController>().heldThrow && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
             {
                 EndDialogue();
