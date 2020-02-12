@@ -8,8 +8,17 @@ public class BouyGateTrigger : MonoBehaviour
 	[SerializeField] private LayerMask layerMask = 0;
 	[SerializeField] private float resetTime = 3f;
 	[SerializeField] private float dashForce = 20f;
-	private bool boatHasCrossedLine = false;
+	private Material originalFirstBouyMat = null;
+	private Material originalSecondBouyMat = null;
 	private float elapsedResetTime = 0f;
+	private bool boatHasCrossedLine = false;
+	public bool BoatHasCrossedLine { get { return boatHasCrossedLine; } set { boatHasCrossedLine = value; } }
+
+	private void Awake()
+	{
+		originalFirstBouyMat = firstBouy.GetChild(0).GetComponent<MeshRenderer>().material;
+		originalSecondBouyMat = secondBouy.GetChild(0).GetComponent<MeshRenderer>().material;
+	}
 
 	private void Update()
 	{
@@ -42,5 +51,17 @@ public class BouyGateTrigger : MonoBehaviour
 			}
 		}
 
+	}
+
+	public void SetBouyMaterial(Material mat)
+	{
+		firstBouy.GetChild(0).GetComponent<MeshRenderer>().material = mat;
+		secondBouy.GetChild(0).GetComponent<MeshRenderer>().material = mat;
+	}
+
+	public void ResetMaterials()
+	{
+		firstBouy.GetChild(0).GetComponent<MeshRenderer>().material = originalFirstBouyMat;
+		secondBouy.GetChild(0).GetComponent<MeshRenderer>().material = originalSecondBouyMat;
 	}
 }
