@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 129562718118506424}
   - component: {fileID: 8977725901124490638}
   - component: {fileID: 3435053886339197303}
+  - component: {fileID: 5593877416147878403}
   m_Layer: 0
   m_Name: Rock Pile 2
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4005693774868028843}
-  m_LocalRotation: {x: 0, y: -0.5539794, z: -0, w: 0.8325303}
+  m_LocalRotation: {x: 0, y: -0.5539802, z: 0, w: 0.83252984}
   m_LocalPosition: {x: 659.98, y: 34.604305, z: 907.93}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
@@ -80,6 +81,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!205 &5593877416147878403
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005693774868028843}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &6215051292656740355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,21 +171,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 4279360f240472d478d0e674fc4da9f5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 4279360f240472d478d0e674fc4da9f5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 4279360f240472d478d0e674fc4da9f5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 4279360f240472d478d0e674fc4da9f5,
         type: 3}
