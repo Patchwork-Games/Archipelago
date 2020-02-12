@@ -43,6 +43,8 @@ public class BouyGateCourseManager : MonoBehaviour
 		// Check if the boat has crossed the starting line
 		if (startingLine.GetComponent<BouyGateTrigger>().BoatHasCrossedLine && !isMiniGameActive && state != BouyGateCourseState.COMPLETE)
 		{
+			startingLine.GetComponent<BouyGateTrigger>().BoatHasCrossedLine = false;
+
 			// Start the minigame
 			isMiniGameActive = true;
 
@@ -82,9 +84,12 @@ public class BouyGateCourseManager : MonoBehaviour
 			// If the distance between the next bouy gate and the boat is too great reset the course
 			if (state == BouyGateCourseState.ANTI_CLOCKWISE || state == BouyGateCourseState.CLOCKWISE)
 			{
-				if (Vector3.Distance(boatTransform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
+				if (nextCheckPoint > 0 && nextCheckPoint < numOfCheckpoints)
 				{
-					ResetCourse();
+					if (Vector3.Distance(boatTransform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
+					{
+						ResetCourse();
+					}
 				}
 			}
 
@@ -104,6 +109,7 @@ public class BouyGateCourseManager : MonoBehaviour
 									onLastCheckpoint = true;
 								}
 							}
+
 						}
 						else
 						{
@@ -131,6 +137,7 @@ public class BouyGateCourseManager : MonoBehaviour
 									onLastCheckpoint = true;
 								}
 							}
+
 						}
 						else
 						{
