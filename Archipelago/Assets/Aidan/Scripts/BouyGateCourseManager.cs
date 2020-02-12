@@ -6,11 +6,14 @@ public class BouyGateCourseManager : MonoBehaviour
 {
 	[SerializeField] private Material goldBouyMat = null;
 	[SerializeField] private DashMeter dashMeter = null;
+	[SerializeField] private Transform boatTransform = null;
+	[SerializeField] private float distanceToResetCourseAt = 100f;
 	private GameObject startingLine = null;
 	private bool isMiniGameActive = false;
 	private bool isStateSet = false;
 	private int numOfCheckpoints = 0;
 	private int nextCheckPoint = 0;
+	private bool onLastCheckpoint = false;
 
 	enum BouyGateCourseState
 	{
@@ -76,16 +79,30 @@ public class BouyGateCourseManager : MonoBehaviour
 		// If the state is set work out which checkpoint is next
 		if (isStateSet)
 		{
+			// If the distance between the next bouy gate and the boat is too great reset the course
+			if (state == BouyGateCourseState.ANTI_CLOCKWISE || state == BouyGateCourseState.CLOCKWISE)
+			{
+				if (Vector3.Distance(boatTransform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
+				{
+					ResetCourse();
+				}
+			}
+
 			switch (state)
 			{
 				case BouyGateCourseState.ANTI_CLOCKWISE:
 					{
-						if (nextCheckPoint > 0)
+						if (nextCheckPoint > 0 && !onLastCheckpoint)
 						{
 							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
 							{
 								transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint--;
+
+								if (nextCheckPoint == 0)
+								{
+									onLastCheckpoint = true;
+								}
 							}
 						}
 						else
@@ -102,20 +119,25 @@ public class BouyGateCourseManager : MonoBehaviour
 					break;
 				case BouyGateCourseState.CLOCKWISE:
 					{
-						if (nextCheckPoint < numOfCheckpoints)
+						if (nextCheckPoint < numOfCheckpoints && !onLastCheckpoint)
 						{
 							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
 							{
 								transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint++;
+
+								if (nextCheckPoint == numOfCheckpoints)
+								{
+									onLastCheckpoint = true;
+								}
 							}
 						}
 						else
 						{
 							nextCheckPoint = 0;
-								Debug.Log("Course Complete!");
 							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
 							{
+								Debug.Log("Course Complete!");
 								// Course has been complete
 								state = BouyGateCourseState.COMPLETE;
 							}
@@ -133,9 +155,10 @@ public class BouyGateCourseManager : MonoBehaviour
 						dashMeter.AddEnergies(1);
 						isStateSet = false;
 						isMiniGameActive = false;
+						onLastCheckpoint = false;
 
 						// Reset all the materials of the bouys
-						foreach(Transform t in transform)
+						foreach (Transform t in transform)
 						{
 							t.GetComponent<BouyGateTrigger>().ResetMaterials();
 						}
@@ -147,4 +170,18 @@ public class BouyGateCourseManager : MonoBehaviour
 			}
 		}
 	}
+
+	private void ResetCourse()
+	{
+		// Reset all the materials of the bouys
+		foreach (Transform t in transform)
+		{
+			t.GetComponent<BouyGateTrigger>().ResetMaterials();
+		}
+
+		isStateSet = false;
+		isMiniGameActive = false;
+		onLastCheckpoint = false;
+	}
+
 }
