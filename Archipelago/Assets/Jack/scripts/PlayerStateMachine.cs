@@ -56,6 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
                     PlayerMovement.Instance.Move();
                     PlayerMovement.Instance.Gravity();
                     PlayerMovement.Instance.MoveCamera();
+                    PlayerMovement.Instance.anim.SetBool("InBoat", false);
                     break;
                 }
 

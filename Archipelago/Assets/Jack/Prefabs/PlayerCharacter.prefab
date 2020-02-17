@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717224438}
-  m_LocalRotation: {x: 0.00000009685755, y: -0.7071067, z: 0.7071069, w: 0.00000014901161}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0.379, y: 0, z: 1.942}
-  m_LocalScale: {x: 1, y: 8.91, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 6367339026500266365}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 180.00002}
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!212 &1717224440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 840549421
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 816c2bf594d9f0f4d8e29efde0e7a873, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee5d158e97207d54fa61a0e94d2ce36d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1419,6 +1419,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9a2d14f16d20f854cbb530f2cb0cf9c5, type: 2}
+    - target: {fileID: -8427419998412679373, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.23981676
+      objectReference: {fileID: 0}
+    - target: {fileID: -8427419998412679373, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.76919085
+      objectReference: {fileID: 0}
+    - target: {fileID: -8427419998412679373, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.23070893
+      objectReference: {fileID: 0}
+    - target: {fileID: -8427419998412679373, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.54553354
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b345d736a7ced4aa3d4cd27e442d85, type: 3}
 --- !u!4 &2100896058097316979 stripped

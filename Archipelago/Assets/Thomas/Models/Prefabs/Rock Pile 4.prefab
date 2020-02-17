@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4799979683578348846}
   - component: {fileID: 1270153066650040791}
   - component: {fileID: 5985999665453513494}
-  m_Layer: 0
+  - component: {fileID: 7866519789011019956}
+  m_Layer: 16
   m_Name: Rock Pile 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +106,20 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers: []
   m_Enabled: 1
+--- !u!64 &7866519789011019956
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692616943347059979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4302241249628298756, guid: 3bce7d15ce607d047a6d60557824a1b7, type: 3}
 --- !u!1 &1975425600167518634
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +131,8 @@ GameObject:
   - component: {fileID: 3256461817851171769}
   - component: {fileID: 5794514763353123215}
   - component: {fileID: 240600706298451318}
-  m_Layer: 0
+  - component: {fileID: 3645476379852862908}
+  m_Layer: 16
   m_Name: Rock1_L (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,6 +199,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3645476379852862908
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975425600167518634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 8190671627367455103, guid: 4279360f240472d478d0e674fc4da9f5, type: 3}
 --- !u!1 &4231941171850539248
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +224,8 @@ GameObject:
   - component: {fileID: 928227275937579747}
   - component: {fileID: 8195072981384935637}
   - component: {fileID: 2487735347838075948}
-  m_Layer: 0
+  - component: {fileID: 4961214295190439610}
+  m_Layer: 16
   m_Name: Rock2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,3 +292,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4961214295190439610
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231941171850539248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -6968139599666066972, guid: 0adc53b0ad236c743b9ce63a2eb1bc02, type: 3}
