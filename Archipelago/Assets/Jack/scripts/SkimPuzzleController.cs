@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class SkimPuzzleController : MonoBehaviour
 {
+
+    [SerializeField] private GameObject[] pillars = new GameObject[1];
+
+
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
