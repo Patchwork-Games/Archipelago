@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowObjectEnd : StateMachineBehaviour
+public class ThrowAnimEnd : StateMachineBehaviour
 {
+
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMovement.Instance.GetComponent<SkimmingController>().throwStone();
+        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
     }
 }
