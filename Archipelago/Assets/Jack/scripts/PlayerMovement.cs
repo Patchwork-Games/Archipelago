@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     //camera variables
     public GameObject CMCamera = null;
+    private Camera mainCam = null;
     //public GameObject poolCam = null;
     Vector3 camForward = Vector3.zero;
     Vector3 camRight = Vector3.zero;
@@ -37,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float energy = 0;
     [SerializeField] private GameObject RunParticle = null;
     [SerializeField] private GameObject InWaterWalkingParticle = null;
-    public GameObject energyBar = null;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
     private bool inWater = false;
@@ -204,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentItem = ItemEquipped.SKIMMINGROCK;
-
+        mainCam = Camera.main;
         controller = GetComponent<CharacterController>();
         anim.SetBool("Walking", false);
         isGrounded = true;
@@ -256,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
         if (BoatButtonGuide && BoatButtonImage)
         {
             BoatButtonImage.transform.position = transform.position + new Vector3(0,5,0);
-            BoatButtonImage.transform.rotation = Camera.main.transform.rotation;
+            BoatButtonImage.transform.rotation = mainCam.transform.rotation;
         }
     }
 

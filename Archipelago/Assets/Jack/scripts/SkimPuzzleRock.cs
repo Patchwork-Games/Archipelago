@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkimPuzzleController : MonoBehaviour
+public class SkimPuzzleRock : MonoBehaviour
 {
-
-    [SerializeField] private GameObject[] pillars = new GameObject[1];
-
-
     // Start is called before the first frame update
     void Start()
     {
