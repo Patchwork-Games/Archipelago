@@ -43,4 +43,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5a47b63f153114c83efa60e2338b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: MusicKey1
+    clip: {fileID: 8300000, guid: 9064a6bf6ccf0ca489512a6e94f9a967, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+  - name: MusicKey2
+    clip: {fileID: 8300000, guid: f3f948799b6196945b3ada66c48f20b2, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+  - name: MusicKey3
+    clip: {fileID: 8300000, guid: de717173db7ea2546af11996b6a4b582, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+  - name: MusicKey4
+    clip: {fileID: 8300000, guid: 0ddcab6a1a7e466449d9ce7edd7ace68, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
