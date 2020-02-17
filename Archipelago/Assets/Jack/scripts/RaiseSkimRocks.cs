@@ -20,6 +20,17 @@ public class RaiseSkimRocks : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //switch (GetComponent<SkimPuzzleController>().currentSet)
+            //{
+            //    case 0:
+            //        {
+
+            //            break;
+            //        }
+            //    default:
+            //        Debug.Log("Wrong number of sets, see raise skim rocks script");
+            //        break;
+            //}
             //raise rocks and play particle
             anim.SetBool("RaiseRocks", true);
             for (int i = 0; i < particles.Length; i++)
@@ -40,12 +51,5 @@ public class RaiseSkimRocks : MonoBehaviour
                 particles[i].Play();
             }
         }
-    }
-
-
-    //get the next set of stones, called from the hit of the last rock if rocks hit in correct order
-    public void NextSet()
-    {
-
     }
 }
