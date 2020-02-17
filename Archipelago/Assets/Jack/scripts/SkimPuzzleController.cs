@@ -6,17 +6,64 @@ public class SkimPuzzleController : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] pillars = new GameObject[1];
+    public bool puzzleActive = false;
+    public int currentSet = 0;
+    int glowedRocks = 0;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
+        if (puzzleActive)
+        {
+            for (int i = 0; i < pillars.Length; i++)
+            {
+                if (pillars[i].GetComponent<SkimPuzzleRock>().rockHit)
+                {
+                    StartCoroutine("GlowOneRock");
+                }
+
+            }
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    //glow all rocks for one second in order, not at the same time
+    IEnumerator GlowRocks()
     {
-        
+        glowedRocks = 0;
+        while (glowedRocks < pillars.Length)    
+        {
+            pillars[glowedRocks].GetComponent<Renderer>().material = transform.parent.GetComponent<SkimPuzzleMaster>().glowMats[glowedRocks];
+            yield return new WaitForSeconds(1);
+            pillars[glowedRocks].GetComponent<Renderer>().material = pillars[glowedRocks].GetComponent<SkimPuzzleRock>().originalMaterial;
+        }
+
     }
+
+
+    //glow all rocks for one second in order, not at the same time
+    IEnumerator GlowOneRock()
+    {
+        glowedRocks = 0;
+        while (glowedRocks < pillars.Length)
+        {
+            pillars[glowedRocks].GetComponent<Renderer>().material = transform.parent.GetComponent<SkimPuzzleMaster>().glowMats[glowedRocks];
+            yield return new WaitForSeconds(1);
+            pillars[glowedRocks].GetComponent<Renderer>().material = pillars[glowedRocks].GetComponent<SkimPuzzleRock>().originalMaterial;
+        }
+
+    }
+
+
+
+
+    //stop every rock from glowing
+    void StopAllGlow()
+    {
+        for (int i = 0; i < pillars.Length; i++)
+        {
+            pillars[i].GetComponent<Renderer>().material = pillars[i].GetComponent<SkimPuzzleRock>().originalMaterial;
+        }
+    }
+
 }

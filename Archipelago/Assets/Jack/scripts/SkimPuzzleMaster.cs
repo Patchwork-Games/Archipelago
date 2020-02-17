@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SkimPuzzleMaster : MonoBehaviour
 {
+
+
+    public Material[] glowMats = new Material[4];
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
