@@ -11,9 +11,10 @@ public class FishingController : MonoBehaviour
     [SerializeField] private GameObject bobber = null;
     [SerializeField] private float maxCastPower = 1000;
     private GameObject fishingPole = null;
-    public bool doingCast = false;
-    public bool heldCast = false;
-    public bool launched = false;
+
+    [HideInInspector] public bool doingCast = false;
+    [HideInInspector] public bool heldCast = false;
+    [HideInInspector] public bool launched = false;
     private bool chargingCast = false;
     private float castPower = 0;
     private Vector3 originalPos = Vector3.zero;

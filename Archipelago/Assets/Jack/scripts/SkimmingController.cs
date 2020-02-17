@@ -7,15 +7,20 @@ using Cinemachine;
 
 public class SkimmingController : MonoBehaviour
 {
+    //components
     [SerializeField] private Animator anim = null;
     [SerializeField] private GameObject stone = null;
-    [SerializeField] private GameObject ChargeParticle = null;
-    [SerializeField] private GameObject FullChargeParticle = null;
-    [SerializeField] private float maxThrowPower = 2000;
     [SerializeField] private GameObject launchPoint = null;
     [SerializeField] private GameObject skimArrow = null;
-    public bool doingThrow = false;
-    public bool heldThrow = false;
+
+    //particles
+    private ParticleSystem ChargeParticle = null;
+    private ParticleSystem FullChargeParticle = null;
+
+    //variables
+    [SerializeField] private float maxThrowPower = 2000;
+    [HideInInspector] public bool doingThrow = false;
+    [HideInInspector] public bool heldThrow = false;
     private bool chargingThrow = false;
     private float throwPower = 0;
     private float angleClamp = 0;
@@ -29,6 +34,11 @@ public class SkimmingController : MonoBehaviour
         doingThrow = false;
         heldThrow = false;
         skimArrow.SetActive(false);
+
+        Transform particlesObject = PlayerMovement.Instance.transform.Find("Particles").gameObject.transform;
+        ChargeParticle = particlesObject.Find("ChargeParticle").GetComponent<ParticleSystem>();
+        FullChargeParticle = particlesObject.Find("FullChargeParticle").GetComponent<ParticleSystem>();
+
     }
 
     private void FixedUpdate()

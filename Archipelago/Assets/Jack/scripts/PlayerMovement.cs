@@ -27,17 +27,15 @@ public class PlayerMovement : MonoBehaviour
     Vector3 camForward = Vector3.zero;
     Vector3 camRight = Vector3.zero;
     Vector2 camMoveDirection = Vector2.zero;
-    public Vector3 beginTalkCamPos = Vector3.zero;
+    [HideInInspector] public Vector3 beginTalkCamPos = Vector3.zero;
     [HideInInspector] public bool BoatButtonGuide = false;
     [SerializeField] private Canvas BoatButtonImage = null;
 
 
     //movement variables
+    private CharacterController controller = null;
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
-    [SerializeField] private float energy = 0;
-    [SerializeField] private GameObject RunParticle = null;
-    [SerializeField] private GameObject InWaterWalkingParticle = null;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
     private bool inWater = false;
@@ -46,27 +44,31 @@ public class PlayerMovement : MonoBehaviour
 
 
     //button variables
-    public InputMaster controls = null;
-    [SerializeField] private CharacterController controller = null;
+    [HideInInspector] public InputMaster controls = null;
     [HideInInspector] public bool interact = false;
-    [HideInInspector]public bool jump = false;
-    private bool run = false;
-    public bool YHeld = false;
+    [HideInInspector] public bool jump = false;
+    [HideInInspector] public bool YHeld = false;
     [HideInInspector] public bool inTalkDistance = false;
     [SerializeField] private Canvas CollectableUI = null;
+    private bool run = false;
 
 
     //jumping variables
-    public ParticleSystem jumpParticle = null;
-    private bool jumpParticlePlayed = false;
     private int jumps = 0;
     private int jumpsMax = 1;
-    [HideInInspector] public bool isGrounded;
     private float distanceGround;
+    [HideInInspector] public bool isGrounded;
     [SerializeField] private float groundDistance = 0.5f;
     [SerializeField] private float gravity = -55.81f;
     [SerializeField] private LayerMask groundMask = ~0;
 
+
+
+    //particles
+    private ParticleSystem RunParticle = null;
+    private ParticleSystem InWaterWalkingParticle = null;
+    [HideInInspector] public ParticleSystem jumpParticle = null;
+    private bool jumpParticlePlayed = false;
 
 
 
@@ -210,6 +212,13 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
         distanceGround = GetComponent<CharacterController>().bounds.extents.y;
         inTalkDistance = false;
+
+        Transform particlesObject = transform.Find("Particles").gameObject.transform;
+        jumpParticle = particlesObject.Find("JumpParticle").GetComponent<ParticleSystem>();
+        RunParticle = particlesObject.Find("RunParticle").GetComponent<ParticleSystem>();
+        InWaterWalkingParticle = transform.parent.Find("InWaterWalkingParticle").GetComponent<ParticleSystem>();
+
+
     }
 
 
@@ -219,11 +228,12 @@ public class PlayerMovement : MonoBehaviour
         //show water ripple
         if (transform.position.y < 33.3f)
         {
+            //have to manally set position as the y stays the same so that it appears on the water
             InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
-            if (!InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Play();
+            if (!InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Play();
 
         }
-        else if(InWaterWalkingParticle.GetComponent<ParticleSystem>().isPlaying) InWaterWalkingParticle.GetComponent<ParticleSystem>().Stop();
+        else if(InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Stop();
 
     }
 
@@ -447,8 +457,8 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded)
             {
                 anim.SetBool("Running", true);
-                RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
-                if (!RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Play();
+                //RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
+                if (!RunParticle.isPlaying) RunParticle.Play();
                 //if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
             }
 
@@ -456,7 +466,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
+            if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Running", false);
             //if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
 
@@ -472,7 +482,7 @@ public class PlayerMovement : MonoBehaviour
         //make player jump if enough jumps
         if (jumps > 0 && jump && !inTalkDistance)
         {
-            if (RunParticle.GetComponent<ParticleSystem>().isPlaying) RunParticle.GetComponent<ParticleSystem>().Stop();
+            if (RunParticle.isPlaying) RunParticle.Stop();
             velocity.y = 20f;
             jumps -= 1;
             anim.SetBool("Jumping", true);
