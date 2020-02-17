@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &2456501501072805657
-BoxCollider:
+--- !u!64 &6262475294183161792
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,9 +10,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.029695697, y: 0.03756665, z: 0.036087975}
-  m_Center: {x: -0.000023917777, y: 0.000017192206, z: -0.000021427884}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 9000075908759621986, guid: 815846ed822052b4291ec35891a48590, type: 3}
 --- !u!1 &4346569593452028876
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +25,7 @@ GameObject:
   - component: {fileID: 723188228855566815}
   - component: {fileID: 8598006535691512809}
   - component: {fileID: 2625255571983095568}
-  - component: {fileID: 1465026895}
+  - component: {fileID: 8518122213071369593}
   m_Layer: 16
   m_Name: Rock Pile 1
   m_TagString: Untagged
@@ -92,8 +93,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1465026895
-BoxCollider:
+--- !u!64 &8518122213071369593
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,9 +103,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.034932856, y: 0.03735841, z: 0.036049046}
-  m_Center: {x: 0.0001422143, y: 0.00047913895, z: -0.00005774917}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2759281148020101538, guid: c608756eb5ac8ee40a5853f483a3f4f5, type: 3}
 --- !u!1 &4485098754268426931
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ GameObject:
   - component: {fileID: 8448219544256690838}
   - component: {fileID: 2738913707720787567}
   - component: {fileID: 3961455674191857380}
-  - component: {fileID: 3377548835474299082}
+  - component: {fileID: 7878002023534329410}
   m_Layer: 16
   m_Name: Rock Pile 3
   m_TagString: Untagged
@@ -212,8 +214,8 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers: []
   m_Enabled: 1
---- !u!65 &3377548835474299082
-BoxCollider:
+--- !u!64 &7878002023534329410
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,11 +224,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.029695679, y: 0.037566647, z: 0.036087945}
-  m_Center: {x: -0.000025825113, y: 0.000017430633, z: -0.000022381544}
---- !u!65 &1979518699663201911
-BoxCollider:
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 9000075908759621986, guid: 815846ed822052b4291ec35891a48590, type: 3}
+--- !u!64 &6352391108676497191
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -235,9 +238,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.029695673, y: 0.037566654, z: 0.03608795}
-  m_Center: {x: -0.000025825108, y: 0.000017549846, z: -0.000024288895}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 9000075908759621986, guid: 815846ed822052b4291ec35891a48590, type: 3}
 --- !u!1001 &2578035873081656621
 PrefabInstance:
   m_ObjectHideFlags: 0
