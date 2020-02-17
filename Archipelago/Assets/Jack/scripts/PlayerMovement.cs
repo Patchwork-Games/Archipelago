@@ -550,6 +550,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (RunParticle.isPlaying) RunParticle.Stop();
         if (InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Stop();
+        anim.SetBool("InBoat", true);
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);
         anim.SetBool("Jumping", false);
