@@ -496,6 +496,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
+            if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Walking", false);
             anim.SetBool("Running", false);
             anim.SetBool("Jumping", false);
@@ -514,6 +515,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
+            if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Walking", false);
             anim.SetBool("Running", false);
             anim.SetBool("Jumping", false);
@@ -533,7 +535,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
         beginTalkCamPos = CMCamera.transform.position;
-
+        if (RunParticle.isPlaying) RunParticle.Stop();
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);
         anim.SetBool("Jumping", false);
@@ -546,6 +548,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckBoat()
     {
+        if (RunParticle.isPlaying) RunParticle.Stop();
+        if (InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Stop();
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);
         anim.SetBool("Jumping", false);
