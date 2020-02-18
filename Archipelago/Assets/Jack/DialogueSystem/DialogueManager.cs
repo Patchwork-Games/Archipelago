@@ -299,7 +299,7 @@ public class DialogueManager : MonoBehaviour
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
-            if (Input.GetKeyDown(KeyCode.Q) || (PlayerMovement.Instance.GetComponent<SkimmingController>().heldThrow && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
+            if ((Input.GetKeyDown(KeyCode.Q) || PlayerMovement.Instance.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
             {
                 EndDialogue();
             }
