@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouyGateCourseManager : MonoBehaviour
+public class BuoyGateCourseManager : MonoBehaviour
 {
 	[SerializeField] private Material goldBouyMat = null;
 	[SerializeField] private DashMeter dashMeter = null;
@@ -15,7 +15,7 @@ public class BouyGateCourseManager : MonoBehaviour
 	private int nextCheckPoint = 0;
 	private bool onLastCheckpoint = false;
 
-	enum BouyGateCourseState
+	enum BuoyGateCourseState
 	{
 		ANTI_CLOCKWISE = 0,
 		CLOCKWISE = 1,
@@ -23,7 +23,7 @@ public class BouyGateCourseManager : MonoBehaviour
 		COMPLETE = 3,
 		NUM_STATES = 4
 	}
-	private BouyGateCourseState state = BouyGateCourseState.NOT_ACTIVE;
+	private BuoyGateCourseState state = BuoyGateCourseState.NOT_ACTIVE;
 
 	private void Awake()
 	{
@@ -41,9 +41,9 @@ public class BouyGateCourseManager : MonoBehaviour
 	private void Update()
 	{
 		// Check if the boat has crossed the starting line
-		if (startingLine.GetComponent<BouyGateTrigger>().BoatHasCrossedLine && !isMiniGameActive && state != BouyGateCourseState.COMPLETE)
+		if (startingLine.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine && !isMiniGameActive && state != BuoyGateCourseState.COMPLETE)
 		{
-			startingLine.GetComponent<BouyGateTrigger>().BoatHasCrossedLine = false;
+			startingLine.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine = false;
 
 			// Start the minigame
 			isMiniGameActive = true;
@@ -51,28 +51,28 @@ public class BouyGateCourseManager : MonoBehaviour
 			// Reset all bouy triggers
 			foreach(Transform t in transform)
 			{
-				t.GetComponent<BouyGateTrigger>().BoatHasCrossedLine = false;
+				t.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine = false;
 			}
 
 			// Set the starting bouy to have a gold material
-			startingLine.GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
+			startingLine.GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 
 		}
 
 		// If the mini game has started next we need to check if the player is going clockwise or anti-clockwise
 		if (isMiniGameActive && !isStateSet)
 		{
-			if (transform.GetChild(1).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+			if (transform.GetChild(1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 			{
-				transform.GetChild(1).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
-				state = BouyGateCourseState.CLOCKWISE;
+				transform.GetChild(1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+				state = BuoyGateCourseState.CLOCKWISE;
 				nextCheckPoint = 2;
 				isStateSet = true;
 			}
-			else if(transform.GetChild(numOfCheckpoints - 1).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+			else if(transform.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 			{
-				transform.GetChild(numOfCheckpoints - 1).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
-				state = BouyGateCourseState.ANTI_CLOCKWISE;
+				transform.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+				state = BuoyGateCourseState.ANTI_CLOCKWISE;
 				nextCheckPoint = numOfCheckpoints - 2;
 				isStateSet = true;
 			}
@@ -82,7 +82,7 @@ public class BouyGateCourseManager : MonoBehaviour
 		if (isStateSet)
 		{
 			// If the distance between the next bouy gate and the boat is too great reset the course
-			if (state == BouyGateCourseState.ANTI_CLOCKWISE || state == BouyGateCourseState.CLOCKWISE)
+			if (state == BuoyGateCourseState.ANTI_CLOCKWISE || state == BuoyGateCourseState.CLOCKWISE)
 			{
 				if (nextCheckPoint > 0 && nextCheckPoint < numOfCheckpoints)
 				{
@@ -95,13 +95,13 @@ public class BouyGateCourseManager : MonoBehaviour
 
 			switch (state)
 			{
-				case BouyGateCourseState.ANTI_CLOCKWISE:
+				case BuoyGateCourseState.ANTI_CLOCKWISE:
 					{
 						if (nextCheckPoint > 0 && !onLastCheckpoint)
 						{
-							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
-								transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
+								transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint--;
 
 								if (nextCheckPoint == 0)
@@ -114,22 +114,22 @@ public class BouyGateCourseManager : MonoBehaviour
 						else
 						{
 							nextCheckPoint = 0;
-							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
 								// Course has been complete
-								state = BouyGateCourseState.COMPLETE;
+								state = BuoyGateCourseState.COMPLETE;
 							}
 						
 						}
 					}
 					break;
-				case BouyGateCourseState.CLOCKWISE:
+				case BuoyGateCourseState.CLOCKWISE:
 					{
 						if (nextCheckPoint < numOfCheckpoints && !onLastCheckpoint)
 						{
-							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
-								transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().SetBouyMaterial(goldBouyMat);
+								transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint++;
 
 								if (nextCheckPoint == numOfCheckpoints)
@@ -142,21 +142,21 @@ public class BouyGateCourseManager : MonoBehaviour
 						else
 						{
 							nextCheckPoint = 0;
-							if (transform.GetChild(nextCheckPoint).GetComponent<BouyGateTrigger>().BoatHasCrossedLine)
+							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
 								Debug.Log("Course Complete!");
 								// Course has been complete
-								state = BouyGateCourseState.COMPLETE;
+								state = BuoyGateCourseState.COMPLETE;
 							}
 						}
 					}
 					break;
-				case BouyGateCourseState.NOT_ACTIVE:
+				case BuoyGateCourseState.NOT_ACTIVE:
 					{
 						isStateSet = false;
 					}
 					break;
-				case BouyGateCourseState.COMPLETE:
+				case BuoyGateCourseState.COMPLETE:
 					{
 						// Give the player another energy node on their energy bar and set the state set and minigame active to false
 						dashMeter.AddEnergies(1);
@@ -167,7 +167,7 @@ public class BouyGateCourseManager : MonoBehaviour
 						// Reset all the materials of the bouys
 						foreach (Transform t in transform)
 						{
-							t.GetComponent<BouyGateTrigger>().ResetMaterials();
+							t.GetComponent<BuoyGateTrigger>().ResetMaterials();
 						}
 					}
 					break;
@@ -183,7 +183,7 @@ public class BouyGateCourseManager : MonoBehaviour
 		// Reset all the materials of the bouys
 		foreach (Transform t in transform)
 		{
-			t.GetComponent<BouyGateTrigger>().ResetMaterials();
+			t.GetComponent<BuoyGateTrigger>().ResetMaterials();
 		}
 
 		isStateSet = false;
