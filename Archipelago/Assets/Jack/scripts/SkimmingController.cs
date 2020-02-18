@@ -38,7 +38,6 @@ public class SkimmingController : MonoBehaviour
         Transform particlesObject = PlayerMovement.Instance.transform.Find("Particles").gameObject.transform;
         ChargeParticle = particlesObject.Find("ChargeParticle").GetComponent<ParticleSystem>();
         FullChargeParticle = particlesObject.Find("FullChargeParticle").GetComponent<ParticleSystem>();
-
     }
 
     private void FixedUpdate()
@@ -99,10 +98,9 @@ public class SkimmingController : MonoBehaviour
     }
 
 
-
+    //called in fixed update
     public void testThrow()
     {
-
         if (heldThrow && !chargingThrow && PlayerMovement.Instance.isGrounded && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
         {
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.THROWING;
@@ -110,18 +108,12 @@ public class SkimmingController : MonoBehaviour
             anim.SetBool("ChargingThrow", true);
             throwPower = 0;
             originalPos = transform.position;
-            ChargeParticle.transform.position = PlayerMovement.Instance.transform.position - new Vector3(0,1,0); //show particle while charging
             ChargeParticle.GetComponent<ParticleSystem>().Play();
-            StartCoroutine("ShakeCharacter");
+            //StartCoroutine("ShakeCharacter");
         }
-
-
-
 
         if (chargingThrow)
         {
-            //anim.SetBool("ChargingThrow", true);
-
             Vector3 camForward = Vector3.Normalize(transform.position - PlayerMovement.Instance.CMCamera.transform.position);
             camForward.y = 0;
 

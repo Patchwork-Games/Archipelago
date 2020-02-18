@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 6367339026500266364}
   - component: {fileID: 6367339026500266367}
   - component: {fileID: 6367339026500266361}
-  - component: {fileID: 6367339026500266366}
   - component: {fileID: 6367339026500266360}
   - component: {fileID: 6367339026500266363}
   m_Layer: 9
@@ -156,6 +155,7 @@ MonoBehaviour:
   beginTalkCamPos: {x: 0, y: 0, z: 0}
   BoatButtonGuide: 0
   BoatButtonImage: {fileID: 0}
+  controller: {fileID: 0}
   walkSpeed: 10
   runSpeed: 16
   interact: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   gravity: -55.81
   groundMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 98304
   jumpParticle: {fileID: 2476780603263256247}
 --- !u!114 &6367339026500266367
 MonoBehaviour:
@@ -207,20 +207,6 @@ MonoBehaviour:
   doingCast: 0
   heldCast: 0
   launched: 0
---- !u!136 &6367339026500266366
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6367339026500266355}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.0845456
-  m_Height: 1.55
-  m_Direction: 1
-  m_Center: {x: -7.0560247e-10, y: 0, z: 0.05545439}
 --- !u!65 &6367339026500266360
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371,6 +357,11 @@ PrefabInstance:
     - target: {fileID: 8098540679091498171, guid: ed81fbb4a0ff2b64684ef029c786df57,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138614245877263135, guid: ed81fbb4a0ff2b64684ef029c786df57,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1002,6 +993,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911402479828201496, guid: 9533e3d3984e65842acba53050fe4a1a,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911402479828201496, guid: 9533e3d3984e65842acba53050fe4a1a,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911402479828201496, guid: 9533e3d3984e65842acba53050fe4a1a,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.7881883
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9533e3d3984e65842acba53050fe4a1a, type: 3}
