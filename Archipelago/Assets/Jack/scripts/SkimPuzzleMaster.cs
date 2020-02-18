@@ -12,7 +12,7 @@ public class SkimPuzzleMaster : MonoBehaviour
 
     //puzzles
     [SerializeField] GameObject[] puzzles = new GameObject[2];
-
+    private bool rewarded = false;
 
 
     // Start is called before the first frame update
@@ -29,11 +29,20 @@ public class SkimPuzzleMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (puzzles[currentSet].GetComponent<SkimPuzzleController>().complete)
+        if (currentSet < puzzles.Length) // stops going out of bounds on array
         {
-            //move to next puzzle after completing one
-            currentSet++;
-            ActivateOnePuzzle();
+            if (puzzles[currentSet].GetComponent<SkimPuzzleController>().complete)
+            {
+                //move to next puzzle after completing one
+                currentSet++;
+                if (currentSet < puzzles.Length) ActivateOnePuzzle();    // stops going out of bounds on array
+            }
+        }
+        else if (!rewarded)
+        {
+            //give player reward
+            Debug.Log("Here is your reward, its amazing right? (Look at the skim puzzle master script under update)");
+            rewarded = true;
         }
     }
 

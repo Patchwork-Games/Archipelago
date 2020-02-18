@@ -97,12 +97,12 @@ public class SkimPuzzleController : MonoBehaviour
 
         yield return new WaitForSeconds(3); //hold glow for 3 seconds to allow skimmer to hit all rocks
 
-        if (!complete)
-        {
-            pillars[num].GetComponent<Renderer>().material = pillars[num].GetComponent<SkimPuzzleRock>().originalMaterial;
-            pillars[num].GetComponent<SkimPuzzleRock>().glowing = false;
-            pillars[num].GetComponent<SkimPuzzleRock>().rockHit = false;
-            currentRock = 0;
-        }
+        
+        //has to be these ugly ifs because the value can change halfway through which would make the colour change when it shouldnt
+        if (!complete)pillars[num].GetComponent<Renderer>().material = pillars[num].GetComponent<SkimPuzzleRock>().originalMaterial;
+        if (!complete)pillars[num].GetComponent<SkimPuzzleRock>().glowing = false;
+        if (!complete) pillars[num].GetComponent<SkimPuzzleRock>().rockHit = false;
+        if (!complete) currentRock = 0;
+        
     }
 }
