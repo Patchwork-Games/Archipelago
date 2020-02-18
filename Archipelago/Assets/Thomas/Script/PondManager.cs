@@ -37,7 +37,7 @@ public class PondManager : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             anim.SetBool("raiseRocks", true);
-            PlayerMovement.Instance.CMCamera.GetComponent<CameraShake>().ShakeCamera(2f, 2f,1f);
+			StaticValueHolder.PlayerCharacterCamera.GetComponent<CameraShake>().ShakeCamera(2f, 2f,1f);
             startTimer = true;
             if (other.CompareTag("Player"))
             {
@@ -59,7 +59,7 @@ public class PondManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             anim.SetBool("raiseRocks", false);
-            PlayerMovement.Instance.CMCamera.GetComponent<CameraShake>().ShakeCamera(2f, 2f, 1f);
+			StaticValueHolder.PlayerCharacterCamera.GetComponent<CameraShake>().ShakeCamera(2f, 2f, 1f);
             startTimer = false;
         }
     }

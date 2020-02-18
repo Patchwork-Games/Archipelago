@@ -35,7 +35,7 @@ public class SkimmingController : MonoBehaviour
         heldThrow = false;
         skimArrow.SetActive(false);
 
-        Transform particlesObject = StaticValueHolder.PlayerMovementScript.transform.Find("Particles").gameObject.transform;
+        Transform particlesObject = StaticValueHolder.PlayerObject.transform.Find("Particles").gameObject.transform;
         ChargeParticle = particlesObject.Find("ChargeParticle").GetComponent<ParticleSystem>();
         FullChargeParticle = particlesObject.Find("FullChargeParticle").GetComponent<ParticleSystem>();
     }

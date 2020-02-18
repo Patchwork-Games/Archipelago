@@ -275,9 +275,9 @@ public class DialogueManager : MonoBehaviour
         //closing animation
         animator.SetBool("IsOpen", false);
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-		PlayerMovement.Instance.interact = false;
-		PlayerMovement.Instance.CMCamera.SetActive(true);
-		PlayerMovement.Instance.CMCamera.transform.position = PlayerMovement.Instance.beginTalkCamPos;
+		StaticValueHolder.PlayerMovementScript.interact = false;
+		StaticValueHolder.PlayerCharacterCamera.gameObject.SetActive(true);
+		StaticValueHolder.PlayerCharacterCamera.gameObject.transform.position = StaticValueHolder.PlayerMovementScript.beginTalkCamPos;
 
     }
 
@@ -287,7 +287,7 @@ public class DialogueManager : MonoBehaviour
     {
         //progress dialogue with interact button
                                                                                                                  
-        if (Input.GetMouseButtonDown(0) || PlayerMovement.Instance.interact)
+        if (Input.GetMouseButtonDown(0) || StaticValueHolder.PlayerMovementScript.interact)
         {
             if (arrow.enabled == true)
             {
@@ -299,7 +299,7 @@ public class DialogueManager : MonoBehaviour
         if (canQuitSentence) //editor setting, allows player to quit sentence at any time
         {
             //quit sentence by pressing back
-            if ((Input.GetKeyDown(KeyCode.Q) || PlayerMovement.Instance.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
+            if ((Input.GetKeyDown(KeyCode.Q) || StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
             {
                 EndDialogue();
             }

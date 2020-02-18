@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] DashMeter dashMeter = null;
 	[SerializeField] CinemachineFreeLook playerCharacterCamera = null;
 	[SerializeField] CinemachineFreeLook boatCamera = null;
+	private PlayerMovement playerMovement = null;
 
 	private void Awake()
 	{
@@ -44,6 +45,18 @@ public class GameManager : MonoBehaviour
 				StaticValueHolder.BoatCamera = boatCamera;
 			else
 				Debug.Log("BoatCamera missing from game manager script on object: " + this.gameObject);
+
+			// Player movement
+			if (playerCharacterObject != null)
+			{
+				playerMovement = playerCharacterObject.GetComponent<PlayerMovement>();
+				if (playerMovement != null)
+				{
+					StaticValueHolder.PlayerMovementScript = playerMovement;
+				}
+			}
+			else
+				Debug.Log("PlayerMovement missing from game manager script on object: " + this.gameObject);
 		}
 	}
 }

@@ -41,23 +41,23 @@ public class DialogueTrigger : MonoBehaviour
         if (!displayOnStart)
         {
             //check if player is close enough to talk
-            if (Vector3.Distance(transform.position, PlayerMovement.Instance.transform.position) < talkRadius)
+            if (Vector3.Distance(transform.position, StaticValueHolder.PlayerObject.transform.position) < talkRadius)
             {
                 //show button needed to talk
                 if (talkButtonGuide && !startedTalking)
                 {
                     talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
                     talkButtonGuide.enabled = true;
-                    PlayerMovement.Instance.inTalkDistance = true;
+                    StaticValueHolder.PlayerMovementScript.inTalkDistance = true;
                     hiddenTalkButton = false;
                 }
                 else if (talkButtonGuide && !hiddenTalkButton) //hide talk button without disabling it for every npc
                 {
                     talkButtonGuide.enabled = false;
                     hiddenTalkButton = true;
-                    PlayerMovement.Instance.inTalkDistance = false;
+					StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
                 }
-                if (PlayerMovement.Instance.interact && !startedTalking)
+                if (StaticValueHolder.PlayerMovementScript.interact && !startedTalking)
                 {
                     startedTalking = true;
                     TriggerDialogue();
@@ -67,7 +67,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 hiddenTalkButton = true;
                 talkButtonGuide.enabled = false;
-                PlayerMovement.Instance.inTalkDistance = false;
+				StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
             }
             else
             {

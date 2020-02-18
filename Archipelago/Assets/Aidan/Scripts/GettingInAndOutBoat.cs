@@ -78,14 +78,14 @@ public class GettingInAndOutBoat : MonoBehaviour
 
         // Change the state to the boat state and change the camera to follow the boat
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
-		PlayerMovement.Instance.ChangeCamera(StaticValueHolder.BoatCamera, true);
+		StaticValueHolder.PlayerMovementScript.ChangeCamera(StaticValueHolder.BoatCamera, true);
 		playerInBoat = true;
 
 		// Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
-		PlayerMovement.Instance.gameObject.transform.parent = transform.parent;
-		PlayerMovement.Instance.gameObject.transform.localPosition = playerPosWhenInBoat.localPosition;
-		PlayerMovement.Instance.gameObject.transform.localRotation = playerPosWhenInBoat.localRotation;
-		PlayerMovement.Instance.gameObject.GetComponent<CharacterController>().enabled = false;
+		StaticValueHolder.PlayerObject.transform.parent = transform.parent;
+		StaticValueHolder.PlayerObject.transform.localPosition = playerPosWhenInBoat.localPosition;
+		StaticValueHolder.PlayerObject.transform.localRotation = playerPosWhenInBoat.localRotation;
+		StaticValueHolder.PlayerObject.GetComponent<CharacterController>().enabled = false;
 
 		// TO DO: ADD ANIMATION
 		Debug.Log("Getting in boat animation missing!");
@@ -102,13 +102,13 @@ public class GettingInAndOutBoat : MonoBehaviour
 
         // Change the state to the moving state and change the camera to follow the player
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-		PlayerMovement.Instance.ChangeCamera(StaticValueHolder.BoatCamera, false);
+		StaticValueHolder.PlayerMovementScript.ChangeCamera(StaticValueHolder.BoatCamera, false);
 		playerInBoat = false;
 
 		// // Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
-		PlayerMovement.Instance.gameObject.transform.parent = null;
-		PlayerMovement.Instance.gameObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
-		PlayerMovement.Instance.gameObject.GetComponent<CharacterController>().enabled = true;
+		StaticValueHolder.PlayerObject.transform.parent = null;
+		StaticValueHolder.PlayerObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
+		StaticValueHolder.PlayerObject.GetComponent<CharacterController>().enabled = true;
 
 		playerInsideTriggerBox = false;
 	}
