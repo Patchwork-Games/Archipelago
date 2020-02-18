@@ -1,7 +1,7 @@
 // Shader created with Shader Forge v1.40 
 // Shader Forge (c) Freya Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:32995,y:32675,varname:node_2865,prsc:2|diff-7736-RGB,spec-358-OUT,gloss-1813-OUT,normal-9195-OUT,emission-6831-OUT;n:type:ShaderForge.SFN_Tex2d,id:7736,x:32294,y:32467,ptovrint:True,ptlb:Texture,ptin:_MainTex,varname:_MainTex,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Slider,id:358,x:32137,y:32745,ptovrint:False,ptlb:Metallic,ptin:_Metallic,varname:node_358,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:1813,x:32137,y:32835,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:_Metallic_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8,max:1;n:type:ShaderForge.SFN_Lerp,id:9195,x:32294,y:32926,varname:node_9195,prsc:2|A-4559-RGB,B-5814-OUT,T-6099-OUT;n:type:ShaderForge.SFN_Vector3,id:6099,x:31943,y:33070,varname:node_6099,prsc:2,v1:0,v2:0,v3:0;n:type:ShaderForge.SFN_Slider,id:5814,x:31644,y:33029,ptovrint:False,ptlb:NormalIntesity,ptin:_NormalIntesity,varname:node_5814,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:8.803419,max:10;n:type:ShaderForge.SFN_Time,id:24,x:31644,y:33229,varname:node_24,prsc:2;n:type:ShaderForge.SFN_Multiply,id:5097,x:31875,y:33229,varname:node_5097,prsc:2|A-24-T,B-3016-OUT;n:type:ShaderForge.SFN_Sin,id:9868,x:32077,y:33229,varname:node_9868,prsc:2|IN-5097-OUT;n:type:ShaderForge.SFN_RemapRange,id:638,x:32279,y:33229,varname:node_638,prsc:2,frmn:-1,frmx:1,tomn:1,tomx:5|IN-9868-OUT;n:type:ShaderForge.SFN_Fresnel,id:8205,x:32456,y:33229,varname:node_8205,prsc:2|EXP-638-OUT;n:type:ShaderForge.SFN_Color,id:7468,x:32516,y:33430,ptovrint:False,ptlb:Glow Color,ptin:_GlowColor,varname:node_7468,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:1,c2:1,c3:1,c4:1;n:type:ShaderForge.SFN_Multiply,id:5260,x:32676,y:33229,varname:node_5260,prsc:2|A-8205-OUT,B-7468-RGB;n:type:ShaderForge.SFN_Vector1,id:8768,x:32676,y:33129,varname:node_8768,prsc:2,v1:0;n:type:ShaderForge.SFN_SwitchProperty,id:6831,x:32870,y:33229,ptovrint:False,ptlb:Glow Toggle,ptin:_GlowToggle,varname:node_6831,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,on:False|A-8768-OUT,B-5260-OUT;n:type:ShaderForge.SFN_Tex2d,id:4559,x:31943,y:32888,ptovrint:False,ptlb:NormalMap,ptin:_NormalMap,varname:node_4559,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True;n:type:ShaderForge.SFN_ValueProperty,id:3016,x:31644,y:33440,ptovrint:False,ptlb:GlowSpeed,ptin:_GlowSpeed,varname:node_3016,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;proporder:7736-358-1813-5814-7468-6831-4559-3016;pass:END;sub:END;*/
+/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:1,lgpr:1,limd:3,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:True,hqlp:False,rprd:True,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:2865,x:32995,y:32675,varname:node_2865,prsc:2|diff-7736-RGB,spec-358-OUT,gloss-1813-OUT,normal-9195-OUT,emission-6831-OUT;n:type:ShaderForge.SFN_Tex2d,id:7736,x:32294,y:32467,ptovrint:True,ptlb:Texture,ptin:_MainTex,varname:_MainTex,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Slider,id:358,x:32137,y:32745,ptovrint:False,ptlb:Metallic,ptin:_Metallic,varname:node_358,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0,max:1;n:type:ShaderForge.SFN_Slider,id:1813,x:32137,y:32835,ptovrint:False,ptlb:Gloss,ptin:_Gloss,varname:_Metallic_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:0.8,max:1;n:type:ShaderForge.SFN_Lerp,id:9195,x:32294,y:32926,varname:node_9195,prsc:2|A-4559-RGB,B-5814-OUT,T-6099-OUT;n:type:ShaderForge.SFN_Vector3,id:6099,x:31943,y:33070,varname:node_6099,prsc:2,v1:0,v2:0,v3:0;n:type:ShaderForge.SFN_Slider,id:5814,x:31644,y:33029,ptovrint:False,ptlb:NormalIntesity,ptin:_NormalIntesity,varname:node_5814,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:8.803419,max:10;n:type:ShaderForge.SFN_Time,id:24,x:31644,y:33229,varname:node_24,prsc:2;n:type:ShaderForge.SFN_Multiply,id:5097,x:31875,y:33229,varname:node_5097,prsc:2|A-24-T,B-3016-OUT;n:type:ShaderForge.SFN_Sin,id:9868,x:32077,y:33229,varname:node_9868,prsc:2|IN-5097-OUT;n:type:ShaderForge.SFN_RemapRange,id:638,x:32279,y:33229,varname:node_638,prsc:2,frmn:-1,frmx:1,tomn:1,tomx:5|IN-9868-OUT;n:type:ShaderForge.SFN_Fresnel,id:8205,x:32456,y:33229,varname:node_8205,prsc:2|EXP-638-OUT;n:type:ShaderForge.SFN_Color,id:7468,x:32516,y:33430,ptovrint:False,ptlb:Glow Color,ptin:_GlowColor,varname:node_7468,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:1,c2:1,c3:1,c4:1;n:type:ShaderForge.SFN_Multiply,id:5260,x:32676,y:33229,varname:node_5260,prsc:2|A-8205-OUT,B-1140-OUT;n:type:ShaderForge.SFN_Vector1,id:8768,x:32676,y:33129,varname:node_8768,prsc:2,v1:0;n:type:ShaderForge.SFN_SwitchProperty,id:6831,x:32870,y:33229,ptovrint:False,ptlb:Glow Toggle,ptin:_GlowToggle,varname:node_6831,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,on:False|A-8768-OUT,B-5260-OUT;n:type:ShaderForge.SFN_Tex2d,id:4559,x:31943,y:32888,ptovrint:False,ptlb:NormalMap,ptin:_NormalMap,varname:node_4559,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True;n:type:ShaderForge.SFN_ValueProperty,id:3016,x:31644,y:33440,ptovrint:False,ptlb:GlowSpeed,ptin:_GlowSpeed,varname:node_3016,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_Multiply,id:1140,x:32741,y:33430,varname:node_1140,prsc:2|A-7468-RGB,B-679-OUT;n:type:ShaderForge.SFN_ValueProperty,id:679,x:32500,y:33620,ptovrint:False,ptlb:Glow Intensity,ptin:_GlowIntensity,varname:node_679,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:15;proporder:7736-358-1813-5814-7468-6831-4559-3016-679;pass:END;sub:END;*/
 
 Shader "Shader Forge/Glow" {
     Properties {
@@ -13,6 +13,7 @@ Shader "Shader Forge/Glow" {
         [MaterialToggle] _GlowToggle ("Glow Toggle", Float ) = 0
         _NormalMap ("NormalMap", 2D) = "bump" {}
         _GlowSpeed ("GlowSpeed", Float ) = 0
+        _GlowIntensity ("Glow Intensity", Float ) = 15
     }
     SubShader {
         Tags {
@@ -51,6 +52,7 @@ Shader "Shader Forge/Glow" {
                 UNITY_DEFINE_INSTANCED_PROP( float4, _GlowColor)
                 UNITY_DEFINE_INSTANCED_PROP( fixed, _GlowToggle)
                 UNITY_DEFINE_INSTANCED_PROP( float, _GlowSpeed)
+                UNITY_DEFINE_INSTANCED_PROP( float, _GlowIntensity)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -215,7 +217,8 @@ Shader "Shader Forge/Glow" {
                 float4 node_24 = _Time;
                 float _GlowSpeed_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowSpeed );
                 float4 _GlowColor_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowColor );
-                float3 _GlowToggle_var = lerp( 0.0, (pow(1.0-max(0,dot(normalDirection, viewDirection)),(sin((node_24.g*_GlowSpeed_var))*2.0+3.0))*_GlowColor_var.rgb), UNITY_ACCESS_INSTANCED_PROP( Props, _GlowToggle ) );
+                float _GlowIntensity_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowIntensity );
+                float3 _GlowToggle_var = lerp( 0.0, (pow(1.0-max(0,dot(normalDirection, viewDirection)),(sin((node_24.g*_GlowSpeed_var))*2.0+3.0))*(_GlowColor_var.rgb*_GlowIntensity_var)), UNITY_ACCESS_INSTANCED_PROP( Props, _GlowToggle ) );
                 float3 emissive = _GlowToggle_var;
 /// Final Color:
                 float3 finalColor = diffuse + specular + emissive;
@@ -259,6 +262,7 @@ Shader "Shader Forge/Glow" {
                 UNITY_DEFINE_INSTANCED_PROP( float4, _GlowColor)
                 UNITY_DEFINE_INSTANCED_PROP( fixed, _GlowToggle)
                 UNITY_DEFINE_INSTANCED_PROP( float, _GlowSpeed)
+                UNITY_DEFINE_INSTANCED_PROP( float, _GlowIntensity)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -396,6 +400,7 @@ Shader "Shader Forge/Glow" {
                 UNITY_DEFINE_INSTANCED_PROP( float4, _GlowColor)
                 UNITY_DEFINE_INSTANCED_PROP( fixed, _GlowToggle)
                 UNITY_DEFINE_INSTANCED_PROP( float, _GlowSpeed)
+                UNITY_DEFINE_INSTANCED_PROP( float, _GlowIntensity)
             UNITY_INSTANCING_BUFFER_END( Props )
             struct VertexInput {
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -437,7 +442,8 @@ Shader "Shader Forge/Glow" {
                 float4 node_24 = _Time;
                 float _GlowSpeed_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowSpeed );
                 float4 _GlowColor_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowColor );
-                float3 _GlowToggle_var = lerp( 0.0, (pow(1.0-max(0,dot(normalDirection, viewDirection)),(sin((node_24.g*_GlowSpeed_var))*2.0+3.0))*_GlowColor_var.rgb), UNITY_ACCESS_INSTANCED_PROP( Props, _GlowToggle ) );
+                float _GlowIntensity_var = UNITY_ACCESS_INSTANCED_PROP( Props, _GlowIntensity );
+                float3 _GlowToggle_var = lerp( 0.0, (pow(1.0-max(0,dot(normalDirection, viewDirection)),(sin((node_24.g*_GlowSpeed_var))*2.0+3.0))*(_GlowColor_var.rgb*_GlowIntensity_var)), UNITY_ACCESS_INSTANCED_PROP( Props, _GlowToggle ) );
                 o.Emission = _GlowToggle_var;
                 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
