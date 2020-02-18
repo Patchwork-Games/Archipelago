@@ -54,6 +54,7 @@ public class Collectable : MonoBehaviour
             }
             if (PlayerMovement.Instance.interact)   //pickup object with interact
             {
+                PlayerMovement.Instance.jump = false;
                 switch (collectableType)
                 {
                     //add one to collected UI and show icon above player to indicate collection, gets the icon from the Collectable UI script
@@ -123,7 +124,7 @@ public class Collectable : MonoBehaviour
     {
         hiddenPickupButton = true;
         pickupButtonGuide.enabled = false;
-        PlayerMovement.Instance.interact = false;
+        //PlayerMovement.Instance.interact = false;
         PlayerMovement.Instance.inTalkDistance = false;
     }
 
