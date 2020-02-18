@@ -28,7 +28,7 @@ public class CollectableUIUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerMovement.Instance.YHeld)
+        if (StaticValueHolder.PlayerMovementScript.YHeld)
         {
             collectables[0].text = StaticValueHolder.Collectable0 + " / " + totalCollectables[0];
             collectables[1].text = StaticValueHolder.Collectable1 + " / " + totalCollectables[1];

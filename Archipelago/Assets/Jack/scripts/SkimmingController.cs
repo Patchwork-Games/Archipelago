@@ -35,7 +35,7 @@ public class SkimmingController : MonoBehaviour
         heldThrow = false;
         skimArrow.SetActive(false);
 
-        Transform particlesObject = PlayerMovement.Instance.transform.Find("Particles").gameObject.transform;
+        Transform particlesObject = StaticValueHolder.PlayerMovementScript.transform.Find("Particles").gameObject.transform;
         ChargeParticle = particlesObject.Find("ChargeParticle").GetComponent<ParticleSystem>();
         FullChargeParticle = particlesObject.Find("FullChargeParticle").GetComponent<ParticleSystem>();
     }
@@ -74,7 +74,7 @@ public class SkimmingController : MonoBehaviour
         {
             throwPower = maxThrowPower;
             //show sparkle here to show that max power reached
-            FullChargeParticle.transform.position = PlayerMovement.Instance.transform.position;
+            FullChargeParticle.transform.position = StaticValueHolder.PlayerMovementScript.transform.position;
             FullChargeParticle.GetComponent<ParticleSystem>().Play();
         }
         else if(throwPower != maxThrowPower)
@@ -101,7 +101,7 @@ public class SkimmingController : MonoBehaviour
     //called in fixed update
     public void testThrow()
     {
-        if (heldThrow && !chargingThrow && PlayerMovement.Instance.isGrounded && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
+        if (heldThrow && !chargingThrow && StaticValueHolder.PlayerMovementScript.isGrounded && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
         {
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.THROWING;
             chargingThrow = true;
@@ -114,7 +114,7 @@ public class SkimmingController : MonoBehaviour
 
         if (chargingThrow)
         {
-            Vector3 camForward = Vector3.Normalize(transform.position - PlayerMovement.Instance.CMCamera.transform.position);
+            Vector3 camForward = Vector3.Normalize(transform.position - StaticValueHolder.PlayerCharacterCamera.transform.position);
             camForward.y = 0;
 
             //LookAtMouse();

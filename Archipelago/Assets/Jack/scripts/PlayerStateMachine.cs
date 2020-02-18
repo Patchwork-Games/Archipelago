@@ -7,6 +7,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public static PlayerStateMachine Instance { get; private set; }
 
+    public PlayerMovement playerMovement = null;
 
 
     public enum PlayerState
@@ -38,9 +39,6 @@ public class PlayerStateMachine : MonoBehaviour
 
 
 
-
-
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -50,14 +48,14 @@ public class PlayerStateMachine : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-                    PlayerMovement.Instance.CheckGround();
-                    PlayerMovement.Instance.CheckRun();
-                    PlayerMovement.Instance.CheckJump();
-                    PlayerMovement.Instance.Move();
-                    PlayerMovement.Instance.Gravity();
-                    PlayerMovement.Instance.MoveCamera();
-                    PlayerMovement.Instance.anim.SetBool("InBoat", false);
-                    PlayerMovement.Instance.controller.enabled = true;
+                   StaticValueHolder.PlayerMovementScript.CheckGround();
+                   StaticValueHolder.PlayerMovementScript.CheckRun();
+                   StaticValueHolder.PlayerMovementScript.CheckJump();
+                   StaticValueHolder.PlayerMovementScript.Move();
+                   StaticValueHolder.PlayerMovementScript.Gravity();
+                   StaticValueHolder.PlayerMovementScript.MoveCamera();
+                   StaticValueHolder.PlayerMovementScript.anim.SetBool("InBoat", false);
+                   StaticValueHolder.PlayerMovementScript.controller.enabled = true;
                     break;
                 }
 
@@ -65,7 +63,7 @@ public class PlayerStateMachine : MonoBehaviour
             //throwing stone
             case PlayerState.THROWING:
                 {
-                    PlayerMovement.Instance.CheckThrowing();
+                    StaticValueHolder.PlayerMovementScript.CheckThrowing();
                     break;
                 }
 
@@ -73,7 +71,7 @@ public class PlayerStateMachine : MonoBehaviour
             //fishing
             case PlayerState.FISHING:
                 {
-                    PlayerMovement.Instance.CheckFishing();
+                    StaticValueHolder.PlayerMovementScript.CheckFishing();
                     break;
                 }
 
@@ -82,7 +80,7 @@ public class PlayerStateMachine : MonoBehaviour
             //throwing stone
             case PlayerState.TALKING:
                 {
-                    PlayerMovement.Instance.CheckTalking();
+                    StaticValueHolder.PlayerMovementScript.CheckTalking();
                     break;
                 }
 
@@ -90,7 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
             //In boat
             case PlayerState.BOAT:
                 {
-                    PlayerMovement.Instance.CheckBoat();
+                    StaticValueHolder.PlayerMovementScript.CheckBoat();
                     break;
                 }
 
@@ -99,8 +97,8 @@ public class PlayerStateMachine : MonoBehaviour
                 break;
         }
         //stop holding A or jumping
-        PlayerMovement.Instance.interact = false;
-        PlayerMovement.Instance.jump = false;
+        StaticValueHolder.PlayerMovementScript.interact = false;
+        StaticValueHolder.PlayerMovementScript.jump = false;
     }
 
 }

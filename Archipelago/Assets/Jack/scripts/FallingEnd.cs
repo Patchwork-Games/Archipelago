@@ -9,8 +9,8 @@ public class FallingEnd : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMovement.Instance.jumpParticle.transform.position = PlayerMovement.Instance.transform.position - new Vector3(0, .9f, 0);
-        PlayerMovement.Instance.jumpParticle.Play();
+        StaticValueHolder.PlayerMovementScript.jumpParticle.transform.position = StaticValueHolder.PlayerMovementScript.transform.position - new Vector3(0, .9f, 0);
+        StaticValueHolder.PlayerMovementScript.jumpParticle.Play();
     }
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

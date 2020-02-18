@@ -7,9 +7,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public static PlayerMovement Instance { get; private set; }
-
-
     public enum ItemEquipped
     {
         SKIMMINGROCK,
@@ -21,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim = null;
 
     //camera variables
-    public GameObject CMCamera = null;
     private Camera mainCam = null;
     //public GameObject poolCam = null;
     Vector3 camForward = Vector3.zero;
@@ -74,22 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            Instance = this;
-        }
-
-
-
-        controls = new InputMaster();
-        
+        controls = new InputMaster();  
     }
 
 
@@ -274,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         //get camera forward
-        camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
+        camForward = Vector3.Normalize(transform.position - StaticValueHolder.PlayerCharacterCamera.transform.position);
         camForward.y = 0;
         camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
 
@@ -310,16 +291,16 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (camMoveDirection.x != 0)
         {
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement";
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisName = "CameraMovement";
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 300;
         }
         else
         {
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisName = "Mouse X";
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 300;
         }
 
-        CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = camMoveDirection.x;
+        StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisValue = camMoveDirection.x;
     }
 
 
@@ -329,16 +310,16 @@ public class PlayerMovement : MonoBehaviour
         //move camera
         if (moveDirection.x != 0)
         {
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "CameraMovement1";
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 50;
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisName = "CameraMovement1";
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 50;
         }
         else
         {
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisName = "Mouse X";
-            CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = 300;
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisName = "Mouse X";
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 300;
         }
 
-        CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = moveDirection.x;
+        StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisValue = moveDirection.x;
     }
 
 
@@ -347,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
     public void Run()
     {
         //get camera forward
-        camForward = Vector3.Normalize(transform.position - CMCamera.transform.position);
+        camForward = Vector3.Normalize(transform.position - StaticValueHolder.PlayerCharacterCamera.transform.position);
         camForward.y = 0;
         camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
 
@@ -382,11 +363,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (raise)
         {
-            cam.Priority = CMCamera.GetComponent<CinemachineFreeLook>().Priority + 1;
+            cam.Priority = StaticValueHolder.PlayerCharacterCamera.Priority + 1;
         }
         else
         {
-            cam.Priority = CMCamera.GetComponent<CinemachineFreeLook>().Priority - 1;
+            cam.Priority = StaticValueHolder.PlayerCharacterCamera.Priority - 1;
         }
         
     }
@@ -395,11 +376,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (raise)
         {
-            cam.Priority = CMCamera.GetComponent<CinemachineVirtualCamera>().Priority + 1;
+            cam.Priority = StaticValueHolder.PlayerCharacterCamera.Priority + 1;
         }
         else
         {
-            cam.Priority = CMCamera.GetComponent<CinemachineVirtualCamera>().Priority - 1;
+            cam.Priority = StaticValueHolder.PlayerCharacterCamera.Priority - 1;
         }
 
     }
@@ -534,7 +515,7 @@ public class PlayerMovement : MonoBehaviour
     public void CheckTalking()
     {
         //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
-        beginTalkCamPos = CMCamera.transform.position;
+        beginTalkCamPos = StaticValueHolder.PlayerCharacterCamera.transform.position;
         if (RunParticle.isPlaying) RunParticle.Stop();
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);

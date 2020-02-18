@@ -42,40 +42,40 @@ public class Collectable : MonoBehaviour
     private void Update()
     {
         //check if player is close enough to pick up
-        if (Vector3.Distance(transform.position, PlayerMovement.Instance.transform.position) < pickUpRadius && collectableType != CollectableTypes.ENERGY)
+        if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < pickUpRadius && collectableType != CollectableTypes.ENERGY)
         {
             //show button needed to pick up
             if (pickupButtonGuide)
             {
                 pickupButtonGuide.transform.position = transform.position + new Vector3(0, 5, 0);
                 pickupButtonGuide.enabled = true;
-                PlayerMovement.Instance.inTalkDistance = true;
+                StaticValueHolder.PlayerMovementScript.inTalkDistance = true;
                 hiddenPickupButton = false;
             }
-            if (PlayerMovement.Instance.interact)   //pickup object with interact
+            if (StaticValueHolder.PlayerMovementScript.interact)   //pickup object with interact
             {
-                PlayerMovement.Instance.jump = false;
+                StaticValueHolder.PlayerMovementScript.jump = false;
                 switch (collectableType)
                 {
                     //add one to collected UI and show icon above player to indicate collection, gets the icon from the Collectable UI script
                     case CollectableTypes.FISH:
                         {
                             StaticValueHolder.Collectable0 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, PlayerMovement.Instance.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = fishSprite;
                             break;
                         }
                     case CollectableTypes.SHELL:
                         {
                             StaticValueHolder.Collectable1 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, PlayerMovement.Instance.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = shellSprite;
                             break;
                         }
                     case CollectableTypes.STICK:
                         {
                             StaticValueHolder.Collectable2 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, PlayerMovement.Instance.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = stickSprite;
                             break;
                         }
@@ -125,7 +125,7 @@ public class Collectable : MonoBehaviour
         hiddenPickupButton = true;
         pickupButtonGuide.enabled = false;
         //PlayerMovement.Instance.interact = false;
-        PlayerMovement.Instance.inTalkDistance = false;
+        StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
     }
 
 }

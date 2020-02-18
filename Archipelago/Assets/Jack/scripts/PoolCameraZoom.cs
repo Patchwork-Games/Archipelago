@@ -18,8 +18,8 @@ public class PoolCameraZoom : MonoBehaviour
 
     private void Start()
     {
-        startRad = PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius;
-        startHeight = PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height;
+        startRad = StaticValueHolder.PlayerCharacterCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius;
+        startHeight = StaticValueHolder.PlayerCharacterCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,23 +57,23 @@ public class PoolCameraZoom : MonoBehaviour
             if (currentTime <= timeToMove)
             {
                 currentTime += Time.deltaTime;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
-
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
+                                 
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Height = Mathf.Lerp(startHeight, zoomedHeight, currentTime / timeToMove);
             }
             else
             {
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius = zoomedRad;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Radius = zoomedRad;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Radius = zoomedRad;
-
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height = zoomedHeight;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Height = zoomedHeight;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Height = zoomedHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Radius = zoomedRad;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Radius = zoomedRad;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Radius = zoomedRad;
+               
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Height = zoomedHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Height = zoomedHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Height = zoomedHeight;
                 currentTime = 0f;
                 moving = false;
             }
@@ -91,23 +91,23 @@ public class PoolCameraZoom : MonoBehaviour
             {
                 currentTime += Time.deltaTime;
 
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
-
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Radius = Mathf.Lerp(zoomedRad, startRad, currentTime / timeToMove);
+               
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Height = Mathf.Lerp(zoomedHeight, startHeight, currentTime / timeToMove);
             }
             else
             {
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius = startRad;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Radius = startRad;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Radius = startRad;
-
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Height = startHeight;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Height = startHeight;
-                PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Height = startHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Radius = startRad;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Radius = startRad;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Radius = startRad;
+               
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[0].m_Height = startHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[1].m_Height = startHeight;
+                StaticValueHolder.PlayerCharacterCamera.m_Orbits[2].m_Height = startHeight;
                 currentTime = 0f;
                 moving = false;
             }

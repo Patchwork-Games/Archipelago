@@ -83,7 +83,7 @@ public class FishingController : MonoBehaviour
     public void testCast()
     {
 
-        if (heldCast && !chargingCast && PlayerMovement.Instance.isGrounded)
+        if (heldCast && !chargingCast && StaticValueHolder.PlayerMovementScript.isGrounded)
         {
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.FISHING;
             fishingPole.GetComponent<MeshRenderer>().enabled = true;
@@ -98,7 +98,7 @@ public class FishingController : MonoBehaviour
 
         if (chargingCast)
         {
-            Vector3 camForward = Vector3.Normalize(transform.position - PlayerMovement.Instance.CMCamera.transform.position);
+            Vector3 camForward = Vector3.Normalize(transform.position - StaticValueHolder.PlayerCharacterCamera.transform.position);
             camForward.y = 0;
             //LookAtMouse();
             chargeCast();

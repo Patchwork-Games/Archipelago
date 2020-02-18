@@ -56,7 +56,13 @@ public static class StaticValueHolder
 		set;
 	}
 
-	public static DashMeter DashMeterObject
+    public static PlayerMovement PlayerMovementScript
+    {
+        get;
+        set;
+    }
+
+    public static DashMeter DashMeterObject
 	{
 		get;
 		set;
