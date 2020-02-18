@@ -17343,6 +17343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c5d68974397eb4fb67050d89ace5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
   state: 0
 --- !u!4 &523064830
 Transform:
@@ -18268,7 +18269,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567062974}
-  m_LocalRotation: {x: -0.89949304, y: -0.018319855, z: 0.03793059, w: -0.43489993}
+  m_LocalRotation: {x: -0.89949304, y: -0.01831987, z: 0.03793062, w: -0.43489993}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -55885,6 +55886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 361106827439599553, guid: 57c760d2ea88d464db3d0a6b43efd845,
+        type: 3}
+      propertyPath: iconBarStartPos.y
+      value: -155
       objectReference: {fileID: 0}
     - target: {fileID: 361106827439599565, guid: 57c760d2ea88d464db3d0a6b43efd845,
         type: 3}
