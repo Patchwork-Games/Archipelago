@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SkimPuzzleMaster : MonoBehaviour
 {
-
-
     public Material[] glowMats = new Material[4];
+    [HideInInspector] public int currentSet = 0;
+
 
 
 

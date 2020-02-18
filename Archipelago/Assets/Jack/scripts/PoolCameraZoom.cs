@@ -57,9 +57,6 @@ public class PoolCameraZoom : MonoBehaviour
             if (currentTime <= timeToMove)
             {
                 currentTime += Time.deltaTime;
-
-                Debug.Log("Time: " + currentTime);
-
                 PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[0].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
                 PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[1].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);
                 PlayerMovement.Instance.CMCamera.GetComponent<CinemachineFreeLook>().m_Orbits[2].m_Radius = Mathf.Lerp(startRad, zoomedRad, currentTime / timeToMove);

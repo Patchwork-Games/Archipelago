@@ -5,7 +5,8 @@ using UnityEngine;
 public class SkimPuzzleRock : MonoBehaviour
 {
     public bool rockHit = false;
-    public Material originalMaterial = null;
+    [HideInInspector] public bool glowing = false;
+    [HideInInspector] public Material originalMaterial = null;
 
 
     // Start is called before the first frame update
