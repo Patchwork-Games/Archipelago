@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //movement variables
-    private CharacterController controller = null;
+    [HideInInspector] public CharacterController controller = null;
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
     Vector2 moveDirection = Vector2.zero;
@@ -550,6 +550,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (RunParticle.isPlaying) RunParticle.Stop();
         if (InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Stop();
+        controller.enabled = false;
         anim.SetBool("InBoat", true);
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);
