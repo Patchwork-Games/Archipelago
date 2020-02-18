@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2143429341842756898}
   - component: {fileID: 2143429341842756901}
   m_Layer: 0
-  m_Name: BouyGateStartingLine
+  m_Name: BuoyGateStartingLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8627fde6ff4f64b8b064ce26abbc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstBouy: {fileID: 2143429342104852624}
-  secondBouy: {fileID: 6212157399072517137}
+  firstBuoy: {fileID: 2143429342104852624}
+  secondBuoy: {fileID: 6212157399072517137}
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2143429342104852624}
   m_Layer: 0
-  m_Name: Bouy
+  m_Name: Buoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6212157399072517137}
   m_Layer: 0
-  m_Name: Bouy (1)
+  m_Name: Buoy (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

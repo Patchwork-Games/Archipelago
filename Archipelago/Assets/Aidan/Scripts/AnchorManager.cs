@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AnchorManager : MonoBehaviour
 {
-	[SerializeField] private GameObject boatObject = null;
 	[SerializeField]private Vector3 offsetFromBoat = Vector3.zero;
 	private Transform originalParent = null;
 
@@ -16,13 +15,13 @@ public class AnchorManager : MonoBehaviour
 	private void OnEnable()
 	{
 		transform.parent = originalParent;
-		transform.position = boatObject.transform.position + offsetFromBoat;
+		transform.position = StaticValueHolder.BoatObject.transform.position + offsetFromBoat;
 		transform.rotation = Quaternion.identity;
 	}
 
 	public void TakeInAnchor()
 	{
-		transform.parent = boatObject.transform;
+		transform.parent = StaticValueHolder.BoatObject.transform;
 		transform.localPosition = offsetFromBoat;
 	}
 }

@@ -22,7 +22,6 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
 	[SerializeField] private float maxSpeed = 30f;
-	[SerializeField] private DashMeter dashMeterBar = null;
 
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
@@ -53,10 +52,10 @@ public class BoatController : MonoBehaviour
 			return;
 
 		// Return from the function is there is no energy left
-		if (!dashMeterBar.EnergyBarIsEmpty)
+		if (!StaticValueHolder.DashMeterObject.EnergyBarIsEmpty)
 		{
 			// Use one of the dash meters energies
-			dashMeterBar.UseEnergies(1);
+			StaticValueHolder.DashMeterObject.UseEnergies(1);
 
 			// Add the dash force to the boat
 			rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
@@ -154,32 +153,7 @@ public class BoatController : MonoBehaviour
 
 	private void UpdateInOceanState()
 	{
-		//// Dash count down
-		//if (elapsedDashTime > 0 && isDashing)
-		//{
-		//	elapsedDashTime -= Time.deltaTime;
-		//	if (elapsedDashTime <= 0)
-		//	{
-		//		// Reset the motor force when 
-		//		isDashing = false;
-		//	}
-		//	else
-		//	{
-		//		rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
-		//	}
-		//}
-
-		// Check if the boat is still able to dash
-		//if (dashMeterObject.GetComponent<DashMeter>().currentCharge > 0 && isDashing)
-		//{
-			
-
-		//	// If the current charge is less then or equal to 0 then stop the boat from dashing
-		//	if (dashMeterObject.GetComponent<DashMeter>().currentCharge <= 0)
-		//	{
-		//		isDashing = false;
-		//	}
-		//}
+		
 	}
 
 

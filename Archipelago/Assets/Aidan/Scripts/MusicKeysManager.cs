@@ -22,7 +22,7 @@ public class MusicKeysManager : MonoBehaviour
 	{
 		// Get the particles
 		{
-			Transform particlesObject = PlayerMovement.Instance.transform.Find("Particles").gameObject.transform;
+			Transform particlesObject = StaticValueHolder.PlayerObject.transform.Find("Particles").gameObject.transform;
 			blueNote = particlesObject.Find("BlueNote").GetComponent<ParticleSystem>();
 			redNote = particlesObject.Find("RedNote").GetComponent<ParticleSystem>();
 			yellowNote = particlesObject.Find("YellowNote").GetComponent<ParticleSystem>();

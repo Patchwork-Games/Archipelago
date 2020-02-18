@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuoyGateCourseManager : MonoBehaviour
 {
 	[SerializeField] private Material goldBouyMat = null;
-	[SerializeField] private DashMeter dashMeter = null;
 	[SerializeField] private Transform boatTransform = null;
 	[SerializeField] private float distanceToResetCourseAt = 100f;
 	private GameObject startingLine = null;
@@ -159,7 +158,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 				case BuoyGateCourseState.COMPLETE:
 					{
 						// Give the player another energy node on their energy bar and set the state set and minigame active to false
-						dashMeter.AddEnergies(1);
+						StaticValueHolder.DashMeterObject.AddEnergies(1);
 						isStateSet = false;
 						isMiniGameActive = false;
 						onLastCheckpoint = false;

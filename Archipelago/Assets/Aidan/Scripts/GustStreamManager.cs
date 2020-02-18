@@ -10,7 +10,6 @@ public class GustStreamManager : MonoBehaviour
 	public GameObject gustStreamSpawnerObject = null;
 	private Rigidbody rb = null;
 	private bool boatHasEnteredGust = false;
-	[HideInInspector] public GameObject boat = null;
 	[SerializeField] private float aliveTime = 10f;
 	private float elapsedAliveTime = 0f;
 
@@ -20,7 +19,6 @@ public class GustStreamManager : MonoBehaviour
 		if (other.CompareTag("Boat"))
 		{
 			boatHasEnteredGust = true;
-			//boat = other.gameObject;
 		}
 	}
 
@@ -58,7 +56,7 @@ public class GustStreamManager : MonoBehaviour
 		if (boatHasEnteredGust)
 		{
 			// Add a force to the players forward vector
-			boat.GetComponent<BoatController>().AddGustForce(gustForce);
+			StaticValueHolder.BoatObject.GetComponent<BoatController>().AddGustForce(gustForce);
 
 			// OPTIONAL - Add torque to the player in the direction of the wind
 		}

@@ -11,7 +11,6 @@ public class GustStreamSpawner : MonoBehaviour
 	private bool timeSet = false;
 	private float randomSpawnTime = 0f;
 	private float elapsedSpawnTime = 0f;
-	[SerializeField] private GameObject boatObject = null;
 
 	private void Awake()
 	{
@@ -32,7 +31,7 @@ public class GustStreamSpawner : MonoBehaviour
 	void Update()
     {
 		// Only do this if the boat is in the ocean
-		if (boatObject.GetComponent<BoatController>().State != BoatController.BoatState.IN_OCEAN)
+		if (StaticValueHolder.BoatObject.GetComponent<BoatController>().State != BoatController.BoatState.IN_OCEAN)
 			return;
 
 		// Set a time for the next gust stream to spawn randomly between 2 values
@@ -56,8 +55,8 @@ public class GustStreamSpawner : MonoBehaviour
 		}
 
 		// Set the position and rotation of the spawner to use the same X, Z axis as the main camera
-		transform.position = new Vector3(boatObject.transform.position.x, transform.position.y, boatObject.transform.position.z);
-		transform.rotation = Quaternion.LookRotation(boatObject.transform.forward);
+		transform.position = new Vector3(StaticValueHolder.BoatObject.transform.position.x, transform.position.y, StaticValueHolder.BoatObject.transform.position.z);
+		transform.rotation = Quaternion.LookRotation(StaticValueHolder.BoatObject.transform.forward);
     }
 
 	private void SpawnGustStream()
@@ -80,6 +79,5 @@ public class GustStreamSpawner : MonoBehaviour
 		GameObject newGustStream = gustStreamPool.RetrieveInstance();
 		newGustStream.transform.position = randomNode.position;
 		newGustStream.GetComponent<GustStreamManager>().gustStreamSpawnerObject = this.gameObject;
-		newGustStream.GetComponent<GustStreamManager>().boat = boatObject.gameObject;
 	}
 }

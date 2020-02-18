@@ -5,15 +5,8 @@ using UnityEngine;
 public class PushingTheBoat : MonoBehaviour
 {
 	[SerializeField] private float pushForce = 0f;
-	private GameObject boatObject = null;
 	private GameObject playerObject = null;
 	private Vector3 dirFromPlayerToBoat = Vector3.zero;
-
-	private void Awake()
-	{
-		// Get the parent object
-		boatObject = transform.parent.gameObject;
-	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -21,8 +14,8 @@ public class PushingTheBoat : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			playerObject = other.gameObject;
-			dirFromPlayerToBoat = boatObject.transform.position - playerObject.transform.position;
-			boatObject.GetComponent<Rigidbody>().AddForce(dirFromPlayerToBoat * pushForce);
+			dirFromPlayerToBoat = StaticValueHolder.BoatObject.transform.position - playerObject.transform.position;
+			StaticValueHolder.BoatObject.GetComponent<Rigidbody>().AddForce(dirFromPlayerToBoat * pushForce);
 		}
 	}
 }

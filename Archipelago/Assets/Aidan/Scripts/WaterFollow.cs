@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class WaterFollow : MonoBehaviour
 {
-	[SerializeField] private GameObject boatObject = null;
 	[SerializeField] private Vector2 offsetFromPlayer = Vector2.zero;
-	private GameObject playerObject = null;
-
-	private void Start()
-	{
-		// Get the player game object
-		playerObject = PlayerMovement.Instance.gameObject;
-	}
 
 	private void Update()
 	{
 		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 		{
-			transform.position = new Vector3(playerObject.transform.position.x + offsetFromPlayer.x, transform.position.y, playerObject.transform.position.z + offsetFromPlayer.y);
+			transform.position = new Vector3(StaticValueHolder.PlayerObject.transform.position.x + offsetFromPlayer.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z + offsetFromPlayer.y);
 		}
 		else
 		{
-			transform.position = new Vector3(boatObject.transform.position.x + offsetFromPlayer.x, transform.position.y, boatObject.transform.position.z + offsetFromPlayer.y);
+			transform.position = new Vector3(StaticValueHolder.BoatObject.transform.position.x + offsetFromPlayer.x, transform.position.y, StaticValueHolder.BoatObject.transform.position.z + offsetFromPlayer.y);
 		}
 	}
 }

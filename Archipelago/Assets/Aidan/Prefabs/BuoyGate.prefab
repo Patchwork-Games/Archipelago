@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6505418709645569262}
   - component: {fileID: 6505418709645569257}
   m_Layer: 0
-  m_Name: BouyGate
+  m_Name: BuoyGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6505418709911888220}
-  - {fileID: 1283273305075045853}
+  - {fileID: 4983167097273225057}
+  - {fileID: 7375873670946299135}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8627fde6ff4f64b8b064ce26abbc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstBouy: {fileID: 6505418709911888220}
-  secondBouy: {fileID: 1283273305075045853}
+  firstBuoy: {fileID: 4983167097273225057}
+  secondBuoy: {fileID: 7375873670946299135}
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
   resetTime: 3
   dashForce: 40000
---- !u!1001 &1101464438520070889
+--- !u!1001 &1164488203331054804
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -62,7 +62,7 @@ PrefabInstance:
     - target: {fileID: 6129069013236229044, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
         type: 3}
       propertyPath: m_Name
-      value: Bouy
+      value: Buoy
       objectReference: {fileID: 0}
     - target: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
         type: 3}
@@ -121,13 +121,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93769de7dd9fa9c42a599dfdf2fccbb5, type: 3}
---- !u!4 &6505418709911888220 stripped
+--- !u!4 &4983167097273225057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
     type: 3}
-  m_PrefabInstance: {fileID: 1101464438520070889}
+  m_PrefabInstance: {fileID: 1164488203331054804}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4954462680085821032
+--- !u!1001 &3698174155785879370
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 6129069013236229044, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
         type: 3}
       propertyPath: m_Name
-      value: Bouy (1)
+      value: Buoy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
         type: 3}
@@ -196,9 +196,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93769de7dd9fa9c42a599dfdf2fccbb5, type: 3}
---- !u!4 &1283273305075045853 stripped
+--- !u!4 &7375873670946299135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
     type: 3}
-  m_PrefabInstance: {fileID: 4954462680085821032}
+  m_PrefabInstance: {fileID: 3698174155785879370}
   m_PrefabAsset: {fileID: 0}

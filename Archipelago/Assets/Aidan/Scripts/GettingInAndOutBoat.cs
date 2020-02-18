@@ -5,7 +5,6 @@ using Cinemachine;
 
 public class GettingInAndOutBoat : MonoBehaviour
 {
-	[SerializeField] private CinemachineFreeLook boatCamera = null;
 	[SerializeField] private Transform playerPosWhenComingOutOfBoat = null;
 	[SerializeField] private Transform playerPosWhenInBoat = null;
 	private bool playerInsideTriggerBox = false;
@@ -79,7 +78,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 
         // Change the state to the boat state and change the camera to follow the boat
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
-		PlayerMovement.Instance.ChangeCamera(boatCamera, true);
+		PlayerMovement.Instance.ChangeCamera(StaticValueHolder.BoatCamera, true);
 		playerInBoat = true;
 
 		// Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
@@ -103,7 +102,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 
         // Change the state to the moving state and change the camera to follow the player
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-		PlayerMovement.Instance.ChangeCamera(boatCamera, false);
+		PlayerMovement.Instance.ChangeCamera(StaticValueHolder.BoatCamera, false);
 		playerInBoat = false;
 
 		// // Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public static class StaticValueHolder
 {
@@ -43,7 +44,35 @@ public static class StaticValueHolder
         }
     }
 
+	public static GameObject BoatObject
+	{
+		get;
+		set;
+	}
 
+	public static GameObject PlayerObject
+	{
+		get;
+		set;
+	}
+
+	public static DashMeter DashMeterObject
+	{
+		get;
+		set;
+	}
+
+	public static CinemachineFreeLook PlayerCharacterCamera
+	{
+		get;
+		set;
+	}
+
+	public static CinemachineFreeLook BoatCamera
+	{
+		get;
+		set;
+	}
 
 
 }
