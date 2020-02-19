@@ -275,7 +275,8 @@ public class DialogueManager : MonoBehaviour
         //closing animation
         animator.SetBool("IsOpen", false);
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-		StaticValueHolder.PlayerMovementScript.interact = false;
+        StaticValueHolder.PlayerMovementScript.jump = false;
+        StaticValueHolder.PlayerMovementScript.interact = false;
 		StaticValueHolder.PlayerCharacterCamera.gameObject.SetActive(true);
 		StaticValueHolder.PlayerCharacterCamera.gameObject.transform.position = StaticValueHolder.PlayerMovementScript.beginTalkCamPos;
 

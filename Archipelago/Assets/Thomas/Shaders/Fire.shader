@@ -114,8 +114,7 @@ Shader "Shader Forge/Fire" {
                 float _node_4124_var = UNITY_ACCESS_INSTANCED_PROP( Props, _node_4124 );
                 float _Thickness_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Thickness );
                 float4 node_7275 = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
-                float node_8368 = saturate(((_Thickness_var*node_7275.a*node_7928.r)-node_7928.b));
-                fixed4 finalRGBA = fixed4(finalColor,((node_8368-_node_265_var)/((_node_265_var+_node_4124_var)-_node_265_var)));
+                fixed4 finalRGBA = fixed4(finalColor,((saturate(((_Thickness_var*node_7275.a*node_7928.r)-node_7928.b))-_node_265_var)/((_node_265_var+_node_4124_var)-_node_265_var)));
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }

@@ -15,13 +15,14 @@ public class CollectableUIUpdate : MonoBehaviour
     public Sprite fishSprite = null;
     public Sprite shellSprite = null;
     public Sprite stickSprite = null;
+    private Camera cam = null;
 
     private void Start()
     {
         StaticValueHolder.Collectable0 = 0;
         StaticValueHolder.Collectable1 = 0;
         StaticValueHolder.Collectable2 = 0;
-
+        cam = Camera.main;
     }
 
 
@@ -30,14 +31,14 @@ public class CollectableUIUpdate : MonoBehaviour
     {
         if (StaticValueHolder.PlayerMovementScript.YHeld)
         {
-            collectables[0].text = StaticValueHolder.Collectable0 + " / " + totalCollectables[0];
-            collectables[1].text = StaticValueHolder.Collectable1 + " / " + totalCollectables[1];
-            collectables[2].text = StaticValueHolder.Collectable2 + " / " + totalCollectables[2];
+            collectables[0].text = StaticValueHolder.Collectable0 + ""; /*+ " / " + totalCollectables[0];*/
+            collectables[1].text = StaticValueHolder.Collectable1 + ""; /*+ " / " + totalCollectables[1];*/
+            collectables[2].text = StaticValueHolder.Collectable2 + ""; /*+ " / " + totalCollectables[2];*/
         }
     }
 
     private void LateUpdate()
     {
-        if (pickupButtonGuide) pickupButtonGuide.transform.rotation = Camera.main.transform.rotation;
+        if (pickupButtonGuide) pickupButtonGuide.transform.rotation = cam.transform.rotation;
     }
 }
