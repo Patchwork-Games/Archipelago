@@ -98,7 +98,7 @@ public class SailingManager : MonoBehaviour
 	private void UpdateInOceanState()
 	{
 		// The boat should have the wind force applied to the forward vector to make the boat move
-		rb.AddForce(transform.forward * WindManager.Instance.windForce * forceMultiplier * Time.deltaTime);
+		rb.AddForce(transform.forward * StaticValueHolder.WindManagerObject.windForce * forceMultiplier * Time.deltaTime);
 
 		// Steering
 		{

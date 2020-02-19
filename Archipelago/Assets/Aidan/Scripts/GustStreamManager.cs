@@ -46,11 +46,11 @@ public class GustStreamManager : MonoBehaviour
 	private void Update()
 	{
 		// Rotate the gust towards the wind direction
-		Vector3 newDirection = Vector3.RotateTowards(transform.forward, WindManager.Instance.windDirection, .01f, 0.0f);
+		Vector3 newDirection = Vector3.RotateTowards(transform.forward, StaticValueHolder.WindManagerObject.windDirection, .01f, 0.0f);
 		transform.rotation = Quaternion.LookRotation(newDirection);
 
 		// Move the gust stream forwards
-		rb.AddForce(transform.forward * (WindManager.Instance.windForce + gustForce) * Time.deltaTime);
+		rb.AddForce(transform.forward * (StaticValueHolder.WindManagerObject.windForce + gustForce) * Time.deltaTime);
 
 		// If the boat has entered the gust, add on the gust force to the boat
 		if (boatHasEnteredGust)
