@@ -20,7 +20,7 @@ public class LightFlicker : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-            campfireLight.enabled = !campfireLight.enabled;
+            campfireLight.intensity = 1;
         }
     }
 
