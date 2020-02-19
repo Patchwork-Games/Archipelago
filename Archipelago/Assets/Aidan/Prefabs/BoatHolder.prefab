@@ -299,27 +299,47 @@ PrefabInstance:
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: 1.769578
+      value: 1.7695775
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: 0.15462992
+      value: 0.15463056
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.766363
+      value: -0.76636326
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 5.914011
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.15463006
+      value: 0.15463014
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 4.739045
+      value: 4.739047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401957244587732940, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: lockBetweenTwoRotations.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401957244587732940, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: lockBetweenTwoRotations.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401957244587732940, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: rotationTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa3055d0dd20ac54198ee5438be069a5, type: 3}
