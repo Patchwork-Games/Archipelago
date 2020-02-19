@@ -80,5 +80,10 @@ public static class StaticValueHolder
 		set;
 	}
 
+	public static WindManager WindManagerObject
+	{
+		get;
+		set;
+	}
 
 }

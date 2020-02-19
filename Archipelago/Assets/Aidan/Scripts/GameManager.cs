@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] DashMeter dashMeter = null;
 	[SerializeField] CinemachineFreeLook playerCharacterCamera = null;
 	[SerializeField] CinemachineFreeLook boatCamera = null;
+	[SerializeField] WindManager windManager = null;
 	private PlayerMovement playerMovement = null;
 
 	private void Awake()
@@ -57,6 +58,12 @@ public class GameManager : MonoBehaviour
 			}
 			else
 				Debug.Log("PlayerMovement missing from game manager script on object: " + this.gameObject);
+
+			// Wind manager
+			if (windManager != null)
+				StaticValueHolder.WindManagerObject = windManager;
+			else
+				Debug.Log("WindManager missing from game manager script on object: " + this.gameObject);
 		}
 	}
 }
