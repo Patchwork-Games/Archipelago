@@ -115,7 +115,7 @@ MonoBehaviour:
   iconPrefab: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065,
     type: 3}
   offsetBetweenEnergyIcons: {x: 59, y: 0, z: 0}
-  iconBarStartPos: {x: -350, y: -165, z: 0}
+  iconBarStartPos: {x: -350, y: -155, z: 0}
   numOfEnergiesToStartWith: 3
   energyRechargeTime: 0.6
   minEnergyRechargeTime: 0.1
@@ -186,7 +186,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cb680c069bde4b743b350b67e81e20a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bba6d1cf6731f77448a1cc77c15b31ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -254,8 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a93840bff24594ea8ab2491596be60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  NorthPole: {fileID: 0}
 --- !u!1 &361106827978608018
 GameObject:
   m_ObjectHideFlags: 0
