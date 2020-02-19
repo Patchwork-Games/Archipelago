@@ -6,6 +6,7 @@ public class AnchorManager : MonoBehaviour
 {
 	[SerializeField]private Vector3 offsetFromBoat = Vector3.zero;
 	private Transform originalParent = null;
+	private bool isPosSet = false;
 
 	private void Awake()
 	{
@@ -15,7 +16,7 @@ public class AnchorManager : MonoBehaviour
 	private void OnEnable()
 	{
 		transform.parent = originalParent;
-		transform.position = StaticValueHolder.BoatObject.transform.position + offsetFromBoat;
+		isPosSet = false;
 		transform.rotation = Quaternion.identity;
 	}
 
@@ -23,5 +24,15 @@ public class AnchorManager : MonoBehaviour
 	{
 		transform.parent = StaticValueHolder.BoatObject.transform;
 		transform.localPosition = offsetFromBoat;
+		isPosSet = false;
+	}
+
+	private void Update()
+	{
+		if (!isPosSet)
+		{
+			isPosSet = true;
+			transform.position = StaticValueHolder.BoatObject.transform.position + offsetFromBoat;
+		}
 	}
 }
