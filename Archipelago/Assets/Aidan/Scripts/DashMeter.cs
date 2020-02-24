@@ -81,6 +81,7 @@ public class DashMeter : MonoBehaviour
 			if (elapsedTimeBetweenUseAndRecharge <= 0)
 			{
 				isRecharging = true;
+				currentNumOfEnergies++;
 				elapsedRechargeTime = energyRechargeTime;
 				energyRechargeTimeDecrement = energyRechargeTime;
 			}
@@ -94,7 +95,7 @@ public class DashMeter : MonoBehaviour
 				// Update the alpha value of the energy
 				Color newColour = iconColour;
 				newColour.a = 1 - (elapsedRechargeTime / energyRechargeTime);
-				energiesTotal[currentNumOfEnergies].GetComponent<Image>().color = newColour;   // This is using the currentNumOfEnergies istead of currentNumOfEnergies + 1 as the list starts at 0.
+				energiesTotal[currentNumOfEnergies - 1].GetComponent<Image>().color = newColour;   // This is using the currentNumOfEnergies istead of currentNumOfEnergies + 1 as the list starts at 0.
 
 				elapsedRechargeTime -= Time.deltaTime;
 				if (elapsedRechargeTime <= 0)
