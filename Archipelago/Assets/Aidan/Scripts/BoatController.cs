@@ -21,7 +21,8 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float motorForce = 50f;
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
-	[SerializeField] private float maxSpeed = 30f;
+	[SerializeField] private float maxSpeedInOcean = 30f;
+	[SerializeField] private float maxSpeedInShallows = 5f;
 
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
@@ -48,7 +49,7 @@ public class BoatController : MonoBehaviour
 	private void Dash()
 	{
 		// Check if the in ocean state is active, if not return from this function
-		if (State != BoatState.IN_OCEAN)
+		if (State == BoatState.PLAYER_NOT_IN_BOAT)
 			return;
 
 		// Return from the function is there is no energy left
@@ -73,9 +74,9 @@ public class BoatController : MonoBehaviour
 		rb.AddForce(transform.forward * impulseForce * Time.deltaTime, ForceMode.Impulse);
 	}
 
-	private void CapVelocity()
+	private void CapVelocity(float cap)
 	{
-		rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.y, -maxSpeed, maxSpeed), Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
+		rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -cap, cap), Mathf.Clamp(rb.velocity.y, -cap, cap), Mathf.Clamp(rb.velocity.z, -cap, cap));
 	}
 
 	private void Steer()
@@ -114,10 +115,8 @@ public class BoatController : MonoBehaviour
 		switch (State)
 		{
 			case BoatState.IN_OCEAN:
-				UpdateInOceanState();
 				break;
 			case BoatState.IN_SHALLOW_WATER:
-				UpdateInShallowWaterState();
 				break;
 			case BoatState.PLAYER_NOT_IN_BOAT:
 				UpdatePlayerNotInBoatState();
@@ -137,29 +136,19 @@ public class BoatController : MonoBehaviour
 			case BoatState.IN_OCEAN:
 				Steer();
 				Accelerate();
+				CapVelocity(maxSpeedInOcean);
 				break;
 			case BoatState.IN_SHALLOW_WATER:
 				Steer();
 				Accelerate();
+				CapVelocity(maxSpeedInShallows);
 				break;
 			case BoatState.PLAYER_NOT_IN_BOAT:
+				CapVelocity(maxSpeedInShallows);
 				break;
 			default:
 				break;
 		}
-
-		CapVelocity();
-	}
-
-	private void UpdateInOceanState()
-	{
-		
-	}
-
-
-	private void UpdateInShallowWaterState()
-	{
-		
 	}
 
 	private void UpdatePlayerNotInBoatState()
