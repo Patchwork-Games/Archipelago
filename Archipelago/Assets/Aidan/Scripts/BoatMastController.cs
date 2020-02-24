@@ -6,6 +6,7 @@ public class BoatMastController : MonoBehaviour
 {
 	[SerializeField] private Vector2 lockBetweenTwoRotations = Vector2.zero;
 	[SerializeField] private float rotationTime = 1f;
+	[SerializeField] private Cloth cloth = null;
 	private float lerpTime = 0f;
 	private Quaternion newRotation = Quaternion.identity;
 	private Quaternion startingRotation = Quaternion.identity;
@@ -56,6 +57,11 @@ public class BoatMastController : MonoBehaviour
 		{
 			transform.localRotation = Quaternion.Lerp(startingRotation, newRotation, lerpTime);
 		}
+
+		// Add the wind force to the sail cloth
+		Vector3 clothAcceleration = Vector3.RotateTowards(StaticValueHolder.WindManagerObject.windDirection, cloth.transform.right , 6.8f, 6.8f) * 100;
+
+		//cloth.externalAcceleration = -Physics.gravity / 2;
 	}
 
 	private void SetRotation(Quaternion rotation)
