@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 16f;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
-    private bool inWater = false;
+    //private bool inWater = false;
 
 
 

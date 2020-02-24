@@ -14,7 +14,10 @@ public class CampfireQuest : MonoBehaviour
     TextMeshProUGUI reqText = null;
     private GameObject flame = null;
     private GameObject smoke = null;
-    
+    private GameObject smoke2 = null;
+    private GameObject flameLight = null;
+    private GameObject flameSparks = null;
+
     private void Awake()
     {
         ButtonGuide = transform.GetChild(0).gameObject.GetComponent<Canvas>();
@@ -22,6 +25,9 @@ public class CampfireQuest : MonoBehaviour
         reqText = transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         flame = transform.GetChild(1).gameObject;
         smoke = transform.GetChild(2).gameObject;
+        smoke2 = transform.GetChild(3).gameObject;
+        flameLight = transform.GetChild(4).gameObject;
+        flameSparks = transform.GetChild(5).gameObject;
         litFire = false;
     }
 
@@ -50,6 +56,9 @@ public class CampfireQuest : MonoBehaviour
                 StaticValueHolder.Collectable2 -= requiredSticks;
                 flame.SetActive(true);
                 smoke.SetActive(true);
+                smoke2.SetActive(true);
+                flameLight.SetActive(true);
+                flameSparks.SetActive(true);
                 litFire = true;
                 HideButton();
 
@@ -71,10 +80,7 @@ public class CampfireQuest : MonoBehaviour
             v.x = v.z = 0.0f;
             flame.transform.LookAt(cam.transform.position - v);
         }
-        
     }
-
-
 
 
     void HideButton()

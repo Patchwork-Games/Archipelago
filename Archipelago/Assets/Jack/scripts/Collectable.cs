@@ -15,7 +15,6 @@ public class Collectable : MonoBehaviour
     public CollectableTypes collectableType;
 
     DashMeter dashMeter = null;
-    GameObject PickupIcon = null;
     Sprite fishSprite;
     Sprite shellSprite;
     Sprite stickSprite;

@@ -34,6 +34,7 @@ public class StoneMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("Player"))
         {
             MakeBouncey();
+            if (collision.gameObject.CompareTag("Water")) transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         }
         else
         {
