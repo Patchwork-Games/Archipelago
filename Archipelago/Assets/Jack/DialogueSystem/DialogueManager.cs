@@ -138,7 +138,7 @@ public class DialogueManager : MonoBehaviour
 
 
                 //move box above talking npc
-                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0,7,0);
+                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0,10,0);
                              
             }
         }

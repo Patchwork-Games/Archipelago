@@ -41,7 +41,7 @@ public class SkimPuzzleMaster : MonoBehaviour
         else if (!rewarded)
         {
             //give player reward
-            Debug.Log("Here is your reward, its amazing right? (Look at the skim puzzle master script under update)");
+            StaticValueHolder.DashMeterObject.AddEnergies(1);
             rewarded = true;
         }
     }

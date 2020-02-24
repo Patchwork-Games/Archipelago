@@ -12,22 +12,14 @@ public class CampfireQuest : MonoBehaviour
     private bool hiddenButtonGuide = false;
     private Camera cam = null;
     TextMeshProUGUI reqText = null;
-    private GameObject flame = null;
-    private GameObject smoke = null;
-    private GameObject smoke2 = null;
-    private GameObject flameLight = null;
-    private GameObject flameSparks = null;
+    private GameObject fire = null;
 
     private void Awake()
     {
         ButtonGuide = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         cam = Camera.main;
         reqText = transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
-        flame = transform.GetChild(1).gameObject;
-        smoke = transform.GetChild(2).gameObject;
-        smoke2 = transform.GetChild(3).gameObject;
-        flameLight = transform.GetChild(4).gameObject;
-        flameSparks = transform.GetChild(5).gameObject;
+        fire = transform.GetChild(1).gameObject;
         litFire = false;
     }
 
@@ -54,17 +46,13 @@ public class CampfireQuest : MonoBehaviour
                 StaticValueHolder.PlayerMovementScript.interact = false;
                 StaticValueHolder.PlayerMovementScript.jump = false;
                 StaticValueHolder.Collectable2 -= requiredSticks;
-                flame.SetActive(true);
-                smoke.SetActive(true);
-                smoke2.SetActive(true);
-                flameLight.SetActive(true);
-                flameSparks.SetActive(true);
+                fire.SetActive(true);                
                 litFire = true;
                 HideButton();
 
 
-                //give reward here
-
+                //give reward to player
+                StaticValueHolder.DashMeterObject.AddEnergies(1);
             }
         }
         else if (!hiddenButtonGuide) //if this is in the normal else then the talk button is always disabled for any npc other than the first
@@ -73,12 +61,12 @@ public class CampfireQuest : MonoBehaviour
         }
 
         //billboard flame once lit
-        if (flame.activeSelf)
+        if (fire.activeSelf)
         {
             //make flame billboard only on y axis
             Vector3 v = cam.transform.position - transform.position;
             v.x = v.z = 0.0f;
-            flame.transform.LookAt(cam.transform.position - v);
+            fire.transform.GetChild(0).transform.LookAt(cam.transform.position - v);
         }
     }
 
