@@ -13,7 +13,6 @@ public class GustStreamManager : MonoBehaviour
 	[SerializeField] private float aliveTime = 10f;
 	private float elapsedAliveTime = 0f;
 
-
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Boat"))
@@ -50,7 +49,7 @@ public class GustStreamManager : MonoBehaviour
 		transform.rotation = Quaternion.LookRotation(newDirection);
 
 		// Move the gust stream forwards
-		rb.AddForce(transform.forward * (StaticValueHolder.WindManagerObject.windForce + gustForce) * Time.deltaTime);
+		rb.AddForce(transform.forward * (StaticValueHolder.WindManagerObject.windForce) * Time.deltaTime);
 
 		// If the boat has entered the gust, add on the gust force to the boat
 		if (boatHasEnteredGust)
@@ -79,7 +78,6 @@ public class GustStreamManager : MonoBehaviour
 			}
 			else if (elapsedAliveTime <= 2)
 			{
-				//windParticles.Stop();
 				ParticleSystem.EmissionModule em = windParticles.emission;
 				em.enabled = false;
 			}
