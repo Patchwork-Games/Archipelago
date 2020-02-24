@@ -61,7 +61,7 @@ public class BoatMastController : MonoBehaviour
 		// Add the wind force to the sail cloth
 		Vector3 clothAcceleration = Vector3.RotateTowards(StaticValueHolder.WindManagerObject.windDirection, cloth.transform.right , 6.8f, 6.8f) * 100;
 
-		//cloth.externalAcceleration = -Physics.gravity / 2;
+		cloth.externalAcceleration = -Physics.gravity / 2;
 	}
 
 	private void SetRotation(Quaternion rotation)

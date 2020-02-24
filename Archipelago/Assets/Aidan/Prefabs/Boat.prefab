@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed919798ec5bbc438a9eac411fc0bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockBetweenTwoRotations: {x: 0, y: 0}
+  rotationTime: 1
+  cloth: {fileID: 0}
 --- !u!1 &1096404770499910803
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +72,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096404770499910803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -121,10 +124,10 @@ SkinnedMeshRenderer:
   m_Mesh: {fileID: -7523512641327515195, guid: 1352d19ef85190048a81b0686b8c2189, type: 3}
   m_Bones: []
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
+  m_RootBone: {fileID: 4812898216037104038}
   m_AABB:
-    m_Center: {x: 1.769577, y: 0.15463059, z: -0.76636267}
-    m_Extent: {x: 5.91401, y: 0.15463059, z: 4.7390437}
+    m_Center: {x: 1.769577, y: 0.15463056, z: -0.76636267}
+    m_Extent: {x: 5.914009, y: 0.15463056, z: 4.7390437}
   m_DirtyAABB: 0
 --- !u!183 &6988475161548211907
 Cloth:
@@ -7328,7 +7331,8 @@ MonoBehaviour:
   motorForce: 600
   dashForce: 60000
   dashTime: 1
-  maxSpeed: 30
+  maxSpeedInOcean: 30
+  maxSpeedInShallows: 5
 --- !u!65 &4812898214774472365
 BoxCollider:
   m_ObjectHideFlags: 0
