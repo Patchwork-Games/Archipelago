@@ -23,21 +23,10 @@ public class LevelLoader : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !loading && SceneManager.GetActiveScene().buildIndex == 0)
         {
-            LoadNextLevel();
+            StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex + 1));
             loading = true;
         }
     }
-
-
-
-    public void LoadNextLevel()
-    {
-        StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex + 1));
-    }
-
-
-
-
 
     IEnumerator LoadAsynchronously(int levelIndex)
     {
