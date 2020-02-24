@@ -18,6 +18,15 @@ public class GettingInAndOutBoat : MonoBehaviour
 		controls = new InputMaster();
 	}
 
+	private void Start()
+	{
+		// Set the dash icons to be off if the player doesn't start in the boat
+		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
+			StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
+		else
+			StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
+	}
+
 	private void OnTriggerEnter(Collider other)
 	{
 		// If the player has collided with the trigger box then set the player movement script
@@ -76,8 +85,10 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInsideTriggerBox || playerInBoat)
 			return;
 
-        // Change the state to the boat state and change the camera to follow the boat
-        PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
+		StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
+
+		// Change the state to the boat state and change the camera to follow the boat
+		PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
 		StaticValueHolder.PlayerMovementScript.ChangeCamera(StaticValueHolder.BoatCamera, true);
 		playerInBoat = true;
 
@@ -96,6 +107,8 @@ public class GettingInAndOutBoat : MonoBehaviour
 		// If the player isn't in the boat then they can't get out, so return from the function
 		if (!playerInBoat)
 			return;
+
+		StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
 
 		// TO DO: ADD ANIMATION 
 		Debug.Log("Getting out boat animation missing!");
