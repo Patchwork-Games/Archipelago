@@ -6,10 +6,14 @@ public class BoatMastController : MonoBehaviour
 {
 	[SerializeField] private Vector2 lockBetweenTwoRotations = Vector2.zero;
 	[SerializeField] private float rotationTime = 1f;
-	[SerializeField] private Cloth cloth = null;
+	[SerializeField] private GameObject sailCloth = null;
+	[SerializeField] private float maxSailStretch = 20;
 	private float lerpTime = 0f;
 	private Quaternion newRotation = Quaternion.identity;
 	private Quaternion startingRotation = Quaternion.identity;
+	private float startingStretch = 0f;
+	private float currentStretch = 0f;
+	private float newSailStretch = 0f;
 
 	private void Start()
 	{
@@ -26,25 +30,30 @@ public class BoatMastController : MonoBehaviour
 		{
 			if (resultOfDotProd2 >= 0)
 			{
+				newSailStretch = -maxSailStretch;
 				SetRotation(Quaternion.Euler(0, -90, 0));
 			}
 			else
 			{
+				newSailStretch = maxSailStretch;
 				SetRotation(Quaternion.Euler(0, 90, 0));
 			}
 		}
 		else if (resultOfDotProd1 <= -0.5f)
 		{
+			newSailStretch = 0;
 			SetRotation(Quaternion.Euler(0, 0, 0));
 		}
 		else if (resultOfDotProd1 >= -0.5f && resultOfDotProd1 <= 0.5f)
 		{
 			if (resultOfDotProd2 >= 0)
 			{
+				newSailStretch = -maxSailStretch/2;
 				SetRotation(Quaternion.Euler(0, -45, 0));
 			}
 			else
 			{
+				newSailStretch = maxSailStretch / 2;
 				SetRotation(Quaternion.Euler(0, 45, 0));
 			}
 		}
@@ -56,17 +65,16 @@ public class BoatMastController : MonoBehaviour
 		if (lerpTime <= 1)
 		{
 			transform.localRotation = Quaternion.Lerp(startingRotation, newRotation, lerpTime);
+			currentStretch = Mathf.Lerp(startingStretch, newSailStretch,lerpTime);
 		}
 
-		// Add the wind force to the sail cloth
-		Vector3 clothAcceleration = Vector3.RotateTowards(StaticValueHolder.WindManagerObject.windDirection, cloth.transform.right , 6.8f, 6.8f) * 100;
-
-		cloth.externalAcceleration = -Physics.gravity / 2;
+		sailCloth.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
 	}
 
 	private void SetRotation(Quaternion rotation)
 	{
 		startingRotation = transform.localRotation;
+		startingStretch = currentStretch;
 		newRotation = rotation;
 		lerpTime = 0f;
 	}

@@ -306,11 +306,6 @@ PrefabInstance:
       propertyPath: rotationTime
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6401957244587732940, guid: fa3055d0dd20ac54198ee5438be069a5,
-        type: 3}
-      propertyPath: cloth
-      value: 
-      objectReference: {fileID: 7955400568311406490}
     - target: {fileID: 4812898216037104037, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_Layer
@@ -338,15 +333,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
-      propertyPath: m_AABB.m_Extent.x
-      value: 5.91401
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
-        type: 3}
       propertyPath: m_AABB.m_Extent.y
       value: 0.15463006
       objectReference: {fileID: 0}
     - target: {fileID: 8837800558801662795, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 4.739045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516871189411065859, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: sailCloth
+      value: 
+      objectReference: {fileID: 326720299400180493}
+    - target: {fileID: 3105671154751646425, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985506174364387822, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 1.769578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985506174364387822, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0.15462995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985506174364387822, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: -0.76636314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985506174364387822, guid: fa3055d0dd20ac54198ee5438be069a5,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.15463006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985506174364387822, guid: fa3055d0dd20ac54198ee5438be069a5,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 4.739045
@@ -365,9 +390,9 @@ Rigidbody:
     type: 3}
   m_PrefabInstance: {fileID: 1052522387173316953}
   m_PrefabAsset: {fileID: 0}
---- !u!183 &7955400568311406490 stripped
-Cloth:
-  m_CorrespondingSourceObject: {fileID: 6988475161548211907, guid: fa3055d0dd20ac54198ee5438be069a5,
+--- !u!1 &326720299400180493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 726189949161089620, guid: fa3055d0dd20ac54198ee5438be069a5,
     type: 3}
   m_PrefabInstance: {fileID: 1052522387173316953}
   m_PrefabAsset: {fileID: 0}
