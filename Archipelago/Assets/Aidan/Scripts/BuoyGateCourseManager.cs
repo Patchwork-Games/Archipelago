@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuoyGateCourseManager : MonoBehaviour
 {
 	[SerializeField] private Material goldBouyMat = null;
-	[SerializeField] private Transform boatTransform = null;
 	[SerializeField] private float distanceToResetCourseAt = 100f;
 	private GameObject startingLine = null;
 	private bool isMiniGameActive = false;
@@ -85,7 +84,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 			{
 				if (nextCheckPoint > 0 && nextCheckPoint < numOfCheckpoints)
 				{
-					if (Vector3.Distance(boatTransform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
+					if (Vector3.Distance(StaticValueHolder.BoatObject.transform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
 					{
 						ResetCourse();
 					}
