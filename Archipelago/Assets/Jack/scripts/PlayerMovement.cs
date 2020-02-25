@@ -420,7 +420,7 @@ public class PlayerMovement : MonoBehaviour
 
             anim.SetBool("Jumping", false);
             anim.SetBool("Falling", false);
-            velocity.y = -2f;
+            velocity.y = -4f;
         }
     }
 
