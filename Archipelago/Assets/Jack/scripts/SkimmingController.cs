@@ -26,6 +26,8 @@ public class SkimmingController : MonoBehaviour
     private float angleClamp = 0;
     private Vector3 originalPos = Vector3.zero;
 
+    private float throwTimeout = 0;
+
 
     private void Start()
     {
@@ -109,7 +111,7 @@ public class SkimmingController : MonoBehaviour
             throwPower = 0;
             originalPos = transform.position;
             ChargeParticle.GetComponent<ParticleSystem>().Play();
-            //StartCoroutine("ShakeCharacter");
+            throwTimeout = 0.0f;
         }
 
         if (chargingThrow)
@@ -130,5 +132,24 @@ public class SkimmingController : MonoBehaviour
             chargingThrow = false;
             anim.SetBool("ChargingThrow", false);
         }
+
+
+
+        //stop getting stuck in throwing state
+        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.THROWING)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                if (throwTimeout > .5f)
+                {
+                    ChargeParticle.GetComponent<ParticleSystem>().Stop();
+                    FullChargeParticle.GetComponent<ParticleSystem>().Stop();
+                    PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
+                    throwTimeout = 0.0f;
+                }
+                else throwTimeout += Time.deltaTime;
+            }
+        }
+
     }
 }
