@@ -110,6 +110,8 @@
 			#pragma vertex MyVertexProgram
 			#pragma fragment MyFragmentProgram
 
+			#pragma alpha:fade
+
 			#define DEFERRED_PASS
 
 			#include "MyTriplanarMapping.cginc"
