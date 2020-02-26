@@ -34,7 +34,7 @@ public class BuoyGateTrigger : MonoBehaviour
 					Debug.Log("Boat has crossed the line!");
 					boatHasCrossedLine = true;
 					elapsedResetTime = resetTime;
-					hit.transform.gameObject.GetComponent<BoatController>().AddImpulse(dashForce);
+					StaticValueHolder.BoatObject.GetComponent<BoatController>().AddImpulse(dashForce);
 				}
 			}
 		}
