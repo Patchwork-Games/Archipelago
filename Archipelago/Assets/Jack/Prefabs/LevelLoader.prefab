@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 135166570795765601}
   - component: {fileID: 7996554384672112066}
   - component: {fileID: 7328330928957152503}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246633623955151926}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9209730375269651839}
   - component: {fileID: 8180530349177211816}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 8605385990421292394}
+  loadingScreen: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1 &2488598485042169696
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ GameObject:
   - component: {fileID: 9045749113426187661}
   - component: {fileID: 5974361565870791272}
   - component: {fileID: 8605385990421292394}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas Crossfade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,9 +192,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &9045749113426187661
 MonoBehaviour:

@@ -10,25 +10,55 @@ public class PauseMenu : MonoBehaviour
     public GameObject CompassUI;
     public Canvas CollectableUI;
 
+    [HideInInspector] public InputMaster controls = null;
+
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Pause.performed += context => CheckPause();
+        controls.Enable();
+    }
+
+
+    private void OnDisable()
+    {
+        controls.Player.Pause.performed -= context => CheckPause();
+        controls.Disable();
+    }
+
+
+
+
+
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-                Resume(); 
-            }
-            else
-            {
-                Pause();
-                
-            }
-        }
-
         if (GameIsPaused) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
     }
+
+
+
+
+    public void CheckPause()
+    {
+        if (GameIsPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        } 
+    }
+
+
 
 
 
@@ -39,6 +69,8 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         if(PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.SetActive(true); //only show if in boat
 		CompassUI.SetActive(true);
+        StaticValueHolder.PlayerMovementScript.jump = false;
+        StaticValueHolder.PlayerMovementScript.interact = false;
     }
 
     public void Pause()

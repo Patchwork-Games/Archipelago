@@ -70,9 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        controls = new InputMaster();  
+        controls = new InputMaster();
     }
-
 
     private void OnEnable()
     {
@@ -88,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.BButton.canceled += context => StopThrowButton();
         controls.Player.YButton.performed += context => YButton();
         controls.Player.YButton.canceled += context => StopYButton();
+        
         controls.Enable();
     }
 
@@ -181,6 +181,18 @@ public class PlayerMovement : MonoBehaviour
         }
         else Debug.Log("Collectable UI not attached to player");
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

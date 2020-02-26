@@ -10,23 +10,47 @@ public class LevelLoader : MonoBehaviour
     public GameObject loadingScreen = null;
     public Slider slider = null;
 
-
     bool loading = false;
+
+    [HideInInspector] public InputMaster controls = null;
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Interact.performed += context => StartGame();
+        controls.Enable();
+    }
+
+
+    private void OnDisable()
+    {
+        controls.Player.Interact.performed -= context => StartGame();
+        controls.Disable();
+    }
+
+
+
+
 
     private void Start()
     {
         loading = false;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void StartGame()
     {
-        if (Input.GetMouseButtonDown(0) && !loading && SceneManager.GetActiveScene().buildIndex == 0)
+        if (!loading && SceneManager.GetActiveScene().buildIndex == 0)
         {
             StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex + 1));
             loading = true;
         }
     }
+    
 
     IEnumerator LoadAsynchronously(int levelIndex)
     {

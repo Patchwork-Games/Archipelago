@@ -7,9 +7,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     public static PlayerStateMachine Instance { get; private set; }
 
-    public PlayerMovement playerMovement = null;
-
-
     public enum PlayerState
     {
         MOVING,
