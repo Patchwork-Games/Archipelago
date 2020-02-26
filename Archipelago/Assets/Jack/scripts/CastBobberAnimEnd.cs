@@ -6,7 +6,7 @@ public class CastBobberAnimEnd : StateMachineBehaviour
 {
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject.FindGameObjectWithTag("FishingPole").GetComponent<FishingController>().CastBobber();
+        
         GameObject.FindGameObjectWithTag("FishingPole").GetComponent<MeshRenderer>().enabled = false;
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
     }

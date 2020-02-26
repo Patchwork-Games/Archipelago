@@ -19,6 +19,8 @@ public class FishingController : MonoBehaviour
     private float castPower = 0;
     private Vector3 originalPos = Vector3.zero;
 
+    private float throwTimeout = 0.0f;
+
 
     private void Start()
     {
@@ -91,7 +93,7 @@ public class FishingController : MonoBehaviour
             anim.SetBool("ChargingCast", true);
             castPower = 0;
             originalPos = transform.position;
-            StartCoroutine("ShakeCharacter");
+            throwTimeout = 0.0f;
         }
 
 
@@ -112,6 +114,22 @@ public class FishingController : MonoBehaviour
         {
             chargingCast = false;
             anim.SetBool("ChargingCast", false);
+        }
+
+
+
+        //stop getting stuck in casting state
+        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.CASTING)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                if (throwTimeout > .5f)
+                {
+                    PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
+                    throwTimeout = 0.0f;
+                }
+                else throwTimeout += Time.deltaTime;
+            }
         }
     }
 }

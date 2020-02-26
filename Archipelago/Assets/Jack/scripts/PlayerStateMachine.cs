@@ -13,6 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
         THROWING,
         TALKING,
         BOAT,
+        CASTING,
         FISHING
     }
     public PlayerState state;
@@ -66,9 +67,18 @@ public class PlayerStateMachine : MonoBehaviour
 
 
             //fishing
-            case PlayerState.FISHING:
+            case PlayerState.CASTING:
                 {
                     StaticValueHolder.PlayerMovementScript.CheckFishing();
+                    break;
+                }
+
+
+
+            //fishing
+            case PlayerState.FISHING:
+                {
+                    
                     break;
                 }
 

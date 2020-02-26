@@ -1,5 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1649369756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649369757}
+  - component: {fileID: 1649369760}
+  - component: {fileID: 1649369759}
+  m_Layer: 0
+  m_Name: FishingPole
+  m_TagString: FishingPole
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649369757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649369756}
+  m_LocalRotation: {x: 0.5492801, y: 0.00000017881393, z: -0.00000008195639, w: 0.83563834}
+  m_LocalPosition: {x: 0.005, y: -0.0453, z: -0.1969}
+  m_LocalScale: {x: 0.01, y: 0.5, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 3541818155272215560}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 66.635, y: 0, z: 0}
+--- !u!33 &1649369760
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649369756}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1649369759
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649369756}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1717224438
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,9 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9036745c9f2689468f79d01ca099198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: 0
+  currentItem: 1
   anim: {fileID: 6367339026500266363}
-  CMCamera: {fileID: 0}
   beginTalkCamPos: {x: 0, y: 0, z: 0}
   BoatButtonGuide: 0
   BoatButtonImage: {fileID: 0}
@@ -357,6 +434,11 @@ PrefabInstance:
     - target: {fileID: 8098540679091498171, guid: ed81fbb4a0ff2b64684ef029c786df57,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138614245877263135, guid: ed81fbb4a0ff2b64684ef029c786df57,
+        type: 3}
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3138614245877263135, guid: ed81fbb4a0ff2b64684ef029c786df57,
@@ -932,7 +1014,7 @@ PrefabInstance:
     - target: {fileID: 8911402479828201497, guid: 9533e3d3984e65842acba53050fe4a1a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.878
+      value: -0.803
       objectReference: {fileID: 0}
     - target: {fileID: 8911402479828201497, guid: 9533e3d3984e65842acba53050fe4a1a,
         type: 3}
@@ -992,6 +1074,11 @@ PrefabInstance:
     - target: {fileID: 8911402479828201497, guid: 9533e3d3984e65842acba53050fe4a1a,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911402479828201496, guid: 9533e3d3984e65842acba53050fe4a1a,
+        type: 3}
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8911402479828201496, guid: 9533e3d3984e65842acba53050fe4a1a,
@@ -1450,6 +1537,12 @@ PrefabInstance:
 --- !u!4 &2100896058097316979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+    type: 3}
+  m_PrefabInstance: {fileID: 6367339026742058857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3541818155272215560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1622908010928635039, guid: 48b345d736a7ced4aa3d4cd27e442d85,
     type: 3}
   m_PrefabInstance: {fileID: 6367339026742058857}
   m_PrefabAsset: {fileID: 0}

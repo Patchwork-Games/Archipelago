@@ -95,7 +95,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Keyboard W/S"",
                     ""id"": ""8e664f31-2684-4e00-9d2f-92572552e0ed"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -104,7 +104,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""positive"",
                     ""id"": ""61cc9476-7374-4bdd-a950-70b09e86169f"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -115,7 +115,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""negative"",
                     ""id"": ""3109e825-0fb2-4ec5-acf2-737348701e0f"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
@@ -348,7 +348,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Keyboard A/D"",
                     ""id"": ""f663b256-4917-4170-b62b-cfa80b236f1e"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -357,7 +357,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Negative"",
                     ""id"": ""c4d32425-61ef-4532-8ef9-219d8a5b5ba7"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -368,7 +368,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Positive"",
                     ""id"": ""39fc86b5-15cb-4494-ad7e-ed6ac1e7659a"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
