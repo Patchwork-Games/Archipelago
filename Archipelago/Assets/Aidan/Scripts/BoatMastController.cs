@@ -6,7 +6,8 @@ public class BoatMastController : MonoBehaviour
 {
 	[SerializeField] private Vector2 lockBetweenTwoRotations = Vector2.zero;
 	[SerializeField] private float rotationTime = 1f;
-	[SerializeField] private GameObject sailCloth = null;
+	[SerializeField] private GameObject sailClothLeft = null;
+	[SerializeField] private GameObject sailClothRight = null;
 	[SerializeField] private float maxSailStretch = 20;
 	private float lerpTime = 0f;
 	private Quaternion newRotation = Quaternion.identity;
@@ -68,7 +69,8 @@ public class BoatMastController : MonoBehaviour
 			currentStretch = Mathf.Lerp(startingStretch, newSailStretch,lerpTime);
 		}
 
-		sailCloth.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
+		sailClothLeft.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
+		sailClothRight.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", -currentStretch);
 	}
 
 	private void SetRotation(Quaternion rotation)
