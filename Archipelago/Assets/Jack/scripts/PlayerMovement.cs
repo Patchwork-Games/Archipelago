@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public CharacterController controller = null;
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
+    float moveDirectionUD = 0.0f;
+    float moveDirectionLR = 0.0f;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
     //private bool inWater = false;
@@ -75,8 +77,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Player.Movement.performed += context => moveDirection = context.ReadValue<Vector2>();
-        controls.Player.Movement.canceled += context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.MovementUD.performed += context => moveDirectionUD = context.ReadValue<float>();
+        controls.Player.MovementUD.canceled += context => moveDirectionUD = context.ReadValue<float>();
+        controls.Player.MovementLR.performed += context => moveDirectionLR = context.ReadValue<float>();
+        controls.Player.MovementLR.canceled += context => moveDirectionLR = context.ReadValue<float>();
         controls.Player.CameraMovement.performed += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.canceled += context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.Jump.performed += context => JumpButton();
@@ -93,8 +97,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        controls.Player.Movement.performed -= context => moveDirection = context.ReadValue<Vector2>();
-        controls.Player.Movement.canceled -= context => moveDirection = context.ReadValue<Vector2>();
+        controls.Player.MovementUD.performed -= context => moveDirectionUD = context.ReadValue<float>();
+        controls.Player.MovementUD.canceled -= context => moveDirectionUD = context.ReadValue<float>();
+        controls.Player.MovementLR.performed -= context => moveDirectionLR = context.ReadValue<float>();
+        controls.Player.MovementLR.canceled -= context => moveDirectionLR = context.ReadValue<float>();
         controls.Player.CameraMovement.performed -= context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.CameraMovement.canceled -= context => camMoveDirection = context.ReadValue<Vector2>();
         controls.Player.Jump.performed -= context => JumpButton();
@@ -228,6 +234,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Stop();
 
+        moveDirection = new Vector2(moveDirectionLR, moveDirectionUD);
+        moveDirection = moveDirection.normalized;
     }
 
 
@@ -249,8 +257,6 @@ public class PlayerMovement : MonoBehaviour
             BoatButtonGuide = false;
             if (BoatButtonImage) BoatButtonImage.enabled = false;
         }
-
-       
     }
 
 
@@ -271,13 +277,13 @@ public class PlayerMovement : MonoBehaviour
         camForward.y = 0;
         camRight = Vector3.Cross(new Vector3(0, 1, 0), camForward);
 
+        
 
         //move character acording to input
         Vector3 move = (camRight * moveDirection.x) + (camForward * moveDirection.y);
 
         controller.Move(move * walkSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-
 
 
         //make character walk if getting input
@@ -356,10 +362,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DisableCollectableUI()
     {
-
         yield return new WaitForSeconds(1f);
         CollectableUI.enabled = false;
-
     }
 
 
@@ -367,7 +371,6 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         jumps = jumpsMax;
-
     }
 
 
