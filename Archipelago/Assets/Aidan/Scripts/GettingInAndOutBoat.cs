@@ -109,6 +109,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 			return;
 
 		StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
+		StaticValueHolder.PlayerMovementScript.interact = false;
 
 		// TO DO: ADD ANIMATION 
 		Debug.Log("Getting out boat animation missing!");

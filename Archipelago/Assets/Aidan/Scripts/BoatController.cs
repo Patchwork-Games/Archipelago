@@ -31,6 +31,10 @@ public class BoatController : MonoBehaviour
 	private Rigidbody rb = null;
 	private float originalMotorForce = 0f;
 
+	// Particles
+	private Transform particlesTransform = null;
+	private ParticleSystem boatBackBubbles;
+
 	private void Awake()
 	{
 		// Make new controls object so the script can recieve input
@@ -41,6 +45,17 @@ public class BoatController : MonoBehaviour
 		if (rb == null)
 		{
 			Debug.Log("Missing Rigidbody component on BoatController script!");
+		}
+
+		// Get the particles object
+		particlesTransform = transform.Find("Particles");
+		if (particlesTransform == null)
+		{
+			Debug.Log("Particles child object missing from object: " + this.gameObject);
+		}
+		else
+		{
+
 		}
 
 		originalMotorForce = motorForce;
