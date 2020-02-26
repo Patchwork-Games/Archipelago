@@ -61,7 +61,6 @@ public class DialogueManager : MonoBehaviour
     private char previousLetter;
     private string tempText = "";
     private string shakeText = "";
-    //private int numCharacters = 0;
 
     private bool doEndOnce = false;
 
@@ -100,6 +99,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(chatbox.sentences);   //queue sentences
         }
 
+        StaticValueHolder.PlayerMovementScript.interact = false;
         DisplayNextSentence(dialogue);
     }
 
@@ -121,7 +121,9 @@ public class DialogueManager : MonoBehaviour
         arrow.enabled = false;
 
         //set name
+
         name = names.Dequeue();
+
         nameText.text = name;
 
 
@@ -288,8 +290,9 @@ public class DialogueManager : MonoBehaviour
     {
         //progress dialogue with interact button
                                                                                                                  
-        if (Input.GetMouseButtonDown(0) || StaticValueHolder.PlayerMovementScript.interact)
+        if (Input.GetMouseButtonDown(0) || StaticValueHolder.PlayerMovementScript.interact && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
         {
+            StaticValueHolder.PlayerMovementScript.interact = false;
             if (arrow.enabled == true)
             {
                 DisplayNextSentence(dialogue);
@@ -302,6 +305,7 @@ public class DialogueManager : MonoBehaviour
             //quit sentence by pressing back
             if ((Input.GetKeyDown(KeyCode.Q) || StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
             {
+                StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow = false;
                 EndDialogue();
             }
         }
@@ -354,7 +358,7 @@ public class DialogueManager : MonoBehaviour
 
         //    yield return new WaitForSeconds(0.025f);
         //}
-        yield return new WaitForSeconds(0.0f);
+        yield return null;
     }
 
 
