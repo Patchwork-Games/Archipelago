@@ -39,6 +39,8 @@ public class DashMeter : MonoBehaviour
 		AddEnergies(numOfEnergiesToStartWith);
 
 		energyRechargeTimeDecrement = energyRechargeTime;
+
+		this.gameObject.SetActive(false);
 	}
 
 	private void Update()

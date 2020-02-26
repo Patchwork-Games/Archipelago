@@ -14,7 +14,6 @@ public class Collectable : MonoBehaviour
     }
     public CollectableTypes collectableType;
 
-    DashMeter dashMeter = null;
     Sprite fishSprite;
     Sprite shellSprite;
     Sprite stickSprite;
@@ -31,7 +30,6 @@ public class Collectable : MonoBehaviour
         shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
         stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
         pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
-        dashMeter = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().dashMeter;
         hiddenPickupButton = false;
     }
 
@@ -111,8 +109,11 @@ public class Collectable : MonoBehaviour
         {
             if (other.CompareTag("Player") || other.CompareTag("Boat"))
             {
-                dashMeter.AddEnergies(1);
-                Destroy(gameObject);
+				StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
+				StaticValueHolder.DashMeterObject.AddEnergies(1);
+				if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
+					StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
+				Destroy(gameObject);
             }
         }
         

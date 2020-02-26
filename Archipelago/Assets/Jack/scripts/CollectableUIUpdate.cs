@@ -9,7 +9,6 @@ public class CollectableUIUpdate : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI[] collectables = new TextMeshProUGUI[3];
     [SerializeField] private int[] totalCollectables = new int[3];
-    public DashMeter dashMeter = null;
     public GameObject PickupIcon = null;
     public Canvas pickupButtonGuide = null;
     public Sprite fishSprite = null;

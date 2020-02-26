@@ -23,8 +23,6 @@ public class GettingInAndOutBoat : MonoBehaviour
 		// Set the dash icons to be off if the player doesn't start in the boat
 		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
 			StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
-		else
-			StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
 	}
 
 	private void OnTriggerEnter(Collider other)
