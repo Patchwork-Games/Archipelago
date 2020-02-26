@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
     void YButton()
     {
         YHeld = true;
-        if (CollectableUI)
+        if (CollectableUI && !PauseMenu.GameIsPaused)
         {
             CollectableUI.GetComponent<Animator>().Play("FadeInCollectableUI");
             StopCoroutine("DisableCollectableUI");
