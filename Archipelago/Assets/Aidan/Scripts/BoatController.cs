@@ -30,6 +30,7 @@ public class BoatController : MonoBehaviour
 	private float elapsedDashTime = 0f;
 	private Rigidbody rb = null;
 	private float originalMotorForce = 0f;
+	private Vector3 smoothDampVelocity = Vector3.zero;
 
 	// Particles
 	private Transform particlesTransform = null;
@@ -112,10 +113,10 @@ public class BoatController : MonoBehaviour
 		sideRightW.steerAngle = steeringAngle;
 	}
 
-	private void Accelerate()
+	private void Accelerate(float force)
 	{
-		frontLeftW.motorTorque = motorForce;
-		frontRightW.motorTorque = motorForce;
+		frontLeftW.motorTorque = force;
+		frontRightW.motorTorque = force;
 	}
 
 	private void Update()
@@ -150,13 +151,18 @@ public class BoatController : MonoBehaviour
 		{
 			case BoatState.IN_OCEAN:
 				Steer();
-				Accelerate();
+				Accelerate(motorForce);
 				CapVelocity(maxSpeedInOcean);
 				break;
 			case BoatState.IN_SHALLOW_WATER:
 				Steer();
-				Accelerate();
-				CapVelocity(maxSpeedInShallows);
+				Accelerate(motorForce/2);
+				CapVelocity(maxSpeedInOcean);
+				if (rb.velocity.magnitude > maxSpeedInShallows)
+				{
+					Vector3 newVel = Vector3.SmoothDamp(rb.velocity,new Vector3(0,0, maxSpeedInShallows), ref smoothDampVelocity, 1f);
+					rb.velocity = newVel;
+				}
 				break;
 			case BoatState.PLAYER_NOT_IN_BOAT:
 				CapVelocity(maxSpeedInShallows);
