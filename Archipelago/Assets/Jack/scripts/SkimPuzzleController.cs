@@ -8,12 +8,14 @@ public class SkimPuzzleController : MonoBehaviour
     //pillars need to be entered into the array in the order in which they will be hit
     [SerializeField] private GameObject[] pillars = new GameObject[1];
     public int ID = 0;
-
     public bool puzzleActive = true;
     public bool complete = false;
     int currentRock = 0;
     float hintTimer = 5.0f;
     [SerializeField] private float hintFreq = 15.0f;
+
+
+
 
     private void Update()
     {
@@ -40,6 +42,7 @@ public class SkimPuzzleController : MonoBehaviour
                     {
                         StartCoroutine(GlowOneRock(currentRock));
                         pillars[currentRock].GetComponent<SkimPuzzleRock>().glowing = true;
+                        hintTimer = 0.0f; //reset hint so it doesnt go off during bounce
                         currentRock++;
                     }
                 }
@@ -99,8 +102,8 @@ public class SkimPuzzleController : MonoBehaviour
 
         
         //has to be these ugly ifs because the value can change halfway through which would make the colour change when it shouldnt
-        if (!complete)pillars[num].GetComponent<Renderer>().material = pillars[num].GetComponent<SkimPuzzleRock>().originalMaterial;
-        if (!complete)pillars[num].GetComponent<SkimPuzzleRock>().glowing = false;
+        if (!complete) pillars[num].GetComponent<Renderer>().material = pillars[num].GetComponent<SkimPuzzleRock>().originalMaterial;
+        if (!complete) pillars[num].GetComponent<SkimPuzzleRock>().glowing = false;
         if (!complete) pillars[num].GetComponent<SkimPuzzleRock>().rockHit = false;
         if (!complete) currentRock = 0;
         

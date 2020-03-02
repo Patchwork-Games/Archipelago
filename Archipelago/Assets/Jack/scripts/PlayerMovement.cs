@@ -310,7 +310,7 @@ public class PlayerMovement : MonoBehaviour
         if (camMoveDirection.x != 0)
         {
             StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_InputAxisName = "CameraMovement";
-            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 300;
+            StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 200;
         }
         else
         {

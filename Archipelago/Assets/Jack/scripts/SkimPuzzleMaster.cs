@@ -35,6 +35,7 @@ public class SkimPuzzleMaster : MonoBehaviour
             {
                 //move to next puzzle after completing one
                 currentSet++;
+                if (currentSet < puzzles.Length) puzzles[currentSet].GetComponent<RaiseSkimRocks>().targetHeight = 1; //raise new puzzle
                 if (currentSet < puzzles.Length) ActivateOnePuzzle();    // stops going out of bounds on array
             }
         }
