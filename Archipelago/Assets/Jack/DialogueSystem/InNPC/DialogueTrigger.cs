@@ -6,6 +6,7 @@ using Cinemachine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public Animator anim = null;
     [SerializeField] private int myTag = 0;
     public Dialogue[] dialogue;
     public Canvas talkButtonGuide;
@@ -23,7 +24,23 @@ public class DialogueTrigger : MonoBehaviour
     {
         talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
+        if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
+        StartCoroutine(TurnToPlayer());
+        
         StaticValueHolder.PlayerMovementScript.interact = false;
+    }
+
+    IEnumerator TurnToPlayer()
+    {
+        var t = 0.0f;
+        while (t < 1)
+        {
+            var r = new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(r - transform.position), t);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        
     }
 
 
@@ -32,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
         //init
         talkButtonGuide.enabled = false;
         talkCamPos = transform.GetChild(0).transform.position;
+        anim = GetComponent<Animator>();
     }
 
 
@@ -92,6 +110,25 @@ public class DialogueTrigger : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, talkRadius);
+    }
+
+
+
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
+        var dot = Vector3.Dot(heading, transform.forward);
+        if (dot > 0.4 && Vector3.Distance(transform.position, StaticValueHolder.PlayerObject.transform.position) < 10)
+        {
+            anim.SetLookAtWeight(1);
+            anim.SetLookAtPosition(new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z));
+        }
+
+
+
+
+       
     }
 }
 
