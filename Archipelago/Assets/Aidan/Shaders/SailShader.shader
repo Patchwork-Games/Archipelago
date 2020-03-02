@@ -16,7 +16,7 @@
 
 		Cull Off
 
-		//ZWrite Off
+		ZWrite On
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
