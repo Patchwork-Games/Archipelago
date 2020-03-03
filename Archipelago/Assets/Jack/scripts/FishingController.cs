@@ -1,135 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Cinemachine;
-
 
 public class FishingController : MonoBehaviour
 {
-    [SerializeField] private Animator anim = null;
-    [SerializeField] private GameObject bobber = null;
-    [SerializeField] private float maxCastPower = 1000;
-    private GameObject fishingPole = null;
-
-    [HideInInspector] public bool doingCast = false;
-    [HideInInspector] public bool heldCast = false;
-    [HideInInspector] public bool launched = false;
-    private bool chargingCast = false;
-    private float castPower = 0;
-    private Vector3 originalPos = Vector3.zero;
-
-    private float throwTimeout = 0.0f;
+    private Animator anim = null;
+    [HideInInspector] public bool heldB = false;
+    private GameObject net = null;
+    public bool canSeeNet = false;
 
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        anim.SetBool("ChargingCast", false);
-        fishingPole = GameObject.FindGameObjectWithTag("FishingPole");
-        chargingCast = false;
-        doingCast = false;
-        heldCast = false;
+        anim = GetComponent<Animator>();
+        net = GameObject.FindGameObjectWithTag("Net");
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        testCast();
-    }
 
-
-    //aim player at mouse
-    public void LookAtMouse()
-    {
-        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.AngleAxis(-angle + 90, new Vector3(0, 1, 0));
-    }
-
-    //launch a stone
-    public void CastBobber()
-    {       
-        GameObject currentBobber = Instantiate(bobber, transform.position, transform.rotation);
-        currentBobber.GetComponent<Fishing>().direction = transform.forward;
-        launched = true;
-    }
-
-
-    //charge power of throw
-    public void chargeCast()
-    {
-        castPower += Time.deltaTime * 300;
-        if (castPower > maxCastPower)
+        if (heldB && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
         {
-            castPower = maxCastPower;
-            //could show sparkle here to show that max power reached
-        }
-    }
-
-
-
-    //shake character while charging
-    IEnumerator ShakeCharacter()
-    {
-        while (chargingCast)
-        {
-            transform.position += Random.insideUnitSphere * (Time.deltaTime * castPower / 300);
-
-            yield return new WaitForSeconds(0.02f);
-            transform.position = originalPos;
-        }
-    }
-
-
-
-    public void testCast()
-    {
-
-        if (heldCast && !chargingCast && StaticValueHolder.PlayerMovementScript.isGrounded)
-        {
-            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.FISHING;
-            fishingPole.GetComponent<MeshRenderer>().enabled = true;
-            chargingCast = true;
-            anim.SetBool("ChargingCast", true);
-            castPower = 0;
-            originalPos = transform.position;
-            throwTimeout = 0.0f;
+            heldB = false;
+            PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.CASTING;
+            anim.SetTrigger("SwingNet");
         }
 
 
 
-        if (chargingCast)
+        if (canSeeNet)
         {
-            Vector3 camForward = Vector3.Normalize(transform.position - StaticValueHolder.PlayerCharacterCamera.transform.position);
-            camForward.y = 0;
-            //LookAtMouse();
-            chargeCast();
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(camForward), 9f * Time.deltaTime);
+            net.SetActive(true);
+        }
+        else
+        {
+            net.SetActive(false);
         }
 
 
-
-        //stop charging when release button
-        if (!heldCast && chargingCast)
-        {
-            chargingCast = false;
-            anim.SetBool("ChargingCast", false);
-        }
-
-
-
-        //stop getting stuck in casting state
-        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.CASTING)
-        {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            {
-                if (throwTimeout > .5f)
-                {
-                    PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
-                    throwTimeout = 0.0f;
-                }
-                else throwTimeout += Time.deltaTime;
-            }
-        }
+        
     }
 }

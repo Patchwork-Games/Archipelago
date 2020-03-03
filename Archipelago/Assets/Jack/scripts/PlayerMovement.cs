@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public enum ItemEquipped
     {
         SKIMMINGROCK,
-        FISHINGPOLE
+        NET
     }
     public ItemEquipped currentItem;
 
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.BButton.canceled += context => StopThrowButton();
         controls.Player.YButton.performed += context => YButton();
         controls.Player.YButton.canceled += context => StopYButton();
-        
+
         controls.Enable();
     }
 
@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
     void RunButton()
     {
-        run = true;
+        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING) run = true;
     }
 
     void StopRunButton()
@@ -146,9 +146,14 @@ public class PlayerMovement : MonoBehaviour
                     GetComponent<SkimmingController>().heldThrow = true;
                     break;
                 }
-            case ItemEquipped.FISHINGPOLE:
+            case ItemEquipped.NET:
                 {
-                    GetComponent<FishingController>().heldCast = true;
+                    if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING && isGrounded)
+                    {
+                        GetComponent<FishingController>().heldB = true;
+                        run = false;
+                        RunParticle.Stop();
+                    } 
                     break;
                 }
             default:
@@ -198,13 +203,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
-
-
-
     private void Start()
     {
-        currentItem = ItemEquipped.SKIMMINGROCK;
+        currentItem = ItemEquipped.NET;
         mainCam = Camera.main;
         controller = GetComponent<CharacterController>();
         anim.SetBool("Walking", false);
@@ -236,6 +237,14 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = new Vector2(moveDirectionLR, moveDirectionUD);
         moveDirection = moveDirection.normalized;
+
+        //show or hide net
+        if (currentItem == ItemEquipped.NET && !run)
+        {
+            GetComponent<FishingController>().canSeeNet = true;
+        }
+        else GetComponent<FishingController>().canSeeNet = false;
+
     }
 
 

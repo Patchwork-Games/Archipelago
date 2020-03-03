@@ -67,18 +67,9 @@ public class PlayerStateMachine : MonoBehaviour
 
 
             //fishing
-            case PlayerState.CASTING:
-                {
-                    StaticValueHolder.PlayerMovementScript.CheckFishing();
-                    break;
-                }
-
-
-
-            //fishing
             case PlayerState.FISHING:
                 {
-                    
+                    StaticValueHolder.PlayerMovementScript.CheckFishing();
                     break;
                 }
 
