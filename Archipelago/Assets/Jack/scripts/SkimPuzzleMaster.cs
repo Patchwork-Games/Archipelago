@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkimPuzzleMaster : MonoBehaviour
 {
     [HideInInspector] public int currentSet = 0;
+    [SerializeField] private GameObject energyPickup = null;
 
     //materials
     public Material gold = null;
@@ -42,7 +43,8 @@ public class SkimPuzzleMaster : MonoBehaviour
         else if (!rewarded)
         {
             //give player reward
-            StaticValueHolder.DashMeterObject.AddEnergies(1);
+            GameObject reward = Instantiate(energyPickup, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+            reward.transform.position = transform.position;
             rewarded = true;
         }
     }

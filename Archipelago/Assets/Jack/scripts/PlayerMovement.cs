@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        currentItem = ItemEquipped.NET;
+        currentItem = ItemEquipped.SKIMMINGROCK;
         mainCam = Camera.main;
         controller = GetComponent<CharacterController>();
         anim.SetBool("Walking", false);
@@ -243,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<FishingController>().canSeeNet = true;
         }
-        else if (run && moveDirection == Vector2.zero)
+        else if (currentItem == ItemEquipped.NET && run && moveDirection == Vector2.zero)
         {
             GetComponent<FishingController>().canSeeNet = true;
         }

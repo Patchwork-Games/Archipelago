@@ -26,11 +26,14 @@ public class Collectable : MonoBehaviour
 
     private void Awake()
     {
-        fishSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().fishSprite;
-        shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
-        stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
-        pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
-        collectableUI = GameObject.FindGameObjectWithTag("CollectableUI");
+        if (collectableType != CollectableTypes.ENERGY)
+        {
+            fishSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().fishSprite;
+            shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
+            stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
+            pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
+            collectableUI = GameObject.FindGameObjectWithTag("CollectableUI");
+        }
         hiddenPickupButton = false;
     }
 
@@ -112,8 +115,7 @@ public class Collectable : MonoBehaviour
             {
 				StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
 				StaticValueHolder.DashMeterObject.AddEnergies(1);
-				if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
-					StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
+				if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
 				Destroy(gameObject);
             }
         }
@@ -123,10 +125,13 @@ public class Collectable : MonoBehaviour
 
     void HideButton()
     {
-        hiddenPickupButton = true;
-        pickupButtonGuide.enabled = false;
-        //PlayerMovement.Instance.interact = false;
-        StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
+        if (collectableType != CollectableTypes.ENERGY)
+        {
+            hiddenPickupButton = true;
+            pickupButtonGuide.enabled = false;
+            StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
+        }
+            
     }
 
 }
