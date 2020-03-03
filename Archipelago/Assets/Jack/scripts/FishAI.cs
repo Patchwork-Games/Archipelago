@@ -34,7 +34,7 @@ public class FishAI : MonoBehaviour
             transform.forward = awayFromPlayer;
             angle = transform.eulerAngles;
             rb.velocity = Vector3.zero;
-            rb.AddForce(transform.forward * 10000 * Time.deltaTime);
+            rb.AddForce(transform.forward * (10000 + ((distToPlayer - 5) * -1000)) * Time.deltaTime);
             timer = 2.9f;
         }
         else

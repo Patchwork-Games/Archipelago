@@ -238,8 +238,12 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector2(moveDirectionLR, moveDirectionUD);
         moveDirection = moveDirection.normalized;
 
-        //show or hide net
+        //hide net if holding run and moving or if unequipped
         if (currentItem == ItemEquipped.NET && !run)
+        {
+            GetComponent<FishingController>().canSeeNet = true;
+        }
+        else if (run && moveDirection == Vector2.zero)
         {
             GetComponent<FishingController>().canSeeNet = true;
         }
@@ -452,9 +456,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckRun()
     {
-        //get energy from other script
-        //if (energyBar) energy = energyBar.GetComponent<DashMeter>().currentCharge;
-
         //check conditions to run and run if possible
         if (run && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
         {
@@ -462,23 +463,14 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded)
             {
                 anim.SetBool("Running", true);
-                //RunParticle.transform.SetPositionAndRotation(transform.position - new Vector3(0, 2, 0), Quaternion.identity);
                 if (!RunParticle.isPlaying) RunParticle.Play();
-                //if (energyBar) energyBar.GetComponent<DashMeter>().Discharge();
             }
-
-
         }
         else
         {
             if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Running", false);
-            //if (energyBar) energyBar.GetComponent<DashMeter>().Recharge();
-
         }
-
-        //stop trying to run when out of energy
-        //if (energy == 0) run = false;
     }
 
 

@@ -17,7 +17,7 @@ public class Collectable : MonoBehaviour
     Sprite fishSprite;
     Sprite shellSprite;
     Sprite stickSprite;
-
+    GameObject collectableUI = null;
 
     [SerializeField] float pickUpRadius = 3.0f;
     private Canvas pickupButtonGuide = null;
@@ -30,6 +30,7 @@ public class Collectable : MonoBehaviour
         shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
         stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
         pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
+        collectableUI = GameObject.FindGameObjectWithTag("CollectableUI");
         hiddenPickupButton = false;
     }
 
@@ -52,27 +53,28 @@ public class Collectable : MonoBehaviour
             if (StaticValueHolder.PlayerMovementScript.interact)   //pickup object with interact
             {
                 StaticValueHolder.PlayerMovementScript.jump = false;
+                StaticValueHolder.PlayerMovementScript.interact = false;
                 switch (collectableType)
                 {
                     //add one to collected UI and show icon above player to indicate collection, gets the icon from the Collectable UI script
                     case CollectableTypes.FISH:
                         {
                             StaticValueHolder.Collectable0 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = fishSprite;
                             break;
                         }
                     case CollectableTypes.SHELL:
                         {
                             StaticValueHolder.Collectable1 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = shellSprite;
                             break;
                         }
                     case CollectableTypes.STICK:
                         {
                             StaticValueHolder.Collectable2 += 1;
-                            GameObject newIcon = Instantiate(transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerMovementScript.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+                            GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = stickSprite;
                             break;
                         }
@@ -94,7 +96,6 @@ public class Collectable : MonoBehaviour
         }
         else if (!hiddenPickupButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
         {
-            
             HideButton();
         }
     }

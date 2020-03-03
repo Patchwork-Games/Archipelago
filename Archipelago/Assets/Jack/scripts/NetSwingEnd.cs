@@ -8,5 +8,6 @@ public class NetSwingEnd : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.MOVING;
+        StaticValueHolder.PlayerObject.GetComponent<FishingController>().net.GetComponent<SphereCollider>().enabled = false;
     }
 }
