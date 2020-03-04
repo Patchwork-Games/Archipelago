@@ -40,8 +40,8 @@ public class DashMeter : MonoBehaviour
 
 		energyRechargeTimeDecrement = energyRechargeTime;
 
-		this.gameObject.SetActive(false);
-	}
+        GetComponent<Canvas>().enabled = false;
+    }
 
 	private void Update()
 	{

@@ -83,7 +83,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInsideTriggerBox || playerInBoat)
 			return;
 
-		StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
+        StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = true;
 
 		// Change the state to the boat state and change the camera to follow the boat
 		PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.BOAT;
@@ -106,8 +106,8 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInBoat)
 			return;
 
-		StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
-		StaticValueHolder.PlayerMovementScript.interact = false;
+        StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = false;
+        StaticValueHolder.PlayerMovementScript.interact = false;
 
 		// TO DO: ADD ANIMATION 
 		Debug.Log("Getting out boat animation missing!");

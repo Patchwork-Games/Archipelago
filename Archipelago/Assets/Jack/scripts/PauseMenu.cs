@@ -8,7 +8,6 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject CompassUI;
-    public Canvas CollectableUI;
 
     [HideInInspector] public InputMaster controls = null;
 
@@ -67,8 +66,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         GameIsPaused = false;
-        if(PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.SetActive(true); //only show if in boat
-		CompassUI.SetActive(true);
+        if(PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = true; //only show if in boat
+        CompassUI.SetActive(true);
         StaticValueHolder.PlayerMovementScript.jump = false;
         StaticValueHolder.PlayerMovementScript.interact = false;
     }
@@ -78,9 +77,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
         GameIsPaused = true;
-		StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
-		CompassUI.SetActive(false);
-        CollectableUI.enabled = false;
+        StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = false;
+        CompassUI.SetActive(false);
     }
 
     public void LoadMenu()
