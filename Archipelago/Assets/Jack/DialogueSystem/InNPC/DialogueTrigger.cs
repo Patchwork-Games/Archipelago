@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     [HideInInspector]public Animator anim = null;
     [SerializeField] private int myTag = 0;
+    [SerializeField] private bool living = true;
     public Dialogue[] dialogue;
     public Canvas talkButtonGuide;
     public CinemachineVirtualCamera talkCam;
@@ -18,6 +19,7 @@ public class DialogueTrigger : MonoBehaviour
     public bool displayOnStart = false;
     private bool startedTalking = false;
     private bool hiddenTalkButton = false;
+    private float lookWeight = 0.0f;
 
 
     public void TriggerDialogue()
@@ -25,7 +27,7 @@ public class DialogueTrigger : MonoBehaviour
         talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
         if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
-        StartCoroutine(TurnToPlayer());
+        if (living) StartCoroutine(TurnToPlayer());
         
         StaticValueHolder.PlayerMovementScript.interact = false;
     }
@@ -49,7 +51,8 @@ public class DialogueTrigger : MonoBehaviour
         //init
         talkButtonGuide.enabled = false;
         talkCamPos = transform.GetChild(0).transform.position;
-        anim = GetComponent<Animator>();
+        if (living) anim = GetComponent<Animator>();
+            
     }
 
 
@@ -117,14 +120,25 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
-        var dot = Vector3.Dot(heading, transform.forward);
-        
-        if (dot > 0.4 && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 100)
+        if (living)
         {
-            anim.SetLookAtWeight(1);
+            var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
+            var dot = Vector3.Dot(heading, transform.forward);
+            Debug.Log("dot: " + dot);
+            //look towards target
             anim.SetLookAtPosition(new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z));
+
+            //only look if infront
+            if (dot > 1 && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 100)
+            {
+                if (lookWeight < 1) lookWeight += Time.deltaTime * 2;
+            }
+            else if(lookWeight > 0) lookWeight -= Time.deltaTime * 2;
+
+            anim.SetLookAtWeight(lookWeight);
+
         }
+        
     }
 }
 

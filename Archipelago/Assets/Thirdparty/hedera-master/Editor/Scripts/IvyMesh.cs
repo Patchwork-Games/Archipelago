@@ -49,7 +49,7 @@ namespace Hedera
                 ivyGraph.rootGO.transform.SetParent( ivyGraph.rootBehavior );
             }
             SetStaticEditorFlag( ivyGraph.rootGO, StaticEditorFlags.BatchingStatic, ivyProfile.markMeshAsStatic );
-            SetStaticEditorFlag( ivyGraph.rootGO, StaticEditorFlags.LightmapStatic, ivyProfile.useLightmapping );
+            SetStaticEditorFlag( ivyGraph.rootGO, StaticEditorFlags.ContributeGI, ivyProfile.useLightmapping );
             var rootTrans = ivyGraph.rootGO.transform;
             rootTrans.position = ivyGraph.seedPos;
             rootTrans.rotation = Quaternion.identity;
@@ -185,7 +185,7 @@ namespace Hedera
 
         static void RefreshMeshObject(MeshFilter mf, IvyProfile ivyProfile) {
             SetStaticEditorFlag( mf.gameObject, StaticEditorFlags.BatchingStatic, ivyProfile.markMeshAsStatic );
-            SetStaticEditorFlag( mf.gameObject, StaticEditorFlags.LightmapStatic, ivyProfile.useLightmapping );
+            SetStaticEditorFlag( mf.gameObject, StaticEditorFlags.ContributeGI, ivyProfile.useLightmapping );
             var branchTrans = mf.transform;
             branchTrans.localPosition = Vector3.zero;
             branchTrans.localRotation = Quaternion.identity;

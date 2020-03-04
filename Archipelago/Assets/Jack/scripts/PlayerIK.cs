@@ -18,10 +18,12 @@ public class PlayerIK : MonoBehaviour
 
     //target to look at
     private Transform target = null;
+    private float lookWeight = 0.0f;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        anim.SetLookAtWeight(0);
     }
 
 
@@ -49,13 +51,26 @@ public class PlayerIK : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        var heading = target.position - transform.position;
-        var dot = Vector3.Dot(heading, transform.forward);
-        if (dot > 0.4 && ((target.position - transform.position).sqrMagnitude < 100) && (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING || PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING))
+        //check if there is a target
+        if (target)
         {
-            anim.SetLookAtWeight(1);
-            anim.SetLookAtPosition(new Vector3(target.position.x, transform.position.y, target.position.z));
-        }
+            var heading = target.position - transform.position;
+            var dot = Vector3.Dot(heading, transform.forward);
+            if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING || PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
+            {
+                //look towards target
+                anim.SetLookAtPosition(new Vector3(target.position.x, transform.position.y, target.position.z));
+
+                //only look if infront
+                if (dot > 1 && (target.position - transform.position).sqrMagnitude < 100)
+                {
+                    if (lookWeight < 1) lookWeight += Time.deltaTime * 2;
+                }
+                else if (lookWeight > 0) lookWeight -= Time.deltaTime * 2;
+
+                anim.SetLookAtWeight(lookWeight);
+            }
+        }        
     }
 
 

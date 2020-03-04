@@ -202,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928da032db593c64a89c29da4c0bf1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTag: 4
+  anim: {fileID: 0}
+  myTag: 3
+  living: 0
   dialogue:
   - name: Bottle
     charactersTalking:
@@ -211,11 +213,9 @@ MonoBehaviour:
       NPCLocation: {fileID: 647238575935727697}
     chatBoxes:
     - name: ???
-      sentences: Have you found the items yet?
+      sentences: Have you checked behind the big rock?
     - name: ???
-      sentences: Press Y to see how many you have
-    - name: ???
-      sentences: Good luck!
+      sentences: You might find something interesting!
   talkButtonGuide: {fileID: 0}
   talkCam: {fileID: 0}
   talkRadius: 5
