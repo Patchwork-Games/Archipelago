@@ -112,7 +112,7 @@
 			float steepness = wave.z;
 			float wavelength = wave.w;
 			float k = 2 * UNITY_PI / wavelength;
-			float c = sqrt(9.8 / k);
+			float c = sqrt(1 / k);
 			float2 d = normalize(wave.xy);
 			float f = k * (dot(d, p.xz) - c * _Time.y);
 			float a = steepness / k;

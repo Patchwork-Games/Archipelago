@@ -2049,6 +2049,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: InWater
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Walking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8970036389277466505}
   m_Solo: 0

@@ -49,7 +49,8 @@ public class PlayerStateMachine : MonoBehaviour
                    StaticValueHolder.PlayerMovementScript.CheckGround();
                    StaticValueHolder.PlayerMovementScript.CheckRun();
                    StaticValueHolder.PlayerMovementScript.CheckJump();
-                   StaticValueHolder.PlayerMovementScript.Move();
+                    StaticValueHolder.PlayerMovementScript.CheckWater();
+                    StaticValueHolder.PlayerMovementScript.Move();
                    StaticValueHolder.PlayerMovementScript.Gravity();
                    StaticValueHolder.PlayerMovementScript.MoveCamera();
                    StaticValueHolder.PlayerMovementScript.anim.SetBool("InBoat", false);
