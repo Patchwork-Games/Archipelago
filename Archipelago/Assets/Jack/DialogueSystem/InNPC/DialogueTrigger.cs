@@ -124,7 +124,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
             var dot = Vector3.Dot(heading, transform.forward);
-            Debug.Log("dot: " + dot);
             //look towards target
             anim.SetLookAtPosition(new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z));
 

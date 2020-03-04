@@ -23,7 +23,6 @@ public class PlayerIK : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        anim.SetLookAtWeight(0);
     }
 
 
