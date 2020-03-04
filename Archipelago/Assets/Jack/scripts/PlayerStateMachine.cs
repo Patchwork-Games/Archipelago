@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-
+    
     public static PlayerStateMachine Instance { get; private set; }
 
     public enum PlayerState
@@ -64,6 +64,8 @@ public class PlayerStateMachine : MonoBehaviour
                 {
                     StaticValueHolder.PlayerMovementScript.CheckThrowing();
                     break;
+
+                    
                 }
 
 
