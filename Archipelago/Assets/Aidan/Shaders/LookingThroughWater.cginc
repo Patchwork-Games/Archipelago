@@ -3,7 +3,7 @@
 
 sampler2D _CameraDepthTexture, _WaterBackground;
 float4 _CameraDepthTexture_TexelSize;
-float3 _WaterFogColor;
+float4 _WaterFogColor;
 float _WaterFogDensity;
 float _RefractionStrength;
 
@@ -40,9 +40,9 @@ float3 ColorBelowWater(float4 screenPos, float3 tangentSpaceNormal)
 		LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
 	depthDifference = backgroundDepth - surfaceDepth;
 
-	float3 backgroundColor = tex2D(_WaterBackground, uv).rgb;
+	float4 backgroundColor = tex2D(_WaterBackground, uv);
 	float fogFactor = exp2(-_WaterFogDensity * depthDifference);
-	return lerp(_WaterFogColor, backgroundColor, fogFactor);
+	return lerp(_WaterFogColor.rgb, backgroundColor.rgb, fogFactor);
 }
 
 #endif

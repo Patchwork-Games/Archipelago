@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OceanMat
+  m_Shader: {fileID: 4800000, guid: e716cd3cba7710f4ca47b03490a684a7, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 67a530992d69f424d91d5512d5cd2de0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OceanFoamTex:
+        m_Texture: {fileID: 2800000, guid: b85a026f238962049bf710946c6e13cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceDistortion:
+        m_Texture: {fileID: 2800000, guid: 2b09c421c329e0b46aeaa4edcbc7a76a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceNoise:
+        m_Texture: {fileID: 2800000, guid: 79aca2037673a1145a497f304affab56, type: 3}
+        m_Scale: {x: 1, y: 4}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DepthMaxDistance: 2.15
+    - _FoamDistance: 0.4
+    - _FoamMaxDistance: 0.4
+    - _FoamMinDistance: 0.04
+    - _FresnelWaterColorExponent: 1.5
+    - _Glossiness: 0
+    - _Metallic: 0
+    - _NoiseTexScale: 0.91
+    - _OceanFoamTexScale: 0.2
+    - _RefractionStrength: 0
+    - _SurfaceDistortionAmount: 0.071
+    - _SurfaceNoiseCutoff: 1
+    - _SurfaceNoiseScale: 0.28
+    - _WaterFogDensity: 1.195
+    m_Colors:
+    - _Color: {r: 0, g: 0.93155813, b: 1, a: 1}
+    - _DepthGradientDeep: {r: 1, g: 1, b: 1, a: 0.749}
+    - _DepthGradientShallow: {r: 0.325, g: 0.807, b: 0.971, a: 0.725}
+    - _FresnelWaterColor: {r: 0, g: 0.31117582, b: 1, a: 0.7058824}
+    - _OceanFoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OceanFoamDistortion: {r: 2, g: 0.02, b: 1, a: 1}
+    - _SurfaceNoiseScroll: {r: 0.03, g: 0.03, b: 0, a: 0}
+    - _WaterColor: {r: 0, g: 1, b: 0.67276335, a: 0.7058824}
+    - _WaterFogColor: {r: 0, g: 0.82533956, b: 1, a: 1}
+    - _WaveA: {r: 1, g: 0, b: 0.03, a: 10}
+    - _WaveB: {r: 0, g: 1, b: 0.1, a: 20}
+    - _WaveC: {r: 1, g: 1, b: 0.06, a: 10}
