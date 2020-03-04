@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 camMoveDirection = Vector2.zero;
     [HideInInspector] public Vector3 beginTalkCamPos = Vector3.zero;
     [HideInInspector] public bool BoatButtonGuide = false;
-    [SerializeField] private Canvas BoatButtonImage = null;
+    [SerializeField] private Canvas BoatButtonCanvas = null;
 
 
     //movement variables
@@ -257,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("BoatTriggerBox"))
         {
             BoatButtonGuide = true;
-            if (BoatButtonImage) BoatButtonImage.enabled = true;
+            if (BoatButtonCanvas) BoatButtonCanvas.enabled = true;
         }
 
         
@@ -268,17 +268,17 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("BoatTriggerBox"))
         {
             BoatButtonGuide = false;
-            if (BoatButtonImage) BoatButtonImage.enabled = false;
+            if (BoatButtonCanvas) BoatButtonCanvas.enabled = false;
         }
     }
 
 
     private void LateUpdate()
     {
-        if (BoatButtonGuide && BoatButtonImage)
+        if (BoatButtonGuide && BoatButtonCanvas)
         {
-            BoatButtonImage.transform.position = transform.position + new Vector3(0,5,0);
-            BoatButtonImage.transform.rotation = mainCam.transform.rotation;
+            BoatButtonCanvas.transform.position = transform.position + new Vector3(0,5,0);
+            BoatButtonCanvas.transform.rotation = mainCam.transform.rotation;
         }
     }
 
@@ -556,7 +556,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("ChargingThrow", false);
 
         BoatButtonGuide = false;
-        if (BoatButtonImage) BoatButtonImage.enabled = false;
+        if (BoatButtonCanvas) BoatButtonCanvas.enabled = false;
     }
 
 

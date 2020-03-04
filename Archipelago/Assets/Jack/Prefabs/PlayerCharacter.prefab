@@ -168,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6367339026500266365}
   - component: {fileID: 6367339026500266354}
+  - component: {fileID: 7687683411591520120}
   - component: {fileID: 6367339026500266364}
   - component: {fileID: 6367339026500266367}
   - component: {fileID: 6367339026500266361}
@@ -215,6 +216,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.05, z: 0.04}
+--- !u!114 &7687683411591520120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367339026500266355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605e9e4b284906747ae352444d0ffa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandDistance: 100
 --- !u!114 &6367339026500266364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,15 +1688,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6367339026742058857}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6614023452699903087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8965278920769873146, guid: 48b345d736a7ced4aa3d4cd27e442d85,
-    type: 3}
-  m_PrefabInstance: {fileID: 6367339026742058857}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3541818155272215560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1622908010928635039, guid: 48b345d736a7ced4aa3d4cd27e442d85,
+    type: 3}
+  m_PrefabInstance: {fileID: 6367339026742058857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6614023452699903087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8965278920769873146, guid: 48b345d736a7ced4aa3d4cd27e442d85,
     type: 3}
   m_PrefabInstance: {fileID: 6367339026742058857}
   m_PrefabAsset: {fileID: 0}

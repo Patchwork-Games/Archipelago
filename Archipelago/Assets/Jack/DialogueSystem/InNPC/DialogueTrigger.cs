@@ -119,16 +119,12 @@ public class DialogueTrigger : MonoBehaviour
     {
         var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
         var dot = Vector3.Dot(heading, transform.forward);
-        if (dot > 0.4 && Vector3.Distance(transform.position, StaticValueHolder.PlayerObject.transform.position) < 10)
+        
+        if (dot > 0.4 && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 100)
         {
             anim.SetLookAtWeight(1);
             anim.SetLookAtPosition(new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z));
         }
-
-
-
-
-       
     }
 }
 
