@@ -13,8 +13,9 @@ public class Dialogue
 
         [TextArea(3, 10)]
         public string sentences;
-
+        
     }
+
 
     [System.Serializable]
     public struct CharactersTalking
@@ -22,6 +23,7 @@ public class Dialogue
         public string name;
         public Sprite dialogueBoxImg;
         public Transform NPCLocation;
+       
     }
 
     public string name;

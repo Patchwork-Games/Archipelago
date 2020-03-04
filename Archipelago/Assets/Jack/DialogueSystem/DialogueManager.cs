@@ -34,16 +34,16 @@ so 'readstop' would get to the 'd' in 'read' and then execute the 'read' command
 
 public class DialogueManager : MonoBehaviour
 {
-    public AnimationCurve VertexCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.25f, 2.0f), new Keyframe(0.5f, 0), new Keyframe(0.75f, 2.0f), new Keyframe(1, 0f));
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Sprite defaultSprite;
     public Image dialogueBoxImg;
     public Image arrow;
     public Animator animator;
+    [Tooltip("delay on text print, smaller = faster")]
     public float textSpeed = 0.03f;
     public bool canQuitSentence;
-    public float CurveScale = 1.0f;
+    [SerializeField] private float textHeight = 3.0f;
     [HideInInspector] public Dialogue dialogue;
 
     private string sentence;
@@ -140,7 +140,7 @@ public class DialogueManager : MonoBehaviour
 
 
                 //move box above talking npc
-                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0,10,0);
+                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0, textHeight, 0);
                              
             }
         }
@@ -310,58 +310,4 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-
-    IEnumerator AnimateVertexPositions()
-    {
-        //VertexCurve.preWrapMode = WrapMode.Loop;
-        //VertexCurve.postWrapMode = WrapMode.Loop;
-
-        //Vector3[] newVertexPositions;
-        ////Matrix4x4 matrix;
-
-        //int loopCount = 0;
-
-        //while (true)
-        //{
-        //    dialogueText.renderMode = TextRenderFlags.DontRender; // Instructing TextMesh Pro not to upload the mesh as we will be modifying it.
-        //    dialogueText.ForceMeshUpdate(); // Generate the mesh and populate the textInfo with data we can use and manipulate.
-
-        //    TMP_TextInfo textInfo = dialogueText.textInfo;
-        //    int characterCount = textInfo.characterCount;
-
-
-        //    newVertexPositions = textInfo.meshInfo.vertices;
-
-        //    for (int i = 0; i < characterCount; i++)
-        //    {
-        //        if (!textInfo.characterInfo[i].isVisible)
-        //            continue;
-
-        //        int vertexIndex = textInfo.characterInfo[i].vertexIndex;
-
-        //        float offsetY = VertexCurve.Evaluate((float)i / characterCount + loopCount / 50f) * CurveScale; // Random.Range(-0.25f, 0.25f);                    
-
-        //        newVertexPositions[vertexIndex + 0].y += offsetY;
-        //        newVertexPositions[vertexIndex + 1].y += offsetY;
-        //        newVertexPositions[vertexIndex + 2].y += offsetY;
-        //        newVertexPositions[vertexIndex + 3].y += offsetY;
-
-        //    }
-
-        //    loopCount += 1;
-
-        //    // Upload the mesh with the revised information
-        //    dialogueText.mesh.vertices = newVertexPositions;
-        //    dialogueText.mesh.uv = dialogueText.textInfo.meshInfo.uv0s;
-        //    dialogueText.mesh.uv2 = dialogueText.textInfo.meshInfo.uv2s;
-        //    dialogueText.mesh.colors32 = dialogueText.textInfo.meshInfo.vertexColors;
-
-        //    yield return new WaitForSeconds(0.025f);
-        //}
-        yield return null;
-    }
-
-
-
-
 }

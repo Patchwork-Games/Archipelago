@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Animator anim = null;
+    [HideInInspector]public Animator anim = null;
     [SerializeField] private int myTag = 0;
     public Dialogue[] dialogue;
     public Canvas talkButtonGuide;
@@ -64,7 +64,7 @@ public class DialogueTrigger : MonoBehaviour
                 //show button needed to talk
                 if (talkButtonGuide && !startedTalking)
                 {
-                    talkButtonGuide.transform.position = transform.position + new Vector3(0, 7, 0);
+                    talkButtonGuide.transform.position = transform.position + new Vector3(0, 5, 0);
                     talkButtonGuide.enabled = true;
                     StaticValueHolder.PlayerMovementScript.inTalkDistance = true;
                     hiddenTalkButton = false;
