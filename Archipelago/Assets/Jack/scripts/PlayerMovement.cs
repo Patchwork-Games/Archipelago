@@ -250,6 +250,26 @@ public class PlayerMovement : MonoBehaviour
         }
         else GetComponent<FishingController>().canSeeNet = false;
 
+
+
+
+
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            currentItem = ItemEquipped.NET;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            currentItem = ItemEquipped.SKIMMINGROCK;
+        }
+
+
     }
 
 
