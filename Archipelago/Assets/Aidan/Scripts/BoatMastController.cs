@@ -70,7 +70,7 @@ public class BoatMastController : MonoBehaviour
 		}
 
 		sailClothLeft.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
-		sailClothRight.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", -currentStretch);
+		//sailClothRight.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", -currentStretch);
 	}
 
 	private void SetRotation(Quaternion rotation)
