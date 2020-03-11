@@ -14,6 +14,7 @@
 		_WaveA("Wave A (dir, steepness, wavelength)", Vector) = (1,0,0.5,10)
 		_WaveB("Wave B", Vector) = (0,1,0.25,20)
 		_WaveC("Wave C", Vector) = (1,1,0.15,10)
+		_WaveSpeed("Wave Speed", Float) = 1
 
 		_WaterFogColor("Water Fog Color", Color) = (0, 0, 0, 0)
 		_WaterFogDensity("Water Fog Density", Range(0, 2)) = 0.1
@@ -84,6 +85,7 @@
 		half _OceanFoamTexScale;
 		float4 _OceanFoamDistortion;
 		float4 _WaveA, _WaveB, _WaveC;
+		float _WaveSpeed;
 		float4 _FresnelWaterColor;
 		float _FresnelWaterColorExponent;
 		float _DepthMaxDistance;
@@ -112,7 +114,7 @@
 			float steepness = wave.z;
 			float wavelength = wave.w;
 			float k = 2 * UNITY_PI / wavelength;
-			float c = sqrt(1 / k);
+			float c = sqrt(_WaveSpeed / k);
 			float2 d = normalize(wave.xy);
 			float f = k * (dot(d, p.xz) - c * _Time.y);
 			float a = steepness / k;
@@ -189,9 +191,12 @@
 			float4 waterColor = lerp(_WaterColor, _WaterFogColor, waterDepthDifference01);
 
 			// Edge foam
-			float2 distortSample = (tex2D(_SurfaceDistortion, IN.worldPos * _SurfaceNoiseScale).xy * 2 - 1) * _SurfaceDistortionAmount;
-			float2 noiseUV = float2((IN.worldPos.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (IN.worldPos.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y);
-			float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV * _SurfaceNoiseScale).r;
+			//float2 distortSample = (tex2D(_SurfaceDistortion, IN.distortUV).xy * 2 - 1) * _SurfaceDistortionAmount;
+			//float2 noiseUV = float2((IN.worldPos.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (IN.worldPos.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y) * _SurfaceNoiseScale;
+			float2 noiseUV = float2((IN.noiseUV.x + _Time.y * _SurfaceNoiseScroll.x), (IN.noiseUV.y + _Time.y * _SurfaceNoiseScroll.y)) * _SurfaceNoiseScale;
+
+
+			float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV).r;
 			float3 existingNormal = tex2Dproj(_CameraNormalsTexture, UNITY_PROJ_COORD(IN.screenPos));
 			float3 normalDot = saturate(dot(existingNormal, IN.viewNormal));
 			float foamDistance = lerp(_FoamMaxDistance, _FoamMinDistance, normalDot);

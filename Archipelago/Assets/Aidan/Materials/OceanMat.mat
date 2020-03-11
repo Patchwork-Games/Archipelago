@@ -33,23 +33,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SurfaceNoise:
         m_Texture: {fileID: 2800000, guid: 79aca2037673a1145a497f304affab56, type: 3}
-        m_Scale: {x: 1, y: 4}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DepthMaxDistance: 2.15
     - _FoamDistance: 0.4
-    - _FoamMaxDistance: 0.4
-    - _FoamMinDistance: 5.44
+    - _FoamMaxDistance: 2.64
+    - _FoamMinDistance: 0.82
     - _FresnelWaterColorExponent: 1.5
     - _Glossiness: 0
     - _Metallic: 0
     - _NoiseTexScale: 0.91
     - _OceanFoamTexScale: 0.03
     - _RefractionStrength: 0
-    - _SurfaceDistortionAmount: 0.071
-    - _SurfaceNoiseCutoff: 0.283
-    - _SurfaceNoiseScale: 0.00001
+    - _SurfaceDistortionAmount: 0
+    - _SurfaceNoiseCutoff: 1
+    - _SurfaceNoiseScale: 0.08
     - _WaterFogDensity: 0.066
+    - _WaveSpeed: 0.94
     m_Colors:
     - _Color: {r: 0, g: 0.93155813, b: 1, a: 1}
     - _DepthGradientDeep: {r: 1, g: 1, b: 1, a: 0.749}
@@ -60,6 +61,6 @@ Material:
     - _SurfaceNoiseScroll: {r: 0.03, g: 0.03, b: 0, a: 0}
     - _WaterColor: {r: 0, g: 1, b: 0.67276335, a: 0.7058824}
     - _WaterFogColor: {r: 0, g: 0.82533956, b: 1, a: 1}
-    - _WaveA: {r: 1, g: 0, b: 0.01, a: 5}
-    - _WaveB: {r: 0, g: 1, b: 0.01, a: 5}
-    - _WaveC: {r: 1, g: 1, b: 0.06, a: 5}
+    - _WaveA: {r: 1, g: 0, b: 0.01, a: 1}
+    - _WaveB: {r: 0, g: 1, b: 0.01, a: 1}
+    - _WaveC: {r: 1, g: 1, b: 0.01, a: 1}
