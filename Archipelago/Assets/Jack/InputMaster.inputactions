@@ -427,6 +427,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "QuickRight",
+                    "type": "Button",
+                    "id": "39abac97-ebf2-439d-ad5d-07326f360c07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "QuickLeft",
+                    "type": "Button",
+                    "id": "357a2df3-20ee-4ea4-902a-77ed02a38715",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -671,6 +687,28 @@
                     "action": "CameraMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d5ef388d-a7f1-414f-bae1-c81f91e3d2cc",
+                    "path": "<XInputController>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "QuickRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9772509f-4b6b-4124-867f-af245b345485",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "QuickLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

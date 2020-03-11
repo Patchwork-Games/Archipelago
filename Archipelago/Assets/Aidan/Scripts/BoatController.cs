@@ -23,6 +23,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float dashTime = 3f;
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
+	[SerializeField] private float quickTurnForce = 50f;
 
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
@@ -31,6 +32,8 @@ public class BoatController : MonoBehaviour
 	private Rigidbody rb = null;
 	private float originalMotorForce = 0f;
 	private Vector3 smoothDampVelocity = Vector3.zero;
+	private bool applyQuickLeftForce = false;
+	private bool applyQuickRightForce = false;
 
 	// Particles
 	private Transform particlesTransform = null;
@@ -78,6 +81,26 @@ public class BoatController : MonoBehaviour
 			rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
 		}
 
+	}
+
+	private void QuickLeft()
+	{
+		Debug.Log("Quick left");
+
+		Vector3 rotatedVector = Vector3.Normalize(Quaternion.Euler(0, 45, 0) * transform.forward);
+		Debug.DrawRay(transform.position - (transform.forward * 5), rotatedVector, Color.red, 10);
+		//rb.AddForce(rotatedVector * 1000 * Time.deltaTime, ForceMode.Impulse);
+		rb.AddForceAtPosition(rotatedVector * quickTurnForce, transform.position - (transform.forward * 5), ForceMode.Force);
+	}
+
+	private void QuickRight()
+	{
+		Debug.Log("Quick right");
+
+		Vector3 rotatedVector = Vector3.Normalize(Quaternion.Euler(0, -45, 0) * transform.forward);
+		Debug.DrawRay(transform.position - (transform.forward * 5), rotatedVector, Color.red, 10);
+		//rb.AddForce(rotatedVector * 1000 * Time.deltaTime, ForceMode.Impulse);
+		rb.AddForceAtPosition(rotatedVector * quickTurnForce, transform.position - (transform.forward * 5), ForceMode.Force);
 	}
 
 	public void AddGustForce(float gustForce)
@@ -170,6 +193,16 @@ public class BoatController : MonoBehaviour
 			default:
 				break;
 		}
+
+		if (applyQuickLeftForce)
+		{
+			QuickLeft();
+		}
+
+		if (applyQuickRightForce)
+		{
+			QuickRight();
+		}
 	}
 
 	private void UpdatePlayerNotInBoatState()
@@ -198,6 +231,14 @@ public class BoatController : MonoBehaviour
 		// Dashing
 		controls.Boat.Dash.performed += ctx => Dash();
 		controls.Boat.Dash.Enable();
+
+		// Quick turning
+		controls.Boat.QuickLeft.performed += ctx => applyQuickLeftForce = true;//QuickLeft();
+		controls.Boat.QuickLeft.canceled += ctx => applyQuickLeftForce = false;
+		controls.Boat.QuickLeft.Enable();
+		controls.Boat.QuickRight.performed += ctx => applyQuickRightForce = true;//QuickRight();
+		controls.Boat.QuickRight.canceled += ctx => applyQuickRightForce = false;
+		controls.Boat.QuickRight.Enable();
 	}
 
 	private void OnDisable()
@@ -210,5 +251,13 @@ public class BoatController : MonoBehaviour
 		// Dashing
 		controls.Boat.Dash.performed -= ctx => Dash();
 		controls.Boat.Dash.Disable();
+
+		// Quick turning
+		controls.Boat.QuickLeft.performed -= ctx => applyQuickLeftForce = true;//QuickLeft();
+		controls.Boat.QuickLeft.canceled -= ctx => applyQuickLeftForce = false;
+		controls.Boat.QuickLeft.Disable();
+		controls.Boat.QuickRight.performed -= ctx => applyQuickRightForce = true;//QuickRight();
+		controls.Boat.QuickRight.canceled -= ctx => applyQuickRightForce = false;
+		controls.Boat.QuickRight.Disable();
 	}
 }
