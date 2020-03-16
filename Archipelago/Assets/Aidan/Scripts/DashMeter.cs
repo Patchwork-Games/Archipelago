@@ -124,6 +124,10 @@ public class DashMeter : MonoBehaviour
 		{
 			EnergyBarIsEmpty = false;
 		}
+		else
+		{
+			EnergyBarIsEmpty = true;
+		}
 	}
 
 	public void AddEnergies(int amount)
@@ -163,12 +167,14 @@ public class DashMeter : MonoBehaviour
 			// Use the current number of energies to find out which energy should be depleted
 			Color newColour = iconColour;
 			newColour.a = alphaValueOfUsedEnergies;
+			Debug.Log("Num of Dashes: " + currentNumOfEnergies);
 			energiesTotal[currentNumOfEnergies - 1].GetComponent<Image>().color = newColour;
 
 			// Decrement the number of energies active
 			currentNumOfEnergies -= amount;
 			if (currentNumOfEnergies <= 0)
 			{
+				currentNumOfEnergies = 0;
 				EnergyBarIsEmpty = true;
 			}
 

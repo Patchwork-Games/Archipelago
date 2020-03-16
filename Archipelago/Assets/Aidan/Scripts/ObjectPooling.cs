@@ -17,6 +17,7 @@ public class ObjectPooling : MonoBehaviour
 		{
 			pool[i] = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
 			pool[i].SetActive(false);
+			pool[i].transform.parent = transform;
 		}
 	}
 
