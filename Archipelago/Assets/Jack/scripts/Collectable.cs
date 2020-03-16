@@ -113,9 +113,7 @@ public class Collectable : MonoBehaviour
         {
             if (other.CompareTag("Player") || other.CompareTag("Boat"))
             {
-				StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
 				StaticValueHolder.DashMeterObject.AddEnergies(1);
-				if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.SetActive(false);
 				Destroy(gameObject);
             }
         }

@@ -18,13 +18,6 @@ public class GettingInAndOutBoat : MonoBehaviour
 		controls = new InputMaster();
 	}
 
-	private void Start()
-	{
-		// Set the dash icons to be off if the player doesn't start in the boat
-		if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
-			StaticValueHolder.DashMeterObject.gameObject.SetActive(true);
-	}
-
 	private void OnTriggerEnter(Collider other)
 	{
 		// If the player has collided with the trigger box then set the player movement script
