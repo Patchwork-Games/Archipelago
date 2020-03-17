@@ -10,7 +10,7 @@ public class FootPrintDelete : MonoBehaviour
 
     private void Awake()
     {
-        footMat = GetComponent<Projector>().material = Instantiate<Material>(GetComponent<Projector>().material);
+        footMat = GetComponent<Projector>().material = Instantiate(GetComponent<Projector>().material);
     }
 
 
@@ -26,7 +26,6 @@ public class FootPrintDelete : MonoBehaviour
         {
 
             fadeTime -= Time.deltaTime / 2;
-            Debug.Log("FadeTime: " + fadeTime);
             footMat.SetFloat("_Fade", fadeTime);
         }
         else gameObject.SetActive(false);
