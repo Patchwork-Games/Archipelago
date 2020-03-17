@@ -113,7 +113,7 @@ public class Collectable : MonoBehaviour
         {
             if (other.CompareTag("Player") || other.CompareTag("Boat"))
             {
-				StaticValueHolder.DashMeterObject.AddEnergies(1);
+				StaticValueHolder.DashMeterObject.AddDashes(1);
 				Destroy(gameObject);
             }
         }

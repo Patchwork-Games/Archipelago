@@ -52,7 +52,7 @@ public class CampfireQuest : MonoBehaviour
 
 
                 //give reward to player
-                StaticValueHolder.DashMeterObject.AddEnergies(1);
+                StaticValueHolder.DashMeterObject.AddDashes(1);
             }
         }
         else if (!hiddenButtonGuide) //if this is in the normal else then the talk button is always disabled for any npc other than the first

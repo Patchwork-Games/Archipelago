@@ -12,7 +12,11 @@ public class BoatController : MonoBehaviour
 		IN_SHALLOW_WATER,
 		PLAYER_NOT_IN_BOAT
 	}
+
+	// Public variables
 	public BoatState State { get; set; } = BoatState.PLAYER_NOT_IN_BOAT;
+	public bool IsDashing { get; private set; } = false;
+	public float Speed { get; private set; } = 0f;
 
 	[SerializeField] private GameObject anchorObject = null;
 	[SerializeField] private WheelCollider frontLeftW = null, frontRightW = null;
@@ -27,10 +31,8 @@ public class BoatController : MonoBehaviour
 
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
-	private bool isDashing = false;
 	private float elapsedDashTime = 0f;
 	private Rigidbody rb = null;
-	private float originalMotorForce = 0f;
 	private Vector3 smoothDampVelocity = Vector3.zero;
 	private bool applyQuickLeftForce = false;
 	private bool applyQuickRightForce = false;
@@ -57,12 +59,6 @@ public class BoatController : MonoBehaviour
 		{
 			Debug.Log("Particles child object missing from object: " + this.gameObject);
 		}
-		else
-		{
-
-		}
-
-		originalMotorForce = motorForce;
 	}
 
 	private void Dash()
@@ -72,13 +68,17 @@ public class BoatController : MonoBehaviour
 			return;
 
 		// Return from the function is there is no energy left
-		if (!StaticValueHolder.DashMeterObject.EnergyBarIsEmpty)
+		if (!StaticValueHolder.DashMeterObject.DashBarIsEmpty)
 		{
 			// Use one of the dash meters energies
-			StaticValueHolder.DashMeterObject.UseEnergies(1);
+			StaticValueHolder.DashMeterObject.UseDash();
 
 			// Add the dash force to the boat
 			rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
+
+			// Start the timer
+			IsDashing = true;
+			elapsedDashTime = dashTime;
 		}
 
 	}
@@ -164,7 +164,18 @@ public class BoatController : MonoBehaviour
 				break;
 		}
 
-		
+		// Dashing timer
+		if (elapsedDashTime > 0)
+		{
+			elapsedDashTime -= Time.deltaTime;
+			if (elapsedDashTime <= 0)
+			{
+				IsDashing = false;
+				elapsedDashTime = 0;
+			}
+		}
+
+		Speed = Vector3.Magnitude(rb.velocity);
 	}
 
 	private void FixedUpdate()

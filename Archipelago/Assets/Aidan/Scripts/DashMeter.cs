@@ -8,24 +8,24 @@ public class DashMeter : MonoBehaviour
 	[SerializeField] private GameObject iconPrefab = null;
 	[SerializeField] private Vector3 offsetBetweenEnergyIcons = Vector3.zero;
 	[SerializeField] private Vector3 iconBarStartPos = Vector3.zero;
-	[SerializeField] private int numOfEnergiesToStartWith = 1;
-	[SerializeField] private float energyRechargeTime = 1f;
-	[SerializeField] private float minEnergyRechargeTime = .1f;
+	[SerializeField] private int numOfDashesToStartWith = 1;
+	[SerializeField] private float dashRechargeTime = 1f;
+	[SerializeField] private float minDashRechargeTime = .1f;
 	[SerializeField] private float timeBetweenUseAndRecharge = 2f;
-	[SerializeField] private float alphaValueOfUsedEnergies = .3f;
-	private List<GameObject> energiesTotal = new List<GameObject>();
-	private int maxNumOfEnergies = 0;
-	private int currentNumOfEnergies = 0;
-	private Vector3 lastEnergyPos = Vector3.zero;
-	private bool energyBarHasUpdated = false;
+	[SerializeField] private float alphaValueOfUsedDashes = .3f;
+	private List<GameObject> dashesTotal = new List<GameObject>();
+	private List<GameObject> temporaryDashes = new List<GameObject>();
+	private int maxNumOfDashes = 0;
+	private int currentNumOfDashes = 0;
+	private Vector3 lastDashPos = Vector3.zero;
 	private Color iconColour = Color.white;
 	private float elapsedRechargeTime = 0f;
 	private float elapsedTimeBetweenUseAndRecharge = 0f;
 	private bool isRecharging = false;
-	private float energyRechargeTimeDecrement = 0f;
+	private float dashRechargeTimeDecrement = 0f;
 
 	// Public variables
-	public bool EnergyBarIsEmpty { get; private set; } = false;
+	public bool DashBarIsEmpty { get; private set; } = false;
 
 	private void Start()
 	{
@@ -33,12 +33,12 @@ public class DashMeter : MonoBehaviour
 		iconColour = iconPrefab.GetComponent<Image>().color;
 
 		// Set up the first position to spawn at
-		lastEnergyPos = iconBarStartPos - offsetBetweenEnergyIcons;
+		lastDashPos = iconBarStartPos - offsetBetweenEnergyIcons;
 
 		// Initialise the starting amount of energies
-		AddEnergies(numOfEnergiesToStartWith);
+		AddDashes(numOfDashesToStartWith);
 
-		energyRechargeTimeDecrement = energyRechargeTime;
+		dashRechargeTimeDecrement = dashRechargeTime;
 
         GetComponent<Canvas>().enabled = false;
     }
@@ -49,30 +49,7 @@ public class DashMeter : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.G))
 			{
-				AddEnergies(1);
-			}
-
-			if (Input.GetKeyDown(KeyCode.F))
-			{
-				UseEnergies(1);
-			}
-		}
-
-		// Check if the bar has been updated at all
-		if (energyBarHasUpdated)
-		{
-			energyBarHasUpdated = false;
-
-			for (int i = 0; i < maxNumOfEnergies; i++)
-			{
-				Color newColor = iconColour;
-				newColor.a = alphaValueOfUsedEnergies;
-				energiesTotal[i].GetComponent<Image>().color = newColor;
-			}
-
-			for (int i = 0; i < currentNumOfEnergies; i++)
-			{
-				energiesTotal[i].GetComponent<Image>().color = iconColour;
+				AddDashes(1);
 			}
 		}
 
@@ -82,61 +59,69 @@ public class DashMeter : MonoBehaviour
 			elapsedTimeBetweenUseAndRecharge -= Time.deltaTime;
 			if (elapsedTimeBetweenUseAndRecharge <= 0)
 			{
+				Debug.Log("Recharging");
 				isRecharging = true;
-				currentNumOfEnergies++;
-				elapsedRechargeTime = energyRechargeTime;
-				energyRechargeTimeDecrement = energyRechargeTime;
+				currentNumOfDashes++;
+				elapsedRechargeTime = dashRechargeTime;
+				dashRechargeTimeDecrement = dashRechargeTime;
 			}
 		}
 
 		// Recharge an energy every x amount of seconds
-		if (isRecharging && currentNumOfEnergies < maxNumOfEnergies)
+		if (isRecharging && currentNumOfDashes <= maxNumOfDashes)
 		{
 			if (elapsedRechargeTime > 0)
 			{
-				// Update the alpha value of the energy
+				// Update the alpha value of the dash icon
 				Color newColour = iconColour;
-				newColour.a = 1 - (elapsedRechargeTime / energyRechargeTime);
-				energiesTotal[currentNumOfEnergies - 1].GetComponent<Image>().color = newColour;   // This is using the currentNumOfEnergies istead of currentNumOfEnergies + 1 as the list starts at 0.
+				newColour.a = 1 - (elapsedRechargeTime / dashRechargeTime);
+				dashesTotal[currentNumOfDashes - 1].GetComponent<Image>().color = newColour;
 
 				elapsedRechargeTime -= Time.deltaTime;
 				if (elapsedRechargeTime <= 0)
 				{
-					elapsedRechargeTime = energyRechargeTimeDecrement;
-					energyRechargeTimeDecrement -= .05f;
-					if (energyRechargeTimeDecrement <= minEnergyRechargeTime)
+					// This makes the time to recharge quicker for every dash left 
+					elapsedRechargeTime = dashRechargeTimeDecrement;
+					dashRechargeTimeDecrement -= .05f;
+					if (dashRechargeTimeDecrement <= minDashRechargeTime)
 					{
-						energyRechargeTimeDecrement = minEnergyRechargeTime;
+						dashRechargeTimeDecrement = minDashRechargeTime;
 					}
 
 					// Update the alpha value of the energy
 					newColour.a = 1;
-					energiesTotal[currentNumOfEnergies].GetComponent<Image>().color = newColour;   // This is using the currentNumOfEnergies istead of currentNumOfEnergies + 1 as the list starts at 0.
+					dashesTotal[currentNumOfDashes - 1].GetComponent<Image>().color = newColour;
 
-					currentNumOfEnergies++;
+					// Check if we haven't already fully recharged
+					if (currentNumOfDashes < maxNumOfDashes)
+					{
+						currentNumOfDashes++;
+					}
+					else
+					{
+						isRecharging = false;
+					}
 				}
-
 			}
 		}
 
 		// If the number of energies is greater than 0 then the energy bar isn't empty
-		if (currentNumOfEnergies > 0)
+		if (currentNumOfDashes > 0)
 		{
-			EnergyBarIsEmpty = false;
+			DashBarIsEmpty = false;
 		}
 		else
 		{
-			EnergyBarIsEmpty = true;
+			DashBarIsEmpty = true;
 		}
 	}
 
-	public void AddEnergies(int amount)
+	public void AddDashes(int amount)
 	{
-		// Increase the max number of energies
-		maxNumOfEnergies += amount;
+		// Increase the max number of dashes
+		maxNumOfDashes += amount;
 
-		// Set the current number of energies to the max
-		currentNumOfEnergies = maxNumOfEnergies;
+		currentNumOfDashes = maxNumOfDashes;
 
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
@@ -144,45 +129,92 @@ public class DashMeter : MonoBehaviour
 			GameObject newEnergy = GameObject.Instantiate(iconPrefab, this.transform);
 			if (newEnergy)
 			{
-				newEnergy.transform.localPosition = lastEnergyPos + offsetBetweenEnergyIcons;
-				energiesTotal.Add(newEnergy);
+				newEnergy.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
+				dashesTotal.Add(newEnergy);
 			}
 			else
 			{
-				Debug.Log("Failed to spawn new enegy slot!");
+				Debug.Log("Failed to spawn new dash slot!");
 			}
 
-			// Set the last energy position to the new energy we just spawned
-			lastEnergyPos = newEnergy.transform.localPosition;
+			// Set the last dash position to the new dash we just spawned
+			lastDashPos = newEnergy.transform.localPosition;
 		}
 
-		energyBarHasUpdated = true;
+		// Set the current number of dashes to the max
+		UpdateIcons();
 	}
 
-	public void UseEnergies(int amount)
+	public void AddTemporaryDashes(int amount)
 	{
-		// If the energy bar isn't empty then decrease the energies by the amount
-		if (!EnergyBarIsEmpty)
+		// Initialise the new energies and put them onto the list
+		for (int i = 0; i < amount; i++)
 		{
-			// Use the current number of energies to find out which energy should be depleted
+			GameObject newEnergy = GameObject.Instantiate(iconPrefab, this.transform);
+			if (newEnergy)
+			{
+				newEnergy.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
+				dashesTotal.Add(newEnergy);
+			}
+			else
+			{
+				Debug.Log("Failed to spawn new dash slot!");
+			}
+
+			// Set the last dash position to the new dash we just spawned
+			lastDashPos = newEnergy.transform.localPosition;
+		}
+
+		// Set the current number of dashes to the max
+		UpdateIcons();
+	}
+
+	public void UseDash()
+	{
+		// If the dash bar isn't empty then decrease the dashes by the amount
+		if (!DashBarIsEmpty)
+		{
+			// Use the currentNumOfDashes to find out which dash should be depleted
 			Color newColour = iconColour;
-			newColour.a = alphaValueOfUsedEnergies;
-			Debug.Log("Num of Dashes: " + currentNumOfEnergies);
-			energiesTotal[currentNumOfEnergies - 1].GetComponent<Image>().color = newColour;
+			newColour.a = alphaValueOfUsedDashes;
+			Debug.Log("Num of Dashes: " + currentNumOfDashes);
+			dashesTotal[currentNumOfDashes - 1].GetComponent<Image>().color = newColour;
 
 			// Decrement the number of energies active
-			currentNumOfEnergies -= amount;
-			if (currentNumOfEnergies <= 0)
+			currentNumOfDashes--;
+			if (currentNumOfDashes <= 0)
 			{
-				currentNumOfEnergies = 0;
-				EnergyBarIsEmpty = true;
+				currentNumOfDashes = 0;
+				DashBarIsEmpty = true;
 			}
 
 			// Update the energy bar set recharging back to false and reset the time between use and recharge
-			energyBarHasUpdated = true;
+			UpdateIcons();
 			isRecharging = false;
 			elapsedTimeBetweenUseAndRecharge = timeBetweenUseAndRecharge;
 		}
 
+	}
+
+	public void ResetDashMeter()
+	{
+		// Set the current number of energies to the max
+		currentNumOfDashes = maxNumOfDashes;
+		UpdateIcons();
+	}
+
+	private void UpdateIcons()
+	{
+		for (int i = 0; i < maxNumOfDashes; i++)
+		{
+			Color newColor = iconColour;
+			newColor.a = alphaValueOfUsedDashes;
+			dashesTotal[i].GetComponent<Image>().color = newColor;
+		}
+
+		for (int i = 0; i < currentNumOfDashes; i++)
+		{
+			dashesTotal[i].GetComponent<Image>().color = iconColour;
+		}
 	}
 }

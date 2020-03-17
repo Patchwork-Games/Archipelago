@@ -157,7 +157,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 				case BuoyGateCourseState.COMPLETE:
 					{
 						// Give the player another energy node on their energy bar and set the state set and minigame active to false
-						StaticValueHolder.DashMeterObject.AddEnergies(1);
+						StaticValueHolder.DashMeterObject.AddDashes(1);
 						isStateSet = false;
 						isMiniGameActive = false;
 						onLastCheckpoint = false;
