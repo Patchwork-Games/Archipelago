@@ -61,9 +61,14 @@ public class DashMeter : MonoBehaviour
 			{
 				Debug.Log("Recharging");
 				isRecharging = true;
-				currentNumOfDashes++;
 				elapsedRechargeTime = dashRechargeTime;
 				dashRechargeTimeDecrement = dashRechargeTime;
+
+
+				if (currentNumOfDashes < maxNumOfDashes)
+				{
+					currentNumOfDashes++;
+				}
 			}
 		}
 
@@ -121,8 +126,6 @@ public class DashMeter : MonoBehaviour
 		// Increase the max number of dashes
 		maxNumOfDashes += amount;
 
-		currentNumOfDashes = maxNumOfDashes;
-
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
 		{
@@ -140,6 +143,8 @@ public class DashMeter : MonoBehaviour
 			// Set the last dash position to the new dash we just spawned
 			lastDashPos = newEnergy.transform.localPosition;
 		}
+
+		currentNumOfDashes = maxNumOfDashes;
 
 		// Set the current number of dashes to the max
 		UpdateIcons();
@@ -166,7 +171,7 @@ public class DashMeter : MonoBehaviour
 		}
 
 		// Set the current number of dashes to the max
-		UpdateIcons();
+		ResetDashMeter();
 	}
 
 	public void UseDash()
@@ -178,6 +183,7 @@ public class DashMeter : MonoBehaviour
 			Color newColour = iconColour;
 			newColour.a = alphaValueOfUsedDashes;
 			Debug.Log("Num of Dashes: " + currentNumOfDashes);
+			Debug.Log("Max Dashes: " + maxNumOfDashes);
 			dashesTotal[currentNumOfDashes - 1].GetComponent<Image>().color = newColour;
 
 			// Decrement the number of energies active
