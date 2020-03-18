@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226438249}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.009888113, y: -0.043740083, z: 0.04959877}
+  m_LocalPosition: {x: 0.01, y: -0.043740083, z: 0.04959877}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children:
   - {fileID: 415601719}
@@ -7161,7 +7161,7 @@ MonoBehaviour:
   sideRightW: {fileID: 3208104631527202861}
   maxSteerAngle: 30
   motorForce: 600
-  dashForce: 60000
+  dashForce: 1000
   dashTime: 1
   maxSpeedInOcean: 30
   maxSpeedInShallows: 10
