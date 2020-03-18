@@ -6,14 +6,13 @@ public class ButterflyBoidManager : MonoBehaviour
 {
     [SerializeField] private GameObject goalObj = null;
     [SerializeField] private GameObject butteflyPrefab;
-    public static int tankWidth = 12;
-    public static int tankHeight = 6;
+    public int tankWidth = 10;
+    public int tankHeight = 6;
     static int numButterflies = 30;
-    public static GameObject[] allButterflies = new GameObject[numButterflies];
-    public static Vector3 pos = Vector3.zero;
-
-
-    public static Vector3 goalPos = Vector3.zero;
+    public GameObject[] allButterflies = new GameObject[numButterflies];
+    public Vector3 pos = Vector3.zero;
+    public Vector3 goalPos = Vector3.zero;
+    public bool goToGoal = false;
 
     private void Awake()
     {
@@ -25,8 +24,8 @@ public class ButterflyBoidManager : MonoBehaviour
     {
         for (int i = 0; i < numButterflies; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(0, tankWidth), Random.Range(0, tankHeight), Random.Range(0, tankWidth)) + transform.position;
-            allButterflies[i] = Instantiate(butteflyPrefab, pos, Quaternion.identity);
+            Vector3 pos = new Vector3(Random.Range(-tankWidth, tankWidth), Random.Range(0, tankHeight), Random.Range(-tankWidth, tankWidth)) + transform.position;
+            allButterflies[i] = Instantiate(butteflyPrefab, pos, Quaternion.identity, transform);
         }
 
     }
@@ -34,13 +33,12 @@ public class ButterflyBoidManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Random.Range(0, 100000) < 50)
+        if (Random.Range(0, 10000) < 50)
         {
             goalPos = new Vector3(Random.Range(0, tankWidth), Random.Range(0, tankHeight), Random.Range(0, tankWidth)) + transform.position;
             goalObj.transform.position = goalPos;
-
-            Debug.Log("GoalPos: " + goalPos);
         }
+        //goalPos = goalObj.transform.position;
 
 
 
