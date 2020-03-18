@@ -167,6 +167,9 @@ public class BoatController : MonoBehaviour
 		// Dashing timer
 		if (elapsedDashTime > 0)
 		{
+			// Add the dash force to the boat
+			rb.AddForce(transform.forward * dashForce, ForceMode.Force);
+
 			elapsedDashTime -= Time.deltaTime;
 			if (elapsedDashTime <= 0)
 			{
