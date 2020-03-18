@@ -18,6 +18,7 @@ public class BarrelManager : MonoBehaviour
     private MeshRenderer barrelMesh = null;
     private CapsuleCollider barrelCollider = null;
     private Camera mainCamera = null;
+    private ParticleSystem smokeParticles = null;
     private float elapsedRespawnTime = 0f;
     private bool broken = false;
     private Vector3 spawnPos = Vector3.zero;
@@ -58,6 +59,9 @@ public class BarrelManager : MonoBehaviour
             Debug.Log("Barrel collider not found on object: " + gameObject);
         }
 
+        // Get the smoke particles from the child of this object
+        smokeParticles = transform.Find("Particles").Find("Smoke").GetComponent<ParticleSystem>();
+
         // Get the main camera
         mainCamera = Camera.main;
     }
@@ -94,6 +98,7 @@ public class BarrelManager : MonoBehaviour
         broken = true;
 
         // Play particle effect
+        smokeParticles.Play();
 
         // Hide the barrel and the collsion box from the player
         barrelMesh.enabled = false;
