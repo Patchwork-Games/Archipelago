@@ -106,18 +106,8 @@ public class ButterflyBoids : MonoBehaviour
                 if (dir != Vector3.zero)
                 {
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
-                    Debug.Log("Target dir: " + dir);
                 }
-
-                Debug.DrawRay(transform.position, dir, Color.yellow);
-
             }
         }
-        
-
-        
-
-
     }
-
 }

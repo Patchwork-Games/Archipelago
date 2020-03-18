@@ -11,5 +11,13 @@ public class FishCatch : MonoBehaviour
             Destroy(other.gameObject);
             StaticValueHolder.PlayerObject.GetComponent<FishingController>().CaughtFish();
         }
+
+        if (other.CompareTag("Butterfly"))
+        {
+            Destroy(other.gameObject);
+            StaticValueHolder.PlayerObject.GetComponent<FishingController>().CaughtButterfly();
+        }
+
+        Debug.Log("Collision: " + other);
     }
 }

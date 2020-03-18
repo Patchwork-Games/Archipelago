@@ -54,4 +54,12 @@ public class FishingController : MonoBehaviour
         newIcon.transform.GetChild(0).GetComponent<Image>().sprite = collectableUI.GetComponent<CollectableUIUpdate>().fishSprite;
     }
 
+    public void CaughtButterfly()
+    {
+        StaticValueHolder.Collectable0 += 1;
+        GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+        newIcon.transform.GetChild(0).GetComponent<Image>().sprite = collectableUI.GetComponent<CollectableUIUpdate>().fishSprite;
+    }
+
+
 }
