@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class DashMeter : MonoBehaviour
 {
-	[SerializeField] private GameObject iconPrefab = null;
+	[SerializeField] private GameObject dashIconPrefab = null;
+	[SerializeField] private GameObject temporaryDashIconPrefab = null;
 	[SerializeField] private Vector3 offsetBetweenEnergyIcons = Vector3.zero;
 	[SerializeField] private Vector3 iconBarStartPos = Vector3.zero;
 	[SerializeField] private int numOfDashesToStartWith = 1;
@@ -18,11 +19,13 @@ public class DashMeter : MonoBehaviour
 	private int maxNumOfDashes = 0;
 	private int currentNumOfDashes = 0;
 	private Vector3 lastDashPos = Vector3.zero;
+	private Vector3 lastTempDashPos = Vector3.zero;
 	private Color iconColour = Color.white;
 	private float elapsedRechargeTime = 0f;
 	private float elapsedTimeBetweenUseAndRecharge = 0f;
 	private bool isRecharging = false;
 	private float dashRechargeTimeDecrement = 0f;
+	private int numOfTempDashes = 0;
 
 	// Public variables
 	public bool DashBarIsEmpty { get; private set; } = false;
@@ -30,7 +33,7 @@ public class DashMeter : MonoBehaviour
 	private void Start()
 	{
 		// Set the icon colour
-		iconColour = iconPrefab.GetComponent<Image>().color;
+		iconColour = dashIconPrefab.GetComponent<Image>().color;
 
 		// Set up the first position to spawn at
 		lastDashPos = iconBarStartPos - offsetBetweenEnergyIcons;
@@ -59,7 +62,6 @@ public class DashMeter : MonoBehaviour
 			elapsedTimeBetweenUseAndRecharge -= Time.deltaTime;
 			if (elapsedTimeBetweenUseAndRecharge <= 0)
 			{
-				Debug.Log("Recharging");
 				isRecharging = true;
 				elapsedRechargeTime = dashRechargeTime;
 				dashRechargeTimeDecrement = dashRechargeTime;
@@ -129,11 +131,11 @@ public class DashMeter : MonoBehaviour
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
 		{
-			GameObject newEnergy = GameObject.Instantiate(iconPrefab, this.transform);
-			if (newEnergy)
+			GameObject newDashIcon = GameObject.Instantiate(dashIconPrefab, this.transform);
+			if (newDashIcon)
 			{
-				newEnergy.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
-				dashesTotal.Add(newEnergy);
+				newDashIcon.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
+				dashesTotal.Add(newDashIcon);
 			}
 			else
 			{
@@ -141,7 +143,7 @@ public class DashMeter : MonoBehaviour
 			}
 
 			// Set the last dash position to the new dash we just spawned
-			lastDashPos = newEnergy.transform.localPosition;
+			lastDashPos = newDashIcon.transform.localPosition;
 		}
 
 		// Set the current number of dashes to the max
@@ -150,14 +152,24 @@ public class DashMeter : MonoBehaviour
 
 	public void AddTemporaryDashes(int amount)
 	{
+		// If there aren't any temp dashes already, then the lastTempDashPos should be equal to the last dash pos
+		if (numOfTempDashes <= 0)
+		{
+			numOfTempDashes = 0;
+			lastTempDashPos = lastDashPos;
+		}
+
+		// Increase the number of temp dashes
+		numOfTempDashes += amount;
+
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
 		{
-			GameObject newEnergy = GameObject.Instantiate(iconPrefab, this.transform);
-			if (newEnergy)
+			GameObject newDashIcon = GameObject.Instantiate(temporaryDashIconPrefab, this.transform);
+			if (newDashIcon)
 			{
-				newEnergy.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
-				dashesTotal.Add(newEnergy);
+				newDashIcon.transform.localPosition = lastTempDashPos + offsetBetweenEnergyIcons;
+				temporaryDashes.Add(newDashIcon);
 			}
 			else
 			{
@@ -165,7 +177,7 @@ public class DashMeter : MonoBehaviour
 			}
 
 			// Set the last dash position to the new dash we just spawned
-			lastDashPos = newEnergy.transform.localPosition;
+			lastTempDashPos = newDashIcon.transform.localPosition;
 		}
 
 		// Set the current number of dashes to the max
@@ -174,14 +186,18 @@ public class DashMeter : MonoBehaviour
 
 	public void UseDash()
 	{
-		// If the dash bar isn't empty then decrease the dashes by the amount
-		if (!DashBarIsEmpty)
+		// Check if the meter has temp dashes to be used
+		if (numOfTempDashes > 0)
+		{
+			Destroy(temporaryDashes[numOfTempDashes - 1]);
+			temporaryDashes.RemoveAt(numOfTempDashes - 1);
+			numOfTempDashes--;
+		}
+		else if (!DashBarIsEmpty) // If the dash bar isn't empty then decrease the dashes by the amount
 		{
 			// Use the currentNumOfDashes to find out which dash should be depleted
 			Color newColour = iconColour;
 			newColour.a = alphaValueOfUsedDashes;
-			Debug.Log("Num of Dashes: " + currentNumOfDashes);
-			Debug.Log("Max Dashes: " + maxNumOfDashes);
 			dashesTotal[currentNumOfDashes - 1].GetComponent<Image>().color = newColour;
 
 			// Decrement the number of energies active
@@ -197,12 +213,14 @@ public class DashMeter : MonoBehaviour
 			isRecharging = false;
 			elapsedTimeBetweenUseAndRecharge = timeBetweenUseAndRecharge;
 		}
-
 	}
 
 	public void ResetDashMeter()
 	{
 		// Set the current number of energies to the max
+		isRecharging = false;
+		elapsedTimeBetweenUseAndRecharge = 0f;
+		elapsedRechargeTime = 0f;
 		currentNumOfDashes = maxNumOfDashes;
 		UpdateIcons();
 	}

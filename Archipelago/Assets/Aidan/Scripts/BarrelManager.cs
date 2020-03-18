@@ -17,20 +17,26 @@ public class BarrelManager : MonoBehaviour
 
     private MeshRenderer barrelMesh = null;
     private CapsuleCollider barrelCollider = null;
+    private Camera mainCamera = null;
     private float elapsedRespawnTime = 0f;
     private bool broken = false;
+    private Vector3 spawnPos = Vector3.zero;
+    private Quaternion spawnRotation = Quaternion.identity;
+    private bool readyToRespawn = false;
 
     private void OnTriggerStay(Collider other)
     {
+
         // Check if the barrel has collided with the boat
         if (other.CompareTag("Boat") && !broken)
         {
-            BoatController boatController = other.gameObject.GetComponent<BoatController>();
+            BoatController boatController = StaticValueHolder.BoatObject.GetComponent<BoatController>();
             if (boatController != null)
             {
                 if (boatController.IsDashing || boatController.Speed >= speedOfBoatToBreak)
                 {
                     BreakBarrel();
+                    Debug.Log("BreakBarrel");
                 }
             }
         }
@@ -51,6 +57,16 @@ public class BarrelManager : MonoBehaviour
         {
             Debug.Log("Barrel collider not found on object: " + gameObject);
         }
+
+        // Get the main camera
+        mainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        // Set the spawn position and rotation
+        spawnPos = transform.position;
+        spawnRotation = transform.rotation;
     }
 
     private void Update()
@@ -61,8 +77,14 @@ public class BarrelManager : MonoBehaviour
             elapsedRespawnTime -= Time.deltaTime;
             if (elapsedRespawnTime <= 0)
             {
-                Respawn();
+                readyToRespawn = true;
             }
+        }
+
+        // If the barrel is ready to respawn, check if the camera is looking at the spawn pos, if so don't spawn
+        if (readyToRespawn && Vector3.Dot(mainCamera.transform.forward, spawnPos - StaticValueHolder.BoatCamera.transform.position) < 0)
+        {
+            Respawn();
         }
     }
 
@@ -88,7 +110,7 @@ public class BarrelManager : MonoBehaviour
                 break;
             case BarrelType.TEMPORARY_DASHES:
                 // Add temporary dashes to the dash meter
-                //StaticValueHolder.DashMeterObject.AddTemporaryDashes(numOfTemporaryDashesToGive);
+                StaticValueHolder.DashMeterObject.AddTemporaryDashes(numOfTemporaryDashesToGive);
                 break;
             case BarrelType.RESET_DASHES:
                 // Reset the dashes on the dash meter
@@ -101,10 +123,17 @@ public class BarrelManager : MonoBehaviour
 
     private void Respawn()
     {
+        // Reset the bool for being broken and ready to spawn
         broken = false;
+        readyToRespawn = false;
 
         // Set the object to be visable again and set up the collision
         barrelMesh.enabled = true;
         barrelCollider.enabled = true;
+
+        // Set barrel to be back at the spawn position with the correct rotation and velocity
+        transform.position = spawnPos;
+        transform.rotation = spawnRotation;
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

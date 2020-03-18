@@ -74,7 +74,7 @@ public class BoatController : MonoBehaviour
 			StaticValueHolder.DashMeterObject.UseDash();
 
 			// Add the dash force to the boat
-			rb.AddForce(transform.forward * dashForce * Time.deltaTime, ForceMode.Impulse);
+			rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
 
 			// Start the timer
 			IsDashing = true;
