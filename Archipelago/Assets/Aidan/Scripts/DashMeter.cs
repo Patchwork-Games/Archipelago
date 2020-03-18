@@ -144,10 +144,8 @@ public class DashMeter : MonoBehaviour
 			lastDashPos = newEnergy.transform.localPosition;
 		}
 
-		currentNumOfDashes = maxNumOfDashes;
-
 		// Set the current number of dashes to the max
-		UpdateIcons();
+		ResetDashMeter();
 	}
 
 	public void AddTemporaryDashes(int amount)
