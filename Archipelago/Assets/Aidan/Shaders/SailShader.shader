@@ -22,7 +22,7 @@
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows vertex:vert alpha:blend
-        #pragma target 3.0
+        #pragma target 5.0
 
         sampler2D _MainTex;
 		sampler2D _HeightMap;
@@ -78,7 +78,7 @@
             o.Albedo = c.rgb;
 
             o.Albedo = normalize(IN.normal.rgb);
-           // o.Albedo = float3(IN.texCoordUVs.rg, 0);
+            o.Albedo = float3(IN.uv_MainTex, 0);
 
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
