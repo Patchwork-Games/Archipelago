@@ -1,4 +1,8 @@
-﻿Shader "Custom/SailShader"
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Custom/SailShader"
 {
     Properties
     {
@@ -39,22 +43,52 @@
         half _Metallic;
         fixed4 _Color;
 
-        float3 normalsFromHeight(sampler2D heigthTex, float4 uv, float texelSize)
+        float3 normalsFromHeight(sampler2D heigthTex, float4 uv, float height, float4 vertPos, float distBetweenVerts)
         {
-            float4 adjacentPositions;
-            float4 adjacentVectors;
+            float4 textureColor;
+            float4 adjacentHeightValues;
+            float verticesWidth = 1.0f / 21.0f;
+            float verticesHeight = 1.0f / 21.0f;
 
+            // Calculate the adjacent height values
+            textureColor = tex2Dlod(heigthTex, float4(uv.xy + float2(0, -verticesHeight), 0, 0));
+            adjacentHeightValues[0] = textureColor.r * height;
 
-            float4 h;
-            h[0] = tex2Dlod(heigthTex, uv + float4(texelSize * float2(0, -1 / _TexSize), 0, 0)).r * _HeightMapScale;
-            h[1] = tex2Dlod(heigthTex, uv + float4(texelSize * float2(-1 / _TexSize, 0), 0, 0)).r * _HeightMapScale;
-            h[2] = tex2Dlod(heigthTex, uv + float4(texelSize * float2(1 / _TexSize, 0), 0, 0)).r * _HeightMapScale;
-            h[3] = tex2Dlod(heigthTex, uv + float4(texelSize * float2(0, 1 / _TexSize), 0, 0)).r * _HeightMapScale;
-            float3 n;
-            n.z = h[3] - h[0];
-            n.x = h[2] - h[1];
-            n.y = 2;
-            return normalize(n);
+            textureColor = tex2Dlod(heigthTex, float4(uv.xy + float2(verticesHeight, 0), 0, 0));
+            adjacentHeightValues[1] = textureColor.r * height;
+
+            textureColor = tex2Dlod(heigthTex, float4(uv.xy + float2(0, verticesHeight), 0, 0));
+            adjacentHeightValues[2] = textureColor.r * height;
+
+            textureColor = tex2Dlod(heigthTex, float4(uv.xy + float2(-verticesWidth, 0), 0, 0));
+            adjacentHeightValues[3] = textureColor.r * height;
+
+            // Calculate the positions of the surrounding vertices
+            /*float3 northPos = float4(vertPos.x, adjacentHeightValues[0], vertPos.z + distBetweenVerts, vertPos.w);
+            float3 eastPos = float4(vertPos.x + distBetweenVerts, adjacentHeightValues[1], vertPos.z, vertPos.w);
+            float3 southPos = float4(vertPos.x, adjacentHeightValues[2], vertPos.z - distBetweenVerts, vertPos.w);
+            float3 westPos = float4(vertPos.x - distBetweenVerts, adjacentHeightValues[3], vertPos.z, vertPos.w);*/
+
+            float3 northPos = float4(vertPos.x, adjacentHeightValues[0], vertPos.z + distBetweenVerts, vertPos.w).xyz;
+            float3 eastPos = float4(vertPos.x + distBetweenVerts, adjacentHeightValues[1], vertPos.z, vertPos.w).xyz;
+            float3 southPos = float4(vertPos.x, adjacentHeightValues[2], vertPos.z - distBetweenVerts, vertPos.w).xyz;
+            float3 westPos = float4(vertPos.x - distBetweenVerts, adjacentHeightValues[3], vertPos.z, vertPos.w).xyz;
+
+            // Calculate the vectors between the surrounding vertices and the current vertex
+            float3 northVec = normalize(northPos - vertPos);
+            float3 eastVec = normalize(eastPos - vertPos);
+            float3 southVec = normalize(southPos - vertPos);
+            float3 westVec = normalize(westPos - vertPos);
+
+            // Calculate the cross product of the vectors
+            float3 northNormal = normalize(cross(northVec, eastVec));
+            float3 eastNormal = normalize(cross(eastVec, southVec));
+            float3 southNormal = normalize(cross(southVec, westVec));
+            float3 westNormal = normalize(cross(westVec, northVec));
+
+            // Return the average of the normals
+            float3 average = (northNormal + eastNormal + southNormal + westNormal) / 4;
+            return normalize(average);
         }
 
 		void vert(inout appdata_full v, out Input o)
@@ -66,9 +100,9 @@
             // Output data
             v.vertex.y *= displacement;// +(heightMap.r * 10 * sin(v.vertex.x + _Time[1] * 10) / 10 + (heightMap.r * 10 * sin(v.vertex.z + _Time[1] * 10) / 10));
 
-            o.normal = normalsFromHeight(_HeightMap, float4(v.texcoord.xy + float2(0.2, 0.1), 0, 0), 100);
-            //o.texCoordUVs = v.texcoord.xy;
-            //o.tangent = float3(0, 0, 0);
+            float3 nFH = normalsFromHeight(_HeightMap, float4(v.texcoord.xy + float2(0.2, 0.1), 0, 0), _HeightMapScale, v.vertex, 1);
+            float3 newNormals = mul(unity_WorldToObject, nFH);
+            o.normal = newNormals;
 		}
 
         void surf (Input IN, inout SurfaceOutputStandard o)
@@ -76,9 +110,10 @@
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
+            o.Normal = normalize(IN.normal.rgb);
 
             o.Albedo = normalize(IN.normal.rgb);
-            o.Albedo = float3(IN.uv_MainTex, 0);
+            //o.Albedo = float3(IN.uv_MainTex, 0);
 
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
