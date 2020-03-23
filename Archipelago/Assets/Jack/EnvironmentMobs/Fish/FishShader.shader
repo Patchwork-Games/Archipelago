@@ -61,20 +61,9 @@
 				v2f o;
 				o.uv = TRANSFORM_TEX(v.uv, _AlbedoMap);
 
-				//float swimValue = sin(_Time.y + _Speed) * _Amplitude * abs((v.uv.x * 2)-1);				
-
-				
-				/*float3 p = v.vertex.xyz;
-
-				float k = 2 * UNITY_PI / _Wavelength;
-				p.x += _Amplitude * sin(k * (p.x + _Speed * _Time.y));*/
-
-				//v.vertex.xyz = p;
 
 				float k = 2 * UNITY_PI / _Wavelength;
 				v.vertex.x += _Amplitude * sin(k * (v.vertex.z / 2 + _Speed * _Time.x));
-
-
 
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				
