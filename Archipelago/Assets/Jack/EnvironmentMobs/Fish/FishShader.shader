@@ -7,13 +7,13 @@
 		_MetallicMap("MetallicMap", 2D) = "white" {}
 		_TintColour("Tint Colour", Color) = (0,1,1,1)
 
-		_WingAmplitude("Wing Beat Amplitude", Float) = 7
-		_WingSpeed("Wing Beat Speed", Float) = 240
-		_WingSpanModifier("Wing Span Modifer", Float) = 1
+		_Amplitude("Amplitude", Float) = 1
+		_Wavelength("WaveLength", Float) = 10
+		_Speed("Speed", Float) = 5
 	}
 	SubShader
 	{
-		Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
+		Tags {"Queue" = "Geometry" "IgnoreProjector" = "True" }
 		LOD 100
 
 		//Culling off so that the material can be seen on both sides of the mesh.
@@ -45,22 +45,36 @@
 				float4 vertex : SV_POSITION;
 			};
 
-			sampler2D _MaskTexture;
-			float4 _MaskTexture_ST;
+			sampler2D _AlbedoMap;
+			sampler2D _NormalMap;
+			sampler2D _MetallicMap;
+			float4 _AlbedoMap_ST;
 
-			float _WingAmplitude;
-			float _WingSpeed;
-			float _WingSpanModifier;
+
+			float _Amplitude, _Wavelength, _Speed;
+
+
 			
 			v2f vert (appdata v)
 			{
 
 				v2f o;
-				o.uv = TRANSFORM_TEX(v.uv, _MaskTexture);
+				o.uv = TRANSFORM_TEX(v.uv, _AlbedoMap);
 
-				float wingBeatValue = sin(_Time.x * _WingSpeed) * _WingAmplitude * abs((v.uv.x * 2)-1);
-				v.vertex.y *= wingBeatValue;
-				v.vertex.x *= _WingSpanModifier;
+				//float swimValue = sin(_Time.y + _Speed) * _Amplitude * abs((v.uv.x * 2)-1);				
+
+				
+				/*float3 p = v.vertex.xyz;
+
+				float k = 2 * UNITY_PI / _Wavelength;
+				p.x += _Amplitude * sin(k * (p.x + _Speed * _Time.y));*/
+
+				//v.vertex.xyz = p;
+
+				float k = 2 * UNITY_PI / _Wavelength;
+				v.vertex.x += _Amplitude * sin(k * (v.vertex.z / 2 + _Speed * _Time.x));
+
+
 
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				
@@ -72,10 +86,9 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 maskSample = tex2D(_MaskTexture, i.uv);
-				fixed3 tintedWings = maskSample.r * _TintColour.rgb * maskSample.b;
-				fixed4 col = fixed4(0,0,0,1) + fixed4(tintedWings, 0);
-				col.a *= maskSample.a;
+				fixed4 maskSample = tex2D(_AlbedoMap, i.uv);
+				fixed3 tintedFish = _TintColour.rgb * maskSample.rgb;
+				fixed4 col = fixed4(0,0,0,1) + fixed4(tintedFish, 0);
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
