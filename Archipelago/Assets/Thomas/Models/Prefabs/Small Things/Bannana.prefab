@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7640556544667169311}
   - component: {fileID: 1680883955393562665}
   - component: {fileID: 4931224328653567184}
+  - component: {fileID: -1455492338026138290}
   m_Layer: 0
   m_Name: Bannana
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6652921017867616268}
-  m_LocalRotation: {x: 0.13440742, y: 0.39342403, z: -0.112482704, w: 0.9024965}
+  m_LocalRotation: {x: 0.13440512, y: 0.3934269, z: -0.11248251, w: 0.9024956}
   m_LocalPosition: {x: -498.68, y: 37.553, z: 1277.77}
   m_LocalScale: {x: 0.52205, y: 0.52205, z: 0.52205}
   m_Children: []
@@ -78,3 +79,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &-1455492338026138290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652921017867616268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2541595, y: 0.83912843, z: 1.4299287}
+  m_Center: {x: -1.3999858, y: 0.27681744, z: -2.1011772}
