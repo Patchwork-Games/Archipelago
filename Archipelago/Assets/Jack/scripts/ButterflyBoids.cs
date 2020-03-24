@@ -79,7 +79,7 @@ public class ButterflyBoids : MonoBehaviour
             }
         }
 
-        if ((transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 6 * 6)
+        if ((transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 4 * 4)
         {
             Vector3 awayFromPlayer = transform.position - StaticValueHolder.PlayerObject.transform.position;
             awayFromPlayer.y = 0;
