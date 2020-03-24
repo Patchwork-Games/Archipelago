@@ -10,7 +10,9 @@ Shader "Custom/SailShader"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_HeightMap("Height Map", 2D) = "white" {}
 		_HeightMapScale("Height", Float) = 1
+        _HeightMapOffset("Height Map Offset", Vector) = (0.2,0.1,0,0)
         _TexSize("Texture Size", Float) = 1
+        _NumOfVertices("Num Of Vertices", Float) = 21
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
     }
@@ -38,17 +40,19 @@ Shader "Custom/SailShader"
         };
 
 		half _HeightMapScale;
+        float4 _HeightMapOffset;
         half _TexSize;
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+        float _NumOfVertices;
 
         float3 normalsFromHeight(sampler2D heigthTex, float4 uv, float height, float4 vertPos, float distBetweenVerts)
         {
             float4 textureColor;
             float4 adjacentHeightValues;
-            float verticesWidth = 1.0f / 21.0f;
-            float verticesHeight = 1.0f / 21.0f;
+            float verticesWidth = 1.0f / _NumOfVertices;
+            float verticesHeight = 1.0f / _NumOfVertices;
 
             // Calculate the adjacent height values
             textureColor = tex2Dlod(heigthTex, float4(uv.xy + float2(0, -verticesHeight), 0, 0));
@@ -64,15 +68,10 @@ Shader "Custom/SailShader"
             adjacentHeightValues[3] = textureColor.r * height;
 
             // Calculate the positions of the surrounding vertices
-            /*float3 northPos = float4(vertPos.x, adjacentHeightValues[0], vertPos.z + distBetweenVerts, vertPos.w);
+            float3 northPos = float4(vertPos.x, adjacentHeightValues[0], vertPos.z + distBetweenVerts, vertPos.w);
             float3 eastPos = float4(vertPos.x + distBetweenVerts, adjacentHeightValues[1], vertPos.z, vertPos.w);
             float3 southPos = float4(vertPos.x, adjacentHeightValues[2], vertPos.z - distBetweenVerts, vertPos.w);
-            float3 westPos = float4(vertPos.x - distBetweenVerts, adjacentHeightValues[3], vertPos.z, vertPos.w);*/
-
-            float3 northPos = float4(vertPos.x, adjacentHeightValues[0], vertPos.z + distBetweenVerts, vertPos.w).xyz;
-            float3 eastPos = float4(vertPos.x + distBetweenVerts, adjacentHeightValues[1], vertPos.z, vertPos.w).xyz;
-            float3 southPos = float4(vertPos.x, adjacentHeightValues[2], vertPos.z - distBetweenVerts, vertPos.w).xyz;
-            float3 westPos = float4(vertPos.x - distBetweenVerts, adjacentHeightValues[3], vertPos.z, vertPos.w).xyz;
+            float3 westPos = float4(vertPos.x - distBetweenVerts, adjacentHeightValues[3], vertPos.z, vertPos.w);
 
             // Calculate the vectors between the surrounding vertices and the current vertex
             float3 northVec = normalize(northPos - vertPos);
@@ -94,14 +93,15 @@ Shader "Custom/SailShader"
 		void vert(inout appdata_full v, out Input o)
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
-			float4 heightMapColor = tex2Dlod(_HeightMap, float4(v.texcoord.xy + float2(0.2, 0.1), 0, 0));
+			float4 heightMapColor = tex2Dlod(_HeightMap, float4(v.texcoord.xy, 0, 0));
             float displacement = heightMapColor.r * _HeightMapScale;
 
             // Output data
-            v.vertex.y *= displacement;// +(heightMap.r * 10 * sin(v.vertex.x + _Time[1] * 10) / 10 + (heightMap.r * 10 * sin(v.vertex.z + _Time[1] * 10) / 10));
+            v.vertex.y += displacement;// +(heightMap.r * 10 * sin(v.vertex.x + _Time[1] * 10) / 10 + (heightMap.r * 10 * sin(v.vertex.z + _Time[1] * 10) / 10));
 
-            float3 nFH = normalsFromHeight(_HeightMap, float4(v.texcoord.xy + float2(0.2, 0.1), 0, 0), _HeightMapScale, v.vertex, 1);
-            float3 newNormals = mul(unity_WorldToObject, nFH);
+            float3 nFH = normalsFromHeight(_HeightMap, float4(v.texcoord.xy, 0, 0), _HeightMapScale, v.vertex, 1);
+            float3 newNormals = mul(unity_ObjectToWorld, v.normal);
+            //v.normal = newNormals;
             o.normal = newNormals;
 		}
 
@@ -112,7 +112,7 @@ Shader "Custom/SailShader"
             o.Albedo = c.rgb;
             o.Normal = normalize(IN.normal.rgb);
 
-            o.Albedo = normalize(IN.normal.rgb);
+            //o.Albedo = normalize(IN.normal);
             //o.Albedo = float3(IN.uv_MainTex, 0);
 
             // Metallic and smoothness come from slider variables
