@@ -1,43 +1,29 @@
-﻿Shader "Custom/Triplanar Mapping" 
-{
+﻿Shader "Custom/Triplanar Mapping" {
 
-	Properties 
-	{
-		[NoScaleOffset] _TopMainTex("Grass Albedo", 2D) = "white" {}
-		[NoScaleOffset] _TopMOHSMap("Grass MOHS", 2D) = "white" {}
-		[NoScaleOffset] _TopNormalMap("Grass Normals", 2D) = "white" {}
+	Properties{
+		[NoScaleOffset] _MainTex("Albedo", 2D) = "white" {}
+		[NoScaleOffset] _MOHSMap("MOHS", 2D) = "white" {}
+		[NoScaleOffset] _NormalMap("Normals", 2D) = "white" {}
 
-
-		[NoScaleOffset] _MainTex ("Rock Albedo", 2D) = "white" {}
-		[NoScaleOffset] _MOHSMap ("Rock MOHS", 2D) = "white" {}
-		[NoScaleOffset] _NormalMap ("Rock Normals", 2D) = "white" {}
-
-
+		[NoScaleOffset] _TopMainTex("Top Albedo", 2D) = "white" {}
+		[NoScaleOffset] _TopMOHSMap("Top MOHS", 2D) = "white" {}
+		[NoScaleOffset] _TopNormalMap("Top Normals", 2D) = "white" {}
 
 		[NoScaleOffset] _SandMainTex("Sand Albedo", 2D) = "white" {}
 		[NoScaleOffset] _SandMOHSMap("Sand MOHS", 2D) = "white" {}
 		[NoScaleOffset] _SandNormalMap("Sand Normals", 2D) = "white" {}
 
-		[HideInInspector]_Control("Control (RGBA)", 2D) = "red" {}
-		[HideInInspector]_Splat3("Layer 3 (A)", 2D) = "white" {}
-		[HideInInspector]_Splat2("Layer 2 (B)", 2D) = "white" {}
-		[HideInInspector]_Splat1("Layer 1 (G)", 2D) = "white" {}
-		[HideInInspector]_Splat0("Layer 0 (R)", 2D) = "white" {}
+		_MapScale("Map Scale", Float) = 1
 
-		_MapScale ("Map Scale", Float) = 1
-
-		_BlendOffset ("Blend Offset", Range(0, 0.5)) = 0.25
-		_BlendExponent ("Blend Exponent", Range(1, 8)) = 2
-		_BlendHeightStrength ("Blend Height Strength", Range(0, 0.99)) = 0.5
+		_BlendOffset("Blend Offset", Range(0, 0.5)) = 0.25
+		_BlendExponent("Blend Exponent", Range(1, 8)) = 2
+		_BlendHeightStrength("Blend Height Strength", Range(0, 0.99)) = 0.5
 	}
 
-	SubShader 
-	{
+	SubShader{
 
-		Pass 
-		{
-			Tags 
-			{
+		Pass {
+			Tags {
 				"LightMode" = "ForwardBase"
 			}
 
@@ -62,10 +48,8 @@
 			ENDCG
 		}
 
-		Pass 
-		{
-			Tags 
-			{
+		Pass {
+			Tags {
 				"LightMode" = "ForwardAdd"
 			}
 
@@ -90,10 +74,8 @@
 			ENDCG
 		}
 
-		Pass 
-		{
-			Tags 
-			{
+		Pass {
+			Tags {
 				"LightMode" = "Deferred"
 			}
 
@@ -110,8 +92,6 @@
 			#pragma vertex MyVertexProgram
 			#pragma fragment MyFragmentProgram
 
-			#pragma alpha:fade
-
 			#define DEFERRED_PASS
 
 			#include "MyTriplanarMapping.cginc"
@@ -120,10 +100,8 @@
 			ENDCG
 		}
 
-		Pass
-		{
-			Tags 
-			{
+		Pass {
+			Tags {
 				"LightMode" = "ShadowCaster"
 			}
 
@@ -142,10 +120,8 @@
 			ENDCG
 		}
 
-		Pass 
-		{
-			Tags 
-			{
+		Pass {
+			Tags {
 				"LightMode" = "Meta"
 			}
 
@@ -168,5 +144,5 @@
 		}
 	}
 
-	CustomEditor "MyTriplanarShaderGUI"
+		CustomEditor "MyTriplanarShaderGUI"
 }
