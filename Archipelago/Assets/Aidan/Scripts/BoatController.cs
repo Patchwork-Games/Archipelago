@@ -25,9 +25,9 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float motorForce = 50f;
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
-	[SerializeField] private float dashFOV = 60f;
+	[SerializeField] private float dashFOV = 48f;
 	[SerializeField] private float cameraZoomOutTime = .5f;
-	[SerializeField] private float cameraZoomInTime = .5f;
+	[SerializeField] private float cameraZoomInTime = 1f;
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
 	[SerializeField] private float quickTurnForce = 50f;
