@@ -78,7 +78,7 @@ void MyTriPlanarSurfaceFunction(
 	if (parameters.normal.y > 0) 
 	{
 
-		if (parameters.position.y <= 34.5f)		//sand
+		if (parameters.position.y <= 35.0f)		//sand
 		{
 			//albedoX = tex2D(_SandMainTex, triUV.x).rgb;
 			albedoY = tex2D(_SandMainTex, triUV.y).rgb;
@@ -95,7 +95,7 @@ void MyTriPlanarSurfaceFunction(
 
 		
 
-		if (parameters.position.y >= 35.5f)  //grass
+		if (parameters.position.y >= 36.0f)  //grass
 		{
 			//albedoX = tex2D(_TopMainTex, triUV.x).rgb;
 			albedoY = tex2D(_TopMainTex, triUV.y).rgb;
@@ -111,9 +111,9 @@ void MyTriPlanarSurfaceFunction(
 		}
 
 
-		if (parameters.position.y > 34.5f && parameters.position.y < 35.5f)  //grass
+		if (parameters.position.y > 35.0f && parameters.position.y < 36.0f)  //grass
 		{
-			 albedoY = lerp(tex2D(_TopMainTex, triUV.y), tex2D(_SandMainTex, triUV.y), 35.5- parameters.position.y);
+			 albedoY = lerp(tex2D(_TopMainTex, triUV.y), tex2D(_SandMainTex, triUV.y), 36 - parameters.position.y);
 			 rawNormalY = tex2D(_SandNormalMap, triUV.y);
 
 		}
