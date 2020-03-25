@@ -19,6 +19,7 @@ public class SandCastle : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GetComponent<Renderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
             sand.Play();
         }
     }
