@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6487736700217000595}
   - component: {fileID: 2010677265822377756}
   - component: {fileID: 7878572616333715615}
-  m_Layer: 0
+  - component: {fileID: 900729675575731184}
+  m_Layer: 16
   m_Name: Plank1_L13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &900729675575731184
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708054446646621485}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 3083730181623147233, guid: 1aa36a14e75ed2f4e9eb21fb2d9c3ed0, type: 3}
 --- !u!1 &5446223272704084677
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9065612935965505750}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SignPost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +136,8 @@ GameObject:
   - component: {fileID: 2305235158956446985}
   - component: {fileID: 5832827007769846027}
   - component: {fileID: 1479489905091815517}
-  m_Layer: 0
+  - component: {fileID: 4815836048744061864}
+  m_Layer: 16
   m_Name: Post_L12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,3 +204,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4815836048744061864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023515635483285554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -6966204617115545630, guid: 1aa36a14e75ed2f4e9eb21fb2d9c3ed0, type: 3}

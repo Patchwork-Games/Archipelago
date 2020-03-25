@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4055322059241805990}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Fencing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,8 @@ GameObject:
   - component: {fileID: 6883558971110371360}
   - component: {fileID: 7181212146631334296}
   - component: {fileID: 8462053171595941355}
-  m_Layer: 0
+  - component: {fileID: 3497104995131626355}
+  m_Layer: 16
   m_Name: Post_L12 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +113,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3497104995131626355
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332448344617466226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -6966204617115545630, guid: 1aa36a14e75ed2f4e9eb21fb2d9c3ed0, type: 3}
 --- !u!1 &1789050966742705392
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +138,8 @@ GameObject:
   - component: {fileID: 8483276159217607427}
   - component: {fileID: 8727401605666155622}
   - component: {fileID: 769496240126539287}
-  m_Layer: 0
+  - component: {fileID: 3058214610536989837}
+  m_Layer: 16
   m_Name: Plank2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +206,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3058214610536989837
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789050966742705392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 8775905051970997457, guid: 19efaf5f0c5be2a489c8486f825933d8, type: 3}
 --- !u!1 &4085069060997068866
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +231,8 @@ GameObject:
   - component: {fileID: 6518173392507909497}
   - component: {fileID: 1547758609208443259}
   - component: {fileID: 5836901758366320685}
-  m_Layer: 0
+  - component: {fileID: 8837245470323266117}
+  m_Layer: 16
   m_Name: Post_L12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,6 +299,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8837245470323266117
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085069060997068866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -6966204617115545630, guid: 1aa36a14e75ed2f4e9eb21fb2d9c3ed0, type: 3}
 --- !u!1 &5925850334380741981
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +324,8 @@ GameObject:
   - component: {fileID: 2270360826192995043}
   - component: {fileID: 6804867922008917868}
   - component: {fileID: 2944988083020482799}
-  m_Layer: 0
+  - component: {fileID: 857941186660174574}
+  m_Layer: 16
   m_Name: Plank1_L13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,3 +392,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &857941186660174574
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925850334380741981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 3083730181623147233, guid: 1aa36a14e75ed2f4e9eb21fb2d9c3ed0, type: 3}

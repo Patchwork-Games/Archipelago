@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1017727874758080545}
   - component: {fileID: 1534388849348234931}
   - component: {fileID: 7956244044015117027}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1009842511524417341}
   - component: {fileID: 7390037252228726478}
   - component: {fileID: 6800926591167436013}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 3883948039310482170}
   - component: {fileID: 268875534278539953}
   - component: {fileID: 5249360774888410192}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 3210725017488771257}
   - component: {fileID: 2144327753470163570}
   - component: {fileID: 6185754845666477108}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 7629810206989121177}
   - component: {fileID: 2030542396106779544}
   - component: {fileID: 1977162991962577117}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 8241406145594883900}
   - component: {fileID: 7345773900178152973}
   - component: {fileID: 8623012809195578829}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pTorus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 1155879365752699846}
   - component: {fileID: 8368101430725966317}
   - component: {fileID: 2205332561766881926}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pTorus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,8 @@ GameObject:
   - component: {fileID: 2667024712723639142}
   - component: {fileID: 3036310386450390701}
   - component: {fileID: 3302302982614484947}
-  m_Layer: 0
+  - component: {fileID: 5721886926655875032}
+  m_Layer: 16
   m_Name: Barrel_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,6 +625,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5721886926655875032
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323970674809881765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2958186495718855520, guid: d1e5009c45344494992b8bbfa4a90e45, type: 3}
 --- !u!1 &8139619131538411893
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5093260710700704614}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

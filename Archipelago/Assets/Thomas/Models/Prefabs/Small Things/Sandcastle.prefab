@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7568950275079759447}
   - component: {fileID: 1464046544347356257}
   - component: {fileID: 5147016205646536856}
+  - component: {fileID: -6069017248844013462}
   m_Layer: 0
   m_Name: Sandcastle
   m_TagString: Untagged
@@ -78,3 +79,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-6069017248844013462
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868281853433844804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 8453726731948488774, guid: a90d010eec2431e40a6c20d8345e18b5, type: 3}

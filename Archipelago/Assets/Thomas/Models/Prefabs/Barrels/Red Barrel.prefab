@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2193419300986948246}
   - component: {fileID: 370451447296244740}
   - component: {fileID: 9080775181323030612}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4387047288447908366}
   - component: {fileID: 985456660417759429}
   - component: {fileID: 5023504137338091139}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 2192280287636340106}
   - component: {fileID: 8566280375529688185}
   - component: {fileID: 5624604045263824474}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 2704881129626462285}
   - component: {fileID: 1428795535653914630}
   - component: {fileID: 6392398874735034087}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 7075293686203977099}
   - component: {fileID: 8475294385025821882}
   - component: {fileID: 7477168699906529146}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pTorus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,8 @@ GameObject:
   - component: {fileID: 3849462772369938897}
   - component: {fileID: 4200733729755474970}
   - component: {fileID: 4448155892287075684}
-  m_Layer: 0
+  - component: {fileID: 977431074983452428}
+  m_Layer: 16
   m_Name: Barrel_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,6 +469,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &977431074983452428
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5164613876790081042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2958186495718855520, guid: d1e5009c45344494992b8bbfa4a90e45, type: 3}
 --- !u!1 &5164812989159631869
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +494,7 @@ GameObject:
   - component: {fileID: 28612656399337841}
   - component: {fileID: 7227805495702850394}
   - component: {fileID: 1077995698417330225}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pTorus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +572,7 @@ GameObject:
   - component: {fileID: 8758835877177426990}
   - component: {fileID: 883491310818253103}
   - component: {fileID: 801480632405174890}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pSphere5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6251489439858758097}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Red Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
