@@ -3807,6 +3807,7 @@ MonoBehaviour:
   sideRightW: {fileID: 3208104631527202861}
   maxSteerAngle: 30
   motorForce: 600
+  dashImpulse: 1500
   dashForce: 1000
   dashTime: 3
   dashFOV: 48
@@ -3815,6 +3816,7 @@ MonoBehaviour:
   maxSpeedInOcean: 30
   maxSpeedInShallows: 10
   quickTurnForce: 500
+  dashCameraParticles: {fileID: 0}
 --- !u!65 &3208104632517172664
 BoxCollider:
   m_ObjectHideFlags: 0

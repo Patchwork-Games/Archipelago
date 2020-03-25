@@ -32,6 +32,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
 	[SerializeField] private float quickTurnForce = 50f;
+	[SerializeField] private ParticleSystem dashCameraParticles = null;
 
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
@@ -96,6 +97,10 @@ public class BoatController : MonoBehaviour
 			IsDashing = true;
 			elapsedDashTime = dashTime;
 
+			// Start emitting particle from the camera
+			ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
+			emit.enabled = true;
+			dashCameraParticles.Play();
 		}
 
 	}
@@ -207,6 +212,11 @@ public class BoatController : MonoBehaviour
 				IsDashing = false;
 				elapsedDashTime = 0f;
 				zoomLerpTime = 0f;
+
+				// Stop emitting particle from the camera
+				ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
+				emit.enabled = false;
+				dashCameraParticles.Stop();
 			}
 		}
 		else if (zoomLerpTime < 1)
