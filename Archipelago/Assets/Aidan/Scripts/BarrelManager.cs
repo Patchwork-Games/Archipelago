@@ -37,7 +37,6 @@ public class BarrelManager : MonoBehaviour
                 if (boatController.IsDashing || boatController.Speed >= speedOfBoatToBreak)
                 {
                     BreakBarrel();
-                    Debug.Log("BreakBarrel");
                 }
             }
         }
@@ -99,6 +98,10 @@ public class BarrelManager : MonoBehaviour
 
         // Play particle effect
         smokeParticles.Play();
+
+        // Shake the screen
+        CameraShake.StopShake(StaticValueHolder.BoatCamera);
+        CameraShake.ShakeFreeLookCamera(StaticValueHolder.BoatCamera, 1, 2, 3);
 
         // Hide the barrel and the collsion box from the player
         barrelMesh.enabled = false;

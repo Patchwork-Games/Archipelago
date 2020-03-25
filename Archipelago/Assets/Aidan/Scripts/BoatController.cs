@@ -25,6 +25,9 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float motorForce = 50f;
 	[SerializeField] private float dashForce = 20f;
 	[SerializeField] private float dashTime = 3f;
+	[SerializeField] private float dashFOV = 60f;
+	[SerializeField] private float cameraZoomOutTime = .5f;
+	[SerializeField] private float cameraZoomInTime = .5f;
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
 	[SerializeField] private float quickTurnForce = 50f;
@@ -36,6 +39,8 @@ public class BoatController : MonoBehaviour
 	private Vector3 smoothDampVelocity = Vector3.zero;
 	private bool applyQuickLeftForce = false;
 	private bool applyQuickRightForce = false;
+	private float originalBoatCameraFOV = 0f;
+	private float zoomLerpTime = 0;
 
 	// Particles
 	private Transform particlesTransform = null;
@@ -61,6 +66,11 @@ public class BoatController : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		originalBoatCameraFOV = StaticValueHolder.BoatCamera.m_Lens.FieldOfView;
+	}
+
 	private void Dash()
 	{
 		// Check if the in ocean state is active, if not return from this function
@@ -76,9 +86,15 @@ public class BoatController : MonoBehaviour
 			// Add the dash force to the boat
 			rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
 
+			if (!IsDashing)
+			{
+				zoomLerpTime = 0;
+			}
+
 			// Start the timer
 			IsDashing = true;
 			elapsedDashTime = dashTime;
+
 		}
 
 	}
@@ -142,6 +158,13 @@ public class BoatController : MonoBehaviour
 		frontRightW.motorTorque = force;
 	}
 
+	public static float EaseOutQuart(float start, float end, float value)
+	{
+		value--;
+		end -= start;
+		return -end * (value * value * value * value - 1) + start;
+	}
+
 	private void Update()
 	{
 		// Change the state to the player not in boat state if the player isn't in the boat
@@ -170,13 +193,32 @@ public class BoatController : MonoBehaviour
 			// Add the dash force to the boat
 			rb.AddForce(transform.forward * dashForce, ForceMode.Force);
 
+			// Change the camera's FOV
+			if (zoomLerpTime < 1)
+			{
+				zoomLerpTime += Time.deltaTime / cameraZoomOutTime;
+				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = EaseOutQuart(originalBoatCameraFOV, dashFOV, zoomLerpTime);
+			}
+
 			elapsedDashTime -= Time.deltaTime;
 			if (elapsedDashTime <= 0)
 			{
 				IsDashing = false;
-				elapsedDashTime = 0;
+				elapsedDashTime = 0f;
+				zoomLerpTime = 0f;
 			}
 		}
+		else if (zoomLerpTime < 1)
+		{
+			// Change the camera's FOV
+			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
+			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(dashFOV, originalBoatCameraFOV, zoomLerpTime);
+		}
+		//else
+		//{
+		//	// Change the FOV back to the original
+		//	StaticValueHolder.BoatCamera.m_Lens.FieldOfView = originalBoatCameraFOV;
+		//}
 
 		Speed = Vector3.Magnitude(rb.velocity);
 	}

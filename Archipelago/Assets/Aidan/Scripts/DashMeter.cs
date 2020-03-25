@@ -136,6 +136,19 @@ public class DashMeter : MonoBehaviour
 			{
 				newDashIcon.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
 				dashesTotal.Add(newDashIcon);
+
+				// Check if temporary dashes are active
+				if (temporaryDashes.Count > 0)
+				{
+					// Move the dashes over by one
+					foreach (var dash in temporaryDashes)
+					{
+						dash.transform.position += offsetBetweenEnergyIcons;
+					}
+
+					// Set the last position to be one over from where it was before
+					lastTempDashPos = temporaryDashes[temporaryDashes.Count - 1].transform.position;
+				}
 			}
 			else
 			{

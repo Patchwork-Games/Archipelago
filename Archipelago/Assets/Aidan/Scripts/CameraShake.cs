@@ -3,82 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake
 {
-	public static CameraShake instance;
-	private float shakeElapsedTime = 0f;
-	private bool shaking = false;
+	public static bool shaking = false;
+	public static bool newShakeStarted = false;
 
-	// Cinemachine Shake
-	private CinemachineBasicMultiChannelPerlin noise;
-	private CinemachineFreeLook freeLookCam = null;
-
-	private void Awake()
+	public static void ShakeFreeLookCamera(CinemachineFreeLook camera, float duration, float amplitude, float frequency)
 	{
-		if (instance != null)
-		{
-			if (instance != this)
-			{
-				Destroy(this.gameObject);
-			}
-		}
-		else
-		{
-			instance = this;
-			DontDestroyOnLoad(this);
-		}
+		// Cinemachine Shake
+		CinemachineBasicMultiChannelPerlin noise = camera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
-		// Get the free look component
-		freeLookCam = GetComponent<CinemachineFreeLook>();
-	}
-
-	// Start is called before the first frame update
-	void Start()
-	{
-		// Get the camera noise profile
-		noise = freeLookCam.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
-	}
-
-	// Update is called once per frame
-	public void ShakeCamera(float duration, float amplitude, float frequency)
-	{
 		// Set variables at the start of the shake
-		if (!shaking)
+		if (!shaking || newShakeStarted)
 		{
 			shaking = true;
+			newShakeStarted = false;
 			noise.m_AmplitudeGain = amplitude;
 			noise.m_FrequencyGain = frequency;
-			shakeElapsedTime = duration;
-		}
-
-		StartCoroutine(Shake(duration));
-	}
-
-	public void StartShake(float amplitude, float frequency)
-	{
-		if (!shaking)
-		{
-			shaking = true;
-			noise.m_AmplitudeGain = amplitude;
-			noise.m_FrequencyGain = frequency;
+			StaticCoroutine.instance.DoShake(camera, duration);
 		}
 	}
 
-	public void StopShake()
+	public static void StartFreeLookCameraShake(CinemachineFreeLook camera, float amplitude, float frequency)
 	{
-		if (shaking)
-		{
-			shaking = false;
-			noise.m_AmplitudeGain = 0;
-			noise.m_FrequencyGain = 1;
-		}
+		// Cinemachine Shake
+		CinemachineBasicMultiChannelPerlin noise = camera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+		noise.m_AmplitudeGain = amplitude;
+		noise.m_FrequencyGain = frequency;
 	}
 
-	IEnumerator Shake(float time)
+	public static void StopShake(CinemachineFreeLook camera)
 	{
-		yield return new WaitForSeconds(time);
+		// Cinemachine Shake
+		CinemachineBasicMultiChannelPerlin noise = camera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 		shaking = false;
 		noise.m_AmplitudeGain = 0;
 		noise.m_FrequencyGain = 1;
+		newShakeStarted = true;
 	}
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class NormalsReplacementShader : MonoBehaviour
 {
-	[SerializeField]
-	Shader normalsShader;
+	[SerializeField] private Shader normalsShader = null;
 
 	private RenderTexture renderTexture;
 	private new Camera camera;

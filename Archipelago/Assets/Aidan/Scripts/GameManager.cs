@@ -5,18 +5,19 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] GameObject boatObject = null;
-	[SerializeField] GameObject playerCharacterObject = null;
-	[SerializeField] DashMeter dashMeter = null;
-	[SerializeField] CinemachineFreeLook playerCharacterCamera = null;
-	[SerializeField] CinemachineFreeLook boatCamera = null;
-	[SerializeField] WindManager windManager = null;
+	[SerializeField] private GameObject boatObject = null;
+	[SerializeField] private GameObject playerCharacterObject = null;
+	[SerializeField] private DashMeter dashMeter = null;
+	[SerializeField] private CinemachineFreeLook playerCharacterCamera = null;
+	[SerializeField] private CinemachineFreeLook boatCamera = null;
+	[SerializeField] private WindManager windManager = null;
+	[SerializeField] private GameObject staticCoroutinePrefab = null;
 	private PlayerMovement playerMovement = null;
 
 	private void Awake()
 	{
-		// Set the static value holder to have references to gameobjects
-		{
+		#region Set the static value holder to have references to gameobjects
+
 			// Boat
 			if (boatObject != null)
 				StaticValueHolder.BoatObject = boatObject;
@@ -64,6 +65,10 @@ public class GameManager : MonoBehaviour
 				StaticValueHolder.WindManagerObject = windManager;
 			else
 				Debug.Log("WindManager missing from game manager script on object: " + this.gameObject);
-		}
+
+		#endregion
+
+		// Instatiate the static coroutine object in the scene
+		Instantiate(staticCoroutinePrefab, Vector3.zero, Quaternion.identity);
 	}
 }

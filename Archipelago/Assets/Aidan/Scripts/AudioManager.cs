@@ -66,8 +66,7 @@ public class AudioManager : MonoBehaviour
 
 	public static AudioManager instance;
 
-	[SerializeField]
-	Sound[] sounds;
+	[SerializeField] private Sound[] sounds;
 
 	void Awake()
 	{
