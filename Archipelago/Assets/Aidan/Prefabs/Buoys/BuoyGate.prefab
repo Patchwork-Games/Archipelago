@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8627fde6ff4f64b8b064ce26abbc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstBuoy: {fileID: 4983167097273225057}
-  secondBuoy: {fileID: 7375873670946299135}
+  firstBuoy: {fileID: 4983167097049039870}
+  secondBuoy: {fileID: 7375873670755799136}
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
   resetTime: 3
-  dashForce: 40000
+  dashForce: 1500
 --- !u!1001 &1164488203331054804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,11 +119,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6129069013015981870, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93769de7dd9fa9c42a599dfdf2fccbb5, type: 3}
 --- !u!4 &4983167097273225057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1164488203331054804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4983167097049039870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6129069013015981866, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
     type: 3}
   m_PrefabInstance: {fileID: 1164488203331054804}
   m_PrefabAsset: {fileID: 0}
@@ -194,11 +205,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6129069013015981870, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93769de7dd9fa9c42a599dfdf2fccbb5, type: 3}
 --- !u!4 &7375873670946299135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6129069013236229045, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3698174155785879370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7375873670755799136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6129069013015981866, guid: 93769de7dd9fa9c42a599dfdf2fccbb5,
     type: 3}
   m_PrefabInstance: {fileID: 3698174155785879370}
   m_PrefabAsset: {fileID: 0}

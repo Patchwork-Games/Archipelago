@@ -23,7 +23,8 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private WheelCollider sideLeftW = null, sideRightW = null;
 	[SerializeField] private float maxSteerAngle = 30f;
 	[SerializeField] private float motorForce = 50f;
-	[SerializeField] private float dashForce = 20f;
+	[SerializeField] private float dashImpulse = 1500f;
+	[SerializeField] private float dashForce = 1000f;
 	[SerializeField] private float dashTime = 3f;
 	[SerializeField] private float dashFOV = 48f;
 	[SerializeField] private float cameraZoomOutTime = .5f;
@@ -84,7 +85,7 @@ public class BoatController : MonoBehaviour
 			StaticValueHolder.DashMeterObject.UseDash();
 
 			// Add the dash force to the boat
-			rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+			rb.AddForce(transform.forward * dashImpulse, ForceMode.Impulse);
 
 			if (!IsDashing)
 			{
@@ -126,7 +127,7 @@ public class BoatController : MonoBehaviour
 
 	public void AddImpulse(float impulseForce)
 	{
-		rb.AddForce(transform.forward * impulseForce * Time.deltaTime, ForceMode.Impulse);
+		rb.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
 	}
 
 	private void CapVelocity(float cap)

@@ -7,7 +7,7 @@ public class BuoyGateTrigger : MonoBehaviour
 	[SerializeField] private Transform firstBuoy = null, secondBuoy = null;
 	[SerializeField] private LayerMask layerMask = 0;
 	[SerializeField] private float resetTime = 3f;
-	[SerializeField] private float dashForce = 20f;
+	[SerializeField] private float dashForce = 1500f;
 	private Material originalFirstBuoyMat = null;
 	private Material originalSecondBuoyMat = null;
 	private float elapsedResetTime = 0f;
@@ -16,8 +16,8 @@ public class BuoyGateTrigger : MonoBehaviour
 
 	private void Awake()
 	{
-		originalFirstBuoyMat = firstBuoy.GetChild(0).GetComponent<MeshRenderer>().material;
-		originalSecondBuoyMat = secondBuoy.GetChild(0).GetComponent<MeshRenderer>().material;
+		originalFirstBuoyMat = firstBuoy.GetComponent<MeshRenderer>().material;
+		originalSecondBuoyMat = secondBuoy.GetComponent<MeshRenderer>().material;
 	}
 
 	private void Update()
@@ -55,13 +55,13 @@ public class BuoyGateTrigger : MonoBehaviour
 
 	public void SetBouyMaterial(Material mat)
 	{
-		firstBuoy.GetChild(0).GetComponent<MeshRenderer>().material = mat;
-		secondBuoy.GetChild(0).GetComponent<MeshRenderer>().material = mat;
+		firstBuoy.GetComponent<MeshRenderer>().material = mat;
+		secondBuoy.GetComponent<MeshRenderer>().material = mat;
 	}
 
 	public void ResetMaterials()
 	{
-		firstBuoy.GetChild(0).GetComponent<MeshRenderer>().material = originalFirstBuoyMat;
-		secondBuoy.GetChild(0).GetComponent<MeshRenderer>().material = originalSecondBuoyMat;
+		firstBuoy.GetComponent<MeshRenderer>().material = originalFirstBuoyMat;
+		secondBuoy.GetComponent<MeshRenderer>().material = originalSecondBuoyMat;
 	}
 }
