@@ -101,7 +101,7 @@ public class BarrelManager : MonoBehaviour
 
         // Shake the screen
         CameraShake.StopShake(StaticValueHolder.BoatCamera);
-        CameraShake.ShakeFreeLookCamera(StaticValueHolder.BoatCamera, 1, 2, 3);
+        CameraShake.ShakeFreeLookCamera(StaticValueHolder.BoatCamera, .5f, 2, 3);
 
         // Hide the barrel and the collsion box from the player
         barrelMesh.enabled = false;
