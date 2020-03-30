@@ -370,7 +370,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8673609120104630623}
-  m_LocalRotation: {x: -0.20562913, y: -0.6765477, z: 0.24609832, w: -0.6628993}
+  m_LocalRotation: {x: -0.20562914, y: -0.67654765, z: 0.24609831, w: -0.6628994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -433,7 +433,6 @@ GameObject:
   - component: {fileID: 8673609120289507259}
   - component: {fileID: 8673609120289507256}
   - component: {fileID: 8673609120289507258}
-  - component: {fileID: 2106090189}
   m_Layer: 8
   m_Name: BoatCinemachineCamera
   m_TagString: Untagged
@@ -573,21 +572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b659a4bcd1ab844f81f330c91923b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2106090189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8673609120289507257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FocusTracksTarget: 0
-  m_FocusOffset: 0
-  m_Profile: {fileID: 0}
 --- !u!1 &8673609120700117166
 GameObject:
   m_ObjectHideFlags: 0

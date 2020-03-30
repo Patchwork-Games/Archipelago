@@ -25,9 +25,11 @@ public class BarrelManager : MonoBehaviour
     private Quaternion spawnRotation = Quaternion.identity;
     private bool readyToRespawn = false;
 
+    // Audio
+    private AudioSource breakNoise = null;
+
     private void OnTriggerStay(Collider other)
     {
-
         // Check if the barrel has collided with the boat
         if (other.CompareTag("Boat") && !broken)
         {
@@ -63,9 +65,20 @@ public class BarrelManager : MonoBehaviour
 
         // Get the main camera
         mainCamera = Camera.main;
-    }
 
-    private void Start()
+        #region Audio
+
+        // Get the break noise sound
+        breakNoise = transform.Find("Audio").Find("BreakNoise").GetComponent<AudioSource>();
+        if (breakNoise == null)
+        {
+            Debug.Log("Missing BreakNoise object on object: " + transform.Find("Audio").gameObject);
+        }
+
+		#endregion
+	}
+
+	private void Start()
     {
         // Set the spawn position and rotation
         spawnPos = transform.position;
@@ -98,6 +111,9 @@ public class BarrelManager : MonoBehaviour
 
         // Play particle effect
         smokeParticles.Play();
+
+        // Play sound
+        breakNoise.Play();
 
         // Shake the screen
         CameraShake.StopShake(StaticValueHolder.BoatCamera);

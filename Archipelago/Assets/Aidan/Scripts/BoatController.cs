@@ -48,6 +48,9 @@ public class BoatController : MonoBehaviour
 	private Transform particlesTransform = null;
 	private ParticleSystem boatBackBubbles;
 
+	// Audio
+	private AudioSource dashNoise = null;
+
 	private void Awake()
 	{
 		// Make new controls object so the script can recieve input
@@ -66,6 +69,17 @@ public class BoatController : MonoBehaviour
 		{
 			Debug.Log("Particles child object missing from object: " + this.gameObject);
 		}
+
+		#region Audio
+
+		// Get the dash sound
+		dashNoise = transform.Find("Audio").Find("DashNoise").GetComponent<AudioSource>();
+		if (dashNoise == null)
+		{
+			Debug.Log("Missing DashNoise on object: " + transform.Find("Audio").gameObject);
+		}
+
+		#endregion
 	}
 
 	private void Start()
@@ -96,6 +110,9 @@ public class BoatController : MonoBehaviour
 			// Start the timer
 			IsDashing = true;
 			elapsedDashTime = dashTime;
+
+			// Play sound
+			dashNoise.Play();
 
 			// Start emitting particle from the camera
 			ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
@@ -225,11 +242,6 @@ public class BoatController : MonoBehaviour
 			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
 			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(dashFOV, originalBoatCameraFOV, zoomLerpTime);
 		}
-		//else
-		//{
-		//	// Change the FOV back to the original
-		//	StaticValueHolder.BoatCamera.m_Lens.FieldOfView = originalBoatCameraFOV;
-		//}
 
 		Speed = Vector3.Magnitude(rb.velocity);
 	}
