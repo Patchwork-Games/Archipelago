@@ -14,6 +14,7 @@ public class BuoyGateTrigger : MonoBehaviour
 	private bool boatHasCrossedLine = false;
 	public bool BoatHasCrossedLine { get { return boatHasCrossedLine; } set { boatHasCrossedLine = value; } }
 	private AudioSource activateNoise = null;
+	public bool CourseHasStarted { get; set; } = false;
 
 	private void Awake()
 	{
@@ -44,8 +45,11 @@ public class BuoyGateTrigger : MonoBehaviour
 					elapsedResetTime = resetTime;
 					StaticValueHolder.BoatObject.GetComponent<BoatController>().AddImpulse(dashForce);
 
-					// Play sound
-					activateNoise.Play();
+					if (!CourseHasStarted)
+					{
+						// Play sound
+						activateNoise.Play();
+					}
 				}
 			}
 		}

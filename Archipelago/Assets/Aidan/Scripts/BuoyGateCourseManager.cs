@@ -17,6 +17,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 	// Audio
 	private AudioSource buoyNoise = null;
 	private AudioSource courseCompleteNoise = null;
+	private AudioSource courseCancelled = null;
 
 	enum BuoyGateCourseState
 	{
@@ -60,6 +61,13 @@ public class BuoyGateCourseManager : MonoBehaviour
 			Debug.Log("Missing CourseComplete child on object:" + transform.Find("Audio").gameObject);
 		}
 
+		// Get the course cancelled noise
+		courseCancelled = transform.Find("Audio").Find("CourseCancelled").GetComponent<AudioSource>();
+		if (courseCancelled == null)
+		{
+			Debug.Log("Missing CourseCancelled child on object: " + transform.Find("Audio").gameObject);
+		}
+
 		#endregion
 
 		// Get the number of checkpoints on the course
@@ -84,6 +92,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 			foreach(Transform t in buoyGates)
 			{
 				t.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine = false;
+				t.GetComponent<BuoyGateTrigger>().CourseHasStarted = true;
 			}
 
 			// Set the starting bouy to have a gold material
@@ -124,6 +133,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 				{
 					if (Vector3.Distance(StaticValueHolder.BoatObject.transform.position, buoyGates.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
 					{
+						courseCancelled.Play();
 						ResetCourse();
 					}
 				}
@@ -227,6 +237,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 		foreach (Transform t in buoyGates)
 		{
 			t.GetComponent<BuoyGateTrigger>().ResetMaterials();
+			t.GetComponent<BuoyGateTrigger>().CourseHasStarted = false;
 		}
 
 		isStateSet = false;
