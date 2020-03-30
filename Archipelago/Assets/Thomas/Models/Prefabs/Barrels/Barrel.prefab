@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 3036310386450390701}
   - component: {fileID: 3302302982614484947}
   - component: {fileID: 5721886926655875032}
+  - component: {fileID: 272522211921745467}
   m_Layer: 16
   m_Name: Barrel_Low
   m_TagString: Untagged
@@ -634,11 +635,25 @@ MeshCollider:
   m_GameObject: {fileID: 6323970674809881765}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -2958186495718855520, guid: d1e5009c45344494992b8bbfa4a90e45, type: 3}
+--- !u!136 &272522211921745467
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323970674809881765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6090563
+  m_Height: 1.1671326
+  m_Direction: 1
+  m_Center: {x: -0.000030454632, y: -0.035874642, z: -0.000015393323}
 --- !u!1 &8139619131538411893
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5093260710700704614}
+  - component: {fileID: -5913519842101417735}
   m_Layer: 16
   m_Name: Barrel
   m_TagString: Untagged
@@ -677,3 +693,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.3770001, y: -75.666, z: 0}
+--- !u!205 &-5913519842101417735
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139619131538411893}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

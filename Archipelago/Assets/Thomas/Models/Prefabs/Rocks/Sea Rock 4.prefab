@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 6576379501924004419}
   - component: {fileID: 612339169978273466}
   - component: {fileID: 6154652055833945299}
+  - component: {fileID: -304817952624119019}
   m_Layer: 16
   m_Name: Sea Rock 4
   m_TagString: Untagged
@@ -121,6 +122,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 9000075908759621986, guid: 815846ed822052b4291ec35891a48590, type: 3}
+--- !u!205 &-304817952624119019
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171957588343847526}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!64 &6384602233698715530
 MeshCollider:
   m_ObjectHideFlags: 0

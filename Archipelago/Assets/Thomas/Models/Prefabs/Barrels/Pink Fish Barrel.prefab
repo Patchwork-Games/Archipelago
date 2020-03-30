@@ -362,6 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8783440970536503987}
+  - component: {fileID: 6194788327393794235}
   m_Layer: 16
   m_Name: Pink Fish Barrel
   m_TagString: Untagged
@@ -392,6 +393,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.5360003, y: -75.666, z: 0}
+--- !u!205 &6194788327393794235
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5746123488203520160}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &7532456699197910384
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +428,7 @@ GameObject:
   - component: {fileID: 1893979696180265651}
   - component: {fileID: 1542707802621900664}
   - component: {fileID: 1342015204053429766}
-  - component: {fileID: 6119453543591569506}
+  - component: {fileID: 3172401733278455431}
   m_Layer: 16
   m_Name: Barrel_Low
   m_TagString: Untagged
@@ -471,8 +496,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6119453543591569506
-MeshCollider:
+--- !u!136 &3172401733278455431
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -481,10 +506,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2958186495718855520, guid: d1e5009c45344494992b8bbfa4a90e45, type: 3}
+  m_Radius: 0.60905635
+  m_Height: 1.3364587
+  m_Direction: 1
+  m_Center: {x: 0.00006109314, y: -0.043812256, z: -0.0000115775965}
 --- !u!1 &7532788848715968671
 GameObject:
   m_ObjectHideFlags: 0

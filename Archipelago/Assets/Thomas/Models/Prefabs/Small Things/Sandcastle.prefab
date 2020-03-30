@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1464046544347356257}
   - component: {fileID: 5147016205646536856}
   - component: {fileID: -6069017248844013462}
+  - component: {fileID: -9104222869368589924}
   m_Layer: 0
   m_Name: Sandcastle
   m_TagString: Untagged
@@ -93,3 +94,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 8453726731948488774, guid: a90d010eec2431e40a6c20d8345e18b5, type: 3}
+--- !u!205 &-9104222869368589924
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868281853433844804}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

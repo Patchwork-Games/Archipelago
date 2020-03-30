@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 2537704263444522288}
   - component: {fileID: 1543061642097509755}
   - component: {fileID: 6775748597135717274}
-  - component: {fileID: 7314463513116031083}
   m_Layer: 0
   m_Name: pSphere1
   m_TagString: Untagged
@@ -157,20 +156,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7314463513116031083
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880008819708135509}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 2540817853737639666, guid: 4fa24b7f3e38daa428b0c75cecd585ba, type: 3}
 --- !u!1 &7360164670355140287
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +165,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5800591366634544300}
+  - component: {fileID: 3138403380790593415}
+  - component: {fileID: -4717846073373216768}
   m_Layer: 0
   m_Name: Beach Umbrella
   m_TagString: Untagged
@@ -203,3 +190,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 14.328001, y: 72.269005, z: -15.203001}
+--- !u!136 &3138403380790593415
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360164670355140287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.061578345
+  m_Height: 0.15338568
+  m_Direction: 1
+  m_Center: {x: 0.00092847197, y: 0.073513046, z: -0.00001172586}
+--- !u!205 &-4717846073373216768
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360164670355140287}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

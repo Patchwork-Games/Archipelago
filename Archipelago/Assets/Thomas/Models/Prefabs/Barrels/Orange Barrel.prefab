@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8911792794914241325}
   - component: {fileID: 8398374075174440678}
   - component: {fileID: 8320967234211551128}
-  - component: {fileID: 7008810929938540456}
+  - component: {fileID: 8283782235354746075}
   m_Layer: 16
   m_Name: Barrel_Low
   m_TagString: Untagged
@@ -157,8 +157,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7008810929938540456
-MeshCollider:
+--- !u!136 &8283782235354746075
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -167,10 +167,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2958186495718855520, guid: d1e5009c45344494992b8bbfa4a90e45, type: 3}
+  m_Radius: 0.60905635
+  m_Height: 1.3364587
+  m_Direction: 1
+  m_Center: {x: 0.00006109314, y: -0.043812256, z: -0.0000115775965}
 --- !u!1 &806784771045827454
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729599056599053101}
+  - component: {fileID: -37660658704647913}
   m_Layer: 16
   m_Name: Orange Barrel
   m_TagString: Untagged
@@ -367,6 +368,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 2.789, y: -89.925, z: -0.65800005}
+--- !u!205 &-37660658704647913
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340436126651973950}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &6596533044118747997
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1777174186802448331}
   - component: {fileID: 494094794626906715}
   - component: {fileID: 1582490431579426795}
-  - component: {fileID: 8833066280758819973}
+  - component: {fileID: 8228974992558396476}
+  - component: {fileID: -7049936507575784806}
   m_Layer: 16
   m_Name: Plank3
   m_TagString: Untagged
@@ -79,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8833066280758819973
-MeshCollider:
+--- !u!65 &8228974992558396476
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,7 +90,30 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -6433777785554344646, guid: 19efaf5f0c5be2a489c8486f825933d8, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.66848594, y: 3.4348812, z: 0.15132889}
+  m_Center: {x: -0.000000029802322, y: -0.000082850456, z: -0.000000022351742}
+--- !u!205 &-7049936507575784806
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171241804036910566}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

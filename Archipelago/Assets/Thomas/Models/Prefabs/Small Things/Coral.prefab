@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284172922805520193}
   - component: {fileID: 5360290909829679808}
+  - component: {fileID: -3850624854036541797}
   m_Layer: 0
   m_Name: Coral
   m_TagString: Untagged
@@ -51,6 +52,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.022185596, y: 0.031331155, z: 0.02610541}
   m_Center: {x: 0.0063841823, y: 0.010405447, z: 0.0029820383}
+--- !u!205 &-3850624854036541797
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950023451915941202}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &3692871356748027005
 GameObject:
   m_ObjectHideFlags: 0
