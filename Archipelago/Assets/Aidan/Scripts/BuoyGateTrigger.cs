@@ -13,11 +13,19 @@ public class BuoyGateTrigger : MonoBehaviour
 	private float elapsedResetTime = 0f;
 	private bool boatHasCrossedLine = false;
 	public bool BoatHasCrossedLine { get { return boatHasCrossedLine; } set { boatHasCrossedLine = value; } }
+	private AudioSource activateNoise = null;
 
 	private void Awake()
 	{
 		originalFirstBuoyMat = firstBuoy.GetComponent<MeshRenderer>().material;
 		originalSecondBuoyMat = secondBuoy.GetComponent<MeshRenderer>().material;
+
+		// Get the activate noise
+		activateNoise = GetComponent<AudioSource>();
+		if (activateNoise == null)
+		{
+			Debug.Log("Missing AudioSource on object: " + gameObject);
+		}
 	}
 
 	private void Update()
@@ -35,6 +43,9 @@ public class BuoyGateTrigger : MonoBehaviour
 					boatHasCrossedLine = true;
 					elapsedResetTime = resetTime;
 					StaticValueHolder.BoatObject.GetComponent<BoatController>().AddImpulse(dashForce);
+
+					// Play sound
+					activateNoise.Play();
 				}
 			}
 		}

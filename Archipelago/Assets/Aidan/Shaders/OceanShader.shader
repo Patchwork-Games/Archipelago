@@ -6,20 +6,24 @@
 		_FresnelWaterColor("Fresnel water Color", Color) = (1,1,1,1)
 		[PowerSlider(4)] _FresnelWaterColorExponent("Fresnel Water Color Exponent", Range(0.25, 4)) = 1
 
+		// Ocean foam
         _OceanFoamTex ("Ocean Foam Texture", 2D) = "white" {}
 		_OceanFoamTexScale("Ocean Foam Texture Scale", Float) = 1
 		_OceanFoamColor("Ocean Foam Color", Color) = (1,1,1,1)
 		_OceanFoamDistortion("Ocean Foam Distortion (Speed, Amplitude, Frequency, 0)", Vector) = (1,1,1,1)
 
+		// Gertner waves
 		_WaveA("Wave A (dir, steepness, wavelength)", Vector) = (1,0,0.5,10)
 		_WaveB("Wave B", Vector) = (0,1,0.25,20)
 		_WaveC("Wave C", Vector) = (1,1,0.15,10)
 		_WaveSpeed("Wave Speed", Float) = 1
 
+		// Fog
 		_WaterFogColor("Water Fog Color", Color) = (0, 0, 0, 0)
 		_WaterFogDensity("Water Fog Density", Range(0, 2)) = 0.1
 		_RefractionStrength("Refraction Strength", Range(0, 1)) = 0.25
 
+		// Edge foam
 		_DepthMaxDistance("Depth Maximum Distance", Float) = 1
 		_SurfaceNoise("Surface Noise", 2D) = "white" {}
 		_SurfaceNoiseScale("Surface NoiseScale", Float) = 1
@@ -29,6 +33,9 @@
 		_SurfaceNoiseScroll("Surface Noise Scroll Amount", Vector) = (0.03, 0.03, 0, 0)
 		_SurfaceDistortion("Surface Distortion", 2D) = "white" {}
 		_SurfaceDistortionAmount("Surface Distortion Amount", Range(0, 1)) = 0.27
+
+		// Texture distortion
+
 
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0

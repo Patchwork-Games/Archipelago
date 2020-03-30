@@ -12,6 +12,11 @@ public class BuoyGateCourseManager : MonoBehaviour
 	private int numOfCheckpoints = 0;
 	private int nextCheckPoint = 0;
 	private bool onLastCheckpoint = false;
+	private Transform buoyGates = null;
+
+	// Audio
+	private AudioSource buoyNoise = null;
+	private AudioSource courseCompleteNoise = null;
 
 	enum BuoyGateCourseState
 	{
@@ -25,15 +30,40 @@ public class BuoyGateCourseManager : MonoBehaviour
 
 	private void Awake()
 	{
+		// Get the buoy gates
+		buoyGates = transform.Find("BuoyGates");
+		if (buoyGates == null)
+		{
+			Debug.Log("Missing BuoyGates child on object:" + gameObject);
+		}
+
 		// Get the starting line
-		startingLine = transform.GetChild(0).gameObject;
+		startingLine = buoyGates.GetChild(0).gameObject;
 		if (startingLine == null)
 		{
 			Debug.Log("StartingLine is null in BoatGateCourseManagerScript!");
 		}
 
+		#region Audio
+
+		// Get the buoy noise
+		buoyNoise = transform.Find("Audio").Find("BuoyNoise").GetComponent<AudioSource>();
+		if (buoyNoise == null)
+		{
+			Debug.Log("Missing BuoyNoise child on object:" + transform.Find("Audio").gameObject);
+		}
+
+		// Get the course complete sound
+		courseCompleteNoise = transform.Find("Audio").Find("CourseComplete").GetComponent<AudioSource>();
+		if (courseCompleteNoise == null)
+		{
+			Debug.Log("Missing CourseComplete child on object:" + transform.Find("Audio").gameObject);
+		}
+
+		#endregion
+
 		// Get the number of checkpoints on the course
-		numOfCheckpoints = transform.childCount;
+		numOfCheckpoints = buoyGates.childCount;
 	}
 
 	private void Update()
@@ -41,13 +71,17 @@ public class BuoyGateCourseManager : MonoBehaviour
 		// Check if the boat has crossed the starting line
 		if (startingLine.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine && !isMiniGameActive && state != BuoyGateCourseState.COMPLETE)
 		{
+			// Reset the boat has crossed line condition
 			startingLine.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine = false;
+
+			// Play sound
+			buoyNoise.Play();
 
 			// Start the minigame
 			isMiniGameActive = true;
 
 			// Reset all bouy triggers
-			foreach(Transform t in transform)
+			foreach(Transform t in buoyGates)
 			{
 				t.GetComponent<BuoyGateTrigger>().BoatHasCrossedLine = false;
 			}
@@ -60,16 +94,20 @@ public class BuoyGateCourseManager : MonoBehaviour
 		// If the mini game has started next we need to check if the player is going clockwise or anti-clockwise
 		if (isMiniGameActive && !isStateSet)
 		{
-			if (transform.GetChild(1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+			if (buoyGates.GetChild(1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 			{
-				transform.GetChild(1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+				PlayRisingToneNoise();
+
+				buoyGates.GetChild(1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 				state = BuoyGateCourseState.CLOCKWISE;
 				nextCheckPoint = 2;
 				isStateSet = true;
 			}
-			else if(transform.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+			else if(buoyGates.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 			{
-				transform.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+				PlayRisingToneNoise();
+
+				buoyGates.GetChild(numOfCheckpoints - 1).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 				state = BuoyGateCourseState.ANTI_CLOCKWISE;
 				nextCheckPoint = numOfCheckpoints - 2;
 				isStateSet = true;
@@ -84,7 +122,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 			{
 				if (nextCheckPoint > 0 && nextCheckPoint < numOfCheckpoints)
 				{
-					if (Vector3.Distance(StaticValueHolder.BoatObject.transform.position, transform.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
+					if (Vector3.Distance(StaticValueHolder.BoatObject.transform.position, buoyGates.GetChild(nextCheckPoint).transform.position) >= distanceToResetCourseAt)
 					{
 						ResetCourse();
 					}
@@ -97,10 +135,12 @@ public class BuoyGateCourseManager : MonoBehaviour
 					{
 						if (nextCheckPoint > 0 && !onLastCheckpoint)
 						{
-							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+							if (buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
-								transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+								buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint--;
+
+								PlayRisingToneNoise();
 
 								if (nextCheckPoint == 0)
 								{
@@ -112,7 +152,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 						else
 						{
 							nextCheckPoint = 0;
-							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+							if (buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
 								// Course has been complete
 								state = BuoyGateCourseState.COMPLETE;
@@ -125,10 +165,12 @@ public class BuoyGateCourseManager : MonoBehaviour
 					{
 						if (nextCheckPoint < numOfCheckpoints && !onLastCheckpoint)
 						{
-							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+							if (buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
-								transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
+								buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().SetBouyMaterial(goldBouyMat);
 								nextCheckPoint++;
+
+								PlayRisingToneNoise();
 
 								if (nextCheckPoint == numOfCheckpoints)
 								{
@@ -140,7 +182,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 						else
 						{
 							nextCheckPoint = 0;
-							if (transform.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
+							if (buoyGates.GetChild(nextCheckPoint).GetComponent<BuoyGateTrigger>().BoatHasCrossedLine)
 							{
 								Debug.Log("Course Complete!");
 								// Course has been complete
@@ -162,8 +204,11 @@ public class BuoyGateCourseManager : MonoBehaviour
 						isMiniGameActive = false;
 						onLastCheckpoint = false;
 
+						// Play sound
+						courseCompleteNoise.Play();
+
 						// Reset all the materials of the bouys
-						foreach (Transform t in transform)
+						foreach (Transform t in buoyGates)
 						{
 							t.GetComponent<BuoyGateTrigger>().ResetMaterials();
 						}
@@ -179,7 +224,7 @@ public class BuoyGateCourseManager : MonoBehaviour
 	private void ResetCourse()
 	{
 		// Reset all the materials of the bouys
-		foreach (Transform t in transform)
+		foreach (Transform t in buoyGates)
 		{
 			t.GetComponent<BuoyGateTrigger>().ResetMaterials();
 		}
@@ -187,6 +232,17 @@ public class BuoyGateCourseManager : MonoBehaviour
 		isStateSet = false;
 		isMiniGameActive = false;
 		onLastCheckpoint = false;
+
+		// Reset the pitch for the sound
+		AudioManager.instance.SetPitch("BuoyGateNoise", 1f);
+		buoyNoise.pitch = 1f;
+	}
+
+	private void PlayRisingToneNoise()
+	{
+		// Play sound
+		buoyNoise.pitch += 0.5f / numOfCheckpoints;
+		buoyNoise.Play();
 	}
 
 }
