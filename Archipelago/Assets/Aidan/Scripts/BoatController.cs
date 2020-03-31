@@ -49,7 +49,9 @@ public class BoatController : MonoBehaviour
 	private ParticleSystem boatBackBubbles;
 
 	// Audio
+	[SerializeField] private float speedToStartWaterNoise = 10f;
 	private AudioSource dashNoise = null;
+	private AudioSource waterOnBoatNoise = null;
 
 	private void Awake()
 	{
@@ -72,12 +74,28 @@ public class BoatController : MonoBehaviour
 
 		#region Audio
 
-		// Get the dash sound
-		dashNoise = transform.Find("Audio").Find("DashNoise").GetComponent<AudioSource>();
-		if (dashNoise == null)
+		Transform audioObjectTrasform = transform.Find("Audio");
+		if (audioObjectTrasform == null)
 		{
-			Debug.Log("Missing DashNoise on object: " + transform.Find("Audio").gameObject);
+			Debug.Log("Missing Audio child on object: " + gameObject);
 		}
+		else
+		{
+			// Get the dash sound
+			dashNoise = audioObjectTrasform.Find("DashNoise").GetComponent<AudioSource>();
+			if (dashNoise == null)
+			{
+				Debug.Log("Missing DashNoise child on object: " + audioObjectTrasform.gameObject);
+			}
+
+			// Get the water on boat noise
+			waterOnBoatNoise = audioObjectTrasform.Find("WaterOnBoatNoise").GetComponent<AudioSource>();
+			if (waterOnBoatNoise == null)
+			{
+				Debug.Log("Missing WaterOnBoatNoise child on object: " + audioObjectTrasform.gameObject);
+			}
+		}
+
 
 		#endregion
 	}
@@ -85,6 +103,10 @@ public class BoatController : MonoBehaviour
 	private void Start()
 	{
 		originalBoatCameraFOV = StaticValueHolder.BoatCamera.m_Lens.FieldOfView;
+
+		// Play the water on boat sound at a very low volume
+		waterOnBoatNoise.volume = 0;
+		waterOnBoatNoise.Play();
 	}
 
 	private void Dash()
@@ -244,6 +266,9 @@ public class BoatController : MonoBehaviour
 		}
 
 		Speed = Vector3.Magnitude(rb.velocity);
+
+		// Set the volume of the water on boat sound
+		waterOnBoatNoise.volume = Speed / maxSpeedInOcean;
 	}
 
 	private void FixedUpdate()
