@@ -19,36 +19,6 @@ public class MapControl : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Matrix4x4 mapWorldPos;
     //Matrix4x4 playerWorldPos;
     //Matrix4x4 playerMapPos;
