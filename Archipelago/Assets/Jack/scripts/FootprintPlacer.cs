@@ -9,8 +9,7 @@ public class FootprintPlacer : MonoBehaviour
     private ObjectPooling spawner = null;
     [SerializeField] private float sandHeight = 33.0f;
     [SerializeField] private GameObject footPrintSpawnerPrefab = null;
-    [Range(0.0f, 1f)]
-    [SerializeField] private float randomFootStepPitch = 0f;
+    [Range(0.0f, 1f)] [SerializeField] private float randomFootStepPitch = 0f;
 
     // Audio
     private AudioSource sandStepNoise = null;
