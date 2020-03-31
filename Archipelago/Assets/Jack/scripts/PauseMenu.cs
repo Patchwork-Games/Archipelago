@@ -11,13 +11,36 @@ public class PauseMenu : MonoBehaviour
 
     [HideInInspector] public InputMaster controls = null;
 
+    // Audio
+    private AudioSource openNoise = null;
+    private AudioSource closeNoise = null;
+
 
     private void Awake()
     {
         controls = new InputMaster();
+
+        #region Audio
+
+        // Open noise
+        openNoise = transform.Find("Audio").Find("OpenNoise").GetComponent<AudioSource>();
+        if (openNoise == null)
+        {
+            Debug.Log("Missing OpenNoise child on object: " + transform.Find("Audio").gameObject);
+        }
+
+        // Close noise
+        closeNoise = transform.Find("Audio").Find("CloseNoise").GetComponent<AudioSource>();
+        if (closeNoise == null)
+        {
+            Debug.Log("Missing CloseNoise child on object: " + transform.Find("Audio").gameObject);
+        }
+
+
+        #endregion 
     }
 
-    private void OnEnable()
+	private void OnEnable()
     {
         controls.Player.Pause.performed += context => CheckPause();
         controls.Enable();
@@ -63,6 +86,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        // Play sound
+        closeNoise.Play();
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         GameIsPaused = false;
@@ -74,6 +100,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        // Play Sound
+        openNoise.Play();
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
         GameIsPaused = true;

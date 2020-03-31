@@ -7,8 +7,8 @@ public class FootprintPlacer : MonoBehaviour
     private GameObject footL = null;
     private GameObject footR = null;
     private ObjectPooling spawner = null;
-    [SerializeField] private GameObject footCam = null;
     [SerializeField] private float sandHeight = 33.0f;
+    [SerializeField] private GameObject footPrintSpawnerPrefab = null;
     
 
     private void Start()
@@ -16,7 +16,8 @@ public class FootprintPlacer : MonoBehaviour
         footL = gameObject.transform.GetChild(0).GetChild(3).GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
         footR = gameObject.transform.GetChild(0).GetChild(3).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject;
 
-        spawner = GameObject.FindGameObjectWithTag("FootSpawner").GetComponent<ObjectPooling>();
+        GameObject spanwerObject = Instantiate(footPrintSpawnerPrefab, Vector3.zero, Quaternion.identity);
+        spawner = spanwerObject.GetComponent<ObjectPooling>();
     }
 
 
