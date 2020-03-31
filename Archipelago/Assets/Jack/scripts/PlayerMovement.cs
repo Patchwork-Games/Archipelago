@@ -69,14 +69,29 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public ParticleSystem jumpParticle = null;
     private bool jumpParticlePlayed = false;
 
+    // Audio
+    [Range(0f,1f)] [SerializeField] private float randomJumpNoisePitch = 0f;
+    private AudioSource jumpNoise = null;
+
 
 
     private void Awake()
     {
         controls = new InputMaster();
-    }
 
-    private void OnEnable()
+        #region Audio
+
+        // Jump noise
+        jumpNoise = transform.Find("Audio").Find("JumpNoise").GetComponent<AudioSource>();
+        if (jumpNoise == null)
+        {
+            Debug.Log("Misssing JumpNoise child on object: " + transform.Find("Audio").gameObject);
+        }
+
+		#endregion
+	}
+
+	private void OnEnable()
     {
         controls.Player.MovementUD.performed += context => moveDirectionUD = context.ReadValue<float>();
         controls.Player.MovementUD.canceled += context => moveDirectionUD = context.ReadValue<float>();
@@ -500,6 +515,10 @@ public class PlayerMovement : MonoBehaviour
         //make player jump if enough jumps
         if (jumps > 0 && jump && !inTalkDistance)
         {
+            // Play jump noise
+            jumpNoise.pitch = 1 + Random.Range(-randomJumpNoisePitch / 2f, randomJumpNoisePitch / 2f);
+            jumpNoise.Play();
+
             if (RunParticle.isPlaying) RunParticle.Stop();
             velocity.y = 20f;
             jumps -= 1;
