@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class MapControl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-
-
-    private void Update()
-    {
-        Vector3 newPos = StaticValueHolder.PlayerObject.transform.position;
-        newPos.y = transform.position.y;
-        transform.position = newPos;
-    }
+    //private void Update()
+    //{
+    //    Vector3 newPos = StaticValueHolder.PlayerObject.transform.position;
+    //    newPos.y = transform.position.y;
+    //    transform.position = newPos;
+    //}
 
 
 
@@ -33,6 +25,36 @@ public class MapControl : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Matrix4x4 mapWorldPos;
+    //Matrix4x4 playerWorldPos;
+    //Matrix4x4 playerMapPos;
+
+    //GameObject playerMapIcon = null;
+    //GameObject mapPos = null;
 
 
 
@@ -41,8 +63,8 @@ public class MapControl : MonoBehaviour
     //{
     //    mapWorldPos = new Matrix4x4
     //    (
-    //    new Vector4(1, 0, 0, -(transform.position.x - transform.root.position.x)),
-    //    new Vector4(0, 1, 0, -(transform.position.z - transform.root.position.z)),
+    //    new Vector4(1, 0, 0, mapPos.transform.position.x),
+    //    new Vector4(0, 1, 0, mapPos.transform.position.z),
     //    new Vector4(0, 0, 1, 0),
     //    new Vector4(0, 0, 0, 1)
     //    );
@@ -54,8 +76,8 @@ public class MapControl : MonoBehaviour
     //    //get players x and z position as x and y position
     //    playerWorldPos = new Matrix4x4
     //    (
-    //    new Vector4(1, 0, 0, (StaticValueHolder.PlayerObject.transform.position.x - StaticValueHolder.PlayerObject.transform.root.position.x)),
-    //    new Vector4(0, 1, 0, (StaticValueHolder.PlayerObject.transform.position.z - StaticValueHolder.PlayerObject.transform.root.position.z)),
+    //    new Vector4(1, 0, 0, StaticValueHolder.PlayerObject.transform.position.x),
+    //    new Vector4(0, 1, 0, StaticValueHolder.PlayerObject.transform.position.z),
     //    new Vector4(0, 0, 1, 0),
     //    new Vector4(0, 0, 0, 1)
     //    );
