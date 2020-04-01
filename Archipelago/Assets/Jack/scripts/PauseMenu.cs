@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     // Audio
     private AudioSource openNoise = null;
     private AudioSource closeNoise = null;
+    private AudioSource selectNoise = null;
 
 
     private void Awake()
@@ -22,20 +23,35 @@ public class PauseMenu : MonoBehaviour
 
         #region Audio
 
-        // Open noise
-        openNoise = transform.Find("Audio").Find("OpenNoise").GetComponent<AudioSource>();
-        if (openNoise == null)
+        // Get the Audio object transform
+        Transform audioObjectTransform = transform.Find("Audio");
+        if (audioObjectTransform == null)
         {
-            Debug.Log("Missing OpenNoise child on object: " + transform.Find("Audio").gameObject);
+            Debug.Log("Missing Audio child on object: " + gameObject);
         }
-
-        // Close noise
-        closeNoise = transform.Find("Audio").Find("CloseNoise").GetComponent<AudioSource>();
-        if (closeNoise == null)
+        else
         {
-            Debug.Log("Missing CloseNoise child on object: " + transform.Find("Audio").gameObject);
-        }
+            // Open noise
+            openNoise = audioObjectTransform.Find("OpenNoise").GetComponent<AudioSource>();
+            if (openNoise == null)
+            {
+                Debug.Log("Missing OpenNoise child on object: " + audioObjectTransform.gameObject);
+            }
 
+            // Close noise
+            closeNoise = audioObjectTransform.Find("CloseNoise").GetComponent<AudioSource>();
+            if (closeNoise == null)
+            {
+                Debug.Log("Missing CloseNoise child on object: " + audioObjectTransform.gameObject);
+            }
+
+            // Select noise
+            selectNoise = audioObjectTransform.Find("SelectNoise").GetComponent<AudioSource>();
+            if (selectNoise == null)
+            {
+                Debug.Log("Missing SelectNoise child on object: " + audioObjectTransform.gameObject);
+            }
+        }
 
         #endregion 
     }
@@ -120,6 +136,11 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting Game");
         Application.Quit();
+    }
+
+    public void OnOptionSelected()
+    {
+        selectNoise.Play();
     }
 
 }

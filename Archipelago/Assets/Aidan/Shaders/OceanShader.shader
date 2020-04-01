@@ -191,9 +191,10 @@
 			float4 waterColor = lerp(_WaterColor, _WaterFogColor, waterDepthDifference01);
 
 			// Edge foam
-			//float2 distortSample = (tex2D(_SurfaceDistortion, IN.distortUV).xy * 2 - 1) * _SurfaceDistortionAmount;
-			//float2 noiseUV = float2((IN.worldPos.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (IN.worldPos.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y) * _SurfaceNoiseScale;
-			float2 noiseUV = float2((IN.noiseUV.x + _Time.y * _SurfaceNoiseScroll.x), (IN.noiseUV.y + _Time.y * _SurfaceNoiseScroll.y)) * _SurfaceNoiseScale;
+			float2 distortSample = (tex2D(_SurfaceDistortion, IN.distortUV).xy * 2 - 1) * _SurfaceDistortionAmount;
+			float2 noiseUV = IN.worldPos.xz * _SurfaceNoiseScale;
+			noiseUV = float2((noiseUV.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (noiseUV.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y);
+			//float2 noiseUV = float2((IN.worldPos.x + _Time.y * _SurfaceNoiseScroll.x), (IN.worldPos.z + _Time.y * _SurfaceNoiseScroll.y)) * _SurfaceNoiseScale;
 
 
 			float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV).r;
@@ -211,10 +212,8 @@
 			fixed4 c = texColor;
             o.Albedo = c.rgb;
 
-			//o.Albedo = texColor + surfaceNoiseColor;
-
 			// Calculate the foam for edges of objects
-			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, IN.uv_OceanFoamTex);
+			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, oceanFoamUVs);
 			depth = Linear01Depth(depth);
 			depth * unity_CameraWorldClipPlanes[5];
 
