@@ -12,22 +12,67 @@ public class MusicKeysManager : MonoBehaviour
 	private ParticleSystem yellowNote = null;
 	private ParticleSystem greenNote = null;
 
+	// Audio
+	private AudioSource blueNoteNoise = null;
+	private AudioSource redNoteNoise = null;
+	private AudioSource yellowNoteNoise = null;
+	private AudioSource greenNoteNoise = null;
+
 	private void Awake()
 	{
 		// Setup a new input object
 		controls = new InputMaster();
+
+		#region Audio
+
+		// Get the audio object transform
+		Transform audioObjectTransform = transform.Find("Audio");
+		if (audioObjectTransform == null)
+		{
+			Debug.Log("Missing Audio child on object: " + gameObject);
+		}
+		else
+		{
+			// Get the blue note noise
+			blueNoteNoise = audioObjectTransform.Find("BlueNote").GetComponent<AudioSource>();
+			if (blueNoteNoise == null)
+			{
+				Debug.Log("Missing BlueNote child on object: " + audioObjectTransform.gameObject);
+			}
+
+			// Get the red note noise
+			redNoteNoise = audioObjectTransform.Find("RedNote").GetComponent<AudioSource>();
+			if (redNoteNoise == null)
+			{
+				Debug.Log("Missing RedNote child on object: " + audioObjectTransform.gameObject);
+			}
+
+			// Get the yellow note noise
+			yellowNoteNoise = audioObjectTransform.Find("YellowNote").GetComponent<AudioSource>();
+			if (yellowNoteNoise == null)
+			{
+				Debug.Log("Missing YellowNote child on object: " + audioObjectTransform.gameObject);
+			}
+
+			// Get the green note noise
+			greenNoteNoise = audioObjectTransform.Find("GreenNote").GetComponent<AudioSource>();
+			if (greenNoteNoise == null)
+			{
+				Debug.Log("Missing GreenNote child on object: " + audioObjectTransform.gameObject);
+			}
+		}
+
+		#endregion
 	}
 
 	private void Start()
 	{
 		// Get the particles
-		{
-			Transform particlesObject = StaticValueHolder.PlayerObject.transform.Find("Particles").gameObject.transform;
-			blueNote = particlesObject.Find("BlueNote").GetComponent<ParticleSystem>();
-			redNote = particlesObject.Find("RedNote").GetComponent<ParticleSystem>();
-			yellowNote = particlesObject.Find("YellowNote").GetComponent<ParticleSystem>();
-			greenNote = particlesObject.Find("GreenNote").GetComponent<ParticleSystem>();
-		}
+		Transform particlesObject = StaticValueHolder.PlayerObject.transform.Find("Particles").gameObject.transform;
+		blueNote = particlesObject.Find("BlueNote").GetComponent<ParticleSystem>();
+		redNote = particlesObject.Find("RedNote").GetComponent<ParticleSystem>();
+		yellowNote = particlesObject.Find("YellowNote").GetComponent<ParticleSystem>();
+		greenNote = particlesObject.Find("GreenNote").GetComponent<ParticleSystem>();
 	}
 
 	private void OnEnable()
@@ -47,29 +92,30 @@ public class MusicKeysManager : MonoBehaviour
 
 	private void PlaySound(Vector2 soundValue)
 	{
+		// Depending on the input, change the sound that is playing
 		if (soundValue.x > 0)
 		{
 			// Play the sound and the particle effect
-			AudioManager.instance.PlaySound("MusicKey2");
+			redNoteNoise.Play();
 			redNote.Play();
 		}
 		else if (soundValue.x < 0)
 		{
 			// Play the sound and the particle effect
-			AudioManager.instance.PlaySound("MusicKey4");
+			greenNoteNoise.Play();
 			greenNote.Play();
 		}
 
 		if (soundValue.y > 0)
 		{
 			// Play the sound and the particle effect
-			AudioManager.instance.PlaySound("MusicKey1");
+			blueNoteNoise.Play();
 			blueNote.Play();
 		}
 		else if (soundValue.y < 0)
 		{
 			// Play the sound and the particle effect
-			AudioManager.instance.PlaySound("MusicKey3");
+			yellowNoteNoise.Play();
 			yellowNote.Play();
 		}
 	}
@@ -79,15 +125,15 @@ public class MusicKeysManager : MonoBehaviour
 		if (soundValue.x == 0)
 		{
 			// Stop the sound
-			AudioManager.instance.StopSound("MusicKey2");
-			AudioManager.instance.StopSound("MusicKey4");
+			redNoteNoise.Stop();
+			greenNoteNoise.Stop();
 		}
 
 		if (soundValue.y == 0)
 		{
 			// Stop the sound
-			AudioManager.instance.StopSound("MusicKey1");
-			AudioManager.instance.StopSound("MusicKey3");
+			blueNoteNoise.Stop();
+			yellowNoteNoise.Stop();
 		}
 	}
 }

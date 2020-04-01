@@ -16,6 +16,37 @@ public class CollectableUIUpdate : MonoBehaviour
     public Sprite stickSprite = null;
     private Camera cam = null;
 
+    // Audio
+    private AudioSource showCollectablesNoise = null;
+    private AudioSource hideCollectablesNoise = null;
+    private bool showCollectablesSoundPlayed = false;
+
+    private void Awake()
+    {
+        // Get the audio object transform
+        Transform audioObjectTransform = transform.Find("Audio");
+        if (audioObjectTransform == null)
+        {
+            Debug.Log("Missing Audio child on object: " + gameObject);
+        }
+        else
+        {
+            // Get the show collectables noise
+            showCollectablesNoise = audioObjectTransform.Find("ShowCollectablesNoise").GetComponent<AudioSource>();
+            if (showCollectablesNoise == null)
+            {
+                Debug.Log("Missing ShowCollectablesNoise child on object: " + audioObjectTransform.gameObject);
+            }
+
+            // Get the hide collectables noise
+            hideCollectablesNoise = audioObjectTransform.Find("HideCollectablesNoise").GetComponent<AudioSource>();
+            if (hideCollectablesNoise == null)
+            {
+                Debug.Log("Missing HideCollectablesNoise child on object: " + audioObjectTransform.gameObject);
+            }
+        }
+    }
+
     private void Start()
     {
         StaticValueHolder.Collectable0 = 0;
@@ -30,9 +61,25 @@ public class CollectableUIUpdate : MonoBehaviour
     {
         if (StaticValueHolder.PlayerMovementScript.YHeld)
         {
+            // If the show collectables sound hasn't been played, play it
+            if (!showCollectablesSoundPlayed)
+            {
+                showCollectablesSoundPlayed = true;
+                showCollectablesNoise.Play();
+            }
+
             collectables[0].text = StaticValueHolder.Collectable0 + ""; /*+ " / " + totalCollectables[0];*/
             collectables[1].text = StaticValueHolder.Collectable1 + ""; /*+ " / " + totalCollectables[1];*/
             collectables[2].text = StaticValueHolder.Collectable2 + ""; /*+ " / " + totalCollectables[2];*/
+        }
+        else
+        {
+            // If the show collectables sound has been played, set the bool to false and play the hide sound
+            if (showCollectablesSoundPlayed)
+            {
+                showCollectablesSoundPlayed = false;
+                hideCollectablesNoise.Play();
+            }
         }
     }
 
