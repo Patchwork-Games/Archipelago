@@ -86,4 +86,10 @@ public static class StaticValueHolder
 		set;
 	}
 
+    public static CollectableUIUpdate CollectableUIUpdateObject
+    {
+        get;
+        set;
+    }
+
 }

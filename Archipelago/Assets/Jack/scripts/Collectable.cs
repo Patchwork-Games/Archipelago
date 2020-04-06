@@ -23,22 +23,19 @@ public class Collectable : MonoBehaviour
     private Canvas pickupButtonGuide = null;
     private bool hiddenPickupButton = false;
 
-
-    private void Awake()
+    private void Start()
     {
+        // Get the sprites for the collectables
         if (collectableType != CollectableTypes.ENERGY)
         {
-            fishSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().fishSprite;
-            shellSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().shellSprite;
-            stickSprite = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().stickSprite;
-            pickupButtonGuide = transform.parent.parent.GetChild(0).GetComponent<CollectableUIUpdate>().pickupButtonGuide;
-            collectableUI = GameObject.FindGameObjectWithTag("CollectableUI");
+            fishSprite = StaticValueHolder.CollectableUIUpdateObject.fishSprite;
+            shellSprite = StaticValueHolder.CollectableUIUpdateObject.shellSprite;
+            stickSprite = StaticValueHolder.CollectableUIUpdateObject.stickSprite;
+            pickupButtonGuide = StaticValueHolder.CollectableUIUpdateObject.pickupButtonGuide;
+            collectableUI = StaticValueHolder.CollectableUIUpdateObject.gameObject;
         }
         hiddenPickupButton = false;
     }
-
-
-
 
     private void Update()
     {

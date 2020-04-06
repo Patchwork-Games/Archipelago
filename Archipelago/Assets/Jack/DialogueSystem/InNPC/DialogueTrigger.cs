@@ -11,8 +11,6 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private bool living = true;
     public Dialogue[] dialogue;
     public Canvas talkButtonGuide;
-    public CinemachineVirtualCamera talkCam;
-    private Vector3 talkCamPos = Vector3.zero;
 
     //settings
     public int talkRadius = 5;
@@ -24,7 +22,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        if(talkCam) talkCam.transform.position = talkCamPos;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
         if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
         if (living) StartCoroutine(TurnToPlayer());
@@ -50,7 +47,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         //init
         talkButtonGuide.enabled = false;
-        if (talkCam) talkCamPos = transform.GetChild(0).transform.position;
         if (living) anim = GetComponent<Animator>();
             
     }

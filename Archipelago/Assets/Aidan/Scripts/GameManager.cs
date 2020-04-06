@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private CinemachineFreeLook boatCamera = null;
 	[SerializeField] private WindManager windManager = null;
 	[SerializeField] private GameObject staticCoroutinePrefab = null;
+	[SerializeField] private CollectableUIUpdate collectableUIUpdate = null;
 	private PlayerMovement playerMovement = null;
 
 	private void Awake()
@@ -65,6 +66,12 @@ public class GameManager : MonoBehaviour
 				StaticValueHolder.WindManagerObject = windManager;
 			else
 				Debug.Log("WindManager missing from game manager script on object: " + this.gameObject);
+
+			// CollectableUIUpdate
+			if (collectableUIUpdate != null)
+				StaticValueHolder.CollectableUIUpdateObject = collectableUIUpdate;
+			else
+				Debug.Log("CollectableUIUpdate missing from game manager script on object: " + this.gameObject);
 
 		#endregion
 
