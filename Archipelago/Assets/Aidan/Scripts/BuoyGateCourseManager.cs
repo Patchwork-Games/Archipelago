@@ -245,7 +245,6 @@ public class BuoyGateCourseManager : MonoBehaviour
 		onLastCheckpoint = false;
 
 		// Reset the pitch for the sound
-		AudioManager.instance.SetPitch("BuoyGateNoise", 1f);
 		buoyNoise.pitch = 1f;
 	}
 
