@@ -340,17 +340,6 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * walkSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-
-
-        //make character walk if getting input
-        if (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01)
-        {
-            anim.SetBool("Walking", true);
-        }
-        else
-        {
-            anim.SetBool("Walking", false);
-        }
     }
 
     public void Gravity()
@@ -527,7 +516,16 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded)
             {
                 if (run) doRun = true;
-                else doRun = false;
+                else
+                {
+                    doRun = false;
+                    anim.SetBool("Running", false);
+                }
+            }
+            else
+            {
+                anim.SetBool("Running", false);
+                anim.SetBool("Walking", false);
             }
             
 
@@ -543,14 +541,14 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 Move();
+                anim.SetBool("Walking", true);
             }
-
-            
         }
         else
         {
             if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Running", false);
+            anim.SetBool("Walking", false);
         }
     }
 
