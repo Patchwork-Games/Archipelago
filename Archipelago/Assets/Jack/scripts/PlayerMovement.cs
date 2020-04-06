@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     // Audio
     [Range(0f,1f)] [SerializeField] private float randomJumpNoisePitch = 0f;
     private AudioSource jumpNoise = null;
+    private AudioSource landNoise = null;
 
 
 
@@ -81,12 +82,29 @@ public class PlayerMovement : MonoBehaviour
 
         #region Audio
 
-        // Jump noise
-        jumpNoise = transform.Find("Audio").Find("JumpNoise").GetComponent<AudioSource>();
-        if (jumpNoise == null)
+        // Get the audio object
+        Transform audioTransform = transform.Find("Audio");
+        if (audioTransform == null)
         {
-            Debug.Log("Misssing JumpNoise child on object: " + transform.Find("Audio").gameObject);
+            Debug.Log("Missing Audio child on object: " + gameObject);
         }
+        else
+        {
+            // Jump noise
+            jumpNoise = audioTransform.Find("JumpNoise").GetComponent<AudioSource>();
+            if (jumpNoise == null)
+            {
+                Debug.Log("Misssing JumpNoise child on object: " + audioTransform.gameObject);
+            }
+
+            // Land noise
+            landNoise = audioTransform.Find("LandNoise").GetComponent<AudioSource>();
+            if (landNoise == null)
+            {
+                Debug.Log("Misssing LandNoise child on object: " + audioTransform.gameObject);
+            }
+        }
+
 
 		#endregion
 	}
@@ -209,16 +227,6 @@ public class PlayerMovement : MonoBehaviour
         else Debug.Log("Collectable UI not attached to player");
     }
 
-
-
-
-
-
-
-
-
-
-
     private void Start()
     {
         currentItem = ItemEquipped.SKIMMINGROCK;
@@ -237,12 +245,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
-
     private void Update()
     {
         //show water ripple
-        if (transform.position.y < 33.3f)
+        if (transform.position.y < waterHeight)
         {
             //have to manally set position as the y stays the same so that it appears on the water
             InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
@@ -467,6 +473,9 @@ public class PlayerMovement : MonoBehaviour
                 jumpParticle.transform.position = transform.position - new Vector3(0, 6, 0);
                 jumpParticle.Play();
                 jumpParticlePlayed = true;
+
+                // Play landing sound
+                landNoise.Play();
             }
         }
         else
@@ -513,7 +522,7 @@ public class PlayerMovement : MonoBehaviour
     public void CheckJump()
     {
         //make player jump if enough jumps
-        if (jumps > 0 && jump && !inTalkDistance)
+        if (jumps > 0 && jump && !inTalkDistance && transform.position.y > waterHeight)
         {
             // Play jump noise
             jumpNoise.pitch = 1 + Random.Range(-randomJumpNoisePitch / 2f, randomJumpNoisePitch / 2f);
@@ -543,7 +552,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckThrowing()
     {
-        if (isGrounded)
+        if (isGrounded && transform.position.y > waterHeight)
         {
             if (RunParticle.isPlaying) RunParticle.Stop();
             anim.SetBool("Walking", false);

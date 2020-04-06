@@ -9,7 +9,37 @@ public class StoneMovement : MonoBehaviour
     [HideInInspector] public Vector3 direction;
     public float throwPower; 
     private Rigidbody rb;
+    private ParticleSystem bounceParticle = null;
 
+    // Audio
+    private AudioSource bounceNoise = null;
+
+
+    private void Awake()
+    {
+        // Get the bounce particle
+        bounceParticle = transform.Find("SkimWaterParticle").GetComponent<ParticleSystem>();
+        if (bounceParticle == null)
+        {
+            Debug.Log("Missing BounceParticle child on object: " + gameObject);
+        }
+
+        // Get Audio transform
+        Transform audioTransform = transform.Find("Audio");
+        if (audioTransform == null)
+        {
+            Debug.Log("Missing Audio child on object: " + audioTransform);
+        }
+        else
+        {
+            // Get the bounce noise
+            bounceNoise = audioTransform.Find("BounceNoise").GetComponent<AudioSource>();
+            if (bounceNoise == null)
+            {
+                Debug.Log("Missing BounceNoise child on object: " + audioTransform.gameObject);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +64,11 @@ public class StoneMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Bouncey") || collision.gameObject.CompareTag("Water") || collision.gameObject.CompareTag("Player"))
         {
             MakeBouncey();
-            if (collision.gameObject.CompareTag("Water")) transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+            if (collision.gameObject.CompareTag("Water"))
+            {
+                bounceParticle.Play();
+                bounceNoise.Play();
+            }
         }
         else
         {
