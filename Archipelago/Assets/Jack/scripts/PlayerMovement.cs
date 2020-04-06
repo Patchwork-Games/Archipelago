@@ -465,7 +465,8 @@ public class PlayerMovement : MonoBehaviour
     public void CheckGround()
     {
         //check if on ground
-        if (Physics.Raycast(transform.position, -Vector3.up, distanceGround + groundDistance, groundMask))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceGround + groundDistance, groundMask))
         {
             isGrounded = true;
             if (!jumpParticlePlayed)
@@ -475,7 +476,24 @@ public class PlayerMovement : MonoBehaviour
                 jumpParticlePlayed = true;
 
                 // Play landing sound
-                landNoise.Play();
+                switch (hit.transform.gameObject.layer)
+                {
+                    case 16: //normal landing sound
+                        {
+                            Debug.Log("16");
+                            break;
+                        }
+                    case 23: //rock landing sound
+                        {
+                            break;
+                        }
+
+                    default: //normal landing sound
+                        {
+                            landNoise.Play();
+                            break;
+                        }
+                }               
             }
         }
         else
