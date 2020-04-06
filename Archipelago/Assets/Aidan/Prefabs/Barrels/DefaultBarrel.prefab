@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1594474813091272476}
   - component: {fileID: 1690284350757365265}
   - component: {fileID: 5425536704852028065}
+  - component: {fileID: 7154351242806128971}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -93,6 +94,25 @@ CapsuleCollider:
   m_Height: 1.1306036
   m_Direction: 1
   m_Center: {x: 0.00337108, y: -0.013649076, z: -0.037792366}
+--- !u!95 &7154351242806128971
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112815978198881505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b6dda1cf319a8249b3fa01dd03a7079, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2357175022089758290
 GameObject:
   m_ObjectHideFlags: 0
