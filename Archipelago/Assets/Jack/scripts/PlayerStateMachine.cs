@@ -46,15 +46,15 @@ public class PlayerStateMachine : MonoBehaviour
             //normal movement
             case PlayerState.MOVING:
                 {
-                   StaticValueHolder.PlayerMovementScript.CheckGround();
-                   StaticValueHolder.PlayerMovementScript.CheckRun();
-                   StaticValueHolder.PlayerMovementScript.CheckJump();
+                    StaticValueHolder.PlayerMovementScript.CheckGround();
+                    StaticValueHolder.PlayerMovementScript.CheckRun();
+                    StaticValueHolder.PlayerMovementScript.CheckJump();
                     StaticValueHolder.PlayerMovementScript.CheckWater();
                     StaticValueHolder.PlayerMovementScript.Move();
-                   StaticValueHolder.PlayerMovementScript.Gravity();
-                   StaticValueHolder.PlayerMovementScript.MoveCamera();
-                   StaticValueHolder.PlayerMovementScript.anim.SetBool("InBoat", false);
-                   StaticValueHolder.PlayerMovementScript.controller.enabled = true;
+                    StaticValueHolder.PlayerMovementScript.Gravity();
+                    StaticValueHolder.PlayerMovementScript.MoveCamera();
+                    StaticValueHolder.PlayerMovementScript.anim.SetBool("InBoat", false);
+                    StaticValueHolder.PlayerMovementScript.controller.enabled = true;
                     break;
                 }
 

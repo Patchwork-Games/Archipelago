@@ -480,7 +480,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     case 16: //normal landing sound
                         {
-                            Debug.Log("16");
+                            landNoise.Play();
                             break;
                         }
                     case 23: //rock landing sound
@@ -520,14 +520,23 @@ public class PlayerMovement : MonoBehaviour
     public void CheckRun()
     {
         //check conditions to run and run if possible
-        if (run && (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01))
+        if (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01)
         {
-            Run();
-            if (isGrounded)
+            if (run)
             {
-                anim.SetBool("Running", true);
-                if (!RunParticle.isPlaying) RunParticle.Play();
+                Run();
+                if (isGrounded)
+                {
+                    anim.SetBool("Running", true);
+                    if (!RunParticle.isPlaying) RunParticle.Play();
+                }
             }
+            else
+            {
+                Move();
+            }
+            
+            
         }
         else
         {
