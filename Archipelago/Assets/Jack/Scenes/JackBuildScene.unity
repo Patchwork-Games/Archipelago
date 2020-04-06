@@ -78613,17 +78613,17 @@ PrefabInstance:
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0099552935
+      value: 0.009955319
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.35363454
+      value: -0.35363457
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.026320769
+      value: 0.026320832
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
@@ -78648,12 +78648,12 @@ PrefabInstance:
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.009474987
+      value: 0.00947497
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.02649757
+      value: 0.026497524
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
@@ -87186,6 +87186,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890168468}
   m_Mesh: {fileID: -6968139599666066972, guid: 0adc53b0ad236c743b9ce63a2eb1bc02, type: 3}
+--- !u!1 &1895869151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5753738510459546181, guid: 0fd71c5a4f6348a4394ab58a7ab3a4cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753738511058052698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1895869152
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895869151}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!4 &1902731020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 201430927165768460, guid: ecdbc586c76b3bc4a98955f69f1927d7,
