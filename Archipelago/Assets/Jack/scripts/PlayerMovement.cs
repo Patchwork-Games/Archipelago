@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     float moveDirectionLR = 0.0f;
     Vector2 moveDirection = Vector2.zero;
     Vector3 velocity = Vector3.zero;
+    private bool doRun = false;
     //private bool inWater = false;
 
 
@@ -522,7 +523,15 @@ public class PlayerMovement : MonoBehaviour
         //check conditions to run and run if possible
         if (moveDirection.x > 0.01 || moveDirection.x < -0.01 || moveDirection.y > 0.01 || moveDirection.y < -0.01)
         {
-            if (run)
+            //stop player from switching to or from run while jumping
+            if (isGrounded)
+            {
+                if (run) doRun = true;
+                else doRun = false;
+            }
+            
+
+            if (doRun)
             {
                 Run();
                 if (isGrounded)
@@ -535,7 +544,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Move();
             }
-            
+
             
         }
         else
