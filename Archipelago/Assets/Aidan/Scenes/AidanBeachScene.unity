@@ -678,71 +678,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2389596784896655951}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &248601422 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7769743225383848908, guid: 4f7c4892118aa80419ce9d1731020cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 568907131}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &248601427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248601422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252873146}
-          m_MethodName: OnOptionSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 11
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252873146}
-          m_MethodName: OnOptionSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &252873146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7769743226175903764, guid: 4f7c4892118aa80419ce9d1731020cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 568907131}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cd92112d5ab719469644ffea136ac4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &276940223 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9199593365603164182, guid: 9184dce2a31fbd34db933685ead4702c,
@@ -1283,59 +1218,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].eventID
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 252873146}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnOptionSelected
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 770856443, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 552014808, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 59ba62ee50c8624428e1eb9b3d9a527d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f7c4892118aa80419ce9d1731020cfd, type: 3}
 --- !u!1 &624616882
@@ -2538,76 +2420,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116107204}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1129540792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7769743225541640081, guid: 4f7c4892118aa80419ce9d1731020cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 568907131}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1129540797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129540792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252873146}
-          m_MethodName: OnOptionSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 11
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252873146}
-          m_MethodName: OnOptionSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252873146}
-          m_MethodName: OnOptionSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1132324427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,6 +2452,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179252430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4571470742430128644, guid: fd9e86dd17ce3644cacc70589d0a0a3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 168767564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b8160dec120e34882d77cf71b21a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1196055285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3657,6 +3481,11 @@ PrefabInstance:
       propertyPath: windManager
       value: 
       objectReference: {fileID: 1401594982}
+    - target: {fileID: 1022857734432744194, guid: 42ccd905c5fa044428f35047e09b1229,
+        type: 3}
+      propertyPath: collectableUIUpdate
+      value: 
+      objectReference: {fileID: 1179252430}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ccd905c5fa044428f35047e09b1229, type: 3}
 --- !u!223 &726717943150337512

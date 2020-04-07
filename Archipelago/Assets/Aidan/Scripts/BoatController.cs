@@ -242,7 +242,7 @@ public class BoatController : MonoBehaviour
 			if (zoomLerpTime < 1)
 			{
 				zoomLerpTime += Time.deltaTime / cameraZoomOutTime;
-				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = EaseOutQuart(originalBoatCameraFOV, dashFOV, zoomLerpTime);
+				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.Lerp(originalBoatCameraFOV, dashFOV, zoomLerpTime);
 			}
 
 			elapsedDashTime -= Time.deltaTime;
@@ -262,7 +262,7 @@ public class BoatController : MonoBehaviour
 		{
 			// Change the camera's FOV
 			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
-			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(dashFOV, originalBoatCameraFOV, zoomLerpTime);
+			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.Lerp(dashFOV, originalBoatCameraFOV, zoomLerpTime);
 		}
 
 		Speed = Vector3.Magnitude(rb.velocity);
