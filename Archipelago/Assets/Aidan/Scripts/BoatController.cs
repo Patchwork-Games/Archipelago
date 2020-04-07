@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class BoatController : MonoBehaviour
 {
@@ -32,8 +33,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
 	[SerializeField] private float quickTurnForce = 50f;
-	[SerializeField] private ParticleSystem dashCameraParticles = null;
-
+	
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;
 	private float elapsedDashTime = 0f;
@@ -45,6 +45,7 @@ public class BoatController : MonoBehaviour
 	private float zoomLerpTime = 0;
 
 	// Particles
+	[SerializeField] private ParticleSystem dashCameraParticles = null;
 	private Transform particlesTransform = null;
 	private ParticleSystem boatBackBubbles;
 
@@ -52,6 +53,14 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float speedToStartWaterNoise = 10f;
 	private AudioSource dashNoise = null;
 	private AudioSource waterOnBoatNoise = null;
+
+	// Post processing
+	private PostProcessVolume postProcessVolume = null;
+	private LensDistortion lensDistortion = null;
+
+	// Animation
+	private Animator boatAnimator = null;
+
 
 	private void Awake()
 	{
@@ -71,6 +80,14 @@ public class BoatController : MonoBehaviour
 		{
 			Debug.Log("Particles child object missing from object: " + this.gameObject);
 		}
+
+		// Get the boat animator
+		boatAnimator = transform.Find("Graphics").GetComponent<Animator>();
+		if (boatAnimator == null)
+		{
+			Debug.Log("Missing Animator component on object: " + transform.Find("Graphics").gameObject);
+		}
+
 
 		#region Audio
 
@@ -102,6 +119,13 @@ public class BoatController : MonoBehaviour
 
 	private void Start()
 	{
+		// Get the post process volume object
+		postProcessVolume = StaticValueHolder.PostProcessVolumeObject;
+		postProcessVolume.profile.TryGetSettings(out lensDistortion);
+		lensDistortion.enabled.Override(true);
+		lensDistortion.intensity.Override(0f);
+
+		// Set the original FOV of the boat camera
 		originalBoatCameraFOV = StaticValueHolder.BoatCamera.m_Lens.FieldOfView;
 
 		// Play the water on boat sound at a very low volume
@@ -135,6 +159,9 @@ public class BoatController : MonoBehaviour
 
 			// Play sound
 			dashNoise.Play();
+
+			// Trigger dash animation
+			boatAnimator.SetTrigger("Dash");
 
 			// Start emitting particle from the camera
 			ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
@@ -242,7 +269,9 @@ public class BoatController : MonoBehaviour
 			if (zoomLerpTime < 1)
 			{
 				zoomLerpTime += Time.deltaTime / cameraZoomOutTime;
-				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(originalBoatCameraFOV, dashFOV, zoomLerpTime);
+				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, dashFOV, zoomLerpTime);
+				lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, -30, zoomLerpTime);
+				Debug.Log("Lens Distortion happening!");
 			}
 
 			elapsedDashTime -= Time.deltaTime;
@@ -262,7 +291,9 @@ public class BoatController : MonoBehaviour
 		{
 			// Change the camera's FOV
 			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
-			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(dashFOV, originalBoatCameraFOV, zoomLerpTime);
+			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, originalBoatCameraFOV, zoomLerpTime);
+			lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, 0, zoomLerpTime);
+			Debug.Log("Lens Distortion back to normal");
 		}
 
 		Speed = Vector3.Magnitude(rb.velocity);

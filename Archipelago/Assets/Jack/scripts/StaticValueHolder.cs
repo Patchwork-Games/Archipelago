@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering.PostProcessing;
 
 public static class StaticValueHolder
 {
@@ -87,6 +88,12 @@ public static class StaticValueHolder
 	}
 
     public static CollectableUIUpdate CollectableUIUpdateObject
+    {
+        get;
+        set;
+    }
+
+    public static PostProcessVolume PostProcessVolumeObject
     {
         get;
         set;

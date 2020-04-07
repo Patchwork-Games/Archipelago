@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private WindManager windManager = null;
 	[SerializeField] private GameObject staticCoroutinePrefab = null;
 	[SerializeField] private CollectableUIUpdate collectableUIUpdate = null;
+	[SerializeField] private PostProcessVolume postProcessVolumeObject = null;
 	private PlayerMovement playerMovement = null;
 
 	private void Awake()
@@ -72,6 +74,12 @@ public class GameManager : MonoBehaviour
 				StaticValueHolder.CollectableUIUpdateObject = collectableUIUpdate;
 			else
 				Debug.Log("CollectableUIUpdate missing from game manager script on object: " + this.gameObject);
+
+			// PostProcessVolume
+			if (postProcessVolumeObject != null)
+				StaticValueHolder.PostProcessVolumeObject = postProcessVolumeObject;
+			else
+				Debug.Log("PostProcessVolumeObject missing from game manager script on object: " + this.gameObject);
 
 		#endregion
 
