@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     [Tooltip("delay on text print, smaller = faster")]
     public float textSpeed = 0.03f;
     public bool canQuitSentence;
+    public int thisNPC = 0;
     [SerializeField] private float textHeight = 3.0f;
     [HideInInspector] public Dialogue dialogue;
 
@@ -82,9 +83,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     //initial beginning of dialogue, called by the trigger script
-    public void StartDialogue(Dialogue dialogueIn)
+    public void StartDialogue(Dialogue dialogueIn, int currentNPC)
     {
         dialogue = dialogueIn;
+        thisNPC = currentNPC;
         //open textbox and change name displayed and stop player moving around or moving camera
         animator.SetBool("IsOpen", true);
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.TALKING;
@@ -217,6 +219,15 @@ public class DialogueManager : MonoBehaviour
 
 
                 //check custom text commands
+
+                if (tempText == "nextConvo")
+                {
+                    FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
+                    //numCharacters = 0;
+                    dontAddThisFrame = true;
+                    tempText = "";
+
+                }
 
                 if (tempText == "shake")
                 {

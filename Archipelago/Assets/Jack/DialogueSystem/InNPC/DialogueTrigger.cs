@@ -22,7 +22,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]]);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]], myTag);
         if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
         if (living) StartCoroutine(TurnToPlayer());
         
