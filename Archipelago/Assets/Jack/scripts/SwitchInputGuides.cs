@@ -30,12 +30,10 @@ public class SwitchInputGuides : MonoBehaviour
             //check if there is a controller connected
             if (!string.IsNullOrEmpty(Input.GetJoystickNames()[0]))
             {
-                Debug.Log("Joystick Connected");
                 GetComponent<Image>().sprite = controllerImage;
             }
             else
             {
-                Debug.Log("Joystick Disconnected");
                 GetComponent<Image>().sprite = keyboardImage;
             }
         }
