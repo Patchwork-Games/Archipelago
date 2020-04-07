@@ -36352,6 +36352,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 9000075908759621986, guid: 815846ed822052b4291ec35891a48590, type: 3}
+--- !u!1 &638249217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7417148612941792390, guid: 248fccd8b4f2b2445a160bb082f430f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7417148612526386401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &638249221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638249217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc4ccb069d679c4d9a7d657e9b69d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerImage: {fileID: 21300000, guid: 182a533fcf577f941a50e48f0d2c5ab8, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 931ddff31acf08e4a9e1aaa037c38757, type: 3}
 --- !u!1 &645507537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 0adc53b0ad236c743b9ce63a2eb1bc02,
@@ -37315,7 +37335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  myTag: 1
+  myTag: 3
   living: 1
   dialogue:
   - name: Hello
@@ -85112,6 +85132,7 @@ GameObject:
   - component: {fileID: 1812475839}
   - component: {fileID: 1812475841}
   - component: {fileID: 1812475840}
+  - component: {fileID: 1812475842}
   m_Layer: 11
   m_Name: ButtonGuideImg
   m_TagString: Untagged
@@ -85176,6 +85197,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812475838}
   m_CullTransparentMesh: 0
+--- !u!114 &1812475842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812475838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc4ccb069d679c4d9a7d657e9b69d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerImage: {fileID: 21300000, guid: 182a533fcf577f941a50e48f0d2c5ab8, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 931ddff31acf08e4a9e1aaa037c38757, type: 3}
 --- !u!43 &1828667142
 Mesh:
   m_ObjectHideFlags: 0
@@ -94399,6 +94434,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33765c6118898e0408d303ae7f56b2d9, type: 3}
+--- !u!1 &2008578167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6968640399363679866, guid: 0fd71c5a4f6348a4394ab58a7ab3a4cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753738511058052698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2008578171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008578167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc4ccb069d679c4d9a7d657e9b69d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerImage: {fileID: 21300000, guid: 182a533fcf577f941a50e48f0d2c5ab8, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 931ddff31acf08e4a9e1aaa037c38757, type: 3}
 --- !u!1 &2013207005
 GameObject:
   m_ObjectHideFlags: 0

@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 531689342716396418}
   - component: {fileID: 531689342716396420}
   - component: {fileID: 531689342716396421}
+  - component: {fileID: 1693736348}
   m_Layer: 11
   m_Name: ButtonGuideImg
   m_TagString: Untagged
@@ -365,6 +366,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1693736348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531689342716396419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc4ccb069d679c4d9a7d657e9b69d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerImage: {fileID: 21300000, guid: 182a533fcf577f941a50e48f0d2c5ab8, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 931ddff31acf08e4a9e1aaa037c38757, type: 3}
 --- !u!1 &531689342736262085
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +592,7 @@ MonoBehaviour:
   animator: {fileID: 531689342853952092}
   textSpeed: 0.03
   canQuitSentence: 0
+  thisNPC: 0
   textHeight: 7
   dialogue:
     name: 
