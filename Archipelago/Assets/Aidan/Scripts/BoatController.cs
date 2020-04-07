@@ -46,8 +46,11 @@ public class BoatController : MonoBehaviour
 
 	// Particles
 	[SerializeField] private ParticleSystem dashCameraParticles = null;
-	private Transform particlesTransform = null;
-	private ParticleSystem boatBackBubbles;
+	private ParticleSystem boatFrontTrailsLeft = null;
+	private ParticleSystem boatFrontTrailsRight = null;
+	private ParticleSystem boatSideTrailLeft = null;
+	private ParticleSystem boatSideTrailRight = null;
+	private ParticleSystem bowBubbles = null;
 
 	// Audio
 	[SerializeField] private float speedToStartWaterNoise = 10f;
@@ -75,10 +78,14 @@ public class BoatController : MonoBehaviour
 		}
 
 		// Get the particles object
-		particlesTransform = transform.Find("Particles");
+		Transform particlesTransform = transform.Find("Particles");
 		if (particlesTransform == null)
 		{
 			Debug.Log("Particles child object missing from object: " + this.gameObject);
+		}
+		else
+		{
+			// Get the 
 		}
 
 		// Get the boat animator
@@ -271,7 +278,6 @@ public class BoatController : MonoBehaviour
 				zoomLerpTime += Time.deltaTime / cameraZoomOutTime;
 				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, dashFOV, zoomLerpTime);
 				lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, -30, zoomLerpTime);
-				Debug.Log("Lens Distortion happening!");
 			}
 
 			elapsedDashTime -= Time.deltaTime;
@@ -293,7 +299,6 @@ public class BoatController : MonoBehaviour
 			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
 			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, originalBoatCameraFOV, zoomLerpTime);
 			lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, 0, zoomLerpTime);
-			Debug.Log("Lens Distortion back to normal");
 		}
 
 		Speed = Vector3.Magnitude(rb.velocity);
