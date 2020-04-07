@@ -226,10 +226,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 2
-  m_fontSizeBase: 25
+  m_fontSize: 1.25
+  m_fontSizeBase: 1.25
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 1
   m_fontSizeMax: 2
   m_fontStyle: 0
@@ -461,10 +461,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1.6
-  m_fontSizeBase: 22
+  m_fontSize: 1.25
+  m_fontSizeBase: 1.25
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 1
   m_fontSizeMax: 2
   m_fontStyle: 0
@@ -577,11 +577,12 @@ MonoBehaviour:
   animator: {fileID: 531689342853952092}
   textSpeed: 0.03
   canQuitSentence: 0
+  textHeight: 7
   dialogue:
     name: 
     charactersTalking: []
     chatBoxes: []
-  NPCs: 00000000000000000000000000000000
+  NPCs: 000000000000000000000000000000000000000000000000
 --- !u!114 &1238567109345202921
 MonoBehaviour:
   m_ObjectHideFlags: 0
