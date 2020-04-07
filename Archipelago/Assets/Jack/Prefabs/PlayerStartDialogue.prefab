@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516677200054518174}
-  m_LocalRotation: {x: -0, y: -0.9961103, z: -0, w: 0.088115364}
+  m_LocalRotation: {x: 0, y: -0.9961106, z: 0, w: 0.08811195}
   m_LocalPosition: {x: 564.2, y: 38.81, z: -672.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -169.89001, z: 0}
 --- !u!114 &5516677200054518175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   myTag: 0
-  living: 1
+  living: 0
   dialogue:
   - name: Tai
     charactersTalking:
@@ -60,7 +60,7 @@ MonoBehaviour:
 
 '
     - name: Tai
-      sentences: "Hope he'\x19s still waiting there."
+      sentences: Hope he's still there.
   talkButtonGuide: {fileID: 0}
   talkRadius: 5
   displayOnStart: 1
