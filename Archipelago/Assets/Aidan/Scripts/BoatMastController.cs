@@ -15,10 +15,31 @@ public class BoatMastController : MonoBehaviour
 	private float startingStretch = 0f;
 	private float currentStretch = 0f;
 	private float newSailStretch = 0f;
+	private bool sailHasChangedPos = false;
+
+	// Audio
+	[Range(0f, 1f)] [SerializeField] private float randomSailCreakNoisePitch = 0f;
+	private AudioSource sailCreakNoise = null;
 
 	private void Start()
 	{
 		startingRotation = transform.localRotation;
+
+		// Get the audio transform object
+		Transform audioTransform = StaticValueHolder.BoatObject.transform.Find("Audio");
+		if (audioTransform == null)
+		{
+			Debug.Log("Missing Audio child on object: " + StaticValueHolder.BoatObject);
+		}
+		else
+		{
+			// Get the sail creak noise
+			sailCreakNoise = audioTransform.Find("SailCreak").GetComponent<AudioSource>();
+			if (sailCreakNoise == null)
+			{
+				Debug.Log("Missing SailCreak child on object: " + audioTransform.gameObject);
+			}
+		}
 	}
 
 	private void Update()
@@ -59,6 +80,12 @@ public class BoatMastController : MonoBehaviour
 			}
 		}
 
+		// If the sail has changed position, then play the sail creak sound
+		if (sailHasChangedPos)
+		{
+			PlaySailCreakSound();
+		}
+
 
 		// Rotate towards the new rotation
 		lerpTime += Time.deltaTime / rotationTime;
@@ -79,5 +106,14 @@ public class BoatMastController : MonoBehaviour
 		startingStretch = currentStretch;
 		newRotation = rotation;
 		lerpTime = 0f;
+
+		//PlaySailCreakSound();
+	}
+
+	private void PlaySailCreakSound()
+	{
+		// Play sail creak noise
+		sailCreakNoise.pitch = 1 + Random.Range(-randomSailCreakNoisePitch / 2f, randomSailCreakNoisePitch / 2f);
+		sailCreakNoise.Play();
 	}
 }

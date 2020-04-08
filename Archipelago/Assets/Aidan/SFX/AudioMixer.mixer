@@ -273,6 +273,7 @@ AudioMixerController:
     - 64cc92a8aae0ed24594465ec4f76b547
     - 3b41c7b398b0d524ab2cfa16a95632e4
     - 342954f192d4da84c9667b711de4db68
+    - 77a31b04a1623404bbdea8ca07c7385b
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -400,6 +401,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &1470219426874884814
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SailCreak
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 77a31b04a1623404bbdea8ca07c7385b
+  m_Children: []
+  m_Volume: cabc6379c6393034ab81747a55e12384
+  m_Pitch: 3232291d474ddab45b4f91cc90d51bb8
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 1627027535104553389}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &1627027535104553389
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: b32a3ebb30fea554b840807062ac4f55
+  m_EffectName: Attenuation
+  m_MixLevel: 0c753c96df6e392438f5c0f27fcd4075
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &2161276655947304202
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -471,6 +505,7 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 0c1c7efa25a921a4da54a8a3e093dca0
   m_Children:
+  - {fileID: 5915667483631738455}
   - {fileID: 6401043341728976858}
   - {fileID: -6131785539081139954}
   - {fileID: 9001615534873977529}
@@ -479,8 +514,8 @@ AudioMixerGroupController:
   - {fileID: -2371274498215277889}
   - {fileID: 637095846444800001}
   - {fileID: 244211991699578150}
-  - {fileID: 5915667483631738455}
   - {fileID: -1253501141694444335}
+  - {fileID: 1470219426874884814}
   m_Volume: a0f9884b67f3b5142abd6668c57be2fd
   m_Pitch: b2aa36ca30c25c94b894024f7716bd2b
   m_Send: 00000000000000000000000000000000
