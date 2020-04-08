@@ -46,14 +46,13 @@ public class BoatController : MonoBehaviour
 
 	// Particles
 	[SerializeField] private ParticleSystem dashCameraParticles = null;
-	private ParticleSystem boatFrontTrailsLeft = null;
-	private ParticleSystem boatFrontTrailsRight = null;
-	private ParticleSystem boatSideTrailLeft = null;
-	private ParticleSystem boatSideTrailRight = null;
+	[SerializeField] private float speedToActivateTrailParticles = 10f;
+	private ParticleSystem boatSideTrailsLeft = null;
+	private ParticleSystem boatSideTrailsRight = null;
 	private ParticleSystem bowBubbles = null;
+	private bool boatTrailParticlesEmitting = false;
 
 	// Audio
-	[SerializeField] private float speedToStartWaterNoise = 10f;
 	private AudioSource dashNoise = null;
 	private AudioSource waterOnBoatNoise = null;
 
@@ -77,6 +76,15 @@ public class BoatController : MonoBehaviour
 			Debug.Log("Missing Rigidbody component on BoatController script!");
 		}
 
+		// Get the boat animator
+		boatAnimator = transform.Find("Graphics").GetComponent<Animator>();
+		if (boatAnimator == null)
+		{
+			Debug.Log("Missing Animator component on object: " + transform.Find("Graphics").gameObject);
+		}
+
+		#region Particles
+
 		// Get the particles object
 		Transform particlesTransform = transform.Find("Particles");
 		if (particlesTransform == null)
@@ -85,16 +93,29 @@ public class BoatController : MonoBehaviour
 		}
 		else
 		{
-			// Get the 
+			// Get the boat side trails left particles
+			boatSideTrailsLeft = particlesTransform.Find("BoatSideTrailsLeft").GetComponent<ParticleSystem>();
+			if (boatSideTrailsLeft == null)
+			{
+				Debug.Log("Missing BoatSideTrailsLeft child on object: " + particlesTransform.gameObject);
+			}
+
+			// Get the boat side trails right particles
+			boatSideTrailsRight = particlesTransform.Find("BoatSideTrailsRight").GetComponent<ParticleSystem>();
+			if (boatSideTrailsRight == null)
+			{
+				Debug.Log("Missing BoatSideTrailsRight child on object: " + particlesTransform.gameObject);
+			}
+
+			// Get Bow bubbles particles
+			bowBubbles = particlesTransform.Find("BowBubbles").GetComponent<ParticleSystem>();
+			if (bowBubbles == null)
+			{
+				Debug.Log("Missing BowBubbles child on object: " + particlesTransform.gameObject);
+			}
 		}
 
-		// Get the boat animator
-		boatAnimator = transform.Find("Graphics").GetComponent<Animator>();
-		if (boatAnimator == null)
-		{
-			Debug.Log("Missing Animator component on object: " + transform.Find("Graphics").gameObject);
-		}
-
+		#endregion
 
 		#region Audio
 
@@ -171,9 +192,7 @@ public class BoatController : MonoBehaviour
 			boatAnimator.SetTrigger("Dash");
 
 			// Start emitting particle from the camera
-			ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
-			emit.enabled = true;
-			dashCameraParticles.Play();
+			ParticleTools.StartEmission(dashCameraParticles);
 		}
 
 	}
@@ -288,9 +307,7 @@ public class BoatController : MonoBehaviour
 				zoomLerpTime = 0f;
 
 				// Stop emitting particle from the camera
-				ParticleSystem.EmissionModule emit = dashCameraParticles.emission;
-				emit.enabled = false;
-				dashCameraParticles.Stop();
+				ParticleTools.StopEmission(dashCameraParticles);
 			}
 		}
 		else if (zoomLerpTime < 1)
@@ -305,6 +322,32 @@ public class BoatController : MonoBehaviour
 
 		// Set the volume of the water on boat sound
 		waterOnBoatNoise.volume = Speed / maxSpeedInOcean;
+
+		// Set the emission of the boat trail and bubble particles depending on the boat speed
+		if (Speed > speedToActivateTrailParticles)
+		{
+			if (!boatTrailParticlesEmitting)
+			{
+				boatTrailParticlesEmitting = true;
+
+				// Enable particle emission
+				ParticleTools.StartEmission(boatSideTrailsLeft);
+				ParticleTools.StartEmission(boatSideTrailsRight);
+				ParticleTools.StartEmission(bowBubbles);
+			}
+		}
+		else
+		{
+			if (boatTrailParticlesEmitting)
+			{
+				boatTrailParticlesEmitting = false;
+
+				// Disable particle emission
+				ParticleTools.StopEmission(boatSideTrailsLeft);
+				ParticleTools.StopEmission(boatSideTrailsRight);
+				ParticleTools.StopEmission(bowBubbles);
+			}
+		}
 	}
 
 	private void FixedUpdate()
