@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  myTag: 0
+  myTag: 3
   living: 1
   dialogue:
   - name: Banana Man
@@ -1212,7 +1212,13 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed by
+    Humanoid clips.\n\tTransform 'BananaMan:Hips'\n\tTransform 'BananaMan:RightHandIndex1'\n\tTransform
+    'BananaMan:Neck'\n\tTransform 'BananaMan:RightHandPinky2'\n\tTransform 'BananaMan:RightArm'\n\tTransform
+    'BananaMan:LeftHandIndex1'\n\tTransform 'BananaMan:Spine2'\n\tTransform 'BananaMan:LeftHandRing2'\n\tTransform
+    'BananaMan:LeftForeArm'\n\tTransform 'BananaMan:RightHandRing1'\n\tand more ...\n\tFrom
+    animation clip 'mixamo.com'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

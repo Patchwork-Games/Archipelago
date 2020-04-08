@@ -22,7 +22,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]], myTag);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]], myTag, anim);
         if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
         if (living) StartCoroutine(TurnToPlayer());
         
@@ -46,7 +46,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         //init
-        talkButtonGuide.enabled = false;
+        if (talkButtonGuide) talkButtonGuide.enabled = false;
         if (living) anim = GetComponent<Animator>();
             
     }
@@ -83,7 +83,7 @@ public class DialogueTrigger : MonoBehaviour
             else if (!hiddenTalkButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
             {
                 hiddenTalkButton = true;
-                talkButtonGuide.enabled = false;
+                if (talkButtonGuide) talkButtonGuide.enabled = false;
 				StaticValueHolder.PlayerMovementScript.inTalkDistance = false;
             }
             else

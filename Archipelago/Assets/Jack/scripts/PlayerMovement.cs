@@ -76,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource landNoise = null;
 
 
-
     private void Awake()
     {
         controls = new InputMaster();
@@ -649,7 +648,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Jumping", false);
         anim.SetBool("Falling", false);
         anim.SetBool("ChargingThrow", false);
-
         BoatButtonGuide = false;
         if (BoatButtonCanvas) BoatButtonCanvas.enabled = false;
     }

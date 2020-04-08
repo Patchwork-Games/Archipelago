@@ -41926,6 +41926,12 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.012068819, y: -0.10826917, z: 0.021992408}
     m_Extent: {x: 0.08869912, y: 0.03329267, z: 0.06507657}
   m_DirtyAABB: 0
+--- !u!198 &809959635 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4202654026032119626, guid: cf4a68103bfbc3a4ea4accba349b46a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2078626645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &815122800
 GameObject:
   m_ObjectHideFlags: 0
@@ -77354,6 +77360,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -1.0440694
       objectReference: {fileID: 0}
+    - target: {fileID: 3208104632517172665, guid: 18ca070a2455b5b48a741591261922a5,
+        type: 3}
+      propertyPath: dashCameraParticles
+      value: 
+      objectReference: {fileID: 809959635}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ca070a2455b5b48a741591261922a5, type: 3}
 --- !u!1 &1632175133

@@ -43,7 +43,7 @@ public class DialogueManager : MonoBehaviour
     [Tooltip("delay on text print, smaller = faster")]
     public float textSpeed = 0.03f;
     public bool canQuitSentence;
-    public int thisNPC = 0;
+    public int thisNPC = 0; 
     [SerializeField] private float textHeight = 3.0f;
     [HideInInspector] public Dialogue dialogue;
 
@@ -53,6 +53,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private Queue<string> names;
     private Queue<Sprite> sprites;
+    private Animator anim = null;
 
     private bool specialTextChecker = false;
     private bool customTextChecker = false;
@@ -83,10 +84,11 @@ public class DialogueManager : MonoBehaviour
     }
 
     //initial beginning of dialogue, called by the trigger script
-    public void StartDialogue(Dialogue dialogueIn, int currentNPC)
+    public void StartDialogue(Dialogue dialogueIn, int currentNPC, Animator NPCanim)
     {
         dialogue = dialogueIn;
         thisNPC = currentNPC;
+        anim = NPCanim;
         //open textbox and change name displayed and stop player moving around or moving camera
         animator.SetBool("IsOpen", true);
         PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.TALKING;
@@ -222,12 +224,30 @@ public class DialogueManager : MonoBehaviour
 
                 if (tempText == "nextConvo")
                 {
-                    FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
-                    //numCharacters = 0;
+                    GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
                     dontAddThisFrame = true;
                     tempText = "";
 
                 }
+
+                //if (tempText == "boatIntroText")
+                //{
+                //    StaticValueHolder.PlayerMovementScript.boatIntroTextDone = true;
+                //    dontAddThisFrame = true;
+                //    tempText = "";
+                //}
+
+
+
+
+
+
+                //if (tempText == "laugh")
+                //{
+                //    if (anim) anim.SetTrigger("Laugh");
+                //    dontAddThisFrame = true;
+                //    tempText = "";
+                //}
 
                 if (tempText == "shake")
                 {
