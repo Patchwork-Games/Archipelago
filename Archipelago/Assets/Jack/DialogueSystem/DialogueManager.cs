@@ -67,6 +67,7 @@ public class DialogueManager : MonoBehaviour
     private bool doEndOnce = false;
 
     public int[] NPCs;
+    public bool boatIntroTextOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -230,14 +231,19 @@ public class DialogueManager : MonoBehaviour
 
                 }
 
-                //if (tempText == "boatIntroText")
-                //{
-                //    StaticValueHolder.PlayerMovementScript.boatIntroTextDone = true;
-                //    dontAddThisFrame = true;
-                //    tempText = "";
-                //}
+                if (tempText == "boatIntroTextOn")
+                {
+                    boatIntroTextOpen = true;
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
 
-
+                if (tempText == "boatIntroTextOff")
+                {
+                    boatIntroTextOpen = false;
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
 
 
 
