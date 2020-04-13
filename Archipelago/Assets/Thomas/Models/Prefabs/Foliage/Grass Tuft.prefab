@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3872045067342269998}
+  - component: {fileID: 4027219151527814164}
   m_Layer: 0
   m_Name: Grass Tuft
   m_TagString: Untagged
@@ -37,6 +38,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4027219151527814164
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281226081857158205}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0425854, y: 0.03650694, z: 0.037780974}
+  m_Center: {x: 0, y: 0.024633236, z: 0}
 --- !u!1 &682252731340809748
 GameObject:
   m_ObjectHideFlags: 0
