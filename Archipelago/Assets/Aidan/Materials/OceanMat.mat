@@ -38,18 +38,18 @@ Material:
     m_Floats:
     - _DepthMaxDistance: 2.15
     - _FoamDistance: 0.4
-    - _FoamMaxDistance: 0.92
-    - _FoamMinDistance: 0.82
+    - _FoamMaxDistance: 2.01
+    - _FoamMinDistance: 0.1
     - _FresnelWaterColorExponent: 2.37
     - _Glossiness: 0
     - _Metallic: 0
     - _NoiseTexScale: 0.91
     - _OceanFoamTexScale: 0.03
     - _RefractionStrength: 0
-    - _SurfaceDistortionAmount: 1
-    - _SurfaceNoiseCutoff: 0.805
-    - _SurfaceNoiseScale: 100
-    - _WaterFogDensity: 0.17
+    - _SurfaceDistortionAmount: 0.603
+    - _SurfaceNoiseCutoff: 1
+    - _SurfaceNoiseScale: 0.07
+    - _WaterFogDensity: 0.2
     - _WaveSpeed: 1
     m_Colors:
     - _Color: {r: 0, g: 0.93155813, b: 1, a: 1}
@@ -58,7 +58,7 @@ Material:
     - _FresnelWaterColor: {r: 0, g: 0.3111758, b: 1, a: 0}
     - _OceanFoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _OceanFoamDistortion: {r: 0.8, g: 0.02, b: 1, a: 1}
-    - _SurfaceNoiseScroll: {r: 10, g: 10, b: 0, a: 0}
+    - _SurfaceNoiseScroll: {r: 0.03, g: -0.02, b: 0, a: 0}
     - _WaterColor: {r: 0, g: 1, b: 0.6727633, a: 0.47058824}
     - _WaterFogColor: {r: 0, g: 0.13646817, b: 1, a: 1}
     - _WaveA: {r: 1, g: 0, b: 0.01, a: 1}
