@@ -199,21 +199,15 @@ public class BoatController : MonoBehaviour
 
 	private void QuickLeft()
 	{
-		Debug.Log("Quick left");
-
 		Vector3 rotatedVector = Vector3.Normalize(Quaternion.Euler(0, 45, 0) * transform.forward);
 		Debug.DrawRay(transform.position - (transform.forward * 5), rotatedVector, Color.red, 10);
-		//rb.AddForce(rotatedVector * 1000 * Time.deltaTime, ForceMode.Impulse);
 		rb.AddForceAtPosition(rotatedVector * quickTurnForce, transform.position - (transform.forward * 5), ForceMode.Force);
 	}
 
 	private void QuickRight()
 	{
-		Debug.Log("Quick right");
-
 		Vector3 rotatedVector = Vector3.Normalize(Quaternion.Euler(0, -45, 0) * transform.forward);
 		Debug.DrawRay(transform.position - (transform.forward * 5), rotatedVector, Color.red, 10);
-		//rb.AddForce(rotatedVector * 1000 * Time.deltaTime, ForceMode.Impulse);
 		rb.AddForceAtPosition(rotatedVector * quickTurnForce, transform.position - (transform.forward * 5), ForceMode.Force);
 	}
 
