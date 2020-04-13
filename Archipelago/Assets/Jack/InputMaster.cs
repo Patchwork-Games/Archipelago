@@ -89,6 +89,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""BumpersLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""cee73478-8786-41cd-a19a-64b01c3a4c50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""BumpersRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e35b58d-843e-439c-988b-bd53a20c973c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -410,6 +426,50 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""MovementLR"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15c56d3c-dcd4-43f3-90e1-b26152d0b13a"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""BumpersLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b35c4539-1db6-410e-8fc0-90c18a54c561"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""BumpersLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c1cdbd0-b895-4777-b3ba-c55f88eac33b"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""BumpersRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2fad120-dec1-455c-8d0d-674eedee501a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""BumpersRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -893,6 +953,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_YButton = m_Player.FindAction("YButton", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_BumpersLeft = m_Player.FindAction("BumpersLeft", throwIfNotFound: true);
+        m_Player_BumpersRight = m_Player.FindAction("BumpersRight", throwIfNotFound: true);
         // Boat
         m_Boat = asset.FindActionMap("Boat", throwIfNotFound: true);
         m_Boat_Steering = m_Boat.FindAction("Steering", throwIfNotFound: true);
@@ -961,6 +1023,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_YButton;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_BumpersLeft;
+    private readonly InputAction m_Player_BumpersRight;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -974,6 +1038,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @YButton => m_Wrapper.m_Player_YButton;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @BumpersLeft => m_Wrapper.m_Player_BumpersLeft;
+        public InputAction @BumpersRight => m_Wrapper.m_Player_BumpersRight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1010,6 +1076,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @BumpersLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersLeft;
+                @BumpersLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersLeft;
+                @BumpersLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersLeft;
+                @BumpersRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersRight;
+                @BumpersRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersRight;
+                @BumpersRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBumpersRight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1041,6 +1113,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @BumpersLeft.started += instance.OnBumpersLeft;
+                @BumpersLeft.performed += instance.OnBumpersLeft;
+                @BumpersLeft.canceled += instance.OnBumpersLeft;
+                @BumpersRight.started += instance.OnBumpersRight;
+                @BumpersRight.performed += instance.OnBumpersRight;
+                @BumpersRight.canceled += instance.OnBumpersRight;
             }
         }
     }
@@ -1172,6 +1250,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnYButton(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnBumpersLeft(InputAction.CallbackContext context);
+        void OnBumpersRight(InputAction.CallbackContext context);
     }
     public interface IBoatActions
     {

@@ -125,7 +125,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.BButton.canceled += context => StopThrowButton();
         controls.Player.YButton.performed += context => YButton();
         controls.Player.YButton.canceled += context => StopYButton();
-
+        controls.Player.BumpersLeft.performed += context => LeftBumper();
+        controls.Player.BumpersRight.performed += context => RightBumper();
 
         controls.Enable();
     }
@@ -146,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.BButton.canceled -= context => StopThrowButton();
         controls.Player.YButton.performed -= context => YButton();
         controls.Player.YButton.canceled -= context => StopYButton();
+        controls.Player.BumpersLeft.performed -= context => LeftBumper();
+        controls.Player.BumpersRight.performed -= context => RightBumper();
         controls.Disable();
     }
 
@@ -228,7 +231,29 @@ public class PlayerMovement : MonoBehaviour
         else Debug.Log("Collectable UI not attached to player");
     }
 
-    private void Start()
+    void LeftBumper()
+    {
+        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
+        {
+            currentItem = ItemEquipped.SKIMMINGROCK;
+        }
+    }
+
+    void RightBumper()
+    {
+        if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
+        {
+            currentItem = ItemEquipped.NET;
+        }
+    }
+
+
+
+
+
+
+
+private void Start()
     {
         currentItem = ItemEquipped.SKIMMINGROCK;
         mainCam = Camera.main;

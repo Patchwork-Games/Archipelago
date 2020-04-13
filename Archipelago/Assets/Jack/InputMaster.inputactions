@@ -76,6 +76,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "BumpersLeft",
+                    "type": "Button",
+                    "id": "cee73478-8786-41cd-a19a-64b01c3a4c50",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "BumpersRight",
+                    "type": "Button",
+                    "id": "1e35b58d-843e-439c-988b-bd53a20c973c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -397,6 +413,50 @@
                     "action": "MovementLR",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "15c56d3c-dcd4-43f3-90e1-b26152d0b13a",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "BumpersLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b35c4539-1db6-410e-8fc0-90c18a54c561",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "BumpersLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c1cdbd0-b895-4777-b3ba-c55f88eac33b",
+                    "path": "<XInputController>/rightShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "BumpersRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2fad120-dec1-455c-8d0d-674eedee501a",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "BumpersRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
