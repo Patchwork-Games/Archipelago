@@ -96,7 +96,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private void GetOutBoat()
 	{
 		// If the player isn't in the boat then they can't get out, so return from the function
-		if (!playerInBoat || StaticValueHolder.DialogueManagerObject.boatIntroTextOpen)
+		if (!playerInBoat)
 			return;
 
         StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = false;
