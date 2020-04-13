@@ -99,4 +99,10 @@ public static class StaticValueHolder
         set;
     }
 
+    public static DialogueManager DialogueManagerObject
+    {
+        get;
+        set;
+    }
+
 }
