@@ -231,20 +231,6 @@ public class DialogueManager : MonoBehaviour
 
                 }
 
-                if (tempText == "boatIntroTextOn")
-                {
-                    boatIntroTextOpen = true;
-                    dontAddThisFrame = true;
-                    tempText = "";
-                }
-
-                if (tempText == "boatIntroTextOff")
-                {
-                    boatIntroTextOpen = false;
-                    dontAddThisFrame = true;
-                    tempText = "";
-                }
-
 
 
 
