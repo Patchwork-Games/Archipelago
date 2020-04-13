@@ -8,14 +8,14 @@ public class Collectable : MonoBehaviour
     public enum CollectableTypes
     {
         FISH,
-        SHELL,
+        BUTTERFLY,
         STICK,
         ENERGY
     }
     public CollectableTypes collectableType;
 
     Sprite fishSprite;
-    Sprite shellSprite;
+    Sprite butterflySprite;
     Sprite stickSprite;
     GameObject collectableUI = null;
 
@@ -29,7 +29,7 @@ public class Collectable : MonoBehaviour
         if (collectableType != CollectableTypes.ENERGY)
         {
             fishSprite = StaticValueHolder.CollectableUIUpdateObject.fishSprite;
-            shellSprite = StaticValueHolder.CollectableUIUpdateObject.shellSprite;
+            butterflySprite = StaticValueHolder.CollectableUIUpdateObject.butterflySprite;
             stickSprite = StaticValueHolder.CollectableUIUpdateObject.stickSprite;
             pickupButtonGuide = StaticValueHolder.CollectableUIUpdateObject.pickupButtonGuide;
             collectableUI = StaticValueHolder.CollectableUIUpdateObject.gameObject;
@@ -64,11 +64,11 @@ public class Collectable : MonoBehaviour
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = fishSprite;
                             break;
                         }
-                    case CollectableTypes.SHELL:
+                    case CollectableTypes.BUTTERFLY:
                         {
                             StaticValueHolder.Collectable1 += 1;
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
-                            newIcon.transform.GetChild(0).GetComponent<Image>().sprite = shellSprite;
+                            newIcon.transform.GetChild(0).GetComponent<Image>().sprite = butterflySprite;
                             break;
                         }
                     case CollectableTypes.STICK:

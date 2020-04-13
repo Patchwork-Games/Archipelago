@@ -14,18 +14,8 @@ public class FishCatch : MonoBehaviour
 
         if (other.CompareTag("Butterfly"))
         {
-            Destroy(other.gameObject);
-            StaticValueHolder.PlayerObject.GetComponent<FishingController>().CaughtButterfly();
-        }
-    }
-
-
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Butterfly"))
-        {
-            Destroy(other.gameObject);
+            other.transform.GetChild(0).gameObject.SetActive(false);
+            other.GetComponent<BoxCollider>().enabled = false;
             StaticValueHolder.PlayerObject.GetComponent<FishingController>().CaughtButterfly();
         }
     }

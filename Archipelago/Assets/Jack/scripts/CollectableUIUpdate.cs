@@ -12,7 +12,7 @@ public class CollectableUIUpdate : MonoBehaviour
     public GameObject PickupIcon = null;
     public Canvas pickupButtonGuide = null;
     public Sprite fishSprite = null;
-    public Sprite shellSprite = null;
+    public Sprite butterflySprite = null;
     public Sprite stickSprite = null;
     private Camera cam = null;
 

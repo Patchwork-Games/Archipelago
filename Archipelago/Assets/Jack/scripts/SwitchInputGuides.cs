@@ -26,16 +26,21 @@ public class SwitchInputGuides : MonoBehaviour
         {
             //only run every 2 seconds instead of every frame
             yield return new WaitForSecondsRealtime(2f);
+
+            if (Input.GetJoystickNames().Length > 0)
+            {
+                //check if there is a controller connected
+                if (!string.IsNullOrEmpty(Input.GetJoystickNames()[0]))
+                {
+                    GetComponent<Image>().sprite = controllerImage;
+                }
+                else
+                {
+                    GetComponent<Image>().sprite = keyboardImage;
+                }
+            }
+
             
-            //check if there is a controller connected
-            if (!string.IsNullOrEmpty(Input.GetJoystickNames()[0]))
-            {
-                GetComponent<Image>().sprite = controllerImage;
-            }
-            else
-            {
-                GetComponent<Image>().sprite = keyboardImage;
-            }
         }
     }
 
