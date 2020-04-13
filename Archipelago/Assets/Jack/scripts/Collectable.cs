@@ -10,6 +10,7 @@ public class Collectable : MonoBehaviour
         FISH,
         BUTTERFLY,
         STICK,
+        BANANA,
         ENERGY
     }
     public CollectableTypes collectableType;
@@ -76,6 +77,11 @@ public class Collectable : MonoBehaviour
                             StaticValueHolder.Collectable2 += 1;
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = stickSprite;
+                            break;
+                        }
+                    case CollectableTypes.BANANA:
+                        {
+                            FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeToConversation(3, 2);
                             break;
                         }
                     case CollectableTypes.ENERGY:

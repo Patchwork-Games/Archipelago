@@ -106094,6 +106094,75 @@ Transform:
   m_Father: {fileID: 5925127131415323854}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1948262446484148070
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5441020447132193293, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_Name
+      value: GOLDENBANANA
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 545.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 39.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -661.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458579955763786027, guid: 84aaa15f67940b646bb9673e2fc0eb05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84aaa15f67940b646bb9673e2fc0eb05, type: 3}
 --- !u!137 &1991204552890552160
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -109371,9 +109440,101 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
         type: 3}
+      propertyPath: dialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].charactersTalking.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].chatBoxes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].charactersTalking.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].chatBoxes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
       propertyPath: talkButtonGuide
       value: 
       objectReference: {fileID: 2090383264}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].charactersTalking.Array.data[0].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].charactersTalking.Array.data[0].dialogueBoxImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a24dc3b38bbe8e4592b5eba8532ece9,
+        type: 3}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].charactersTalking.Array.data[0].NPCLocation
+      value: 
+      objectReference: {fileID: 1466296661}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].chatBoxes.Array.data[0].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[1].chatBoxes.Array.data[0].sentences
+      value: Banana 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].charactersTalking.Array.data[0].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].charactersTalking.Array.data[0].dialogueBoxImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a24dc3b38bbe8e4592b5eba8532ece9,
+        type: 3}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].charactersTalking.Array.data[0].NPCLocation
+      value: 
+      objectReference: {fileID: 1466296661}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].chatBoxes.Array.data[0].name
+      value: Banana Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[2].chatBoxes.Array.data[0].sentences
+      value: GOLD BANANA
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768816345402884355, guid: 4d8a8e14edf50c342a94da9a24c9f46a,
+        type: 3}
+      propertyPath: dialogue.Array.data[0].chatBoxes.Array.data[0].sentences
+      value: Banana 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8a8e14edf50c342a94da9a24c9f46a, type: 3}
 --- !u!4 &4791942293079110686

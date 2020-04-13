@@ -9,9 +9,12 @@ public class ConversationManager : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().NPCs[NPCTag] += conversationNumber;
     }
-    
 
 
+    public void ChangeToConversation(int NPCTag, int conversationNumber)
+    {
+        FindObjectOfType<DialogueManager>().NPCs[NPCTag] = conversationNumber;
+    }
 
     //FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeNextConversation(1, 2);
 }
