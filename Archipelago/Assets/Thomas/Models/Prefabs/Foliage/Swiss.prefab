@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031720093649373707}
+  - component: {fileID: 2614307107259861559}
   m_Layer: 0
   m_Name: Swiss
   m_TagString: Untagged
@@ -35,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2614307107259861559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056052376284198936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.049095847, y: 0.029820666, z: 0.03308241}
+  m_Center: {x: -0.0008746941, y: 0.021628918, z: -0.009119034}
 --- !u!1 &4541397531343077118
 GameObject:
   m_ObjectHideFlags: 0

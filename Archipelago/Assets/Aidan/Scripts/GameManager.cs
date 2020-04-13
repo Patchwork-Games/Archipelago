@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject staticCoroutinePrefab = null;
 	[SerializeField] private CollectableUIUpdate collectableUIUpdate = null;
 	[SerializeField] private PostProcessVolume postProcessVolumeObject = null;
+	[SerializeField] private DialogueManager dialogueManagerObject = null;
 	private PlayerMovement playerMovement = null;
 
 	private void Awake()
@@ -80,6 +81,12 @@ public class GameManager : MonoBehaviour
 				StaticValueHolder.PostProcessVolumeObject = postProcessVolumeObject;
 			else
 				Debug.Log("PostProcessVolumeObject missing from game manager script on object: " + this.gameObject);
+
+			// Dialogue manager
+			if (dialogueManagerObject != null)
+				StaticValueHolder.DialogueManagerObject = dialogueManagerObject;
+			else
+				Debug.Log("DialogueManagerObject missing from game manager script on object: " + this.gameObject);
 
 		#endregion
 
