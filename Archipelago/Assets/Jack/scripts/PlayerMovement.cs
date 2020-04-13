@@ -56,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
     //jumping variables
     private int jumps = 0;
     private int jumpsMax = 1;
-    private float distanceGround;
+    public float distanceGround;
     [HideInInspector] public bool isGrounded;
-    [SerializeField] private float groundDistance = 0.5f;
+    public float groundDistance = 0.5f;
     [SerializeField] private float gravity = -55.81f;
-    [SerializeField] private LayerMask groundMask = ~0;
+    public LayerMask groundMask = ~0;
 
 
 

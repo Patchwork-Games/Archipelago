@@ -52,51 +52,98 @@ public class FootprintPlacer : MonoBehaviour
 
     public void PlaceFootprintLeft()
     {
-        if (transform.position.y < sandHeight)
+        //check if on ground
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, StaticValueHolder.PlayerMovementScript.distanceGround + StaticValueHolder.PlayerMovementScript.groundDistance, StaticValueHolder.PlayerMovementScript.groundMask))
         {
-            // Play sand step noise
-            sandStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
-            sandStepNoise.Play();
-
-            GameObject newFootPrint = spawner.RetrieveInstance();
-            if (newFootPrint != null)
+            // Play landing sound
+            switch (hit.transform.gameObject.layer)
             {
-                newFootPrint.transform.parent = spawner.transform;
-                newFootPrint.transform.position = footL.transform.position;
-                newFootPrint.transform.rotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0);
+                case 16: //normal ground
+                    {
+                        if (transform.position.y < sandHeight)
+                        {
+                            // Play sand step noise
+                            sandStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
+                            sandStepNoise.Play();
+
+                            GameObject newFootPrint = spawner.RetrieveInstance();
+                            if (newFootPrint != null)
+                            {
+                                newFootPrint.transform.parent = spawner.transform;
+                                newFootPrint.transform.position = footL.transform.position;
+                                newFootPrint.transform.rotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0);
+                            }
+                        }
+                        else
+                        {
+                            // Play grass step noise
+                            grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
+                            grassStepNoise.Play();
+                        }
+                        break;
+                    }
+                case 23: //rock
+                    {
+                        // Play rock step noise
+                        grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
+                        grassStepNoise.Play();
+                        break;
+                    }
+                default: //normal landing sound
+                    {
+                        break;
+                    }
             }
         }
-        else
-        {
-            // Play grass step noise
-            grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
-            grassStepNoise.Play();
-        }
-       
     }
 
 
     public void PlaceFootprintRight()
     {
-        if (transform.position.y < sandHeight)
+        //check if on ground
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, StaticValueHolder.PlayerMovementScript.distanceGround + StaticValueHolder.PlayerMovementScript.groundDistance, StaticValueHolder.PlayerMovementScript.groundMask))
         {
-            // Play sand step noise
-            sandStepNoise.pitch = 1 * (1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f));
-            sandStepNoise.Play();
-
-            GameObject newFootPrint = spawner.RetrieveInstance();
-            if (newFootPrint != null)
+            // Play landing sound
+            switch (hit.transform.gameObject.layer)
             {
-                newFootPrint.transform.parent = spawner.transform;
-                newFootPrint.transform.position = footR.transform.position;
-                newFootPrint.transform.rotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0);
+                case 16: //normal ground
+                    {
+                        if (transform.position.y < sandHeight)
+                        {
+                            // Play sand step noise
+                            sandStepNoise.pitch = 1 * (1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f));
+                            sandStepNoise.Play();
+
+                            GameObject newFootPrint = spawner.RetrieveInstance();
+                            if (newFootPrint != null)
+                            {
+                                newFootPrint.transform.parent = spawner.transform;
+                                newFootPrint.transform.position = footR.transform.position;
+                                newFootPrint.transform.rotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 0);
+                            }
+                        }
+                        else
+                        {
+                            // Play grass step noise
+                            grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
+                            grassStepNoise.Play();
+                        }
+                        break;
+                    }
+                case 23: //rock
+                    {
+                        // Play rock step noise
+                        grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
+                        grassStepNoise.Play();
+                        break;
+                    }
+                default: //normal landing sound
+                    {
+                        break;
+                    }
             }
-        }
-        else
-        {
-            // Play grass step noise
-            grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
-            grassStepNoise.Play();
         }
     }
 
