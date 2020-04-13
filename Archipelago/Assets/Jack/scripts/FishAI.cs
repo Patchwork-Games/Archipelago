@@ -54,10 +54,6 @@ public class FishAI : MonoBehaviour
                 timer += Time.deltaTime;
                 transform.eulerAngles = angle;
             }
-
-
-
         }
     }
-
 }
