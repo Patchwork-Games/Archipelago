@@ -414,8 +414,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.125001}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25.62, y: -1.48}
-  m_SizeDelta: {x: 6.927, y: 1.642}
+  m_AnchoredPosition: {x: 25.451, y: -1.48}
+  m_SizeDelta: {x: 7.581, y: 1.699}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531689342736262086
 CanvasRenderer:
@@ -457,8 +457,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -598,7 +598,9 @@ MonoBehaviour:
     name: 
     charactersTalking: []
     chatBoxes: []
-  NPCs: 000000000000000000000000000000000000000000000000
+  packageBox: {fileID: 0}
+  packageBox2: {fileID: 0}
+  NPCs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1238567109345202921
 MonoBehaviour:
   m_ObjectHideFlags: 0

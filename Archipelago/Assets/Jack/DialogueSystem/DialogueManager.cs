@@ -66,8 +66,12 @@ public class DialogueManager : MonoBehaviour
 
     private bool doEndOnce = false;
 
+    //story packages
+    [SerializeField] private GameObject packageBox = null;
+    [SerializeField] private GameObject packageBox2 = null;
+
+
     public int[] NPCs;
-    public bool boatIntroTextOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -232,6 +236,34 @@ public class DialogueManager : MonoBehaviour
                 }
 
 
+                if (tempText == "enablePackage")
+                {
+                    if (StaticValueHolder.Collectable0 >= 5)
+                    {
+                        packageBox.SetActive(true);
+                        StaticValueHolder.Collectable0 -= 5;
+                    }
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
+
+                
+
+                if (tempText == "deliverPackage")
+                {
+                    packageBox.SetActive(false);
+                    packageBox2.SetActive(true);
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
+
+
+                if (tempText == "removeButterfly")
+                {
+                    if (StaticValueHolder.Collectable1 >= 5) StaticValueHolder.Collectable1 -= 5;
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
 
 
                 //if (tempText == "laugh")

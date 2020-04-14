@@ -11,6 +11,10 @@ public class FishingController : MonoBehaviour
     [HideInInspector] public GameObject net = null;
     [HideInInspector] public bool canSeeNet = false;
 
+    private bool caughtFish = false;
+    private bool caughtButterfly = false;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,26 @@ public class FishingController : MonoBehaviour
         {
             net.SetActive(false);
         }
+
+
+
+
+
+        //story section 1, catch 5 fish
+        if (StaticValueHolder.Collectable0 >= 5 && !caughtFish)
+        {
+            caughtFish = true;
+            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(1, 2);
+
+        }
+
+        //story section 2, catch 5 butterflies
+        if (StaticValueHolder.Collectable1 >= 5 && !caughtButterfly)
+        {
+            caughtFish = true;
+            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(2, 6);
+        }
+
 
     }
 

@@ -14,8 +14,10 @@ public class MapIconRotate : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(0,0, -StaticValueHolder.PlayerObject.transform.eulerAngles.y);
 
-        newPos.x = StaticValueHolder.PlayerObject.transform.position.x * mapWidth / sceneWidth;
-        newPos.y = StaticValueHolder.PlayerObject.transform.position.z * mapWidth / sceneWidth;
+        //convert the players world position into space on the map
+
+        newPos.x = StaticValueHolder.PlayerObject.transform.position.z * mapWidth / sceneWidth;
+        newPos.y = StaticValueHolder.PlayerObject.transform.position.x * mapWidth / sceneWidth;
         newPos.z = -1;
         transform.localPosition = newPos;
     }

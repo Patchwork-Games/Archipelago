@@ -14,8 +14,8 @@ public class MapBoatRotate : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(0, 0, -StaticValueHolder.BoatObject.transform.eulerAngles.y);
 
-        newPos.x = StaticValueHolder.BoatObject.transform.position.x * mapWidth / sceneWidth;
-        newPos.y = StaticValueHolder.BoatObject.transform.position.z * mapWidth / sceneWidth;
+        newPos.x = StaticValueHolder.BoatObject.transform.position.z * mapWidth / sceneWidth;
+        newPos.y = StaticValueHolder.BoatObject.transform.position.x * mapWidth / sceneWidth;
         newPos.z = -1;
         transform.localPosition = newPos;
     }
