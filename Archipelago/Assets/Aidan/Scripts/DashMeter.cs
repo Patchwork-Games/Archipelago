@@ -199,7 +199,7 @@ public class DashMeter : MonoBehaviour
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
 		{
-			GameObject newDashIcon = GameObject.Instantiate(temporaryDashIconPrefab, this.transform);
+			GameObject newDashIcon = GameObject.Instantiate(temporaryDashIconPrefab, dashesTransform);
 			if (newDashIcon)
 			{
 				newDashIcon.transform.localPosition = lastTempDashPos + offsetBetweenEnergyIcons;
