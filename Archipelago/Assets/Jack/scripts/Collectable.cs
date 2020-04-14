@@ -11,9 +11,10 @@ public class Collectable : MonoBehaviour
         BUTTERFLY,
         STICK,
         BANANA,
-        ENERGY
+        DASH
     }
     public CollectableTypes collectableType;
+    public bool Collected { get; private set; } = false;
 
     Sprite fishSprite;
     Sprite butterflySprite;
@@ -27,7 +28,7 @@ public class Collectable : MonoBehaviour
     private void Start()
     {
         // Get the sprites for the collectables
-        if (collectableType != CollectableTypes.ENERGY)
+        if (collectableType != CollectableTypes.DASH)
         {
             fishSprite = StaticValueHolder.CollectableUIUpdateObject.fishSprite;
             butterflySprite = StaticValueHolder.CollectableUIUpdateObject.butterflySprite;
@@ -41,7 +42,7 @@ public class Collectable : MonoBehaviour
     private void Update()
     {
         //check if player is close enough to pick up
-        if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < pickUpRadius && collectableType != CollectableTypes.ENERGY)
+        if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < pickUpRadius && collectableType != CollectableTypes.DASH)
         {
             //show button needed to pick up
             if (pickupButtonGuide)
@@ -84,7 +85,7 @@ public class Collectable : MonoBehaviour
                             FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeToConversation(3, 2);
                             break;
                         }
-                    case CollectableTypes.ENERGY:
+                    case CollectableTypes.DASH:
                         {
                             Debug.Log("Shouldnt happen, see Collectable script");
                            
@@ -112,12 +113,12 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //pick up the energy when running into it but not other types
-        if (collectableType == CollectableTypes.ENERGY)
+        if (collectableType == CollectableTypes.DASH)
         {
             if (other.CompareTag("Player") || other.CompareTag("Boat"))
             {
 				StaticValueHolder.DashMeterObject.AddDashes(1);
-				Destroy(gameObject);
+                Collected = true;
             }
         }
         
@@ -126,7 +127,7 @@ public class Collectable : MonoBehaviour
 
     void HideButton()
     {
-        if (collectableType != CollectableTypes.ENERGY)
+        if (collectableType != CollectableTypes.DASH)
         {
             hiddenPickupButton = true;
             pickupButtonGuide.enabled = false;
