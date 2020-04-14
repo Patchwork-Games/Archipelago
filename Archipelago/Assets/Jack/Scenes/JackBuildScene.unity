@@ -39912,6 +39912,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3a8e71c0824169b4caacad831491529b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4279360f240472d478d0e674fc4da9f5, type: 3}
+--- !u!1 &764999410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 531689343157106858, guid: 91bb39a917cde0041802a81b6812fc25,
+    type: 3}
+  m_PrefabInstance: {fileID: 2090383263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &764999412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764999410}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23b8a655b9a1deb4ea11c05034cc7d28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &768435341
 GameObject:
   m_ObjectHideFlags: 0
@@ -78147,6 +78172,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoatCinemachineCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 8673609120289507256, guid: 665e5beb648b7b44cb518951e09c5426,
+        type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 228651395}
+    - target: {fileID: 8673609120289507256, guid: 665e5beb648b7b44cb518951e09c5426,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 228651395}
     - target: {fileID: 8673609120289507259, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78202,16 +78237,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8673609120289507256, guid: 665e5beb648b7b44cb518951e09c5426,
-        type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 228651395}
-    - target: {fileID: 8673609120289507256, guid: 665e5beb648b7b44cb518951e09c5426,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 228651395}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -96472,6 +96497,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 531689343157106860, guid: 91bb39a917cde0041802a81b6812fc25,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bb39a917cde0041802a81b6812fc25, type: 3}
 --- !u!223 &2090383264 stripped
@@ -107340,6 +107370,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CMThirdPersonCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3485971106920077719, guid: b75577852db447e4f9af9e422b33b312,
+        type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 427502504}
+    - target: {fileID: 3485971106920077719, guid: b75577852db447e4f9af9e422b33b312,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 427502504}
     - target: {fileID: 3485971106920077718, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -107395,16 +107435,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3485971106920077719, guid: b75577852db447e4f9af9e422b33b312,
-        type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 427502504}
-    - target: {fileID: 3485971106920077719, guid: b75577852db447e4f9af9e422b33b312,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 427502504}
     - target: {fileID: 3485971107508731853, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -108216,6 +108246,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashUICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
+        type: 3}
+      propertyPath: dashIconPrefab
+      value: 
+      objectReference: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065,
+        type: 3}
+    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
+        type: 3}
+      propertyPath: temporaryDashIconPrefab
+      value: 
+      objectReference: {fileID: 1338626140383631858, guid: 052c18a779423d44cac138adadf42d7a,
+        type: 3}
     - target: {fileID: 4230873217364376824, guid: 69182cb3053695b4fa2a22fe903c8816,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -108321,18 +108363,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: dashIconPrefab
-      value: 
-      objectReference: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065,
-        type: 3}
-    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: temporaryDashIconPrefab
-      value: 
-      objectReference: {fileID: 1338626140383631858, guid: 052c18a779423d44cac138adadf42d7a,
-        type: 3}
     - target: {fileID: 4230873217364376825, guid: 69182cb3053695b4fa2a22fe903c8816,
         type: 3}
       propertyPath: m_Enabled
