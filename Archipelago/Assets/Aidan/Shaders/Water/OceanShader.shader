@@ -61,8 +61,8 @@
 		#pragma surface surf Standard alpha finalcolor:ResetAlpha vertex:vert  // Physically based Standard lighting model, and enable shadows on all light types
         #pragma target 3.0 // Use shader model 3.0 target, to get nicer looking lighting
 
-		#include "UnityCG.cginc"
-		#include "LookingThroughWater.cginc"
+		#include "/UnityCG.cginc"
+		#include "/LookingThroughWater.cginc"
 
         sampler2D _OceanFoamTex;
 
