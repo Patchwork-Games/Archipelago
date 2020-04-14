@@ -26,6 +26,9 @@ public class DashMeter : MonoBehaviour
 	private bool isRecharging = false;
 	private float dashRechargeTimeDecrement = 0f;
 	private int numOfTempDashes = 0;
+	private Transform dashesTransform = null;
+	private Animator animator = null;
+	public bool IsShowing { get; set; } = false;
 
 	// Public variables
 	public bool DashBarIsEmpty { get; private set; } = false;
@@ -35,6 +38,26 @@ public class DashMeter : MonoBehaviour
 		// Set the icon colour
 		iconColour = dashIconPrefab.GetComponent<Image>().color;
 
+		// Get the dashes transform
+		dashesTransform = transform.Find("Dashes");
+		if (dashesTransform == null)
+		{
+			Debug.Log("Missing Dashes child on object: " + this.gameObject);
+		}
+		else
+		{
+			// Get the animator
+			animator = dashesTransform.GetComponent<Animator>();
+			if (animator == null)
+			{
+				Debug.Log("Missing Animator component on object: " + dashesTransform.gameObject);
+			}
+			else
+			{
+				animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+			}
+		}
+
 		// Set up the first position to spawn at
 		lastDashPos = iconBarStartPos - offsetBetweenEnergyIcons;
 
@@ -42,8 +65,6 @@ public class DashMeter : MonoBehaviour
 		AddDashes(numOfDashesToStartWith);
 
 		dashRechargeTimeDecrement = dashRechargeTime;
-
-        GetComponent<Canvas>().enabled = false;
     }
 
 	private void Update()
@@ -131,7 +152,7 @@ public class DashMeter : MonoBehaviour
 		// Initialise the new energies and put them onto the list
 		for (int i = 0; i < amount; i++)
 		{
-			GameObject newDashIcon = GameObject.Instantiate(dashIconPrefab, this.transform);
+			GameObject newDashIcon = GameObject.Instantiate(dashIconPrefab, dashesTransform);
 			if (newDashIcon)
 			{
 				newDashIcon.transform.localPosition = lastDashPos + offsetBetweenEnergyIcons;
@@ -251,5 +272,19 @@ public class DashMeter : MonoBehaviour
 		{
 			dashesTotal[i].GetComponent<Image>().color = iconColour;
 		}
+	}
+
+	public void Show()
+	{
+		// Show the dash meter
+		animator.SetTrigger("Show");
+		IsShowing = true;
+	}
+
+	public void Hide()
+	{
+		// Hide the dash meter
+		animator.SetTrigger("Hide");
+		IsShowing = false;
 	}
 }

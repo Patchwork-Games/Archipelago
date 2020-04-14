@@ -113,7 +113,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         GameIsPaused = false;
-        if(PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = true; //only show if in boat
+        if(PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT) StaticValueHolder.DashMeterObject.Show(); //only show if in boat
         CompassUI.SetActive(true);
         StaticValueHolder.PlayerMovementScript.jump = false;
         StaticValueHolder.PlayerMovementScript.interact = false;
@@ -127,7 +127,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
         GameIsPaused = true;
-        StaticValueHolder.DashMeterObject.gameObject.GetComponent<Canvas>().enabled = false;
+        if (StaticValueHolder.DashMeterObject.IsShowing) StaticValueHolder.DashMeterObject.Hide();
         CompassUI.SetActive(false);
     }
 
