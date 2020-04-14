@@ -11,9 +11,9 @@
         Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
         LOD 100
 
-        ZWrite on
         Cull Off
         Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
 
         Pass
         {
