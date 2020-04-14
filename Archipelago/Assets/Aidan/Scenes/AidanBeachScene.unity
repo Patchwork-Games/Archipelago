@@ -804,17 +804,17 @@ PrefabInstance:
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6712166
+      value: -0.67121667
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.24018456
+      value: 0.24018459
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.665065
+      value: -0.66506493
       objectReference: {fileID: 0}
     - target: {fileID: 8673609120772392300, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
@@ -834,22 +834,22 @@ PrefabInstance:
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.21912746
+      value: 0.21912748
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.672297
+      value: 0.67229694
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.21912776
+      value: -0.21912774
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67229676
+      value: 0.6722968
       objectReference: {fileID: 0}
     - target: {fileID: 8673609119524937971, guid: 665e5beb648b7b44cb518951e09c5426,
         type: 3}
@@ -2974,11 +2974,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashUICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4230873217364376821, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4230873217364376824, guid: 69182cb3053695b4fa2a22fe903c8816,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3084,21 +3079,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: dashIconPrefab
-      value: 
-      objectReference: {fileID: 3005282310040499177, guid: dc24189a6e560b240b4a00e45e53b065,
-        type: 3}
-    - target: {fileID: 4230873217364376820, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: temporaryDashIconPrefab
-      value: 
-      objectReference: {fileID: 1338626140383631858, guid: 052c18a779423d44cac138adadf42d7a,
-        type: 3}
-    - target: {fileID: 4230873217364376825, guid: 69182cb3053695b4fa2a22fe903c8816,
-        type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 1250437790, guid: 69182cb3053695b4fa2a22fe903c8816, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250437790, guid: 69182cb3053695b4fa2a22fe903c8816, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084378747, guid: 69182cb3053695b4fa2a22fe903c8816, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3234,62 +3224,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 568907131}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1250437789
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1250437790}
-  - component: {fileID: 1250437791}
-  m_Layer: 5
-  m_Name: Dashes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1250437790
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250437789}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2084378748}
-  m_Father: {fileID: 1576599289}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -139}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1250437791
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250437789}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cd2f4e30e585e504cb05a21a9156bb2d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1310951861
 GameObject:
   m_ObjectHideFlags: 0
@@ -8352,7 +8286,7 @@ PrefabInstance:
     - target: {fileID: 3485971107508731853, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08223701
+      value: -0.082237035
       objectReference: {fileID: 0}
     - target: {fileID: 3485971107508731853, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
@@ -8362,12 +8296,12 @@ PrefabInstance:
     - target: {fileID: 3485971107508731853, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.42772454
+      value: -0.42772457
       objectReference: {fileID: 0}
     - target: {fileID: 3485971107508731853, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.14249115
+      value: -0.14249119
       objectReference: {fileID: 0}
     - target: {fileID: 3485971107019030708, guid: b75577852db447e4f9af9e422b33b312,
         type: 3}
@@ -8926,81 +8860,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2084378747
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2084378748}
-  - component: {fileID: 2084378750}
-  - component: {fileID: 2084378749}
-  m_Layer: 5
-  m_Name: DashIcon(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &2084378748
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084378747}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 1250437790}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 49.999992, y: 45.715134}
-  m_SizeDelta: {x: 43.100006, y: 43.100006}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2084378749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084378747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1664781fefd006b43940ba6bd4a8a441, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 1
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2084378750
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084378747}
-  m_CullTransparentMesh: 0
 --- !u!1001 &2090383263
 PrefabInstance:
   m_ObjectHideFlags: 0
