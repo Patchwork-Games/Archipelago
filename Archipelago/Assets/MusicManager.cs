@@ -182,6 +182,9 @@ public class MusicManager : MonoBehaviour
         lastTrack = currentTrack;
         currentTrack = track;
 
+        // Start the new track
+        musicTracks[(int)currentTrack].Play();
+
         // Set the timers up for fading in the new track and fading out the new track
         elapsedFadeInTime = fadeInTime;
         elapsedFadeOutTime = fadeOutTime;
@@ -207,6 +210,7 @@ public class MusicManager : MonoBehaviour
         {
             elapsedFadeOutTime = 0;
             musicTracks[(int)track].volume = 0;
+            musicTracks[(int)track].Stop();
         }
         musicTracks[(int)track].volume = Mathf.Lerp(musicTracks[(int)track].volume, 0, 1 - (elapsedFadeOutTime / fadeOutTime));   
     }
