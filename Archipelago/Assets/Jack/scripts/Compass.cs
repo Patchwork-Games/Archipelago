@@ -20,6 +20,6 @@ public class Compass : MonoBehaviour
         //get the angle between the player and the north pole and rotate the compass so that it faces the north pole
         var targetPosLocal = cam.transform.InverseTransformPoint(northPole);
         var targetAngle = -Mathf.Atan2(targetPosLocal.x, targetPosLocal.z) * Mathf.Rad2Deg - 90;
-        transform.eulerAngles = new Vector3(0, 0, targetAngle + 90);
+        transform.eulerAngles = new Vector3(0, 0, targetAngle + 180);
     }
 }

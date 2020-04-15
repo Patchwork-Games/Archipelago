@@ -13,8 +13,8 @@ public class FishingController : MonoBehaviour
 
     private bool caughtFish = false;
     private bool caughtButterfly = false;
-    
 
+    float castTimeout = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,13 @@ public class FishingController : MonoBehaviour
         {
             net.SetActive(false);
         }
+
+
+
+
+
+
+
 
 
 
@@ -84,6 +91,9 @@ public class FishingController : MonoBehaviour
         GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
         newIcon.transform.GetChild(0).GetComponent<Image>().sprite = collectableUI.GetComponent<CollectableUIUpdate>().butterflySprite;
     }
+
+
+
 
 
 }
