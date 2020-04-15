@@ -14,8 +14,7 @@ public class IslandName : MonoBehaviour
         GULL_SHORES = 4,
         WINDY_SHORES = 5,
     }
-    private IslandTheme islandType = IslandTheme.RIDGE_PEAK_ISLAND;
-
+    [SerializeField] private IslandTheme islandType = IslandTheme.RIDGE_PEAK_ISLAND;
     [SerializeField] private string islandName = "";
     [SerializeField] private GameObject IslandNameUI = null;
 
