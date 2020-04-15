@@ -165,6 +165,7 @@ public class DashMeter : MonoBehaviour
 
 	public void AddDashes(int amount)
 	{
+		// Show the dash meter and start a timer to close it if it wasn't showing originally
 		if (!IsShowing)
 		{
 			Show();
