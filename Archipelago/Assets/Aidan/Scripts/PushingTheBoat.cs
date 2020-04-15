@@ -8,12 +8,12 @@ public class PushingTheBoat : MonoBehaviour
 	private GameObject playerObject = null;
 	private Vector3 dirFromPlayerToBoat = Vector3.zero;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnCollisionEnter(Collision collision)
 	{
 		// Set the player if they have collided
-		if (other.CompareTag("Player"))
+		if (collision.gameObject.CompareTag("Player"))
 		{
-			playerObject = other.gameObject;
+			playerObject = collision.gameObject;
 			dirFromPlayerToBoat = StaticValueHolder.BoatObject.transform.position - playerObject.transform.position;
 			StaticValueHolder.BoatObject.GetComponent<Rigidbody>().AddForce(dirFromPlayerToBoat * pushForce);
 		}

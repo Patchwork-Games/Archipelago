@@ -178,6 +178,8 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeTrack(MusicTrack track)
     {
+        Debug.Log("Changing track to: " + track);
+
         // Set the last track to be the current track the change the current track to the new one
         lastTrack = currentTrack;
         currentTrack = track;

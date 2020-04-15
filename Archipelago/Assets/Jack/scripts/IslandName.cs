@@ -26,6 +26,8 @@ public class IslandName : MonoBehaviour
             IslandNameUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = islandName;
             IslandNameUI.SetActive(true);
 
+            Debug.Log("Entering Island");
+
             // Change music track
             switch (islandType)
             {
@@ -59,6 +61,8 @@ public class IslandName : MonoBehaviour
         // If the player is in the boat and they are leaving the island
         if (other.CompareTag("Boat") && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
         {
+            Debug.Log("Leaving Island");
+
             // Pick one of the sailing tracks to play
             int randomNum = Random.Range(0, 3);
             switch (randomNum)
