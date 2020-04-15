@@ -7,8 +7,10 @@ using UnityEngine.Rendering.PostProcessing;
 public static class StaticValueHolder
 {
     private static int collectable0, collectable1, collectable2;
+    private static bool goldBanana;
 
 
+    //fish
     public static int Collectable0
     {
         get
@@ -21,6 +23,7 @@ public static class StaticValueHolder
         }
     }
 
+    //butterflies
     public static int Collectable1
     {
         get
@@ -33,6 +36,7 @@ public static class StaticValueHolder
         }
     }
 
+    //sticks
     public static int Collectable2
     {
         get
@@ -45,7 +49,20 @@ public static class StaticValueHolder
         }
     }
 
-	public static GameObject BoatObject
+    //used to show gold banana on UI if player has picked it up
+    public static bool GoldBanana
+    {
+        get
+        {
+            return goldBanana;
+        }
+        set
+        {
+            goldBanana = value;
+        }
+    }
+
+    public static GameObject BoatObject
 	{
 		get;
 		set;

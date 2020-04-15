@@ -82,7 +82,9 @@ public class Collectable : MonoBehaviour
                         }
                     case CollectableTypes.BANANA:
                         {
-                            FindObjectOfType<DialogueManager>().GetComponent<ConversationManager>().ChangeToConversation(3, 2);
+                            //change banana man conversation to receive golden banana and show banana on UI
+                            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(3, 2);
+                            StaticValueHolder.GoldBanana = true;
                             break;
                         }
                     case CollectableTypes.DASH:
@@ -127,6 +129,7 @@ public class Collectable : MonoBehaviour
 
     void HideButton()
     {
+        //hide the interact button
         if (collectableType != CollectableTypes.DASH)
         {
             hiddenPickupButton = true;
