@@ -29,6 +29,7 @@ public class DashMeter : MonoBehaviour
 	private Transform dashesTransform = null;
 	private Animator animator = null;
 	public bool IsShowing { get; set; } = false;
+	private float elapsedShowTime = 0f;
 
 	// Public variables
 	public bool DashBarIsEmpty { get; private set; } = false;
@@ -142,10 +143,34 @@ public class DashMeter : MonoBehaviour
 		{
 			DashBarIsEmpty = true;
 		}
+
+		// Hide the dash meter after a while if the player is not on the boat
+		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
+		{
+			if (elapsedShowTime > 0)
+			{
+				elapsedShowTime -= Time.deltaTime;
+				if (elapsedShowTime <= 0)
+				{
+					elapsedShowTime = 0;
+					Hide();
+				}
+			}
+		}
+		else
+		{
+			elapsedShowTime = 0f;
+		}
 	}
 
 	public void AddDashes(int amount)
 	{
+		if (!IsShowing)
+		{
+			Show();
+			elapsedShowTime = 3f;
+		}
+
 		// Increase the max number of dashes
 		maxNumOfDashes += amount;
 
