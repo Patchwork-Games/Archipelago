@@ -73,8 +73,33 @@ public class DialogueManager : MonoBehaviour
 
     public int[] NPCs;
 
-    // Start is called before the first frame update
-    void Start()
+    // Audio
+    [SerializeField] private AudioClip[] talkingNoises = null;
+    private AudioSource talkingNoise = null;
+    private AudioSource nextSentanceNoise = null;
+
+    private void Awake()
+    {
+        #region Audio
+
+        // Get the audio object transform
+        Transform audioTransform = transform.Find("Audio");
+        if (audioTransform == null)
+        {
+            Debug.Log("Missing Audio child on object: " + gameObject);
+        }
+        else
+        {
+            // Get the talking noise
+            talkingNoise = audioTransform.Find("TalkingNoise").GetComponent<AudioSource>();
+        }
+
+        #endregion
+
+    }
+
+	// Start is called before the first frame update
+	void Start()
     {
         names = new Queue<string>();
         sentences = new Queue<string>();

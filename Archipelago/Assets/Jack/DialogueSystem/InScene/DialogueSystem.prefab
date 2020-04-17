@@ -199,8 +199,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Words
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cebd76b445170164c96dbc67bccd0a69, type: 2}
+  m_sharedMaterial: {fileID: -1290304112156087763, guid: cebd76b445170164c96dbc67bccd0a69,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -448,8 +449,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cebd76b445170164c96dbc67bccd0a69, type: 2}
+  m_sharedMaterial: {fileID: -1290304112156087763, guid: cebd76b445170164c96dbc67bccd0a69,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -600,6 +602,7 @@ MonoBehaviour:
   packageBox: {fileID: 0}
   packageBox2: {fileID: 0}
   NPCs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  talkingNoises: []
 --- !u!114 &1238567109345202921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,7 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5329339922656263081}
   m_Layer: 11
-  m_Name: LetterNoise
+  m_Name: TalkingNoise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

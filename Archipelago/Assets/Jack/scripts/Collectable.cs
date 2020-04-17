@@ -44,7 +44,7 @@ public class Collectable : MonoBehaviour
             collectNoise = audioTransform.Find("CollectNoise").GetComponent<AudioSource>();
             if (collectNoise == null)
             {
-                Debug.Log("Missing child CollectNoise on object: " + audioTransform.gameObject);
+                Debug.Log("Missing child CollectNoise on object: " + audioTransform.gameObject + gameObject);
             }
         }
 
