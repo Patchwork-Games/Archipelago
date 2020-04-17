@@ -25,7 +25,33 @@ public class Collectable : MonoBehaviour
     private Canvas pickupButtonGuide = null;
     private bool hiddenPickupButton = false;
 
-    private void Start()
+    // Audio
+    private AudioSource collectNoise = null;
+
+    private void Awake()
+    {
+        #region Audio
+
+        // Get the audio transform
+        Transform audioTransform = transform.Find("Audio");
+        if (audioTransform == null)
+        {
+            Debug.Log("Missing Audio child on object: " + audioTransform.gameObject);
+        }
+        else
+        {
+            // Get the collect noise
+            collectNoise = audioTransform.Find("CollectNoise").GetComponent<AudioSource>();
+            if (collectNoise == null)
+            {
+                Debug.Log("Missing child CollectNoise on object: " + audioTransform.gameObject);
+            }
+        }
+
+		#endregion
+	}
+
+	private void Start()
     {
         // Get the sprites for the collectables
         if (collectableType != CollectableTypes.DASH)
@@ -64,6 +90,7 @@ public class Collectable : MonoBehaviour
                             StaticValueHolder.Collectable0 += 1;
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = fishSprite;
+                            collectNoise.Play();
                             break;
                         }
                     case CollectableTypes.BUTTERFLY:
@@ -71,6 +98,7 @@ public class Collectable : MonoBehaviour
                             StaticValueHolder.Collectable1 += 1;
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = butterflySprite;
+                            collectNoise.Play();
                             break;
                         }
                     case CollectableTypes.STICK:
@@ -78,6 +106,7 @@ public class Collectable : MonoBehaviour
                             StaticValueHolder.Collectable2 += 1;
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = stickSprite;
+                            collectNoise.Play();
                             break;
                         }
                     case CollectableTypes.BANANA:
@@ -85,6 +114,7 @@ public class Collectable : MonoBehaviour
                             //change banana man conversation to receive golden banana and show banana on UI
                             StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(3, 2);
                             StaticValueHolder.GoldBanana = true;
+                            collectNoise.Play();
                             break;
                         }
                     case CollectableTypes.DASH:
@@ -121,6 +151,7 @@ public class Collectable : MonoBehaviour
             {
 				StaticValueHolder.DashMeterObject.AddDashes(1);
                 Collected = true;
+                collectNoise.Play();
             }
         }
         

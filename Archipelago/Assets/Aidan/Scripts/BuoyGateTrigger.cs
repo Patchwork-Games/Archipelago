@@ -38,7 +38,7 @@ public class BuoyGateTrigger : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Linecast(firstBuoy.transform.position, secondBuoy.transform.position, out hit, layerMask))
 			{
-				if (hit.transform.CompareTag("Boat"))
+				//if (hit.transform.CompareTag("Boat"))
 				{
 					Debug.Log("Boat has crossed the line!");
 					boatHasCrossedLine = true;
