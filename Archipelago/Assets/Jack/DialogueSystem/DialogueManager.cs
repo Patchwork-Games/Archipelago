@@ -74,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     public int[] NPCs;
 
     // Audio
+    [Range(0,1)][SerializeField] private float randomTalkingPitch = 0f;
     [SerializeField] private AudioClip[] talkingNoises = null;
     private AudioSource talkingNoise = null;
     private AudioSource nextSentanceNoise = null;
@@ -92,6 +93,17 @@ public class DialogueManager : MonoBehaviour
         {
             // Get the talking noise
             talkingNoise = audioTransform.Find("TalkingNoise").GetComponent<AudioSource>();
+            if (talkingNoise == null)
+            {
+                Debug.Log("Missing TalkingNoise child on object: " + audioTransform.gameObject + gameObject);
+            }
+
+            // Get the next sentance noise
+            nextSentanceNoise = audioTransform.Find("NextSentanceNoise").GetComponent<AudioSource>();
+            if (nextSentanceNoise == null)
+            {
+                Debug.Log("Missing NextSentanceNoise child on object: " + audioTransform.gameObject + gameObject);
+            }
         }
 
         #endregion
@@ -209,6 +221,22 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in sentence.ToCharArray())
         {
+            // Only play a sound if the letter is a character from the alphabet or a number
+            if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90) || (letter >= 48 && letter <= 57))
+            {
+                // Check that the number isn't outwith the bounds of the array
+                if (thisNPC < talkingNoises.Length)
+                {
+                    talkingNoise.clip = talkingNoises[thisNPC];
+                    talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
+                    talkingNoise.Play();
+                }
+                else
+                {
+                    Debug.Log("Couldn't play sound as the index was out of bounds!");
+                }
+            }
+
             //stop special effects from showing up, the ones built into tmpro
             if (letter == '<')
             {

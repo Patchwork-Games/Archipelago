@@ -38,18 +38,15 @@ public class BuoyGateTrigger : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Linecast(firstBuoy.transform.position, secondBuoy.transform.position, out hit, layerMask))
 			{
-				//if (hit.transform.CompareTag("Boat"))
-				{
-					Debug.Log("Boat has crossed the line!");
-					boatHasCrossedLine = true;
-					elapsedResetTime = resetTime;
-					StaticValueHolder.BoatObject.GetComponent<BoatController>().AddImpulse(dashForce);
+				Debug.Log("Boat has crossed the line!");
+				boatHasCrossedLine = true;
+				elapsedResetTime = resetTime;
+				StaticValueHolder.BoatObject.GetComponent<BoatController>().AddImpulse(dashForce);
 
-					if (!CourseHasStarted)
-					{
-						// Play sound
-						activateNoise.Play();
-					}
+				if (!CourseHasStarted)
+				{
+					// Play sound
+					activateNoise.Play();
 				}
 			}
 		}
