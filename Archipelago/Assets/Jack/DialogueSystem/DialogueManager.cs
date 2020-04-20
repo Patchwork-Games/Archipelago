@@ -76,10 +76,8 @@ public class DialogueManager : MonoBehaviour
 
     // Audio
     [Range(0,1)][SerializeField] private float randomTalkingPitch = 0f;
-    [SerializeField] private AudioClip[] talkingNoises = null;
     private AudioSource talkingNoise = null;
     private AudioSource nextSentanceNoise = null;
-    private AudioClip soundToPlay = null;
 
     private void Awake()
     {
@@ -185,9 +183,6 @@ public class DialogueManager : MonoBehaviour
                 tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
                 if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
 
-                // Set the sound to play
-                soundToPlay = talkingNoises[i];
-
                 //move box above talking npc
                 dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0, textHeight, 0);
                              
@@ -227,7 +222,6 @@ public class DialogueManager : MonoBehaviour
             // Only play a sound if the letter is a character from the alphabet or a number
             if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90) || (letter >= 48 && letter <= 57))
             {
-                talkingNoise.clip = soundToPlay;
                 talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
                 talkingNoise.Play();
             }
