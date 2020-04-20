@@ -62,31 +62,31 @@ public class GameManager : MonoBehaviour
 				}
 			}
 			else
-				Debug.Log("PlayerMovement missing from game manager script on object: " + this.gameObject);
+				Debug.LogError("PlayerMovement missing from game manager script on object: " + this.gameObject);
 
 			// Wind manager
 			if (windManager != null)
 				StaticValueHolder.WindManagerObject = windManager;
 			else
-				Debug.Log("WindManager missing from game manager script on object: " + this.gameObject);
+				Debug.LogError("WindManager missing from game manager script on object: " + this.gameObject);
 
 			// CollectableUIUpdate
 			if (collectableUIUpdate != null)
 				StaticValueHolder.CollectableUIUpdateObject = collectableUIUpdate;
 			else
-				Debug.Log("CollectableUIUpdate missing from game manager script on object: " + this.gameObject);
+				Debug.LogError("CollectableUIUpdate missing from game manager script on object: " + this.gameObject);
 
 			// PostProcessVolume
 			if (postProcessVolumeObject != null)
 				StaticValueHolder.PostProcessVolumeObject = postProcessVolumeObject;
 			else
-				Debug.Log("PostProcessVolumeObject missing from game manager script on object: " + this.gameObject);
+				Debug.LogError("PostProcessVolumeObject missing from game manager script on object: " + this.gameObject);
 
 			// Dialogue manager
 			if (dialogueManagerObject != null)
 				StaticValueHolder.DialogueManagerObject = dialogueManagerObject;
 			else
-				Debug.Log("DialogueManagerObject missing from game manager script on object: " + this.gameObject);
+				Debug.LogError("DialogueManagerObject missing from game manager script on object: " + this.gameObject);
 
 		#endregion
 

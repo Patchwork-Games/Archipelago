@@ -306,6 +306,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     packageBox.SetActive(false);
                     packageBox2.SetActive(true);
+                    GetComponent<ConversationManager>().ChangeToConversation(1, 6);
                     dontAddThisFrame = true;
                     tempText = "";
                 }
@@ -318,7 +319,16 @@ public class DialogueManager : MonoBehaviour
                     tempText = "";
                 }
 
+                if (tempText == "fadeOut")
+                {
+                    //fade out scene at end
 
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
+
+
+                
                 //if (tempText == "laugh")
                 //{
                 //    if (anim) anim.SetTrigger("Laugh");
