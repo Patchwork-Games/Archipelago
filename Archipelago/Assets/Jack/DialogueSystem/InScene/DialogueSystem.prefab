@@ -604,9 +604,6 @@ MonoBehaviour:
   fadeScreen: {fileID: 0}
   NPCs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   randomTalkingPitch: 0.2
-  talkingNoises:
-  - {fileID: 8300000, guid: 6b6a84fbb23557a48a635adf6ded0195, type: 3}
-  - {fileID: 8300000, guid: 90080c2de95de214d87efa20a3cffc31, type: 3}
 --- !u!114 &1238567109345202921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1090,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7173437429189151096, guid: b8e82a5f43ed3a54084acad272c884fa,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 90080c2de95de214d87efa20a3cffc31, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
