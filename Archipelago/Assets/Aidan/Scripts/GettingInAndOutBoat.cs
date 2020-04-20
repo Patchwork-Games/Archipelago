@@ -53,7 +53,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private void GetInOrOutOfBoat()
 	{
 		// If the boat hasn't entered shallow water
-		if (!boatHasEnteredShallowWater)
+		if (!boatHasEnteredShallowWater || PauseMenu.GameIsPaused)
 			return;
 
 		// Change what happens depending on the state
@@ -73,7 +73,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private void GetInBoat()
 	{
 		// Return from the function if the player is already in the boat or if the player ins't inside the trigger box
-		if (!playerInsideTriggerBox || playerInBoat)
+		if (!playerInsideTriggerBox || playerInBoat || !GameManager.SailingEnabled)
 			return;
 
 		// Show the dash meter
