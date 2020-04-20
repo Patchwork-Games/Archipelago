@@ -356,7 +356,7 @@ public class BoatController : MonoBehaviour
 				break;
 			case BoatState.IN_SHALLOW_WATER:
 				Steer();
-				Accelerate(motorForce/2);
+				Accelerate(motorForce);
 				CapVelocity(maxSpeedInOcean);
 				if (rb.velocity.magnitude > maxSpeedInShallows)
 				{
