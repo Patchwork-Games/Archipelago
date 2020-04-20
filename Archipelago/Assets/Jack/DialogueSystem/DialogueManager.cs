@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour
     //story packages
     [SerializeField] private GameObject packageBox = null;
     [SerializeField] private GameObject packageBox2 = null;
+    [SerializeField] Image fadeScreen = null;
 
 
     public int[] NPCs;
@@ -322,6 +323,7 @@ public class DialogueManager : MonoBehaviour
                 if (tempText == "fadeOut")
                 {
                     //fade out scene at end
+                    StartCoroutine(FadeOut());
 
                     dontAddThisFrame = true;
                     tempText = "";
@@ -428,4 +430,19 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    //fade out scene at end
+    IEnumerator FadeOut()
+    {
+        //get the first colour of the image and then decrease its alpha by 0.1 every .1 seconds
+        var tempColor = fadeScreen.GetComponent<Image>().color;
+        while (tempColor.a > 0)
+        {
+            tempColor.a += Time.deltaTime;
+            fadeScreen.GetComponent<Image>().color = tempColor;
+            yield return null;
+        }
+    }
+
+
 }

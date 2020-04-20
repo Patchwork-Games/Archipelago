@@ -7,7 +7,6 @@ public class SwitchInputGuides : MonoBehaviour
 {
 
     Vector2 camMoveDirection = Vector2.zero;
-    float timer = 0.0f;
     [SerializeField] Sprite controllerImage = null;
     [SerializeField] Sprite keyboardImage = null;
 

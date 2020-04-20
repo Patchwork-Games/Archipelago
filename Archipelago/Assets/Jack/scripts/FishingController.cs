@@ -14,8 +14,6 @@ public class FishingController : MonoBehaviour
     private bool caughtFish = false;
     private bool caughtButterfly = false;
 
-    float castTimeout = 0.0f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +26,7 @@ public class FishingController : MonoBehaviour
     void Update()
     {
         //check if player can swing net and is trying to
-        if (heldB && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
+        if (heldB && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING && transform.position.y > StaticValueHolder.PlayerMovementScript.waterHeight)
         {
             heldB = false;
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.CASTING;
@@ -38,7 +36,7 @@ public class FishingController : MonoBehaviour
 
 
         //enable/disable net, set in player movement
-        if (canSeeNet)
+        if (canSeeNet && transform.position.y > StaticValueHolder.PlayerMovementScript.waterHeight)
         {
             net.SetActive(true);
         }
@@ -48,15 +46,7 @@ public class FishingController : MonoBehaviour
         }
 
 
-
-
-
-
-
-
-
-
-
+        //Story triggers ================================================================================================================================================
 
         //story section 1, catch 5 fish
         if (StaticValueHolder.Collectable0 >= 5 && !caughtFish)
@@ -73,6 +63,7 @@ public class FishingController : MonoBehaviour
             StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(2, 2);
         }
 
+        //Story triggers end ============================================================================================================================================
 
     }
 

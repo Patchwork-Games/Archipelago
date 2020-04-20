@@ -5,7 +5,7 @@ using UnityEngine;
 public class ButterflyBoidManager : MonoBehaviour
 {
     [SerializeField] private GameObject goalObj = null;
-    [SerializeField] private GameObject butteflyPrefab;
+    [SerializeField] private GameObject butteflyPrefab = null;
     public int tankWidth = 10;
     public int tankHeight = 6;
     static int numButterflies = 30;

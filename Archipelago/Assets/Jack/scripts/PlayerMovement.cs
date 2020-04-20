@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public CharacterController controller = null;
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 16f;
-    [SerializeField] private float waterHeight = 33.0f;
+    public float waterHeight = 33.0f;
     float moveDirectionUD = 0.0f;
     float moveDirectionLR = 0.0f;
     Vector2 moveDirection = Vector2.zero;

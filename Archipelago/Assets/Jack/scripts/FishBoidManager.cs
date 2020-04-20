@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishBoidManager : MonoBehaviour
 {
     [SerializeField] private GameObject goalObj = null;
-    [SerializeField] private GameObject fishPrefab;
+    [SerializeField] private GameObject fishPrefab = null;
     public int tankWidth = 10;
     public int tankHeight = 2;
     static int numFish = 30;

@@ -9,9 +9,7 @@ public class PickupUI : MonoBehaviour
 
     Vector3 startPos = Vector3.zero;
     float mover = 0.0f;
-    bool fading = false;
-    Sprite sprite = null;
-   
+    bool fading = false;   
 
     private void Awake()
     {
@@ -19,8 +17,6 @@ public class PickupUI : MonoBehaviour
         mover = 0.0f;
         fading = false;
     }
-
-
 
 
     // Update is called once per frame
