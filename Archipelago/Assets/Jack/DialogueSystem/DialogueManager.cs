@@ -79,6 +79,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip[] talkingNoises = null;
     private AudioSource talkingNoise = null;
     private AudioSource nextSentanceNoise = null;
+    private AudioClip soundToPlay = null;
 
     private void Awake()
     {
@@ -184,7 +185,8 @@ public class DialogueManager : MonoBehaviour
                 tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
                 if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
 
-
+                // Set the sound to play
+                soundToPlay = talkingNoises[i];
 
                 //move box above talking npc
                 dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0, textHeight, 0);
@@ -225,17 +227,9 @@ public class DialogueManager : MonoBehaviour
             // Only play a sound if the letter is a character from the alphabet or a number
             if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90) || (letter >= 48 && letter <= 57))
             {
-                // Check that the number isn't outwith the bounds of the array
-                if (thisNPC < talkingNoises.Length)
-                {
-                    talkingNoise.clip = talkingNoises[thisNPC];
-                    talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
-                    talkingNoise.Play();
-                }
-                else
-                {
-                    Debug.Log("Couldn't play sound as the index was out of bounds!");
-                }
+                talkingNoise.clip = soundToPlay;
+                talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
+                talkingNoise.Play();
             }
 
             //stop special effects from showing up, the ones built into tmpro
