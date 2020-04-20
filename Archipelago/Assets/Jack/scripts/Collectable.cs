@@ -25,11 +25,30 @@ public class Collectable : MonoBehaviour
     private Canvas pickupButtonGuide = null;
     private bool hiddenPickupButton = false;
 
+    // Disabling object
+    private MeshRenderer meshRenderer = null;
+    private MeshCollider meshCollider = null;
+
     // Audio
     private AudioSource collectNoise = null;
 
     private void Awake()
     {
+        // Get the mesh renderer
+        meshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            Debug.Log("Missing MeshRenderer component on object: " + transform.Find("Graphics").gameObject);
+        }
+
+        // Get the mesh collider
+        meshCollider = transform.Find("Graphics").GetComponent<MeshCollider>();
+        if (meshCollider == null)
+        {
+            Debug.Log("Missing MeshCollider component on object: " + transform.Find("Graphics").gameObject);
+        }
+
+
         #region Audio
 
         // Get the audio transform
@@ -130,7 +149,16 @@ public class Collectable : MonoBehaviour
                         }
                 }
                 HideButton();
-                Destroy(gameObject);
+
+                // Disable the mesh collider and the mesh renderer components
+                if (meshCollider != null)
+                {
+                    meshCollider.enabled = false;
+                }
+                if (meshRenderer != null)
+                {
+                    meshRenderer.enabled = false;
+                }
             }
         }
         else if (!hiddenPickupButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
