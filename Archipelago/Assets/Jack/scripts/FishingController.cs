@@ -70,7 +70,7 @@ public class FishingController : MonoBehaviour
         if (StaticValueHolder.Collectable1 >= 5 && !caughtButterfly)
         {
             caughtFish = true;
-            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(2, 6);
+            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(2, 2);
         }
 
 

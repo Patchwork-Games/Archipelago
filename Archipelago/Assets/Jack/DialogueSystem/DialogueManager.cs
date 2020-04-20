@@ -168,7 +168,7 @@ public class DialogueManager : MonoBehaviour
 
         //set name
 
-        name = names.Dequeue();
+        if (names.Count > 0) name = names.Dequeue();
 
         nameText.text = name;
 
@@ -191,7 +191,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
         //get sentences
-        sentence = sentences.Dequeue();
+        if(sentences.Count > 0) sentence = sentences.Dequeue();
 
         //type out new sentence letter by letter
         StartCoroutine(TypeSentence(sentence));
@@ -306,7 +306,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     packageBox.SetActive(false);
                     packageBox2.SetActive(true);
-                    GetComponent<ConversationManager>().ChangeToConversation(1, 6);
+                    GetComponent<ConversationManager>().ChangeToConversation(1, 5);
                     dontAddThisFrame = true;
                     tempText = "";
                 }
