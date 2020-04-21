@@ -76,6 +76,10 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInsideTriggerBox || playerInBoat || !GameManager.SailingEnabled)
 			return;
 
+		// Change the ambient track to ocean
+		FootprintPlacer.groundType = FootprintPlacer.GroundType.SAND;
+		MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.OCEAN);
+
 		// Show the dash meter
         StaticValueHolder.DashMeterObject.Show();
 
@@ -100,7 +104,10 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInBoat)
 			return;
 
-        StaticValueHolder.DashMeterObject.Hide();
+		// Change the ambient track to beach
+		MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.BEACH);
+
+		StaticValueHolder.DashMeterObject.Hide();
         StaticValueHolder.PlayerMovementScript.interact = false;
 
 		// TO DO: ADD ANIMATION 

@@ -119,7 +119,6 @@ public class BoatMastController : MonoBehaviour
 	private void PlaySailCreakSound()
 	{
 		// Play sail creak noise
-		Debug.Log("Creak!");
 		sailCreakNoise.pitch = 1 + Random.Range(-randomSailCreakNoisePitch / 2f, randomSailCreakNoisePitch / 2f);
 		sailCreakNoise.Play();
 	}

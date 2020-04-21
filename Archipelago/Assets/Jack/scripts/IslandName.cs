@@ -30,22 +30,22 @@ public class IslandName : MonoBehaviour
             switch (islandType)
             {
                 case IslandTheme.RIDGE_PEAK_ISLAND:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.RIDGE_PEAK_ISLAND);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.RIDGE_PEAK_ISLAND);
                     break;
                 case IslandTheme.BUTTERFLY_ISLAND:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.BUTTERFLY_ISLAND);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.BUTTERFLY_ISLAND);
                     break;
                 case IslandTheme.BANANA_COVE:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.BANANA_COVE);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.BANANA_COVE);
                     break;
                 case IslandTheme.FLIPPER_ISLE:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.FLIPPER_ISLE);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.FLIPPER_ISLE);
                     break;
                 case IslandTheme.GULL_SHORES:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.GULL_SHORES);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.GULL_SHORES);
                     break;
                 case IslandTheme.WINDY_SHORES:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.WINDY_SHORES);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.WINDY_SHORES);
                     break;
                 default:
                     break;
@@ -64,13 +64,13 @@ public class IslandName : MonoBehaviour
             switch (randomNum)
             {
                 case 0:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.SAILING_1);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.SAILING_1);
                     break;
                 case 1:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.SAILING_2);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.SAILING_2);
                     break;
                 case 2:
-                    MusicManager.Instance.ChangeTrack(MusicManager.MusicTrack.SAILING_3);
+                    MusicAndAmbientManager.Instance.ChangeMusicTrack(MusicAndAmbientManager.MusicTrack.SAILING_3);
                     break;
                 default:
                     break;

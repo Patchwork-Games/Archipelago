@@ -11,6 +11,13 @@ public class FootprintPlacer : MonoBehaviour
     [SerializeField] private GameObject footPrintSpawnerPrefab = null;
     [Range(0.0f, 1f)] [SerializeField] private float randomFootStepPitch = 0f;
 
+    public enum GroundType
+    {
+        SAND = 0,
+        GRASS = 1
+    }
+    public static GroundType groundType = GroundType.SAND;
+
     // Audio
     private AudioSource sandStepNoise = null;
     private AudioSource grassStepNoise = null;
@@ -59,10 +66,18 @@ public class FootprintPlacer : MonoBehaviour
             // Play landing sound
             switch (hit.transform.gameObject.layer)
             {
-                case 16: //normal ground
+                case 16: //Sand
                     {
+
                         if (transform.position.y < sandHeight)
                         {
+                            // Change to beach ambient track
+                            if (groundType != GroundType.SAND)
+                            {
+                                groundType = GroundType.SAND;
+                                MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.BEACH);
+                            }
+
                             // Play sand step noise
                             sandStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
                             sandStepNoise.Play();
@@ -77,6 +92,13 @@ public class FootprintPlacer : MonoBehaviour
                         }
                         else
                         {
+                            // Change to the forest track
+                            if (groundType != GroundType.GRASS)
+                            {
+                                groundType = GroundType.GRASS;
+                                MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.FOREST);
+                            }
+
                             // Play grass step noise
                             grassStepNoise.pitch = 1 + Random.Range(-randomFootStepPitch / 2f, randomFootStepPitch / 2f);
                             grassStepNoise.Play();
