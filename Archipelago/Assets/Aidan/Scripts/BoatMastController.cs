@@ -137,22 +137,26 @@ public class BoatMastController : MonoBehaviour
 				{
 					// Apply all patch mat
 					sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[0];
+					sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[0];
 				}
 				else
 				{
 					// Apply Fish and Butterfly mat
 					sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[1];
+					sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[1];
 				}
 			}
 			else if (GameManager.GotBananaPatch)
 			{
 				// Apply Fish and Banana mat
 				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[2];
+				sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[2];
 			}
 			else
 			{
 				// Apply Fish mat
 				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[3];
+				sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[3];
 			}
 		}
 		else if (GameManager.GotButterflyPatch)
@@ -161,17 +165,20 @@ public class BoatMastController : MonoBehaviour
 			{
 				// Apply Butterfly and Banana mat
 				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[4];
+				sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[4];
 			}
 			else
 			{
 				// Apply Butterfly mat
 				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[5];
+				sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[5];
 			}
 		}
 		else if (GameManager.GotBananaPatch)
 		{
 			// Apply Banana mat
 			sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[6];
+			sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[6];
 		}
 	}
 }
