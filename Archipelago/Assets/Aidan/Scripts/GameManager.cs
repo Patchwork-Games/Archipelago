@@ -17,7 +17,12 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private PostProcessVolume postProcessVolumeObject = null;
 	[SerializeField] private DialogueManager dialogueManagerObject = null;
 	private PlayerMovement playerMovement = null;
+
+	// Events
 	public static bool SailingEnabled { get; set; } = false;
+	public static bool GotFishPatch { get; set; } = false;
+	public static bool GotButterflyPatch { get; set; } = false;
+	public static bool GotBananaPatch { get; set; } = false;
 
 	private void Awake()
 	{

@@ -308,6 +308,9 @@ public class DialogueManager : MonoBehaviour
                     GetComponent<ConversationManager>().ChangeToConversation(1, 5);
                     dontAddThisFrame = true;
                     tempText = "";
+
+                    // Trigger event
+                    GameManager.GotFishPatch = true;
                 }
 
 
@@ -316,6 +319,9 @@ public class DialogueManager : MonoBehaviour
                     if (StaticValueHolder.Collectable1 >= 5) StaticValueHolder.Collectable1 -= 5;
                     dontAddThisFrame = true;
                     tempText = "";
+
+                    // Trigger event
+                    GameManager.GotButterflyPatch = true;
                 }
 
                 if (tempText == "fadeOut")
