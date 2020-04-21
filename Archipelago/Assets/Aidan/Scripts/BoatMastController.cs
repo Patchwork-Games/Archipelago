@@ -70,7 +70,7 @@ public class BoatMastController : MonoBehaviour
 		{
 			if (resultOfDotProd2 >= 0)
 			{
-				newSailStretch = -maxSailStretch/2;
+				newSailStretch = -maxSailStretch / 2;
 				SetRotation(Quaternion.Euler(0, -45, 0));
 			}
 			else
@@ -80,24 +80,32 @@ public class BoatMastController : MonoBehaviour
 			}
 		}
 
-		// If the sail has changed position, then play the sail creak sound
-		if (sailHasChangedPos)
-		{
-			PlaySailCreakSound();
-		}
-
-
 		// Rotate towards the new rotation
 		lerpTime += Time.deltaTime / rotationTime;
 
 		if (lerpTime <= 1)
 		{
 			transform.localRotation = Quaternion.Lerp(startingRotation, newRotation, lerpTime);
-			currentStretch = Mathf.Lerp(startingStretch, newSailStretch,lerpTime);
+			currentStretch = Mathf.Lerp(startingStretch, newSailStretch, lerpTime);
 		}
 
 		sailClothLeft.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
 		sailClothRight.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
+
+		// Check if the new rotation has been set to an important angle
+		if (Vector3.Dot(newRotation * transform.forward, transform.rotation * transform.forward) <= 0)
+		{
+			if (!sailHasChangedPos)
+			{
+				sailHasChangedPos = true;
+				PlaySailCreakSound();
+			}
+		}
+		else if (sailHasChangedPos)
+		{
+			sailHasChangedPos = false;
+		}
+		
 	}
 
 	private void SetRotation(Quaternion rotation)
@@ -106,13 +114,12 @@ public class BoatMastController : MonoBehaviour
 		startingStretch = currentStretch;
 		newRotation = rotation;
 		lerpTime = 0f;
-
-		//PlaySailCreakSound();
 	}
 
 	private void PlaySailCreakSound()
 	{
 		// Play sail creak noise
+		Debug.Log("Creak!");
 		sailCreakNoise.pitch = 1 + Random.Range(-randomSailCreakNoisePitch / 2f, randomSailCreakNoisePitch / 2f);
 		sailCreakNoise.Play();
 	}
