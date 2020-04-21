@@ -33,6 +33,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] private float maxSpeedInOcean = 30f;
 	[SerializeField] private float maxSpeedInShallows = 5f;
 	[SerializeField] private float quickTurnForce = 50f;
+	[SerializeField] public BoatMastController MastController = null;
 	
 	private Vector2 movementInput = Vector2.zero;
 	private float steeringAngle = 0f;

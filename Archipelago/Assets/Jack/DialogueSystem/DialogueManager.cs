@@ -79,6 +79,8 @@ public class DialogueManager : MonoBehaviour
     private AudioSource talkingNoise = null;
     private AudioSource nextSentanceNoise = null;
 
+    private BoatMastController mastController = null;
+
     private void Awake()
     {
         #region Audio
@@ -123,6 +125,13 @@ public class DialogueManager : MonoBehaviour
         specialTextChecker = false;
         animator.SetBool("IsOpen", false);
         doEndOnce = false;
+
+        // Get the mast controller
+        mastController = StaticValueHolder.BoatObject.GetComponent<BoatController>().MastController;
+        if (mastController == null)
+        {
+            Debug.Log("Missing BoatMastController component in script: " + StaticValueHolder.BoatObject.GetComponent<BoatController>());
+        }
     }
 
     //initial beginning of dialogue, called by the trigger script
@@ -311,6 +320,7 @@ public class DialogueManager : MonoBehaviour
 
                     // Trigger event
                     GameManager.GotFishPatch = true;
+                    mastController.UpdateSailMaterial();
                 }
 
 
@@ -322,6 +332,7 @@ public class DialogueManager : MonoBehaviour
 
                     // Trigger event
                     GameManager.GotButterflyPatch = true;
+                    mastController.UpdateSailMaterial();
                 }
 
                 if (tempText == "removeGoldBanana")
@@ -331,7 +342,8 @@ public class DialogueManager : MonoBehaviour
                     tempText = "";
 
                     // Trigger event
-                    GameManager.GotButterflyPatch = true;
+                    GameManager.GotBananaPatch = true;
+                    mastController.UpdateSailMaterial();
                 }
 
 

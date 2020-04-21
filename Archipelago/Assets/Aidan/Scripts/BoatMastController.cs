@@ -9,6 +9,10 @@ public class BoatMastController : MonoBehaviour
 	[SerializeField] private GameObject sailClothLeft = null;
 	[SerializeField] private GameObject sailClothRight = null;
 	[SerializeField] private float maxSailStretch = 20;
+
+	// Sail materials
+	[SerializeField] private Material[] sailMaterials = null;
+
 	private float lerpTime = 0f;
 	private Quaternion newRotation = Quaternion.identity;
 	private Quaternion startingRotation = Quaternion.identity;
@@ -105,7 +109,6 @@ public class BoatMastController : MonoBehaviour
 		{
 			sailHasChangedPos = false;
 		}
-		
 	}
 
 	private void SetRotation(Quaternion rotation)
@@ -121,5 +124,54 @@ public class BoatMastController : MonoBehaviour
 		// Play sail creak noise
 		sailCreakNoise.pitch = 1 + Random.Range(-randomSailCreakNoisePitch / 2f, randomSailCreakNoisePitch / 2f);
 		sailCreakNoise.Play();
+	}
+
+	public void UpdateSailMaterial()
+	{
+		// Change the sail mat depending on the current events that have taken place
+		if (GameManager.GotFishPatch)
+		{
+			if (GameManager.GotButterflyPatch)
+			{
+				if (GameManager.GotBananaPatch)
+				{
+					// Apply all patch mat
+					sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[0];
+				}
+				else
+				{
+					// Apply Fish and Butterfly mat
+					sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[1];
+				}
+			}
+			else if (GameManager.GotBananaPatch)
+			{
+				// Apply Fish and Banana mat
+				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[2];
+			}
+			else
+			{
+				// Apply Fish mat
+				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[3];
+			}
+		}
+		else if (GameManager.GotButterflyPatch)
+		{
+			if (GameManager.GotBananaPatch)
+			{
+				// Apply Butterfly and Banana mat
+				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[4];
+			}
+			else
+			{
+				// Apply Butterfly mat
+				sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[5];
+			}
+		}
+		else if (GameManager.GotBananaPatch)
+		{
+			// Apply Banana mat
+			sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[6];
+		}
 	}
 }

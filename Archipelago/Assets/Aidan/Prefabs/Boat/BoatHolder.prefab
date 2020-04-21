@@ -10121,6 +10121,14 @@ MonoBehaviour:
   sailClothLeft: {fileID: 2062131684500347180}
   sailClothRight: {fileID: 3018459778376744386}
   maxSailStretch: 20
+  sailMaterials:
+  - {fileID: 2100000, guid: 807c568114d0e834b859cfda8747c79a, type: 2}
+  - {fileID: 2100000, guid: ca27b0e30958608479ff105d47e11930, type: 2}
+  - {fileID: 2100000, guid: ccf1efcc9bc14794bba63b3c4f36aef4, type: 2}
+  - {fileID: 2100000, guid: 44cf7834e6e25b948b459009ba490630, type: 2}
+  - {fileID: 2100000, guid: f679613d2b3647d45acfd207525dc094, type: 2}
+  - {fileID: 2100000, guid: 69e7a78bfdc857142b2292e93fa8c377, type: 2}
+  - {fileID: 2100000, guid: cfad2d048b611f342ba3aa07878c3907, type: 2}
   randomSailCreakNoisePitch: 0.2
 --- !u!1 &3208104632126682893
 GameObject:
@@ -10407,6 +10415,7 @@ MonoBehaviour:
   maxSpeedInOcean: 30
   maxSpeedInShallows: 10
   quickTurnForce: 500
+  MastController: {fileID: 3208104631910513962}
   dashCameraParticles: {fileID: 0}
   speedToActivateTrailParticles: 15
 --- !u!65 &3208104632517172664
