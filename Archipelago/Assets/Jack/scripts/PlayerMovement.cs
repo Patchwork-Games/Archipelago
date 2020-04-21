@@ -567,6 +567,7 @@ private void Start()
             {
                 Move();
                 anim.SetBool("Walking", true);
+                if (RunParticle.isPlaying) RunParticle.Stop();
             }
         }
         else

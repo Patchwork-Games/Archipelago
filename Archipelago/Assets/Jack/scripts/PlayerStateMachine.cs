@@ -82,6 +82,7 @@ public class PlayerStateMachine : MonoBehaviour
             case PlayerState.TALKING:
                 {
                     StaticValueHolder.PlayerMovementScript.CheckTalking();
+                    StaticValueHolder.PlayerCharacterCamera.m_XAxis.m_MaxSpeed = 0;
                     break;
                 }
 
