@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BirdAI : MonoBehaviour
 {
-    private float speed = 15.0f;
+    private float speed = 25.0f;
     private float rotationSpeed = 1.0f;
-    private float maxSpeed = 18.0f;
+    private float maxSpeed = 30.0f;
 
     Vector3 goalPos = Vector3.zero;
     [SerializeField] GameObject[] targets = new GameObject[1];
