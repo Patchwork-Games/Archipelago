@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
         Transform audioObjectTransform = transform.Find("Audio");
         if (audioObjectTransform == null)
         {
-            Debug.Log("Missing Audio child on object: " + gameObject);
+            Debug.LogError("Missing Audio child on object: " + gameObject);
         }
         else
         {
@@ -35,21 +35,21 @@ public class PauseMenu : MonoBehaviour
             openNoise = audioObjectTransform.Find("OpenNoise").GetComponent<AudioSource>();
             if (openNoise == null)
             {
-                Debug.Log("Missing OpenNoise child on object: " + audioObjectTransform.gameObject);
+                Debug.LogError("Missing OpenNoise child on object: " + audioObjectTransform.gameObject);
             }
 
             // Close noise
             closeNoise = audioObjectTransform.Find("CloseNoise").GetComponent<AudioSource>();
             if (closeNoise == null)
             {
-                Debug.Log("Missing CloseNoise child on object: " + audioObjectTransform.gameObject);
+                Debug.LogError("Missing CloseNoise child on object: " + audioObjectTransform.gameObject);
             }
 
             // Select noise
             selectNoise = audioObjectTransform.Find("SelectNoise").GetComponent<AudioSource>();
             if (selectNoise == null)
             {
-                Debug.Log("Missing SelectNoise child on object: " + audioObjectTransform.gameObject);
+                Debug.LogError("Missing SelectNoise child on object: " + audioObjectTransform.gameObject);
             }
         }
 
@@ -82,8 +82,16 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameIsPaused) Cursor.lockState = CursorLockMode.None;
-        else Cursor.lockState = CursorLockMode.Locked;
+        if (GameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
 
