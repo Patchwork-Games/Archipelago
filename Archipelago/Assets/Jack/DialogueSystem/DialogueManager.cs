@@ -278,6 +278,16 @@ public class DialogueManager : MonoBehaviour
                 }
 
 
+                if (tempText == "enableBoat")
+                {
+                    GameManager.SailingEnabled = true;
+                    dontAddThisFrame = true;
+                    tempText = "";
+                }
+
+
+
+
                 if (tempText == "enablePackage")
                 {
                     if (StaticValueHolder.Collectable0 >= 5)
