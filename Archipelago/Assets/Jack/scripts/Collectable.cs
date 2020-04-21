@@ -34,18 +34,22 @@ public class Collectable : MonoBehaviour
 
     private void Awake()
     {
-        // Get the mesh renderer
-        meshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
-        if (meshRenderer == null)
+        // If the collectable isn't a dash collectable, then get the mesh renderer and the mesh collider
+        if (collectableType != CollectableTypes.DASH)
         {
-            Debug.Log("Missing MeshRenderer component on object: " + transform.Find("Graphics").gameObject);
-        }
+            // Get the mesh renderer
+            meshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
+            if (meshRenderer == null)
+            {
+                Debug.Log("Missing MeshRenderer component on object: " + transform.Find("Graphics").gameObject);
+            }
 
-        // Get the mesh collider
-        meshCollider = transform.Find("Graphics").GetComponent<MeshCollider>();
-        if (meshCollider == null)
-        {
-            Debug.Log("Missing MeshCollider component on object: " + transform.Find("Graphics").gameObject);
+            // Get the mesh collider
+            meshCollider = transform.Find("Graphics").GetComponent<MeshCollider>();
+            if (meshCollider == null)
+            {
+                Debug.Log("Missing MeshCollider component on object: " + transform.Find("Graphics").gameObject);
+            }
         }
 
 
