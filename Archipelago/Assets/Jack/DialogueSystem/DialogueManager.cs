@@ -324,6 +324,18 @@ public class DialogueManager : MonoBehaviour
                     GameManager.GotButterflyPatch = true;
                 }
 
+                if (tempText == "removeGoldBanana")
+                {
+                    if (StaticValueHolder.GoldBanana) StaticValueHolder.GoldBanana = false;
+                    dontAddThisFrame = true;
+                    tempText = "";
+
+                    // Trigger event
+                    GameManager.GotButterflyPatch = true;
+                }
+
+
+
                 if (tempText == "fadeOut")
                 {
                     //fade out scene at end

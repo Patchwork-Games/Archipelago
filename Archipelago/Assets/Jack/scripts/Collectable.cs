@@ -35,7 +35,7 @@ public class Collectable : MonoBehaviour
     private void Awake()
     {
         // If the collectable isn't a dash collectable, then get the mesh renderer and the mesh collider
-        if (collectableType != CollectableTypes.DASH)
+        if (collectableType == CollectableTypes.STICK)
         {
             // Get the mesh renderer
             meshRenderer = transform.Find("Graphics").GetComponent<MeshRenderer>();
@@ -137,6 +137,7 @@ public class Collectable : MonoBehaviour
                             //change banana man conversation to receive golden banana and show banana on UI
                             StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(3, 2);
                             StaticValueHolder.GoldBanana = true;
+                            gameObject.SetActive(false);
                             collectNoise.Play();
                             break;
                         }
