@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashCollectableManager : MonoBehaviour
+public class CollectableParticleManager : MonoBehaviour
 {
     private Collectable collectable = null;
     private MeshRenderer meshRenderer = null;

@@ -28,6 +28,7 @@ public class Collectable : MonoBehaviour
     // Disabling object
     private MeshRenderer meshRenderer = null;
     private MeshCollider meshCollider = null;
+    private BoxCollider boxCollider = null;
 
     // Audio
     private AudioSource collectNoise = null;
@@ -43,15 +44,15 @@ public class Collectable : MonoBehaviour
             {
                 Debug.Log("Missing MeshRenderer component on object: " + transform.Find("Graphics").gameObject);
             }
-
+            
             // Get the mesh collider
             meshCollider = transform.Find("Graphics").GetComponent<MeshCollider>();
             if (meshCollider == null)
             {
                 Debug.Log("Missing MeshCollider component on object: " + transform.Find("Graphics").gameObject);
             }
+            
         }
-
 
         #region Audio
 
@@ -77,7 +78,7 @@ public class Collectable : MonoBehaviour
 	private void Start()
     {
         // Get the sprites for the collectables
-        if (collectableType != CollectableTypes.DASH)
+        if (collectableType != CollectableTypes.DASH && collectableType != CollectableTypes.BANANA)
         {
             fishSprite = StaticValueHolder.CollectableUIUpdateObject.fishSprite;
             butterflySprite = StaticValueHolder.CollectableUIUpdateObject.butterflySprite;
@@ -91,7 +92,7 @@ public class Collectable : MonoBehaviour
     private void Update()
     {
         //check if player is close enough to pick up
-        if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < pickUpRadius && collectableType != CollectableTypes.DASH)
+        if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < pickUpRadius && collectableType != CollectableTypes.DASH && collectableType != CollectableTypes.BANANA)
         {
             //show button needed to pick up
             if (pickupButtonGuide)
@@ -130,15 +131,21 @@ public class Collectable : MonoBehaviour
                             GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
                             newIcon.transform.GetChild(0).GetComponent<Image>().sprite = stickSprite;
                             collectNoise.Play();
+
+                            // Disable the mesh collider and the mesh renderer components
+                            if (meshCollider != null)
+                            {
+                                meshCollider.enabled = false;
+                            }
+                            if (meshRenderer != null)
+                            {
+                                meshRenderer.enabled = false;
+                            }
+
                             break;
                         }
                     case CollectableTypes.BANANA:
                         {
-                            //change banana man conversation to receive golden banana and show banana on UI
-                            StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(3, 2);
-                            StaticValueHolder.GoldBanana = true;
-                            gameObject.SetActive(false);
-                            collectNoise.Play();
                             break;
                         }
                     case CollectableTypes.DASH:
@@ -154,16 +161,6 @@ public class Collectable : MonoBehaviour
                         }
                 }
                 HideButton();
-
-                // Disable the mesh collider and the mesh renderer components
-                if (meshCollider != null)
-                {
-                    meshCollider.enabled = false;
-                }
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = false;
-                }
             }
         }
         else if (!hiddenPickupButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
@@ -187,14 +184,27 @@ public class Collectable : MonoBehaviour
                 collectNoise.Play();
             }
         }
-        
+
+        // If the banana is picked up
+        if (collectableType == CollectableTypes.BANANA)
+        {
+            if (other.CompareTag("Player") || other.CompareTag("Boat"))
+            {
+                //change banana man conversation to receive golden banana and show banana on UI
+                StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(3, 2);
+                StaticValueHolder.GoldBanana = true;
+                Collected = true;
+                collectNoise.Play();
+            }
+        }
+
     }
 
 
     void HideButton()
     {
         //hide the interact button
-        if (collectableType != CollectableTypes.DASH)
+        if (collectableType != CollectableTypes.DASH && collectableType != CollectableTypes.BANANA)
         {
             hiddenPickupButton = true;
             pickupButtonGuide.enabled = false;
