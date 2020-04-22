@@ -290,6 +290,8 @@ public class DialogueManager : MonoBehaviour
                 if (tempText == "enableBoat")
                 {
                     GameManager.SailingEnabled = true;
+                    StaticValueHolder.BugCatcher.gameObject.SetActive(false);
+                    StaticValueHolder.BugCatcherNote.gameObject.SetActive(false);
                     dontAddThisFrame = true;
                     tempText = "";
                 }
@@ -301,6 +303,8 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (StaticValueHolder.Collectable0 >= 5)
                     {
+                        StaticValueHolder.BugCatcher.gameObject.SetActive(true);
+                        StaticValueHolder.BugCatcherNote.gameObject.SetActive(true);
                         packageBox.SetActive(true);
                         StaticValueHolder.Collectable0 -= 5;
                     }

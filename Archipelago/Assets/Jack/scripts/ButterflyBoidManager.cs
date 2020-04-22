@@ -8,8 +8,8 @@ public class ButterflyBoidManager : MonoBehaviour
     [SerializeField] private GameObject butteflyPrefab = null;
     public int tankWidth = 10;
     public int tankHeight = 6;
-    static int numButterflies = 30;
-    public GameObject[] allButterflies = new GameObject[numButterflies];
+    static int numButterflies = 2;
+    [HideInInspector] public GameObject[] allButterflies = new GameObject[numButterflies];
     public Vector3 pos = Vector3.zero;
     public Vector3 goalPos = Vector3.zero;
     public bool goToGoal = false;

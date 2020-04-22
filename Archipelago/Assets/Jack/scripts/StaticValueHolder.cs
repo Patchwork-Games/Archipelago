@@ -122,4 +122,17 @@ public static class StaticValueHolder
         set;
     }
 
+    public static GameObject BugCatcher
+    {
+        get;
+        set;
+    }
+
+    public static GameObject BugCatcherNote
+    {
+        get;
+        set;
+    }
+
+    
 }

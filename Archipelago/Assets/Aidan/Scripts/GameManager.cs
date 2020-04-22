@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private CollectableUIUpdate collectableUIUpdate = null;
 	[SerializeField] private PostProcessVolume postProcessVolumeObject = null;
 	[SerializeField] private DialogueManager dialogueManagerObject = null;
-	private PlayerMovement playerMovement = null;
+    [SerializeField] private GameObject BugCatcher = null;
+    [SerializeField] private GameObject BugCatcherNote = null;
+    private PlayerMovement playerMovement = null;
 
 	// Events
 	public static bool SailingEnabled { get; set; } = false;
@@ -94,9 +96,21 @@ public class GameManager : MonoBehaviour
 			else
 				Debug.LogError("DialogueManagerObject missing from game manager script on object: " + this.gameObject);
 
-		#endregion
+            // Bug catcher
+            if (BugCatcher != null)
+                StaticValueHolder.BugCatcher = BugCatcher;
+            else
+                Debug.LogError("BugCatcher missing from game manager script on object: " + this.gameObject);
 
-		// Instatiate the static coroutine object in the scene
-		Instantiate(staticCoroutinePrefab, Vector3.zero, Quaternion.identity);
+            // Bug catcher note
+            if (BugCatcherNote != null)
+                StaticValueHolder.BugCatcherNote = BugCatcherNote;
+            else
+                Debug.LogError("BugCatcher missing from game manager script on object: " + this.gameObject);
+
+        #endregion
+
+        // Instatiate the static coroutine object in the scene
+        Instantiate(staticCoroutinePrefab, Vector3.zero, Quaternion.identity);
 	}
 }

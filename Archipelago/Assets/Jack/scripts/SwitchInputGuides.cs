@@ -38,8 +38,12 @@ public class SwitchInputGuides : MonoBehaviour
                     GetComponent<Image>().sprite = keyboardImage;
                 }
             }
+            else
+            {
+                GetComponent<Image>().sprite = keyboardImage;
+            }
 
-            
+
         }
     }
 
