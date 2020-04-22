@@ -24,7 +24,6 @@ public class PoolCameraZoom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if player enters skim area, raise camera
         if (other.CompareTag("Player"))
         {
             if (!GetComponent<SkimPuzzleController>().complete)
@@ -40,7 +39,6 @@ public class PoolCameraZoom : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //if player leave skim area, lower camera
         if (other.CompareTag("Player"))
         {
             currentTime = 0f;
