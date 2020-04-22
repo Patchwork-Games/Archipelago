@@ -333,9 +333,21 @@ public class DialogueManager : MonoBehaviour
                 }
 
 
+                //temp testing tool
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    GameManager.SailingEnabled = true;
+                    StaticValueHolder.BugCatcher.gameObject.SetActive(true);
+                    StaticValueHolder.BugCatcherNote.gameObject.SetActive(true);
+                    packageBox.SetActive(true);
+                    objectiveText.text = "Deliver the fish to Isa on Butterfly Island";
+                }
+
+
                 if (tempText == "removeButterfly")
                 {
                     if (StaticValueHolder.Collectable1 >= 5) StaticValueHolder.Collectable1 -= 5;
+                    Debug.Log("");
                     dontAddThisFrame = true;
                     tempText = "";
 
