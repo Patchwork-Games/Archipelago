@@ -757,8 +757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f2c38fdf79a87478fde531e1017cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 3
-  fadeInTime: 3
+  fadeOutTimeMusic: 3
+  fadeInTimeMusic: 3
+  fadeOutTimeAmbient: 3
+  fadeInTimeAmbient: 3
   currentMusicTrack: 0
   currentAmbientTrack: 0
 --- !u!1 &1371196283673445782
@@ -1059,7 +1061,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6131785539081139954, guid: b8e82a5f43ed3a54084acad272c884fa,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 13fe39bc86360034994bb5ceb192164e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1315,7 +1317,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6131785539081139954, guid: b8e82a5f43ed3a54084acad272c884fa,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a169ac41b84b4474cba7d559d5ab46d2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
