@@ -89,7 +89,7 @@ public class GettingInAndOutBoat : MonoBehaviour
 		playerInBoat = true;
 
 		// Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
-		StaticValueHolder.PlayerObject.transform.parent = transform.parent;
+		StaticValueHolder.PlayerObject.transform.parent = transform.parent.Find("Graphics");
 		StaticValueHolder.PlayerObject.transform.localPosition = playerPosWhenInBoat.localPosition;
 		StaticValueHolder.PlayerObject.transform.localRotation = playerPosWhenInBoat.localRotation;
 		StaticValueHolder.PlayerObject.GetComponent<CharacterController>().enabled = false;
