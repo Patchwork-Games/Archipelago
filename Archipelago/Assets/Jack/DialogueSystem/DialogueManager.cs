@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject packageBox2 = null;
     [SerializeField] Image fadeScreen = null;
     [SerializeField] TextMeshProUGUI thanksForPlayingText = null;
-    [SerializeField] TextMeshProUGUI objectiveText = null;
+    public TextMeshProUGUI objectiveText = null;
 
     public int[] NPCs;
 

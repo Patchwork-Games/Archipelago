@@ -7134,7 +7134,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -630, y: -200}
-  m_SizeDelta: {x: 96.1, y: 96.1}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5753738510276456708
 CanvasRenderer:
@@ -7569,9 +7569,9 @@ MonoBehaviour:
   PickupIcon: {fileID: 955674155697938636, guid: 4bf1bfc7439bf164aaa03e984a15abc3,
     type: 3}
   pickupButtonGuide: {fileID: 8521279262702373195}
-  fishSprite: {fileID: 21300000, guid: 5bcd57f2f1e21344492703fd7572864c, type: 3}
+  fishSprite: {fileID: 21300000, guid: 2ca33cab537180041915c718bd75ab56, type: 3}
   butterflySprite: {fileID: 21300000, guid: ccd76fe659864b1429f1fad90b86d182, type: 3}
-  stickSprite: {fileID: 21300000, guid: f120b1e89ca44464286a3f3e2d50b4a7, type: 3}
+  stickSprite: {fileID: 21300000, guid: 4abfda71700dc604d80e3ef5f13e5163, type: 3}
 --- !u!225 &1895869152
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8437,10 +8437,10 @@ RectTransform:
   m_Father: {fileID: 5753738510459546238}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 239, y: -416.8}
-  m_SizeDelta: {x: -1136.3, y: -855}
+  m_SizeDelta: {x: 783.69995, y: 79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1099496631716266005
 CanvasRenderer:

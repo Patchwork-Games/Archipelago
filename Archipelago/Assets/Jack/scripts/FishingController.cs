@@ -53,7 +53,7 @@ public class FishingController : MonoBehaviour
         {
             caughtFish = true;
             StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(1, 2);
-
+            StaticValueHolder.DialogueManagerObject.objectiveText.text = "Return the fish to Gramps";
         }
 
         //story section 2, catch 5 butterflies
