@@ -43,7 +43,7 @@ public class DialogueManager : MonoBehaviour
     [Tooltip("delay on text print, smaller = faster")]
     public float textSpeed = 0.03f;
     public bool canQuitSentence;
-    public int thisNPC = 0; 
+    public int thisNPC = 0;
     [SerializeField] private float textHeight = 3.0f;
     [HideInInspector] public Dialogue dialogue;
 
@@ -70,7 +70,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject packageBox = null;
     [SerializeField] private GameObject packageBox2 = null;
     [SerializeField] Image fadeScreen = null;
-
+    [SerializeField] TextMeshProUGUI thanksForPlayingText = null;
+    [SerializeField] TextMeshProUGUI objectiveText = null;
 
     public int[] NPCs;
 
@@ -294,6 +295,7 @@ public class DialogueManager : MonoBehaviour
                     StaticValueHolder.BugCatcherNote.gameObject.SetActive(false);
                     dontAddThisFrame = true;
                     tempText = "";
+                    objectiveText.text = "Catch 5 fish from the pond on Windy Shores";
                 }
 
 
@@ -307,6 +309,7 @@ public class DialogueManager : MonoBehaviour
                         StaticValueHolder.BugCatcherNote.gameObject.SetActive(true);
                         packageBox.SetActive(true);
                         StaticValueHolder.Collectable0 -= 5;
+                        objectiveText.text = "Deliver the fish to Isa on Butterfly Island";
                     }
                     dontAddThisFrame = true;
                     tempText = "";
@@ -319,6 +322,8 @@ public class DialogueManager : MonoBehaviour
                     packageBox.SetActive(false);
                     packageBox2.SetActive(true);
                     GetComponent<ConversationManager>().ChangeToConversation(1, 5);
+                    objectiveText.text = "Return to Gramps for lunch";
+
                     dontAddThisFrame = true;
                     tempText = "";
 
@@ -452,15 +457,15 @@ public class DialogueManager : MonoBehaviour
             else CompleteCurrentTextBox(); 
         }
 
-        if (canQuitSentence) //editor setting, allows player to quit sentence at any time
-        {
-            //quit sentence by pressing back
-            if ((Input.GetKeyDown(KeyCode.Q) || StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
-            {
-                StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow = false;
-                EndDialogue();
-            }
-        }
+        //if (canQuitSentence) //editor setting, allows player to quit sentence at any time
+        //{
+        //    //quit sentence by pressing back
+        //    if ((Input.GetKeyDown(KeyCode.Q) || StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
+        //    {
+        //        StaticValueHolder.PlayerMovementScript.GetComponent<SkimmingController>().heldThrow = false;
+        //        EndDialogue();
+        //    }
+        //}
     }
 
     //fade out scene at end
@@ -468,12 +473,15 @@ public class DialogueManager : MonoBehaviour
     {
         //get the first colour of the image and then decrease its alpha by 0.1 every .1 seconds
         var tempColor = fadeScreen.GetComponent<Image>().color;
-        while (tempColor.a > 0)
+        while (tempColor.a < 1)
         {
             tempColor.a += Time.deltaTime;
             fadeScreen.GetComponent<Image>().color = tempColor;
             yield return null;
         }
+
+        thanksForPlayingText.enabled = true;
+
     }
 
 

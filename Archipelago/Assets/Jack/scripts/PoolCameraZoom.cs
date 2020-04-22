@@ -26,10 +26,13 @@ public class PoolCameraZoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            currentTime = 0f;
-            moving = true;
-            StopCoroutine("LerpIn");
-            StartCoroutine("LerpOut");
+            if (!GetComponent<SkimPuzzleController>().complete)
+            {
+                currentTime = 0f;
+                moving = true;
+                StopCoroutine("LerpIn");
+                StartCoroutine("LerpOut");
+            }
         }
     }
 

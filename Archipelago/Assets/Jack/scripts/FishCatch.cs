@@ -12,7 +12,7 @@ public class FishCatch : MonoBehaviour
             StaticValueHolder.PlayerObject.GetComponent<FishingController>().CaughtFish();
         }
 
-        if (other.CompareTag("Butterfly"))
+        if (other.CompareTag("Butterfly") && GameManager.GotFishPatch)
         {
             other.transform.GetChild(0).gameObject.SetActive(false);
             other.GetComponent<BoxCollider>().enabled = false;
