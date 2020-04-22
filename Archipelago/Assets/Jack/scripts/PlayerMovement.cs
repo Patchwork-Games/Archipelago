@@ -322,7 +322,7 @@ private void Start()
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BoatTriggerBox"))
+        if (other.CompareTag("BoatTriggerBox") && GameManager.SailingEnabled)
         {
             BoatButtonGuide = true;
             if (BoatButtonCanvas) BoatButtonCanvas.enabled = true;

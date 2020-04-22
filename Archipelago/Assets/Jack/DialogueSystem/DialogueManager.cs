@@ -310,6 +310,10 @@ public class DialogueManager : MonoBehaviour
                         packageBox.SetActive(true);
                         StaticValueHolder.Collectable0 -= 5;
                         objectiveText.text = "Deliver the fish to Isa on Butterfly Island";
+
+                        // Trigger event
+                        GameManager.GotFishPatch = true;
+                        mastController.UpdateSailMaterial();
                     }
                     dontAddThisFrame = true;
                     tempText = "";
@@ -326,10 +330,6 @@ public class DialogueManager : MonoBehaviour
 
                     dontAddThisFrame = true;
                     tempText = "";
-
-                    // Trigger event
-                    GameManager.GotFishPatch = true;
-                    mastController.UpdateSailMaterial();
                 }
 
 
