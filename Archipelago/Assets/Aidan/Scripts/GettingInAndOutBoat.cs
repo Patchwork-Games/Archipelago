@@ -12,10 +12,20 @@ public class GettingInAndOutBoat : MonoBehaviour
 	private bool playerInBoat = false;
 	private InputMaster controls = null;
 
+	// Audio
+	private AudioSource getInOutBoatNoise = null;
+
 	private void Awake()
 	{
 		// Setup the controls
 		controls = new InputMaster();
+
+		// Get the GetInOutBoat noise
+		getInOutBoatNoise = transform.parent.Find("Audio").Find("GetInOutBoat").GetComponent<AudioSource>();
+		if (getInOutBoatNoise == null)
+		{
+			Debug.Log("Missing GetInOutOfBoat noise on object: " + gameObject);
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -76,6 +86,9 @@ public class GettingInAndOutBoat : MonoBehaviour
 		if (!playerInsideTriggerBox || playerInBoat || !GameManager.SailingEnabled)
 			return;
 
+		// Play the sound for getting in or out of the boat
+		getInOutBoatNoise.Play();
+
 		// Change the ambient track to ocean
 		FootprintPlacer.groundType = FootprintPlacer.GroundType.SAND;
 		MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.OCEAN);
@@ -103,6 +116,9 @@ public class GettingInAndOutBoat : MonoBehaviour
 		// If the player isn't in the boat then they can't get out, so return from the function
 		if (!playerInBoat)
 			return;
+
+		// Play the sound for getting in or out of the boat
+		getInOutBoatNoise.Play();
 
 		// Change the ambient track to beach
 		MusicAndAmbientManager.Instance.ChangeAmbientTrack(MusicAndAmbientManager.AmbientTrack.BEACH);
