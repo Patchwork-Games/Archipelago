@@ -16,7 +16,6 @@ public class BarrelManager : MonoBehaviour
     [SerializeField] private int numOfTemporaryDashesToGive = 1;
 
     private MeshRenderer barrelMesh = null;
-    private CapsuleCollider barrelCollider = null;
     private BoxCollider boxCollider = null;
     private Camera mainCamera = null;
     private ParticleSystem smokeParticles = null;
@@ -48,21 +47,14 @@ public class BarrelManager : MonoBehaviour
     private void Awake()
     {
         // Get the mesh renderer for the barrel
-        barrelMesh = transform.Find("Graphics").GetComponent<MeshRenderer>();
+        barrelMesh = transform.Find("CollisionBox").Find("Graphics").GetComponent<MeshRenderer>();
         if (barrelMesh == null)
         {
             Debug.Log("Barrel mesh not found on object: " + gameObject);
         }
 
-        // Get the barrel collider
-        barrelCollider = transform.Find("Graphics").GetComponent<CapsuleCollider>();
-        if (barrelCollider == null)
-        {
-            Debug.Log("Barrel collider not found on object: " + gameObject);
-        }
-
         // Get the boxCollider
-        boxCollider = transform.Find("Graphics").GetComponent<BoxCollider>();
+        boxCollider = transform.Find("CollisionBox").GetComponent<BoxCollider>();
         if (boxCollider == null)
         {
             Debug.Log("Barrel BoxCollider component not found on object: " + gameObject);
@@ -129,7 +121,6 @@ public class BarrelManager : MonoBehaviour
 
         // Hide the barrel and the collsion box from the player
         barrelMesh.enabled = false;
-        barrelCollider.enabled = false;
         boxCollider.enabled = false;
 
         // Setup the respawn timer
@@ -162,7 +153,7 @@ public class BarrelManager : MonoBehaviour
 
         // Set the object to be visable again and set up the collision
         barrelMesh.enabled = true;
-        barrelCollider.enabled = true;
+        boxCollider.enabled = true;
 
         // Set barrel to be back at the spawn position with the correct rotation and velocity
         transform.position = spawnPos;

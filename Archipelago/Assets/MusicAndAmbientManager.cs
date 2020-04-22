@@ -75,7 +75,6 @@ public class MusicAndAmbientManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
 
         // Get the music object transform
