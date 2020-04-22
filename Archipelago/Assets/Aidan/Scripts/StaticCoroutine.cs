@@ -31,14 +31,23 @@ public class StaticCoroutine : MonoBehaviour
     IEnumerator Shake(CinemachineFreeLook camera, float time)
     {
         // Cinemachine Shake
-        CinemachineBasicMultiChannelPerlin noise = camera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+        CinemachineBasicMultiChannelPerlin[] noise =
+             {
+                camera.GetRig(0).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>(),
+                camera.GetRig(1).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>(),
+                camera.GetRig(2).GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>()
+            };
 
         yield return new WaitForSeconds(time);
         if (!CameraShake.newShakeStarted)
         {
             CameraShake.shaking = false;
-            noise.m_AmplitudeGain = 0;
-            noise.m_FrequencyGain = 1;
+
+            for (int i = 0; i < noise.Length; i++)
+            {
+                noise[i].m_AmplitudeGain = 0;
+                noise[i].m_FrequencyGain = 1;
+            }
         }
     }
 }
