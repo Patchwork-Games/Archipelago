@@ -344,7 +344,7 @@ public class DialogueManager : MonoBehaviour
                 }
 
 
-                if (tempText == "removeButterfly")
+                if (tempText == "removeButterflies")
                 {
                     if (StaticValueHolder.Collectable1 >= 5) StaticValueHolder.Collectable1 -= 5;
                     Debug.Log("");
