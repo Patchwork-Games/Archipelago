@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishCatch : MonoBehaviour
+public class NetCollision : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
