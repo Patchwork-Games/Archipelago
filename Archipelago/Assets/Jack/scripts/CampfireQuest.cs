@@ -14,6 +14,9 @@ public class CampfireQuest : MonoBehaviour
     TextMeshProUGUI reqText = null;
     private GameObject fire = null;
 
+    // Audio
+    private AudioSource fireLitNoise = null;
+
     private void Awake()
     {
         ButtonGuide = transform.GetChild(0).gameObject.GetComponent<Canvas>();
@@ -21,6 +24,13 @@ public class CampfireQuest : MonoBehaviour
         reqText = transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         fire = transform.GetChild(1).gameObject;
         litFire = false;
+
+        // Get the fire lit noise
+        fireLitNoise = transform.Find("Audio").Find("FireLit").GetComponent<AudioSource>();
+        if (fireLitNoise == null)
+        {
+            Debug.Log("Missing FireLit child on object: " + transform.Find("Audio") + gameObject);
+        }
     }
 
     private void Update()
@@ -50,6 +60,8 @@ public class CampfireQuest : MonoBehaviour
                 litFire = true;
                 HideButton();
 
+                // Play fire lit noise
+                fireLitNoise.Play();
 
                 //give reward to player
                 StaticValueHolder.DashMeterObject.AddDashes(1);
