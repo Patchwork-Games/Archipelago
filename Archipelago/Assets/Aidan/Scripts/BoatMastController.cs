@@ -12,18 +12,39 @@ public class BoatMastController : MonoBehaviour
 
 	// Sail materials
 	[SerializeField] private Material[] sailMaterials = null;
+	private Material sailLeftMat = null;
+	private Material sailRightMat = null;
 
 	private float lerpTime = 0f;
 	private Quaternion newRotation = Quaternion.identity;
 	private Quaternion startingRotation = Quaternion.identity;
+	private bool sailHasChangedPos = false;
+	private BoatController boatController = null;
+
+	// Stretch
 	private float startingStretch = 0f;
 	private float currentStretch = 0f;
 	private float newSailStretch = 0f;
-	private bool sailHasChangedPos = false;
+
+	// Wobble
+	private float minWobble = 0f;
+	private float smallWobble = 1f;
+	private float maxWobble = 2f;
+	private float wobbleWeight = 0f;
+	private float newWobble = 0f;
+	private float currentWobble = 0f;
+	private float startingWobble = 0f;
 
 	// Audio
 	[Range(0f, 1f)] [SerializeField] private float randomSailCreakNoisePitch = 0f;
 	private AudioSource sailCreakNoise = null;
+
+	private void Awake()
+	{
+		// Get the sail materials
+		sailLeftMat = sailClothLeft.GetComponent<MeshRenderer>().material;
+		sailRightMat = sailClothRight.GetComponent<MeshRenderer>().material;
+	}
 
 	private void Start()
 	{
@@ -44,6 +65,13 @@ public class BoatMastController : MonoBehaviour
 				Debug.Log("Missing SailCreak child on object: " + audioTransform.gameObject);
 			}
 		}
+
+		// Get the boat controller
+		boatController = StaticValueHolder.BoatObject.GetComponent<BoatController>();
+		if (boatController == null)
+		{
+			Debug.Log("Missing BoatController component on object: " + StaticValueHolder.BoatObject);
+		}
 	}
 
 	private void Update()
@@ -51,9 +79,14 @@ public class BoatMastController : MonoBehaviour
 		float resultOfDotProd1 = Vector3.Dot(StaticValueHolder.WindManagerObject.windDirection, StaticValueHolder.BoatObject.transform.forward);
 		float resultOfDotProd2 = Vector3.Dot(StaticValueHolder.WindManagerObject.windDirectionRight, StaticValueHolder.BoatObject.transform.forward);
 
+		// Calculate the wobble weight
+		wobbleWeight = (1 - boatController.PercentageSpeed);
+
 		// Compare the wind direction vector to the boat's forward vector to determine the rotation of the mast
 		if (resultOfDotProd1 >= 0.5f)
 		{
+			newWobble = minWobble * wobbleWeight;
+
 			if (resultOfDotProd2 >= 0)
 			{
 				newSailStretch = -maxSailStretch;
@@ -67,11 +100,14 @@ public class BoatMastController : MonoBehaviour
 		}
 		else if (resultOfDotProd1 <= -0.5f)
 		{
+			newWobble = maxWobble * wobbleWeight;
 			newSailStretch = 0;
 			SetRotation(Quaternion.Euler(0, 0, 0));
 		}
 		else if (resultOfDotProd1 >= -0.5f && resultOfDotProd1 <= 0.5f)
 		{
+			newWobble = smallWobble * wobbleWeight;
+
 			if (resultOfDotProd2 >= 0)
 			{
 				newSailStretch = -maxSailStretch / 2;
@@ -91,10 +127,16 @@ public class BoatMastController : MonoBehaviour
 		{
 			transform.localRotation = Quaternion.Lerp(startingRotation, newRotation, lerpTime);
 			currentStretch = Mathf.Lerp(startingStretch, newSailStretch, lerpTime);
+			currentWobble = Mathf.Lerp(startingWobble, newWobble, lerpTime);
 		}
 
-		sailClothLeft.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
-		sailClothRight.GetComponent<MeshRenderer>().material.SetFloat("_HeightMapScale", currentStretch);
+		// Update the current sail stretch
+		sailLeftMat.SetFloat("_HeightMapScale", currentStretch);
+		sailRightMat.SetFloat("_HeightMapScale", currentStretch);
+
+		// Update the wobble on the sails
+		sailLeftMat.SetFloat("_WindAmplitude", currentWobble);
+		sailRightMat.SetFloat("_WindAmplitude", currentWobble);
 
 		// Check if the new rotation has been set to an important angle
 		if (Vector3.Dot(newRotation * transform.forward, transform.rotation * transform.forward) <= 0)
@@ -115,6 +157,7 @@ public class BoatMastController : MonoBehaviour
 	{
 		startingRotation = transform.localRotation;
 		startingStretch = currentStretch;
+		startingWobble = currentWobble;
 		newRotation = rotation;
 		lerpTime = 0f;
 	}

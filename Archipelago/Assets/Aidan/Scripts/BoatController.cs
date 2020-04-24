@@ -44,6 +44,7 @@ public class BoatController : MonoBehaviour
 	private bool applyQuickRightForce = false;
 	private float originalBoatCameraFOV = 0f;
 	private float zoomLerpTime = 0;
+	public float PercentageSpeed { get; set; } = 0f;
 
 	// Particles
 	[SerializeField] private ParticleSystem dashCameraParticles = null;
@@ -315,8 +316,11 @@ public class BoatController : MonoBehaviour
 
 		Speed = Vector3.Magnitude(rb.velocity);
 
+		// Calculate the percentage of the total speed the boat is going
+		PercentageSpeed = Speed / maxSpeedInOcean;
+
 		// Set the volume of the water on boat sound
-		waterOnBoatNoise.volume = Speed / maxSpeedInOcean;
+		waterOnBoatNoise.volume = PercentageSpeed;
 
 		// Set the emission of the boat trail and bubble particles depending on the boat speed
 		if (Speed > speedToActivateTrailParticles)
@@ -343,6 +347,7 @@ public class BoatController : MonoBehaviour
 				ParticleTools.StopEmission(bowBubbles);
 			}
 		}
+
 	}
 
 	private void FixedUpdate()
