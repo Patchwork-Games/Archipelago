@@ -8,6 +8,19 @@ public class SkimPuzzleRock : MonoBehaviour
     [HideInInspector] public bool glowing = false;
     [HideInInspector] public Material originalMaterial = null;
 
+    // Audio
+    private AudioSource rockHitNoise = null;
+
+    private void Awake()
+    {
+        // Get the rock hit noise
+        rockHitNoise = transform.Find("Audio").Find("RockHitNoise").GetComponent<AudioSource>();
+        if (rockHitNoise == null)
+        {
+            Debug.Log("Missing RockHitNoise child on object: " + transform.Find("Audio").gameObject + gameObject);
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +34,9 @@ public class SkimPuzzleRock : MonoBehaviour
         if (collision.gameObject.CompareTag("SkimStone"))
         {
             rockHit = true;
+
+            // Play hit noise
+            rockHitNoise.Play();
         }
     }
 }

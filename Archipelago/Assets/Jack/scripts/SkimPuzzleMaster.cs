@@ -15,6 +15,28 @@ public class SkimPuzzleMaster : MonoBehaviour
     [SerializeField] GameObject[] puzzles = new GameObject[2];
     private bool rewarded = false;
 
+    // Audio
+    private AudioSource rockRumbleNoise = null;
+
+    private void Awake()
+    {
+        // Get the audio transform
+        Transform audioTransform = transform.Find("Audio");
+        if (audioTransform == null)
+        {
+            Debug.Log("Missing Audio child on object :" + gameObject);
+        }
+        else
+        {
+            // Get the rock rumble noise
+            rockRumbleNoise = audioTransform.Find("RockRumbleNoise").GetComponent<AudioSource>();
+            if (rockRumbleNoise == null)
+            {
+                Debug.Log("Missing RockRumbleNoise child on object: " + audioTransform.gameObject + gameObject);
+            }
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +60,9 @@ public class SkimPuzzleMaster : MonoBehaviour
                 currentSet++;
                 if (currentSet < puzzles.Length) puzzles[currentSet].GetComponent<RaiseSkimRocks>().targetHeight = 1; //raise new puzzle
                 if (currentSet < puzzles.Length) ActivateOnePuzzle();    // stops going out of bounds on array
+
+                // Play the rock rumble noise
+                rockRumbleNoise.Play();
             }
         }
         else if (!rewarded)
