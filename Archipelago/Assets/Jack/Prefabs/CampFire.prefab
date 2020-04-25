@@ -6018,7 +6018,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2005892333554071996, guid: b8e82a5f43ed3a54084acad272c884fa,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 55dca97bd93417b4f9c296c6fec9adf1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c2331e638db9fcb4d89e10ae09b5b52f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6400,6 +6400,7 @@ GameObject:
   - component: {fileID: 7417148612941792393}
   - component: {fileID: 7417148612941792395}
   - component: {fileID: 7417148612941792392}
+  - component: {fileID: 913035241}
   m_Layer: 13
   m_Name: ButtonGuideImg
   m_TagString: Untagged
@@ -6464,6 +6465,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &913035241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417148612941792390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc4ccb069d679c4d9a7d657e9b69d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerImage: {fileID: 21300000, guid: 182a533fcf577f941a50e48f0d2c5ab8, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 931ddff31acf08e4a9e1aaa037c38757, type: 3}
 --- !u!1 &7417148612949511576
 GameObject:
   m_ObjectHideFlags: 0
