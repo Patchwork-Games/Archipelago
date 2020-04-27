@@ -194,8 +194,6 @@
 			float2 distortSample = (tex2D(_SurfaceDistortion, IN.distortUV).xy * 2 - 1) * _SurfaceDistortionAmount;
 			float2 noiseUV = IN.worldPos.xz * _SurfaceNoiseScale;
 			noiseUV = float2((noiseUV.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (noiseUV.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y);
-			//float2 noiseUV = float2((IN.worldPos.x + _Time.y * _SurfaceNoiseScroll.x), (IN.worldPos.z + _Time.y * _SurfaceNoiseScroll.y)) * _SurfaceNoiseScale;
-
 
 			float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV).r;
 			float3 existingNormal = tex2Dproj(_CameraNormalsTexture, UNITY_PROJ_COORD(IN.screenPos));

@@ -223,5 +223,9 @@ public class BoatMastController : MonoBehaviour
 			sailClothLeft.GetComponent<MeshRenderer>().material = sailMaterials[6];
 			sailClothRight.GetComponent<MeshRenderer>().material = sailMaterials[6];
 		}
+
+		// Get the sail materials
+		sailLeftMat = sailClothLeft.GetComponent<MeshRenderer>().material;
+		sailRightMat = sailClothRight.GetComponent<MeshRenderer>().material;
 	}
 }
