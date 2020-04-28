@@ -280,7 +280,6 @@ public class MusicAndAmbientManager : MonoBehaviour
             {
                 elapsedAmbientFadeOutTime = 0;
                 ambientTracks[(int)lastAmbientTrack].volume = 0;
-                ambientTracks[(int)lastAmbientTrack].Stop();
             }
             ambientTracks[(int)lastAmbientTrack].volume = Mathf.Lerp(ambientTracks[(int)lastAmbientTrack].volume, 0, 1 - (elapsedAmbientFadeOutTime / fadeOutTimeAmbient));
         }
