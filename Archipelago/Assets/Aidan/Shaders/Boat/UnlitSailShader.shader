@@ -57,9 +57,16 @@
             {
                 v2f o;
 
+                // Sample the height map
                 float4 heightMapColor = tex2Dlod(_HeightMap, float4(v.uv.xy + _HeightMapOffset, 0, 0));
+
+                // Get the monochrome displacement value from the map at this UV coordinate
                 float displacement = heightMapColor.r * _HeightMapScale;
-                v.vertex.y += displacement + (heightMapColor.r * _WindAmplitude * sin((v.vertex.x + _Time[1] * _WindSpeed)/ _WindFrequency) + (heightMapColor.r * _WindAmplitude * sin((v.vertex.z + _Time[1] * _WindSpeed)/ _WindFrequency)));
+
+                // Displace the current vertex by the height map value with 2 sine waves added one to emulate wind
+                v.vertex.y += displacement + 
+                    (heightMapColor.r * _WindAmplitude * sin((v.vertex.x + _Time[1] * _WindSpeed)/ _WindFrequency) + 
+                    (heightMapColor.r * _WindAmplitude * sin((v.vertex.z + _Time[1] * _WindSpeed)/ _WindFrequency)));
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);

@@ -291,7 +291,8 @@ public class BoatController : MonoBehaviour
 			if (zoomLerpTime < 1)
 			{
 				zoomLerpTime += Time.deltaTime / cameraZoomOutTime;
-				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, dashFOV, zoomLerpTime);
+				StaticValueHolder.BoatCamera.m_Lens.FieldOfView = 
+					Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, dashFOV, zoomLerpTime);
 				lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, -30, zoomLerpTime);
 			}
 
@@ -310,8 +311,10 @@ public class BoatController : MonoBehaviour
 		{
 			// Change the camera's FOV
 			zoomLerpTime += Time.deltaTime / cameraZoomInTime;
-			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, originalBoatCameraFOV, zoomLerpTime);
-			lensDistortion.intensity.value = Mathf.SmoothStep(lensDistortion.intensity.value, 0, zoomLerpTime);
+			StaticValueHolder.BoatCamera.m_Lens.FieldOfView = 
+				Mathf.SmoothStep(StaticValueHolder.BoatCamera.m_Lens.FieldOfView, originalBoatCameraFOV, zoomLerpTime);
+			lensDistortion.intensity.value = 
+				Mathf.SmoothStep(lensDistortion.intensity.value, 0, zoomLerpTime);
 		}
 
 		Speed = Vector3.Magnitude(rb.velocity);

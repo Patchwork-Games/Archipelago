@@ -134,9 +134,14 @@ public class GettingInAndOutBoat : MonoBehaviour
 		StaticValueHolder.PlayerMovementScript.ChangeCamera(StaticValueHolder.BoatCamera, false);
 		playerInBoat = false;
 
-		// // Teleport the player to the boat, positon them and make the boat their parent (Also disable the players collision box)
+		// Teleport the player to the positon outside the boat,
+		// Re-enable their collision box, and set the parent back to null
 		StaticValueHolder.PlayerObject.transform.parent = null;
-		StaticValueHolder.PlayerObject.transform.position = new Vector3(playerPosWhenComingOutOfBoat.position.x, playerPosWhenComingOutOfBoat.position.y, playerPosWhenComingOutOfBoat.position.z);
+		StaticValueHolder.PlayerObject.transform.position = new Vector3(
+			playerPosWhenComingOutOfBoat.position.x,
+			playerPosWhenComingOutOfBoat.position.y,
+			playerPosWhenComingOutOfBoat.position.z
+			);
 		StaticValueHolder.PlayerObject.GetComponent<CharacterController>().enabled = true;
 
 		playerInsideTriggerBox = false;

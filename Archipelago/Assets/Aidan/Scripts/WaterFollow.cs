@@ -10,11 +10,19 @@ public class WaterFollow : MonoBehaviour
 	{
 		if (PlayerStateMachine.Instance.state != PlayerStateMachine.PlayerState.BOAT)
 		{
-			transform.position = new Vector3(StaticValueHolder.PlayerObject.transform.position.x + offsetFromPlayer.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z + offsetFromPlayer.y);
+			transform.position = new Vector3(
+				StaticValueHolder.PlayerObject.transform.position.x + offsetFromPlayer.x,
+				transform.position.y,
+				StaticValueHolder.PlayerObject.transform.position.z + offsetFromPlayer.y
+				);
 		}
 		else
 		{
-			transform.position = new Vector3(StaticValueHolder.BoatObject.transform.position.x + offsetFromPlayer.x, transform.position.y, StaticValueHolder.BoatObject.transform.position.z + offsetFromPlayer.y);
+			transform.position = new Vector3(
+				StaticValueHolder.BoatObject.transform.position.x + offsetFromPlayer.x,
+				transform.position.y,
+				StaticValueHolder.BoatObject.transform.position.z + offsetFromPlayer.y
+				);
 		}
 	}
 }

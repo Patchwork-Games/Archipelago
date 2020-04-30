@@ -70,14 +70,6 @@ public class DashMeter : MonoBehaviour
 
 	private void Update()
 	{
-		// TEST CODE:
-		{
-			if (Input.GetKeyDown(KeyCode.G))
-			{
-				AddDashes(1);
-			}
-		}
-
 		// Countdown to start recharging
 		if (elapsedTimeBetweenUseAndRecharge > 0)
 		{
