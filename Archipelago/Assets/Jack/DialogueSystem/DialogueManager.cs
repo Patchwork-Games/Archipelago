@@ -229,12 +229,18 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in sentence.ToCharArray())
         {
-            // Only play a sound if the letter is a character from the alphabet or a number
-            if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90) || (letter >= 48 && letter <= 57))
+            //only play talk sound if in talking state
+            if (PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
             {
-                talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
-                talkingNoise.Play();
+                // Only play a sound if the letter is a character from the alphabet or a number
+                if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90) || (letter >= 48 && letter <= 57))
+                {
+                    talkingNoise.pitch = 1 + Random.Range(-randomTalkingPitch / 2f, randomTalkingPitch / 2f);
+                    talkingNoise.Play();
+                }
             }
+
+            
 
             //stop special effects from showing up, the ones built into tmpro
             if (letter == '<')
