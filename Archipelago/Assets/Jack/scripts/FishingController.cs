@@ -26,7 +26,8 @@ public class FishingController : MonoBehaviour
     void Update()
     {
         //check if player can swing net and is trying to
-        if (heldB && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING && transform.position.y > StaticValueHolder.PlayerMovementScript.waterHeight)
+        if (heldB && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING && 
+            transform.position.y > StaticValueHolder.PlayerMovementScript.waterHeight)
         {
             heldB = false;
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.CASTING;
@@ -74,14 +75,16 @@ public class FishingController : MonoBehaviour
     public void CaughtFish()
     {
         StaticValueHolder.Collectable0 += 1;
-        GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+        GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, 
+            StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
         newIcon.transform.GetChild(0).GetComponent<Image>().sprite = collectableUI.GetComponent<CollectableUIUpdate>().fishSprite;
     }
 
     public void CaughtButterfly()
     {
         StaticValueHolder.Collectable1 += 1;
-        GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+        GameObject newIcon = Instantiate(collectableUI.GetComponent<CollectableUIUpdate>().PickupIcon, 
+            StaticValueHolder.PlayerObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
         newIcon.transform.GetChild(0).GetComponent<Image>().sprite = collectableUI.GetComponent<CollectableUIUpdate>().butterflySprite;
     }
 

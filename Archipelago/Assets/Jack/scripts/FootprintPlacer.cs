@@ -61,14 +61,18 @@ public class FootprintPlacer : MonoBehaviour
     {
         //check if on ground
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, StaticValueHolder.PlayerMovementScript.distanceGround + StaticValueHolder.PlayerMovementScript.groundDistance, StaticValueHolder.PlayerMovementScript.groundMask))
+        if (
+                Physics.Raycast(transform.position, -Vector3.up, out hit, 
+                StaticValueHolder.PlayerMovementScript.distanceGround + 
+                StaticValueHolder.PlayerMovementScript.groundDistance, 
+                StaticValueHolder.PlayerMovementScript.groundMask
+            ))
         {
             // Play landing sound
             switch (hit.transform.gameObject.layer)
             {
                 case 16: //Sand
                     {
-
                         if (transform.position.y < sandHeight)
                         {
                             // Change to beach ambient track

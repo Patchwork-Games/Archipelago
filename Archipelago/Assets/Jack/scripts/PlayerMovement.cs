@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-private void Start()
+    private void Start()
     {
         currentItem = ItemEquipped.SKIMMINGROCK;
         mainCam = Camera.main;
@@ -277,7 +277,15 @@ private void Start()
         if (transform.position.y < waterHeight)
         {
             //have to manally set position as the y stays the same so that it appears on the water
-            InWaterWalkingParticle.transform.SetPositionAndRotation(new Vector3(transform.position.x, InWaterWalkingParticle.transform.position.y, transform.position.z), InWaterWalkingParticle.transform.rotation);
+            InWaterWalkingParticle.transform.SetPositionAndRotation(
+                new Vector3
+                (
+                    transform.position.x, 
+                    InWaterWalkingParticle.transform.position.y, 
+                    transform.position.z
+                ), 
+                InWaterWalkingParticle.transform.rotation);
+
             if (!InWaterWalkingParticle.isPlaying) InWaterWalkingParticle.Play();
 
         }
@@ -296,30 +304,9 @@ private void Start()
             GetComponent<FishingController>().canSeeNet = true;
         }
         else GetComponent<FishingController>().canSeeNet = false;
-
-
-
-
-
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            currentItem = ItemEquipped.NET;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            currentItem = ItemEquipped.SKIMMINGROCK;
-        }
-
-
     }
 
-
+    //show interact key when next to boat and able to board
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BoatTriggerBox") && GameManager.SailingEnabled)
@@ -331,6 +318,7 @@ private void Start()
         
     }
 
+    //hide interact key when moving away from the boat
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("BoatTriggerBox"))
@@ -340,7 +328,7 @@ private void Start()
         }
     }
 
-
+    //rotate interact button to face camera
     private void LateUpdate()
     {
         if (BoatButtonGuide && BoatButtonCanvas)
@@ -351,6 +339,8 @@ private void Start()
     }
 
 
+
+    //called from check run
     public void Move()
     {
         //get camera forward
@@ -426,7 +416,6 @@ private void Start()
 
         controller.Move(move * runSpeed * Time.deltaTime);
         if (move.x != 0 || move.z != 0) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), 7f * Time.deltaTime);
-
     }
 
 
@@ -511,7 +500,7 @@ private void Start()
                 }               
             }
         }
-        else
+        else //remove jumps if player falling
         {
             isGrounded = false;
             jumpParticlePlayed = false;
@@ -520,6 +509,7 @@ private void Start()
             StopCoroutine("JumpCooldown");
         }
 
+        //stop player floating
         if (isGrounded && velocity.y < 0)
         {
             StartCoroutine("JumpCooldown");
@@ -651,7 +641,6 @@ private void Start()
 
     public void CheckTalking()
     {
-        //CMCamera.GetComponent<CinemachineFreeLook>().m_XAxis.m_InputAxisValue = 0;
         beginTalkCamPos = StaticValueHolder.PlayerCharacterCamera.transform.position;
         if (RunParticle.isPlaying) RunParticle.Stop();
         anim.SetBool("Walking", false);
@@ -678,8 +667,5 @@ private void Start()
         BoatButtonGuide = false;
         if (BoatButtonCanvas) BoatButtonCanvas.enabled = false;
     }
-
-
-    
 
 }

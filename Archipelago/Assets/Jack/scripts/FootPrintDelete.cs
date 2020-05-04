@@ -19,7 +19,8 @@ public class FootPrintDelete : MonoBehaviour
         fadeTime = 1.0f;
     }
 
-    // Update is called once per frame
+    //fade footprint before becoming inactive 
+    //and returning to object pool
     void Update()
     {
         if (fadeTime > 0)

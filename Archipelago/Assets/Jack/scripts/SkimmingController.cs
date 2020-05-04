@@ -103,7 +103,13 @@ public class SkimmingController : MonoBehaviour
     //called in fixed update
     public void testThrow()
     {
-        if (heldThrow && !chargingThrow && StaticValueHolder.PlayerMovementScript.isGrounded && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING)
+        if (
+            heldThrow && 
+            !chargingThrow && 
+            StaticValueHolder.PlayerMovementScript.isGrounded && 
+            PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.MOVING && 
+            transform.position.y > StaticValueHolder.PlayerMovementScript.waterHeight
+           )
         {
             PlayerStateMachine.Instance.state = PlayerStateMachine.PlayerState.THROWING;
             chargingThrow = true;
