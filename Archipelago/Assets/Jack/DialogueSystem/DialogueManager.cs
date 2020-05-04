@@ -172,37 +172,41 @@ public class DialogueManager : MonoBehaviour
             doEndOnce = true;
             return;
         }
-
-        StopAllCoroutines();
-        arrow.enabled = false;
-
-        //set name
-
-        if (names.Count > 0) name = names.Dequeue();
-
-        nameText.text = name;
-
-
-        //get specific settings for each character
-        for (int i = 0; i < dialogue.charactersTalking.Length; i++)
+        else
         {
-            if (name == dialogue.charactersTalking[i].name)
+            StopAllCoroutines();
+            arrow.enabled = false;
+
+            //set name
+
+            if (names.Count > 0) name = names.Dequeue();
+
+            nameText.text = name;
+
+
+            //get specific settings for each character
+            for (int i = 0; i < dialogue.charactersTalking.Length; i++)
             {
-                //change the background of the box
-                Sprite tempSprite;
-                tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
-                if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
+                if (name == dialogue.charactersTalking[i].name)
+                {
+                    //change the background of the box
+                    Sprite tempSprite;
+                    tempSprite = dialogue.charactersTalking[i].dialogueBoxImg;
+                    if (tempSprite != null) dialogueBoxImg.sprite = tempSprite;
 
-                //move box above talking npc
-                dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0, textHeight, 0);
-                             
+                    //move box above talking npc
+                    dialogueBoxImg.transform.position = dialogue.charactersTalking[i].NPCLocation.position + new Vector3(0, textHeight, 0);
+
+                }
             }
-        }
-        //get sentences
-        if(sentences.Count > 0) sentence = sentences.Dequeue();
+            //get sentences
+            if (sentences.Count > 0) sentence = sentences.Dequeue();
 
-        //type out new sentence letter by letter
-        StartCoroutine(TypeSentence(sentence));
+            //type out new sentence letter by letter
+            StartCoroutine(TypeSentence(sentence));
+        }
+
+        
     }
 
 
@@ -287,10 +291,11 @@ public class DialogueManager : MonoBehaviour
 
                 if (tempText == "nextConvo")
                 {
-                    GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
-                    dontAddThisFrame = true;
                     tempText = "";
-
+                    dontAddThisFrame = true;
+                    Debug.Log("Convo was: " + StaticValueHolder.DialogueManagerObject.NPCs[thisNPC]);
+                    GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
+                    Debug.Log("Convo is now: " + StaticValueHolder.DialogueManagerObject.NPCs[thisNPC]);
                 }
 
 
@@ -465,7 +470,7 @@ public class DialogueManager : MonoBehaviour
     {
         //progress dialogue with interact button
                                                                                                                  
-        if (Input.GetMouseButtonDown(0) || StaticValueHolder.PlayerMovementScript.interact && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
+        if (Input.GetMouseButtonDown(0) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING || StaticValueHolder.PlayerMovementScript.interact && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
         {
             StaticValueHolder.PlayerMovementScript.interact = false;
             if (arrow.enabled == true)

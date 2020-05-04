@@ -52,8 +52,10 @@ public class FishingController : MonoBehaviour
         if (StaticValueHolder.Collectable0 >= 5 && !caughtFish)
         {
             caughtFish = true;
+            Debug.Log("Convo was: " + StaticValueHolder.DialogueManagerObject.NPCs[1]);
             StaticValueHolder.DialogueManagerObject.GetComponent<ConversationManager>().ChangeToConversation(1, 2);
             StaticValueHolder.DialogueManagerObject.objectiveText.text = "Return the fish to Gramps";
+            Debug.Log("Convo is now: " + StaticValueHolder.DialogueManagerObject.NPCs[1]);
         }
 
         //story section 2, catch 5 butterflies
