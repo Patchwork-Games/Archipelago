@@ -24,7 +24,8 @@ public class FishBoid : MonoBehaviour
     void Update()
     {
         //keep fish in range unless being chased by player
-        if ((transform.position - manager.pos).sqrMagnitude >= manager.tankWidth * manager.tankWidth && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude > 6 * 6)
+        if ((transform.position - manager.pos).sqrMagnitude >= manager.tankWidth * 
+            manager.tankWidth && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude > 6 * 6)
         {
             turningBack = true;
         }
@@ -83,7 +84,8 @@ public class FishBoid : MonoBehaviour
         {
             Vector3 awayFromPlayer = transform.position - StaticValueHolder.PlayerObject.transform.position;
             awayFromPlayer.y = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(awayFromPlayer), rotationSpeed * 2 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, 
+                Quaternion.LookRotation(awayFromPlayer), rotationSpeed * 2 * Time.deltaTime);
             speed = 5.0f;
             maxSpeed = 5.0f;
         }

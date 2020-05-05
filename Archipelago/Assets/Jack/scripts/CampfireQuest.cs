@@ -38,7 +38,7 @@ public class CampfireQuest : MonoBehaviour
         //check if player is close enough to pick up
         if (Vector3.Distance(transform.position, StaticValueHolder.PlayerMovementScript.transform.position) < talkRadius && !litFire)
         {
-            //show button needed to pick up
+            //show button needed to light campfire
             if (ButtonGuide)
             {
                 //move UI to above fire

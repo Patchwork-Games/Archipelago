@@ -68,7 +68,12 @@ public class SkimPuzzleMaster : MonoBehaviour
         else if (!rewarded)
         {
             //give player reward
-            GameObject reward = Instantiate(energyPickup, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+            GameObject reward = Instantiate
+                (
+                    energyPickup, 
+                    new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), 
+                    Quaternion.identity
+                );
             reward.transform.position = transform.position;
             rewarded = true;
         }

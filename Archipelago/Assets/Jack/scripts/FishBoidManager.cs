@@ -38,9 +38,5 @@ public class FishBoidManager : MonoBehaviour
             goalPos = new Vector3(Random.Range(0, tankWidth), Random.Range(0, tankHeight), Random.Range(0, tankWidth)) + transform.position;
             goalObj.transform.position = goalPos;
         }
-        //goalPos = goalObj.transform.position;
-
-
-
     }
 }
