@@ -21,7 +21,7 @@ public class IslandName : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //display the name of the island when entering shallow waters while in boat
-        if (other.CompareTag("Boat") && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
+        if (other.CompareTag("BoatTriggerBox") && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
         {
             IslandNameUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = islandName;
             IslandNameUI.SetActive(true);
@@ -57,7 +57,7 @@ public class IslandName : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the player is in the boat and they are leaving the island
-        if (other.CompareTag("Boat") && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
+        if (other.CompareTag("BoatTriggerBox") && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.BOAT)
         {
             // Pick one of the sailing tracks to play
             int randomNum = Random.Range(0, 3);
