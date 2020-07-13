@@ -44,6 +44,7 @@ public class BoatController : MonoBehaviour
 	private bool applyQuickRightForce = false;
 	private float originalBoatCameraFOV = 0f;
 	private float zoomLerpTime = 0;
+	private bool reversing = false;
 	public float PercentageSpeed { get; set; } = 0f;
 
 	// Particles
@@ -248,8 +249,16 @@ public class BoatController : MonoBehaviour
 
 	private void Accelerate(float force)
 	{
-		frontLeftW.motorTorque = force;
-		frontRightW.motorTorque = force;
+		if (reversing)
+		{
+			frontLeftW.motorTorque = -force;
+			frontRightW.motorTorque = -force;
+		}
+		else 
+		{
+			frontLeftW.motorTorque = force;
+			frontRightW.motorTorque = force;
+		}
 	}
 
 	public static float EaseOutQuart(float start, float end, float value)
@@ -418,6 +427,11 @@ public class BoatController : MonoBehaviour
 		controls.Boat.Dash.performed += ctx => Dash();
 		controls.Boat.Dash.Enable();
 
+		//reverse
+		controls.Boat.Reverse.performed += ctx => reversing = true;
+		controls.Boat.Reverse.canceled += ctx => reversing = false;
+		controls.Boat.Reverse.Enable();
+
 		// Quick turning
 		controls.Boat.QuickLeft.performed += ctx => applyQuickLeftForce = true;//QuickLeft();
 		controls.Boat.QuickLeft.canceled += ctx => applyQuickLeftForce = false;
@@ -437,6 +451,11 @@ public class BoatController : MonoBehaviour
 		// Dashing
 		controls.Boat.Dash.performed -= ctx => Dash();
 		controls.Boat.Dash.Disable();
+
+		//reverse
+		controls.Boat.Reverse.performed -= ctx => reversing = true;
+		controls.Boat.Reverse.canceled -= ctx => reversing = false;
+		controls.Boat.Reverse.Enable();
 
 		// Quick turning
 		controls.Boat.QuickLeft.performed -= ctx => applyQuickLeftForce = true;//QuickLeft();

@@ -512,6 +512,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""QuickLeft"",
                     ""type"": ""Button"",
+                    ""id"": ""dd2d2485-d0d1-4d1b-8d14-9fa89a45e118"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reverse"",
+                    ""type"": ""Button"",
                     ""id"": ""357a2df3-20ee-4ea4-902a-77ed02a38715"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -632,7 +640,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""639767cc-74c4-482a-9d2c-f4260c7b4211"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -780,6 +788,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""QuickLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef17606a-8d99-4e54-adcc-d39cdb0144e3"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Reverse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6788a970-913a-430d-8b43-40c6c4a139f0"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Reverse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -962,6 +992,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Boat_CameraMovement = m_Boat.FindAction("CameraMovement", throwIfNotFound: true);
         m_Boat_QuickRight = m_Boat.FindAction("QuickRight", throwIfNotFound: true);
         m_Boat_QuickLeft = m_Boat.FindAction("QuickLeft", throwIfNotFound: true);
+        m_Boat_Reverse = m_Boat.FindAction("Reverse", throwIfNotFound: true);
         // MusicKeys
         m_MusicKeys = asset.FindActionMap("MusicKeys", throwIfNotFound: true);
         m_MusicKeys_PlaySound = m_MusicKeys.FindAction("PlaySound", throwIfNotFound: true);
@@ -1132,6 +1163,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Boat_CameraMovement;
     private readonly InputAction m_Boat_QuickRight;
     private readonly InputAction m_Boat_QuickLeft;
+    private readonly InputAction m_Boat_Reverse;
     public struct BoatActions
     {
         private @InputMaster m_Wrapper;
@@ -1141,6 +1173,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @CameraMovement => m_Wrapper.m_Boat_CameraMovement;
         public InputAction @QuickRight => m_Wrapper.m_Boat_QuickRight;
         public InputAction @QuickLeft => m_Wrapper.m_Boat_QuickLeft;
+        public InputAction @Reverse => m_Wrapper.m_Boat_Reverse;
         public InputActionMap Get() { return m_Wrapper.m_Boat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1165,6 +1198,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @QuickLeft.started -= m_Wrapper.m_BoatActionsCallbackInterface.OnQuickLeft;
                 @QuickLeft.performed -= m_Wrapper.m_BoatActionsCallbackInterface.OnQuickLeft;
                 @QuickLeft.canceled -= m_Wrapper.m_BoatActionsCallbackInterface.OnQuickLeft;
+                @Reverse.started -= m_Wrapper.m_BoatActionsCallbackInterface.OnReverse;
+                @Reverse.performed -= m_Wrapper.m_BoatActionsCallbackInterface.OnReverse;
+                @Reverse.canceled -= m_Wrapper.m_BoatActionsCallbackInterface.OnReverse;
             }
             m_Wrapper.m_BoatActionsCallbackInterface = instance;
             if (instance != null)
@@ -1184,6 +1220,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @QuickLeft.started += instance.OnQuickLeft;
                 @QuickLeft.performed += instance.OnQuickLeft;
                 @QuickLeft.canceled += instance.OnQuickLeft;
+                @Reverse.started += instance.OnReverse;
+                @Reverse.performed += instance.OnReverse;
+                @Reverse.canceled += instance.OnReverse;
             }
         }
     }
@@ -1260,6 +1299,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnCameraMovement(InputAction.CallbackContext context);
         void OnQuickRight(InputAction.CallbackContext context);
         void OnQuickLeft(InputAction.CallbackContext context);
+        void OnReverse(InputAction.CallbackContext context);
     }
     public interface IMusicKeysActions
     {

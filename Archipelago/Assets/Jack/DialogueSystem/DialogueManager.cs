@@ -178,11 +178,8 @@ public class DialogueManager : MonoBehaviour
             arrow.enabled = false;
 
             //set name
-
             if (names.Count > 0) name = names.Dequeue();
-
             nameText.text = name;
-
 
             //get specific settings for each character
             for (int i = 0; i < dialogue.charactersTalking.Length; i++)
@@ -293,9 +290,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     tempText = "";
                     dontAddThisFrame = true;
-                    Debug.Log("Convo was: " + StaticValueHolder.DialogueManagerObject.NPCs[thisNPC]);
                     GetComponent<ConversationManager>().ChangeNextConversation(thisNPC, 1);
-                    Debug.Log("Convo is now: " + StaticValueHolder.DialogueManagerObject.NPCs[thisNPC]);
                 }
 
 
@@ -342,18 +337,6 @@ public class DialogueManager : MonoBehaviour
                     dontAddThisFrame = true;
                     tempText = "";
                 }
-
-
-                //temp testing tool
-                if (Input.GetKeyDown(KeyCode.V))
-                {
-                    GameManager.SailingEnabled = true;
-                    StaticValueHolder.BugCatcher.gameObject.SetActive(true);
-                    StaticValueHolder.BugCatcherNote.gameObject.SetActive(true);
-                    packageBox.SetActive(true);
-                    objectiveText.text = "Deliver the fish to Isa on Butterfly Island";
-                }
-
 
                 if (tempText == "removeButterflies")
                 {
@@ -460,8 +443,8 @@ public class DialogueManager : MonoBehaviour
         StaticValueHolder.PlayerMovementScript.jump = false;
         StaticValueHolder.PlayerMovementScript.interact = false;
 		StaticValueHolder.PlayerCharacterCamera.gameObject.SetActive(true);
-		StaticValueHolder.PlayerCharacterCamera.gameObject.transform.position = StaticValueHolder.PlayerMovementScript.beginTalkCamPos;
-
+		StaticValueHolder.PlayerCharacterCamera.gameObject.transform.position = 
+            StaticValueHolder.PlayerMovementScript.beginTalkCamPos;
     }
 
 
@@ -470,7 +453,8 @@ public class DialogueManager : MonoBehaviour
     {
         //progress dialogue with interact button
                                                                                                                  
-        if (Input.GetMouseButtonDown(0) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING || StaticValueHolder.PlayerMovementScript.interact && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
+        if (Input.GetMouseButtonDown(0) && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING || 
+            StaticValueHolder.PlayerMovementScript.interact && PlayerStateMachine.Instance.state == PlayerStateMachine.PlayerState.TALKING)
         {
             StaticValueHolder.PlayerMovementScript.interact = false;
             if (arrow.enabled == true)

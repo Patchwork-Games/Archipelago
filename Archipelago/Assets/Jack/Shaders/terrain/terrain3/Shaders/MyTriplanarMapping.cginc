@@ -80,45 +80,25 @@ void MyTriPlanarSurfaceFunction(
 
 		if (parameters.position.y <= 35.0f)		//sand
 		{
-			//albedoX = tex2D(_SandMainTex, triUV.x).rgb;
 			albedoY = tex2D(_SandMainTex, triUV.y).rgb;
-			//albedoZ = tex2D(_SandMainTex, triUV.z).rgb;
-
-			//mohsX = tex2D(_SandMOHSMap, triUV.x);
 			mohsY = tex2D(_SandMOHSMap, triUV.y);
-			//mohsZ = tex2D(_SandMOHSMap, triUV.z);
-
-			//tangentNormalX = UnpackNormal(tex2D(_SandNormalMap, triUV.x));
 			rawNormalY = tex2D(_SandNormalMap, triUV.y);
-			//tangentNormalZ = UnpackNormal(tex2D(_SandNormalMap, triUV.z));
 		}
 
 		
-
 		if (parameters.position.y >= 36.0f)  //grass
 		{
-			//albedoX = tex2D(_TopMainTex, triUV.x).rgb;
 			albedoY = tex2D(_TopMainTex, triUV.y).rgb;
-			//albedoZ = tex2D(_TopMainTex, triUV.z).rgb;
-
-			//mohsX = tex2D(_MOHSMap, triUV.x);
 			mohsY = tex2D(_MOHSMap, triUV.y);
-			//mohsZ = tex2D(_MOHSMap, triUV.z);
-
-			//tangentNormalX = UnpackNormal(tex2D(_TopNormalMap, triUV.x));
 			rawNormalY = tex2D(_TopNormalMap, triUV.y);
-			//tangentNormalZ = UnpackNormal(tex2D(_TopNormalMap, triUV.z));
 		}
 
 
-		if (parameters.position.y > 35.0f && parameters.position.y < 36.0f)  //grass
+		if (parameters.position.y > 35.0f && parameters.position.y < 36.0f)  //grass blend
 		{
 			 albedoY = lerp(tex2D(_TopMainTex, triUV.y), tex2D(_SandMainTex, triUV.y), 36 - parameters.position.y);
 			 rawNormalY = tex2D(_SandNormalMap, triUV.y);
-
 		}
-
-
 	}
 #endif
 	float3 tangentNormalY = UnpackNormal(rawNormalY);

@@ -499,6 +499,14 @@
                 {
                     "name": "QuickLeft",
                     "type": "Button",
+                    "id": "dd2d2485-d0d1-4d1b-8d14-9fa89a45e118",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Reverse",
+                    "type": "Button",
                     "id": "357a2df3-20ee-4ea4-902a-77ed02a38715",
                     "expectedControlType": "",
                     "processors": "",
@@ -619,7 +627,7 @@
                 {
                     "name": "",
                     "id": "639767cc-74c4-482a-9d2c-f4260c7b4211",
-                    "path": "<Keyboard>/leftCtrl",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -767,6 +775,28 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "QuickLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef17606a-8d99-4e54-adcc-d39cdb0144e3",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Reverse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6788a970-913a-430d-8b43-40c6c4a139f0",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Reverse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

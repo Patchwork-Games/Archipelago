@@ -22,7 +22,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]], myTag, anim);
+        FindObjectOfType<DialogueManager>().StartDialogue(
+            dialogue[FindObjectOfType<DialogueManager>().NPCs[myTag]], myTag, anim);
         if (anim) anim.SetTrigger("Talk"); //if npc has animator, trigger talking animation
         if (living) StartCoroutine(TurnToPlayer());
         
@@ -34,7 +35,12 @@ public class DialogueTrigger : MonoBehaviour
         var t = 0.0f;
         while (t < 1)
         {
-            var r = new Vector3(StaticValueHolder.PlayerObject.transform.position.x, transform.position.y, StaticValueHolder.PlayerObject.transform.position.z);
+            var r = new Vector3
+                (
+                    StaticValueHolder.PlayerObject.transform.position.x, 
+                    transform.position.y, 
+                    StaticValueHolder.PlayerObject.transform.position.z
+                );
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(r - transform.position), t);
             t += Time.deltaTime;
             yield return null;
@@ -80,7 +86,9 @@ public class DialogueTrigger : MonoBehaviour
                     TriggerDialogue();
                 }
             }
-            else if (!hiddenTalkButton) //if this is in the normal else then the talk button is always disabled for any npc other than the first
+            //if this is in the normal else then the talk button 
+            //is always disabled for any npc other than the first
+            else if (!hiddenTalkButton) 
             {
                 hiddenTalkButton = true;
                 if (talkButtonGuide) talkButtonGuide.enabled = false;
@@ -90,8 +98,9 @@ public class DialogueTrigger : MonoBehaviour
             {
                 startedTalking = false;
             }
-        } 
-        else if (displayOnStart && !startedTalking) //show text automatically --- cant be in start because manager wont have run its start yet
+        }
+        //show text automatically --- cant be in start because manager wont have run its start yet
+        else if (displayOnStart && !startedTalking) 
         {
             startedTalking = true;
             TriggerDialogue();
@@ -121,7 +130,12 @@ public class DialogueTrigger : MonoBehaviour
             var heading = StaticValueHolder.PlayerObject.transform.position - transform.position;
             var dot = Vector3.Dot(heading, transform.forward);
             //look towards target
-            anim.SetLookAtPosition(new Vector3(StaticValueHolder.PlayerObject.transform.position.x, StaticValueHolder.PlayerObject.transform.position.y, StaticValueHolder.PlayerObject.transform.position.z));
+            anim.SetLookAtPosition(new Vector3
+                (
+                    StaticValueHolder.PlayerObject.transform.position.x, 
+                    StaticValueHolder.PlayerObject.transform.position.y,
+                    StaticValueHolder.PlayerObject.transform.position.z
+                ));
 
             //only look if infront
             if (dot > 1 && (transform.position - StaticValueHolder.PlayerObject.transform.position).sqrMagnitude < 100)
