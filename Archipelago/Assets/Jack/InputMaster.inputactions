@@ -511,6 +511,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Upright",
+                    "type": "Button",
+                    "id": "039fdb43-7732-43e9-9727-e41c0dba9372",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -797,6 +805,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Reverse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "781db81c-d56d-4291-a0b7-28003d607ddf",
+                    "path": "<Gamepad>/select",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Upright",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6abc3d73-243e-484b-b02f-412b320ec09b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Upright",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

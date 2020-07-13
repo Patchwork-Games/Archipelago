@@ -416,6 +416,14 @@ public class BoatController : MonoBehaviour
 		}
 	}
 
+
+	private void GoUpright() 
+	{
+		transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+		transform.rotation = Quaternion.identity;
+	}
+
+
 	private void OnEnable()
 	{
 		// Steering
@@ -431,6 +439,10 @@ public class BoatController : MonoBehaviour
 		controls.Boat.Reverse.performed += ctx => reversing = true;
 		controls.Boat.Reverse.canceled += ctx => reversing = false;
 		controls.Boat.Reverse.Enable();
+
+		//get upright again
+		controls.Boat.Upright.performed += ctx => GoUpright();
+		controls.Boat.Upright.Enable();
 
 		// Quick turning
 		controls.Boat.QuickLeft.performed += ctx => applyQuickLeftForce = true;//QuickLeft();
@@ -456,6 +468,10 @@ public class BoatController : MonoBehaviour
 		controls.Boat.Reverse.performed -= ctx => reversing = true;
 		controls.Boat.Reverse.canceled -= ctx => reversing = false;
 		controls.Boat.Reverse.Enable();
+
+		//get upright again
+		controls.Boat.Upright.performed -= ctx => GoUpright();
+		controls.Boat.Upright.Enable();
 
 		// Quick turning
 		controls.Boat.QuickLeft.performed -= ctx => applyQuickLeftForce = true;//QuickLeft();
