@@ -8,7 +8,7 @@ public class FishBoidManager : MonoBehaviour
     [SerializeField] private GameObject fishPrefab = null;
     public int tankWidth = 10;
     public int tankHeight = 2;
-    static int numFish = 30;
+    static int numFish = 20;
     public GameObject[] allFish = new GameObject[numFish];
     public Vector3 pos = Vector3.zero;
     public Vector3 goalPos = Vector3.zero;

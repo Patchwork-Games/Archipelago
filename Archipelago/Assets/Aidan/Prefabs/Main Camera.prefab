@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1147093783874353179}
   - component: {fileID: 1147093783874353178}
   - component: {fileID: 1147093783874353176}
+  - component: {fileID: 671472350}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -198,6 +199,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalsShader: {fileID: 4800000, guid: a3aefc058e2db8a47a647790abe1f36b, type: 3}
+--- !u!192 &671472350
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147093783874353174}
+  serializedVersion: 2
+  m_Size: {x: 400, y: 400, z: 400}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_IsViewVolume: 1
 --- !u!1001 &1720653171278892260
 PrefabInstance:
   m_ObjectHideFlags: 0

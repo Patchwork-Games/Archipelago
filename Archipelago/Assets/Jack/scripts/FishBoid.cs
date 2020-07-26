@@ -37,7 +37,7 @@ public class FishBoid : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
             speed = Random.Range(0.8f, 1.3f);
         }
-        else if (Random.Range(0, 10) < 1) ApplyRules();
+        else if (Random.Range(0, 30) < 1) ApplyRules();
 
         if (speed > maxSpeed) speed = maxSpeed;
         if (speed < 0.8f) speed = 0.8f;
